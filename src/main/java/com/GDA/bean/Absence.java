@@ -8,8 +8,8 @@ public class Absence {
 	private Date startDate;
 	private Date endDate;
 	private String reason;
-	private int idAbsenceType;
-	private int idStatus;
+	private AbsenceType absenceType;
+	private Status status;
 	private int idUser;
 	
 	
@@ -18,14 +18,14 @@ public class Absence {
 		super();
 	}
 	
-	public Absence(int id, Date startDate, Date endDate, String reason, int idAbsenceType, int idStatus, int idUser) {
+	public Absence(int id, Date startDate, Date endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.reason = reason;
-		this.idAbsenceType = idAbsenceType;
-		this.idStatus = idStatus;
+		this.absenceType = absenceType;
+		this.status = status;
 		this.idUser = idUser;
 	}
 
@@ -61,20 +61,20 @@ public class Absence {
 		this.reason = reason;
 	}
 
-	public int getIdAbsenceType() {
-		return idAbsenceType;
+	public AbsenceType getAbsenceType() {
+		return absenceType;
 	}
 
-	public void setIdAbsenceType(int idAbsenceType) {
-		this.idAbsenceType = idAbsenceType;
+	public void setAbsenceType(AbsenceType absenceType) {
+		this.absenceType = absenceType;
 	}
 
-	public int getIdStatus() {
-		return idStatus;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setIdStatus(int idStatus) {
-		this.idStatus = idStatus;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public int getIdUser() {
@@ -88,7 +88,7 @@ public class Absence {
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", reason=" + reason
-				+ ", idAbsenceType=" + idAbsenceType + ", idStatus=" + idStatus + ", idUser=" + idUser + "]";
+				+ ", idAbsenceType=" + absenceType + ", idStatus=" + status + ", idUser=" + idUser + "]";
 	}
 	
 			
