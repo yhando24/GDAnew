@@ -67,10 +67,10 @@ public class Login extends HttpServlet {
 			System.out.println("true");
 
 			HttpSession session = request.getSession(true);
-//			session.setAttribute("currentSessionUser", u);
+			//session.setAttribute("user", user);
 
 			
-			response.sendRedirect(request.getContextPath() + "/WEB-INF/view/index.jsp"); // logged-in page
+			response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page
 			
 
 		} else {
