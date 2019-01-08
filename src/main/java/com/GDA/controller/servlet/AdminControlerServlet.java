@@ -32,7 +32,8 @@ public class AdminControlerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher("/WEB-INF/view/menu-administrateur.jsp").forward(request, response); ;
+		this.getServletContext().getRequestDispatcher("/WEB-INF/view/menu-administrateur.jsp").forward(request, response);
+		//this.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -42,7 +43,7 @@ public class AdminControlerServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user.getFunction().equals(1)) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/view/menu-administrateur.jsp").forward(request, response); ;
+			this.getServletContext().getRequestDispatcher("/WEB-INF/view/menu-administrateur.jsp").forward(request, response);
 		}
 		
 	}
