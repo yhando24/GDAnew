@@ -85,8 +85,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 			prepareStatement.setDate(1, new java.sql.Date(absence.getStartDate().getTime()) );
 			prepareStatement.setDate(2, new java.sql.Date(absence.getEndDate().getTime()) );
 			prepareStatement.setString(3, absence.getReason());
-			prepareStatement.setInt(4, absence.getIdAbsenceType() );
-			prepareStatement.setInt(5, absence.getIdStatus());
+			prepareStatement.setInt(4, absence.getAbsenceType().getId() );
+			prepareStatement.setInt(5, absence.getStatus().getId());
 			prepareStatement.setInt(6, absence.getIdUser());
 			prepareStatement.setInt(7, absence.getId());
 						
@@ -150,8 +150,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 				 absence.setStartDate(resultSet.getTimestamp("startDate"));
 				 absence.setEndDate(resultSet.getTimestamp("endDate"));
 				 absence.setReason(resultSet.getString("reason"));
-				 absence.setIdAbsenceType(resultSet.getInt("idAbsenceType"));
-				 absence.setIdStatus(resultSet.getInt("idStatus"));
+				 absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("nameType")));
+				 absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("nameType")));
 				 absence.setIdUser(resultSet.getInt("idUser"));			 
 			}
 		}
@@ -202,8 +202,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 				 absence.setStartDate(resultSet.getTimestamp("startDate"));
 				 absence.setEndDate(resultSet.getTimestamp("endDate"));
 				 absence.setReason(resultSet.getString("reason"));
-				 absence.setIdAbsenceType(resultSet.getInt("idAbsenceType"));
-				 absence.setIdStatus(resultSet.getInt("idStatus"));
+				 absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("nameType")));
+				 absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("nameType")));
 				 absence.setIdUser(resultSet.getInt("idUser"));		
 				 
 				 absences.add(absence);
@@ -252,8 +252,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 				 absence.setStartDate(resultSet.getTimestamp("startDate"));
 				 absence.setEndDate(resultSet.getTimestamp("endDate"));
 				 absence.setReason(resultSet.getString("reason"));
-				 absence.setIdAbsenceType(resultSet.getInt("idAbsenceType"));
-				 absence.setIdStatus(resultSet.getInt("idStatus"));
+				 absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("nameType")));
+				 absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("nameType")));
 				 absence.setIdUser(resultSet.getInt("idUser"));		
 				 
 				 absences.add(absence);
@@ -303,8 +303,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 				 absence.setStartDate(resultSet.getTimestamp("startDate"));
 				 absence.setEndDate(resultSet.getTimestamp("endDate"));
 				 absence.setReason(resultSet.getString("reason"));
-				 absence.setIdAbsenceType(resultSet.getInt("idAbsenceType"));
-				 absence.setIdStatus(resultSet.getInt("idStatus"));
+				 absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("nameType")));
+				 absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("nameType")));
 				 absence.setIdUser(resultSet.getInt("idUser"));		
 				 
 				 absences.add(absence);
