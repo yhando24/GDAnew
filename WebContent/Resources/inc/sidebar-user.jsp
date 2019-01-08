@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a class="nav-link" href="" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Accueil</span>
+            <span>Accueil </span>
           </a>
         </li>     
       </ul>
