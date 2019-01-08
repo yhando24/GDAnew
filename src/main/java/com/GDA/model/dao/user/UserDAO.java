@@ -194,4 +194,67 @@ public class UserDAO implements IUserDAO {
 		return isAvailable;
 	}
 
+	@Override
+	public User findUserByEmailAndByPassword(String email, String password) throws SQLException {
+		
+		User u = new User();
+		AbsenceDAO absence = new AbsenceDAO();
+		Departement d = new Departement();
+		Function f = new Function();
+		
+		Connection conn = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultset = null;
+		
+		try {
+			
+			conn = ConnectionDB.getConnection();
+			
+			String query = "SELECT u.id,u.firstname,u.name,u.email,u.password,u.idFunction,u.idDepartement,u.nbrDaysOfLeave,u.nbrRTT,f.name as namefunc,d.name as namedep FROM user u JOIN diginamicproject.function f ON u.idFunction = f.id JOIN departement d ON u.idDepartement=d.id WHERE email = ? AND password = ?";
+			
+			prepareStatement = conn.prepareStatement(query);
+			
+			prepareStatement.setString(1, email);
+			prepareStatement.setString(2, password);
+			
+			resultset = prepareStatement.executeQuery();
+			
+								
+			while (resultset.next()) {
+				
+				u.setId(resultset.getInt("id"));
+				u.setFirstname(resultset.getString("firstname"));
+				u.setName(resultset.getString("name"));
+				u.setEmail(resultset.getString("email"));
+				u.setPassword(resultset.getString("password"));
+				d.setName(resultset.getString("namedep"));
+				d.setId(resultset.getInt("idDepartement"));
+				u.setDepartement(d);
+				f.setId(resultset.getInt("idFunction"));
+				f.setName(resultset.getString("namefunc"));
+				u.setFunction(f);
+				u.setNbrDaysOfLeave(resultset.getInt("nbrDaysOfLeave"));
+				u.setNbrRTT(resultset.getInt("nbrRTT"));
+				u.setAbsences(absence.findAbsencesByIdUser(u.getId()));
+				
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		finally {
+			
+			resultset.close();
+			prepareStatement.close();
+			conn.close();
+			
+		}
+		
+		return u;
+		
+		
+	}
+
 }

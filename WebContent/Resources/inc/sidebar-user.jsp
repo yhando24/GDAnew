@@ -23,4 +23,4 @@
             <span>Jours fériés</span>
           </a>
         </li>     
-      </ul>
+</ul>
