@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AbsencesManagmentUser
  */
-@WebServlet("/AbsencesManagmentUser")
-public class AbsencesManagmentUser extends HttpServlet {
+@WebServlet("/AbsencesManagment")
+public class AbsencesManagment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AbsencesManagmentUser() {
+    public AbsencesManagment() {
         super();
         // TODO Auto-generated constructor stub
     }
