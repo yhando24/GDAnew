@@ -16,9 +16,5 @@
 			<p></p>
 		</div>
 	</div>
-	</div>
 
-	</div>
-
-	</div>
 	<%@ include file="/Resources/inc/footer.jsp"%>
