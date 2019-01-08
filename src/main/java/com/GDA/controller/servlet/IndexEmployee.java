@@ -10,17 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IndexManager
+ * Servlet implementation class IndexEmployee
  */
-@WebServlet("/indexManager")
-public class IndexManager extends HttpServlet {
+@WebServlet("/indexEmployee")
+public class IndexEmployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexManager() {
+    public IndexEmployee() {
         super();
+       
     }
 
 	/**
@@ -28,7 +29,7 @@ public class IndexManager extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeManager.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeEmployee.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -36,10 +37,8 @@ public class IndexManager extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		response.sendRedirect(request.getContextPath() + "/homeManager.jsp"); // logged-in page
 		
-	
+		response.sendRedirect(request.getContextPath() + "/login"); 
 	}
 
 }
