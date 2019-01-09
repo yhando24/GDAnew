@@ -143,7 +143,7 @@
           <div class="modal-body">Selectionner se déconnecter si vous voulez quitter votre session</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Se déconnecter</a>
+            <a class="btn btn-primary" href="/GDA/login">Se déconnecter</a>
           </div>
         </div>
       </div>
