@@ -140,7 +140,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public boolean isUserExist(String email) {
+	public boolean isUserExist(String email,String password) {
 						
 		Connection conn = null;
 		PreparedStatement prepareStatement = null;
@@ -151,11 +151,12 @@ public class UserDAO implements IUserDAO {
 			
 			conn = ConnectionDB.getConnection();
 			
-			String query = "SELECT * FROM user WHERE email = ?";
+			String query = "SELECT * FROM user WHERE email = ? AND password = ?";
 			
 			prepareStatement = conn.prepareStatement(query);
 			
 			prepareStatement.setString(1, email);
+			prepareStatement.setString(2, password);
 			
 			resultset = prepareStatement.executeQuery();
 			
