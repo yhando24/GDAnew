@@ -5,7 +5,7 @@
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<c:choose>
 		<c:when test="${user.function == 'admin'}">
-	    	<%@ include file="/Resources/inc/sidebaradmin.jsp"%>
+	    	<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
 	  	</c:when>
 		<c:when test="${user.function == 'manager'}">
 	   		en attente du link
