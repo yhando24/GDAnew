@@ -1,8 +1,11 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +13,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.bean.AbsenceType;
+import main.java.com.GDA.bean.JourFerie;
+import main.java.com.GDA.bean.Status;
+import main.java.com.GDA.bean.TypeJourFerie;
 import main.java.com.GDA.bean.User;
+import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
- * Servlet implementation class AdminControlerServlet
+ * Servlet implementation class DayOfCreateServlet
  */
-@WebServlet("/AdminControlerServlet")
-public class AdminControlerServlet extends HttpServlet {
+@WebServlet("/DayOffCreateServlet")
+public class DayOffCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminControlerServlet() {
+    public DayOffCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +42,45 @@ public class AdminControlerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.getServletContext().getRequestDispatcher("/WEB-INF/view/DayOfCreate.jsp").forward(request, response);
-		//this.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+JourFerie jourferie = new JourFerie();
+		
+		String dayOff = request.getParameter("dayoff");
+		DateFormat writeFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+		Date startDateFormated = new Date();
+	
+		try {
+			startDateFormated = writeFormat.parse(dayOff);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		jourferie.setComment(request.getParameter("reason"));
+		TypeJourFerie type = new TypeJourFerie();
+		type.setId(Integer.parseInt(request.getParameter("ferieType")));
+		jourferie.setTypeJourFerie(type);
+		
+		Status status = new Status();
+		
+		status.setId(2);
+		jourferie.setStatus(status);
+		
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user.getFunction().equals(1)) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/view/DayOfCreate.jsp").forward(request, response);
-		}
+	}	
 		
-	}
-
+		AbsenceDAO dao = new AbsenceDAO();
+		dao.addAbsence(absence);
+		
+		response.sendRedirect(request.getContextPath() + "/AbsencesManagement"); // logged-in page
+}
 }
