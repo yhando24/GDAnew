@@ -18,7 +18,7 @@
 	<div class="container">
 		<h1>Gestion des absences</h1>
 		<c:if test="${!empty user}">
-			<table>
+			<table style="border: 1px solid">
 				<tr>
 					<th>Date debut</th>
 					<th>date de fin</th>
@@ -32,7 +32,7 @@
 						<td>${abs.startDate}</td>
 						<td>${abs.endDate}</td>
 						<td>${abs.startDate}</td>
-						<td>${abs.type.name}</td>
+						<td>${abs.absenceType.name}</td>
 						<%-- <td>${abs.status.name}</td> --%>
 						<td>
 							<%-- <c:choose>
