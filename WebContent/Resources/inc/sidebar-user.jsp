@@ -7,19 +7,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value ="/AbsencesManagement"/>" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link" href="<c:url value ="/AbsencesManagement"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Gestion des absences</span>
           </a>
         </li> 
         <li class="nav-item">
-          <a class="nav-link" href="" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link" href="" >
             <i class="fas fa-fw fa-folder"></i>
             <span>Planning des absences</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link" href="" >
             <i class="fas fa-fw fa-folder"></i>
             <span>Jours fériés</span>
           </a>aa
