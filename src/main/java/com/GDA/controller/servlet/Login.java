@@ -76,9 +76,34 @@ public class Login extends HttpServlet {
 			session.setAttribute("user", u);
 			
 			System.out.println(session);
+			
+			User u2 = (User) session.getAttribute("user");
+			
+			System.out.println(u2.getFunction().getId());
+			
+			System.out.println(u.getFunction());
+			System.out.println(u.getFunction().getId());
+			
+			
+			if (u.getFunction().getId() == 1) {
+				
+				response.sendRedirect(request.getContextPath() + "/AdminControlerServlet"); // logged-in page Admin				
+			}
+			else if (u.getFunction().getId() == 2) {
+				
+				response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page Manager				
+			}
+			else if (u.getFunction().getId() == 3) {
+				
+				response.sendRedirect(request.getContextPath() + "/indexEmployee"); // logged-in page Employee				
+
+			}
+				
 
 			//session.setAttribute("erreur", null);
-			response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page
+			//response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page
+			
+			
 			
 
 		} else {
