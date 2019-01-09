@@ -33,7 +33,7 @@
 						<td>${abs.endDate}</td>
 						<td>${abs.startDate}</td>
 						<td>${abs.type.name}</td>
-						//<td>${abs.status.name}</td>
+						<%-- <td>${abs.status.name}</td> --%>
 						<td>
 							<%-- <c:choose>
 									<c:when test="${abs.type.name == 'MISSION'}">
@@ -75,3 +75,4 @@
 			</div>
 		</c:if>
 	</div>
+<%@ include file="/Resources/inc/footer.jsp"%>
