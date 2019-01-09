@@ -33,9 +33,9 @@
 						<td>${abs.endDate}</td>
 						<td>${abs.startDate}</td>
 						<td>${abs.type.name}</td>
-						<td>${abs.status.name}</td>
+						//<td>${abs.status.name}</td>
 						<td>
-							<c:choose>
+							<%-- <c:choose>
 									<c:when test="${abs.type.name == 'MISSION'}">
 										TYPE MISSION
 									</c:when>
@@ -55,7 +55,7 @@
 		  										</c:when>
 										</c:choose>
 									</c:otherwise>
-							</c:choose>
+							</c:choose> --%>
 						</td>
 					</tr>
 				</c:forEach>
