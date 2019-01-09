@@ -27,7 +27,7 @@
 					<th>Action</th>
 				</tr>
 
-				<c:forEach items="${user.absenses}" var="abs" varStatus="status">
+				<c:forEach items="${user.absences}" var="abs" varStatus="status">
 					<tr>
 						<td>${abs.startDate}</td>
 						<td>${abs.endDate}</td>
