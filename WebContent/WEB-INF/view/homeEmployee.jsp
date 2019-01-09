@@ -12,25 +12,22 @@
 	<div id="wrapper">
 
 		<%@ include file="/Resources/inc/sidebar-user.jsp"%>
-
+	
 		<div id="content-wrapper">
-
 			<div class="container-fluid">
-					 
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Gestion des absences</li>
+			</ol>		
+ 
 				Salut employé-e !!! L'absence est notre passion
 			
 			</div>
 			<!-- /.container-fluid -->
 
-			<!-- Sticky Footer -->
-			<footer class="sticky-footer">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright © Promotion JAVA JEE - Diginamic - 2019</span>
-					</div>
-				</div>
-			</footer>
-
+			
 		</div>
 		<!-- /.content-wrapper -->
 
