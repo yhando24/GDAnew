@@ -210,7 +210,14 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Se déconnecter</a>
+
+<!-- Force Form post -->
+					<form method="post" action='<c:url value="/logout"/>'>
+
+						<button class="btn btn-primary" type="submit">Se
+							déconnecter</button>
+					</form>
+
 				</div>
 			</div>
 		</div>
