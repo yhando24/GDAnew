@@ -7,7 +7,9 @@
    <footer class="sticky-footer">
 		<div class="container my-auto">
 			<div class="copyright text-center my-auto">
+
 				<span>Copyright © Promotion JAVA JEE - Diginamic - 2019</span>
+
 			</div>
 		</div>
 
@@ -30,6 +32,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
+
 					<h5 class="modal-title" id="exampleModalLabel">Prêt à partir?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
@@ -37,11 +40,14 @@
 					</button>
 				</div>
 				<div class="modal-body">Selectionner se déconnecter si vous
+
 					voulez quitter votre session</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
+
 					<a class="btn btn-primary" href="login.html">Se déconnecter</a>
+
 				</div>
 			</div>
 		</div>

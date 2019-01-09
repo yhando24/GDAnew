@@ -23,10 +23,35 @@ img#logo-gda-login{
   width: 200px;
 }
 
-.btn-primary {
-  color: #fff;
+.bienvenue{
+  color:white;
+}
+.btn-annuler {
+  color: #fff !important;
+  background-color: #9E005D;
+  border-color: #9E005D;
+}
+
+.btn-annuler:hover {
+color: #fff !important;
+background-color: #69013e;
+border-color: #69013e;
+}
+
+.btn-envoyer {
+  color: #fff !important;
   background-color: #037490;
   border-color: #037490;
+}
+
+.btn-envoyer:hover {
+  color: #fff !important;
+  background-color: #005064;
+  border-color: #005064;
+}
+
+.btn-annuler, .btn-envoyer{
+  margin-top:10px;
 }
 
 a{
@@ -37,6 +62,20 @@ a:hover{
   color: #3B5C6A; 
 }
 
+.bienvenue{
+  color:white;
+}
+
+.footer-gda{
+	width:100% !important;
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 80px;
+    background-color: #e9ecef;
+}
+
 .bg-dark{
   /*background-color:#57ACAB !important;*/
   background-image: url("images/fond.png") !important;
@@ -44,10 +83,17 @@ a:hover{
   
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #9E005D;
+  border-color: #9E005D;
+}
+
+
 .btn-primary:hover {
   color: #fff;
-  background-color: #3B5C6A;
-  border-color: #3B5C6A;
+  background-color: #69013e;
+  border-color: #69013e;
 }
 
 .bg-primary {
@@ -261,7 +307,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 }
 
 .sidebar .nav-item .nav-link {
-  color: #037490;
+  color: #048880;
 }
 
 .sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {

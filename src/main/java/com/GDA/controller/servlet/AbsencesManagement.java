@@ -8,18 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.bean.User;
+import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
  * Servlet implementation class AbsencesManagmentUser
  */
-@WebServlet("/AbsencesManagment")
-public class AbsencesManagment extends HttpServlet {
+@WebServlet("/AbsencesManagement")
+public class AbsencesManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AbsencesManagment() {
+    public AbsencesManagement() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +34,22 @@ public class AbsencesManagment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.sendRedirect(request.getContextPath() + "/view/absences-managment-user.jsp");
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/absences-management-user.jsp") ;
-	    
-	     // inclusion de cette ressource
-	    requestDispatcher.include(request, response) ;
+		
+	if(request.getParameter("action") != null){
+		
+
+		
+		if(request.getParameter("action").equals("addAbsence")) {
+			
+			response.sendRedirect(request.getContextPath() + "/AddAbsence"); // logged-in page
+		}
+	}
+	else{
+
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/absences-management.jsp");
+		dispatcher.forward(request, response);
+	}
+
 		
 	}
 
@@ -40,8 +57,9 @@ public class AbsencesManagment extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
+		
 	}
+		
 
 }

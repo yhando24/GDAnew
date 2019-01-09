@@ -75,6 +75,3 @@
 			</div>
 		</c:if>
 	</div>
-
-
-	<%@ include file="/Resources/inc/footer.jsp"%>

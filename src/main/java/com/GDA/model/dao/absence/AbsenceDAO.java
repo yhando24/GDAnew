@@ -1,11 +1,15 @@
 package main.java.com.GDA.model.dao.absence;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import main.java.com.GDA.bean.Absence;
@@ -338,11 +342,20 @@ public class AbsenceDAO implements  IabsencesDAO {
 			try {
 				connection = ConnectionDB.getConnection();
 				String Query = "INSERT INTO absence VALUES (?,?,?,?,?,?)";
+				
+				
+
 		
+
+				Date startDate = (Date) absence.getStartDate();
+				Date endDate = (Date) absence.getEndDate();
+				
+				
+				
 				prepareStatement = connection.prepareStatement(Query);
 				
-				prepareStatement.setDate(1, new java.sql.Date(absence.getStartDate().getTime()) );
-				prepareStatement.setDate(2, new java.sql.Date(absence.getEndDate().getTime()) );
+				prepareStatement.setDate(1,  startDate  );
+				prepareStatement.setDate(2,  endDate);
 				prepareStatement.setString(3, absence.getReason());
 				prepareStatement.setInt(4, absence.getAbsenceType().getId() );
 				prepareStatement.setInt(5, absence.getStatus().getId());
@@ -356,9 +369,11 @@ public class AbsenceDAO implements  IabsencesDAO {
 			}
 			finally {
 				try {
-		
-					prepareStatement.close();
-					connection.close();
+					if(connection != null) {
+						prepareStatement.close();
+						connection.close();
+					}
+				
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -6,7 +6,7 @@
 <body id="page-top">
 
 	<%@ include file="/Resources/inc/navbar.jsp"%>
-	<%@ include file="/Resources/inc/sidebaradmin.jsp"%>
+	<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
 	<!-- /.container-fluid -->
 
 	<div class="container">

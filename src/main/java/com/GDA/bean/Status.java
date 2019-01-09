@@ -11,6 +11,10 @@ public class Status {
 		this.name = name;
 	}
 
+	public Status() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

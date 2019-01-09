@@ -22,7 +22,7 @@
           <a class="nav-link" href="" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
             <span>Jours fériés</span>
-          </a>
+          </a>aa
         </li>     
 </ul>
 
@@ -36,3 +36,6 @@
 				</li>
 				<li class="breadcrumb-item active">Gestion des absences</li>
 			</ol>
+
+</ul>
+
