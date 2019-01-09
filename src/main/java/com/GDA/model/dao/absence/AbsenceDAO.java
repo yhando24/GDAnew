@@ -189,7 +189,7 @@ public class AbsenceDAO implements  IabsencesDAO {
 		
 		try {
 			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus where idUser = ?";
+			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.idAbsenceType = absencetype.id JOIN status ON status.id = idStatus where idUser = ?";
 			prepareStatement = connection.prepareStatement(query);
 			
 			prepareStatement.setInt(1,idUser );

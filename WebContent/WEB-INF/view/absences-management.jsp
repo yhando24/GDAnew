@@ -1,9 +1,9 @@
+
 <%@ include file="/Resources/inc/header.jsp"%>
 <title>Absences Management</title>
 </head>
 
 <body>
-
     <%@ include file="/Resources/inc/navbar.jsp"%>
     <c:choose>
         <c:when test="${user.function.name == 'admin'}">
@@ -31,24 +31,21 @@
 
                 <c:forEach items="${user.absences}" var="abs" varStatus="status">
                     <tr style="border: 1px solid">
-                        <td>${abs.startDate}</td>
-                        <td>${abs.endDate}</td>
-                        <td>${abs.startDate}</td>
-                        <td>${abs.startDate}</td>
-                        <td>${abs.status.name}</td>
-                        <td style="border: 1px solid">${abs.absenceType.name}
-
-
-                        
+                        <td style="border: 1px solid">${abs.startDate}</td>
+                        <td style="border: 1px solid"> ${abs.endDate}</td>
+                        <td style="border: 1px solid">${abs.absenceType.name}</td>
+                        <td style="border: 1px solid">${abs.status.name}</td>
+                        <td>
                             <c:choose>
                                 <c:when test="${abs.absenceType.name == 'MISSION'}">
                                     <i class="fas fa-eye"></i>
+                                    
                                 </c:when>
                                 <c:otherwise>
                                     <c:choose>
                                         <c:when test="${abs.status.name == 'INITIALE'}">
-                                            <a href="<c:url value ="/AbsencesManagement?action=updateAbsence"/>"> 
-                                            	<i class="fas fa-pencil-alt"></i>>
+                                            <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&nbr=${abs.id}"/>"> 
+                                            	<i class="fas fa-pencil-alt"></i>
                     						</a>
                     						<i class="fas fa-trash-alt"></i>
                                         </c:when>
@@ -74,14 +71,7 @@
                     <a href="<c:url value ="/AbsencesManagement?action=addAbsence"/>"> <i class="far fa-plus-square"></i>
                     </a>
                 </div>
-                <!-- pour test
-                ////////////////////////// -->
-                <div>
-                    Modifier une absence
-                    <a href="<c:url value ="/AbsencesManagement?action=updateAbsence"/>"> <i class="far fa-plus-square"></i>
-                    </a>
-                </div>
-               <!--  //////////////////////////// -->
+          
                 <div>
                     Soldes des compteurs:
                     CP: ..... jours.
