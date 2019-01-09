@@ -11,6 +11,10 @@ public class AbsenceType {
 		this.name = name;
 	}
 
+	public AbsenceType() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

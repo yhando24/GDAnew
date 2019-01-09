@@ -1,6 +1,5 @@
-
 <%@ include file="/Resources/inc/header.jsp" %>
-    <title>Absences Management</title>
+    <title>Forgot Password</title>
   </head>
 
   <body id="page-top">
@@ -47,6 +46,7 @@
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Activité</a>
             <a class="dropdown-item" href="#">Compte</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Se déconnecter</a>
@@ -59,20 +59,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href= id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span></span>
-          </a>
-        </li>  
-      </ul>
+      
 
       <div id="content-wrapper">
 
@@ -80,21 +67,52 @@
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="index.html">Dashboard</a>
-                </li>
-                <li class="breadcrumb-item active">Gestion des absences</li>
-              </ol>
-              <a href='<c:url value="/AbsencesManagement?action=addAbsence"/>'>ajout absence</a>
-          </div>
+            <li class="breadcrumb-item">
+              <a href="index.html">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Demande d'absence</li>
+          </ol>
 
-          </div>
-			
+          <!-- Page Content -->
+          <div class="container">
+            <div class="form-row">
+                <div class='form-group col-md-6 offset-md-3'>
+                    <h3>Demande d'absence</h3>
+                    <form action='<c:url value="/AddAbsence"/>' method="POST"> 
+                        <span>         
+		                    <label for="champ1">Date de début</label>
+                            <input name="beginAbsence" class="custom-select" type="date" id="champ1" name="date">
+                        </span> 
+                        <span> 
+                            <label for="champ2">Date de fin</label>
+                            <input name="endAbsence" class="custom-select" type="date" id="champ1" name="date">
+                        </span> 
+                        <span>
+                            <label for="champ2">Type de congé</label>
+                            <select name="congeType" class="custom-select">
+                                <option selected>Type de congé</option>
+                                <option value="1">Congé payé</option>
+                                <option value="2">RTT</option>
+                                <option value="3">Congé sans solde</option>
+                            </select>
+                        </span>
+                        <span>
+                            <label for="message">Motif</label>
+                            <textarea type="text" id="message" name="motif" rows="2" class="form-control md-textarea"></textarea>
+                        </span>
+
+                        <span>
+                            <a class="btn btn-annuler" >Annuler</a>
+                            <button type="submit" class="btn btn-envoyer " >Envoyer</button>
+                        </span>
+                    </form> 
+		        </div>
+            </div>
         </div>
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
-        <footer class="sticky-footer">
+        <footer class="footer-gda">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
               <span>Copyright © Promotion JAVA JEE - Diginamic - 2019</span>
@@ -132,4 +150,4 @@
       </div>
     </div>
 
-   <%@ include file="/Resources/inc/footer.jsp" %>
+<%@ include file="/Resources/inc/footer.jsp" %>
