@@ -68,6 +68,12 @@
 					</a>
 				</div>
 				<div>
+					Modifier une absence 
+					<a href="<c:url value ="/AbsencesManagement?action=updateAbsence"/>">
+						<i class="far fa-plus-square"></i>
+					</a>
+				</div>
+				<div>
 					Soldes des compteurs: 
 					CP: ..... jours. 
 					RTT: .... jours.

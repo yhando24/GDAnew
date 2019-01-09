@@ -43,6 +43,12 @@ public class AbsencesManagementServlet extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath() + "/AddAbsence"); // logged-in page
 		}
+		
+		if(request.getParameter("action").equals("updateAbsence")) {
+			
+			response.sendRedirect(request.getContextPath() + "/updateAbsence"); 
+		}
+		
 	}
 	else{
 
