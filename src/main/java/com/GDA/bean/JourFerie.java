@@ -8,8 +8,7 @@ public class JourFerie {
 	private Date dayOff;
 	private String comment;
 	private TypeJourFerie typeJourFerie;
-	private Status status;
-	private int idUser;
+
 	
 	
 	
@@ -23,8 +22,6 @@ public class JourFerie {
 		this.dayOff = dayOff;
 		this.comment = comment;
 		this.typeJourFerie = typeJourFerie;
-		this.status = status;
-		this.idUser = idUser;
 	}
 
 	public int getId() {
@@ -60,26 +57,13 @@ public class JourFerie {
 		this.typeJourFerie = typeJourFerie;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
 
-	public int getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
 
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + dayOff + ", reason=" + comment
-				+ ", idAbsenceType=" + typeJourFerie + ", idStatus=" + status + ", idUser=" + idUser + "]";
+				+ ", idAbsenceType=" + typeJourFerie + "]";
 	}
 	
 			

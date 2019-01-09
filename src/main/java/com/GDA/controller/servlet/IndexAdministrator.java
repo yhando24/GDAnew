@@ -13,16 +13,16 @@ import javax.servlet.http.HttpSession;
 import main.java.com.GDA.bean.User;
 
 /**
- * Servlet implementation class AdminControlerServlet
+ * Servlet implementation class IndexAdministrator
  */
-@WebServlet("/AdminControlerServlet")
-public class AdminControlerServlet extends HttpServlet {
+@WebServlet("/IndexAdministrator")
+public class IndexAdministrator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminControlerServlet() {
+    public IndexAdministrator() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +31,13 @@ public class AdminControlerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher("/WEB-INF/view/DayOfCreate.jsp").forward(request, response);
-		//this.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if (session.equals(null)){
+			this.getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+		}
+		else {
+			this.getServletContext().getRequestDispatcher("/homeAdministrator").forward(request, response);
+		}
 	}
 
 	/**
@@ -43,7 +47,7 @@ public class AdminControlerServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user.getFunction().equals(1)) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/view/DayOfCreate.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/homeAdministrator.jsp"); // logged-in page
 		}
 		
 	}

@@ -5,7 +5,7 @@
 				<i class="fas fa-fw fa-tachometer-alt"></i> <span>Home</span>
 		</a></li>
 	
-		<li class="nav-item"><a class="nav-link" href= >
+		<li class="nav-item"><a class="nav-link" href='<c:out value="DayOffCreate.jsp"/>'>
 		<i class="fas fa-fw fa-folder"></i> <span>Gestion des
 					absences</span>
 		</a></li>
@@ -17,5 +17,5 @@
 		<i class="fas fa-fw fa-folder"></i> <span>Jours
 					fériés</span>
 		</a></li>
-	</ul>
+	</ul>s
 
