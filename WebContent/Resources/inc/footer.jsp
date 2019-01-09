@@ -45,9 +45,13 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
+					
+					<form method="post" action='<c:url value="/logout"/>'>
 
-					<a class="btn btn-primary" href="login.html">Se dÃ©connecter</a>
-
+						<button class="btn btn-primary" type="submit">Se
+							déconnecter</button>
+					</form>
+					
 				</div>
 			</div>
 		</div>
