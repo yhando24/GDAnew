@@ -196,7 +196,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public User findUserByEmailAndByPassword(String email, String password) throws SQLException {
+	public User findUserByEmailAndByPassword(String email, String password) {
 		
 		User u = new User();
 		AbsenceDAO absence = new AbsenceDAO();
@@ -227,7 +227,7 @@ public class UserDAO implements IUserDAO {
 				u.setFirstname(resultset.getString("firstname"));
 				u.setName(resultset.getString("name"));
 				u.setEmail(resultset.getString("email"));
-				u.setPassword(resultset.getString("password"));
+				//u.setPassword(resultset.getString("password"));
 				d.setName(resultset.getString("namedep"));
 				d.setId(resultset.getInt("idDepartement"));
 				u.setDepartement(d);
@@ -247,9 +247,16 @@ public class UserDAO implements IUserDAO {
 		}
 		finally {
 			
-			resultset.close();
-			prepareStatement.close();
-			conn.close();
+			try {
+				if(conn != null) {
+					resultset.close();
+					prepareStatement.close();
+					conn.close();
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
 			
 		}
 		

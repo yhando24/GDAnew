@@ -48,34 +48,46 @@ public class Login extends HttpServlet {
 
 		// Recover user data
 
-		//User u = new User();
+	
 		
 		System.out.println("dopost");
 		
 		String emailUser = request.getParameter("email");
+		String passwordUser = request.getParameter("password");
 		System.out.println(emailUser);
-		
-//u.setPassword(request.getParameter("password"));
+		System.out.println(passwordUser);
 		
 		
 		UserDAO userDao = new UserDAO();
 		
-		Boolean dbRep = userDao.isUserExist(emailUser);
-
+		Boolean dbRep = userDao.isUserExist(emailUser, passwordUser);
+		
+		User u = new User();
+		
+		
 		if (dbRep == true) {
 			
 			System.out.println("true");
-
-			HttpSession session = request.getSession(true);
-			//session.setAttribute("user", user);
-
 			
+			u = userDao.findUserByEmailAndByPassword(emailUser, passwordUser);
+			
+			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user", u);
+			
+			System.out.println(session);
+
+			//session.setAttribute("erreur", null);
 			response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page
 			
 
 		} else {
 			
+			//HttpSession session = request.getSession(true);
 			System.out.println("false");
+			
+			//session.setAttribute("erreur", "login ou mot de passe incorrect");
+			
 			response.sendRedirect(request.getContextPath() + "/login"); // error alert box
 		}
 	}
