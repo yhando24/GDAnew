@@ -42,7 +42,7 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#">Compte</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Se déconnecter</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Se dÃ©connecter</a>
           </div>
         </li>
       </ul>
