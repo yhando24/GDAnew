@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.User;
-
 /**
  * Servlet implementation class IndexAdministrator
  */
-@WebServlet("/IndexAdministrator")
+@WebServlet("/indexAdministrator")
 public class IndexAdministrator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,24 +29,21 @@ public class IndexAdministrator extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeAdministrator.jsp");
+		dispatcher.forward(request, response);
+
 		HttpSession session = request.getSession();
-		if (session.equals(null)){
-			this.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
-		}
-		else {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/view/homeAdministrator.jsp").forward(request, response);
-		}
+		System.out.println(session.getAttribute("user"));
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		if (user.getFunction().equals(1)) {
-			response.sendRedirect(request.getContextPath() + "/homeAdministrator.jsp"); // logged-in page
-		}
+		response.sendRedirect(request.getContextPath() + "/homeAdministrator.jsp"); // logged-in page
+		
 		
 	}
 

@@ -38,7 +38,7 @@ public class IndexEmployee extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.sendRedirect(request.getContextPath() + "/login"); 
+		response.sendRedirect(request.getContextPath() + "/homeManager.jsp"); // logged-in page
 	}
 
 }
