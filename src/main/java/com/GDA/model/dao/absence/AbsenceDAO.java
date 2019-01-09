@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 import java.util.List;
 
 import main.java.com.GDA.bean.Absence;
@@ -339,30 +339,27 @@ public class AbsenceDAO implements  IabsencesDAO {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		 int result;
+		 
+			Date startDate = new java.sql.Date(absence.getStartDate().getTime());
+			Date endDate = new java.sql.Date(absence.getEndDate().getTime());
+			  			
 			try {
 				connection = ConnectionDB.getConnection();
-				String Query = "INSERT INTO absence VALUES (?,?,?,?,?,?)";
+				String Query = "INSERT INTO absence (startDate, endDate, reason, idAbsenceType, idStatus, idUser) VALUES (?,?,?,?,?,?)";
 				
 				
 
-		
-
-				Date startDate = (Date) absence.getStartDate();
-				Date endDate = (Date) absence.getEndDate();
-				
-				
+			
 				
 				prepareStatement = connection.prepareStatement(Query);
-				
-				prepareStatement.setDate(1,  startDate  );
-				prepareStatement.setDate(2,  endDate);
-				prepareStatement.setString(3, absence.getReason());
-				prepareStatement.setInt(4, absence.getAbsenceType().getId() );
-				prepareStatement.setInt(5, absence.getStatus().getId());
-				prepareStatement.setInt(6, absence.getIdUser());
-				 
-				 
-				result = prepareStatement.executeUpdate(Query);
+//				
+				prepareStatement.setDate(1,  new java.sql.Date(startDate.getTime()));
+				prepareStatement.setDate(2, new java.sql.Date(endDate.getTime()));
+				prepareStatement.setString(3, "l");
+				prepareStatement.setInt(4, absence.getAbsenceType().getId()); // 
+				prepareStatement.setInt(5, absence.getStatus().getId()); //
+				prepareStatement.setInt(6,absence.getIdUser()); //
+				result = prepareStatement.executeUpdate();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

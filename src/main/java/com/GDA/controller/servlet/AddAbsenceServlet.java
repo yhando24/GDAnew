@@ -3,7 +3,10 @@ package main.java.com.GDA.controller.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,31 +53,42 @@ public class AddAbsenceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Absence absence = new Absence();
 		
+		List <Absence> absences = new ArrayList<Absence>();	
+		
+		AbsenceDAO dao = new AbsenceDAO();
+		absences = dao.findAllAbsences();
+		
+		for (Absence absence2 : absences) {
+			System.out.println(" fin date en BDD :" +absence2.getEndDate());
+		}
+				
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		
 		String startDateStr = request.getParameter("beginAbsence");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    String endDateStr = request.getParameter("endAbsence");
 
-		Date startDate = new Date();
+		Date startDate = null;
+		try {
+			startDate = simpleDateFormat.parse(startDateStr);
+		} catch (ParseException e) {
+			System.out.println("erreur de conversion");
+			e.printStackTrace();
+		}
 	
+
+		Date endDate = null;
 		try {
-			startDate = sdf.parse(startDateStr);
+			endDate = simpleDateFormat.parse(endDateStr);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			System.out.println("erreur de conversion");
 			e.printStackTrace();
 		}
-		
+	
 		absence.setStartDate(startDate);
-		
-		String endDateStr = request.getParameter("endAbsence");
-		Date endDate = new Date();
-		try {
-			endDate = sdf.parse(endDateStr);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
 		absence.setEndDate(endDate);
-		
+	
 		absence.setReason(request.getParameter("reason"));
 		AbsenceType type = new AbsenceType();
 		type.setId(Integer.parseInt(request.getParameter("congeType")));
@@ -88,9 +102,8 @@ public class AddAbsenceServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		
-		absence.setIdUser(2);
-		
-		AbsenceDAO dao = new AbsenceDAO();
+		absence.setIdUser(user.getId());
+	
 		dao.addAbsence(absence);
 		
 		response.sendRedirect(request.getContextPath() + "/AbsencesManagement"); // logged-in page

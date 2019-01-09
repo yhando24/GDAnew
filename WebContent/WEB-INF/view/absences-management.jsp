@@ -2,6 +2,12 @@
 <title>Absences Management</title>
 </head>
 <body>
+		<div>
+					Demander une absence 
+					<a href="<c:url value ="/AbsencesManagement?action=addAbsence"/>">
+						<i class="far fa-plus-square"></i>
+					</a>
+				</div>
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<c:choose>
 		<c:when test="${user.function == 'admin'}">
