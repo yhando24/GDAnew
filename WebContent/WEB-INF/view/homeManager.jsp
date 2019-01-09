@@ -8,40 +8,7 @@
 <body id="page-top">
 
 	<%@ include file="/Resources/inc/navbar.jsp"%>
-
-
-	<div id="wrapper">
-
-		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav">
-			<li class="nav-item active"><a class="nav-link"
-				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="" id=""
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Planning</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="" id=""
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Gestion
-						des absences</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="" id=""
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Jours
-						fériés</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="" id=""
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Validations
-				</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="" id=""
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Vue
-						Synthétique </span>
-			</a></li>
-		</ul>
+	<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
 
 		<div id="content-wrapper">
 
@@ -192,36 +159,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Prêt à partir?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Selectionner se déconnecter si vous
-					voulez quitter votre session</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-
-<!-- Force Form post -->
-					<form method="post" action='<c:url value="/logout"/>'>
-
-						<button class="btn btn-primary" type="submit">Se
-							déconnecter</button>
-					</form>
-
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 	<%@ include file="/Resources/inc/footer.jsp"%>

@@ -140,7 +140,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public boolean isUserExist(String email) {
+	public boolean isUserExist(String email,String password) {
 						
 		Connection conn = null;
 		PreparedStatement prepareStatement = null;
@@ -151,11 +151,12 @@ public class UserDAO implements IUserDAO {
 			
 			conn = ConnectionDB.getConnection();
 			
-			String query = "SELECT * FROM user WHERE email = ?";
+			String query = "SELECT * FROM user WHERE email = ? AND password = ?";
 			
 			prepareStatement = conn.prepareStatement(query);
 			
 			prepareStatement.setString(1, email);
+			prepareStatement.setString(2, password);
 			
 			resultset = prepareStatement.executeQuery();
 			
@@ -195,7 +196,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public User findUserByEmailAndByPassword(String email, String password) throws SQLException {
+	public User findUserByEmailAndByPassword(String email, String password) {
 		
 		User u = new User();
 		AbsenceDAO absence = new AbsenceDAO();
@@ -226,7 +227,7 @@ public class UserDAO implements IUserDAO {
 				u.setFirstname(resultset.getString("firstname"));
 				u.setName(resultset.getString("name"));
 				u.setEmail(resultset.getString("email"));
-				u.setPassword(resultset.getString("password"));
+				//u.setPassword(resultset.getString("password"));
 				d.setName(resultset.getString("namedep"));
 				d.setId(resultset.getInt("idDepartement"));
 				u.setDepartement(d);
@@ -246,9 +247,16 @@ public class UserDAO implements IUserDAO {
 		}
 		finally {
 			
-			resultset.close();
-			prepareStatement.close();
-			conn.close();
+			try {
+				if(conn != null) {
+					resultset.close();
+					prepareStatement.close();
+					conn.close();
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
 			
 		}
 		

@@ -1,30 +1,28 @@
 package main.java.com.GDA.bean;
 
-import java.time.LocalDate;
+import java.util.Date;
 
-import javax.persistence.*;
-
-@Entity
 public class JourFerie {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int id;
-	
-	LocalDate date;
-	
-	@Enumerated(EnumType.STRING)
-	TypeJourFerie type;
-	
-	String commentaire;
 
-	public JourFerie(LocalDate date, TypeJourFerie type, String commentaire) {
-		this.date = date;
-		this.type = type;
-		this.commentaire = commentaire;
+	private int id;
+	private Date dayOff;
+	private String comment;
+	private TypeJourFerie typeJourFerie;
+
+	
+	
+	
+	public JourFerie() {
+		super();
 	}
-
-	public JourFerie() {}
+	
+	public JourFerie(int id, Date dayOff, Date endDate, String comment, TypeJourFerie typeJourFerie, Status status, int idUser) {
+		super();
+		this.id = id;
+		this.dayOff = dayOff;
+		this.comment = comment;
+		this.typeJourFerie = typeJourFerie;
+	}
 
 	public int getId() {
 		return id;
@@ -34,28 +32,39 @@ public class JourFerie {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public Date getDayOff() {
+		return dayOff;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDayOff(Date startDate) {
+		this.dayOff = startDate;
 	}
 
-	public TypeJourFerie getType() {
-		return type;
+
+	public String getComment() {
+		return comment;
 	}
 
-	public void setType(TypeJourFerie type) {
-		this.type = type;
+	public void setComment(String reason) {
+		this.comment = reason;
 	}
 
-	public String getCommentaire() {
-		return commentaire;
+	public TypeJourFerie getTypeJourFerie() {
+		return typeJourFerie;
 	}
 
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+	public void setTypeJourFerie(TypeJourFerie typeJourFerie) {
+		this.typeJourFerie = typeJourFerie;
 	}
 
+
+
+
+	@Override
+	public String toString() {
+		return "Absence [id=" + id + ", startDate=" + dayOff + ", reason=" + comment
+				+ ", idAbsenceType=" + typeJourFerie + "]";
+	}
+	
+			
 }

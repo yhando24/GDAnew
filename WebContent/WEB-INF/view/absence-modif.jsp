@@ -1,13 +1,12 @@
-<%@ include file="/Resources/inc/header.jsp" %>
-    <title>Forgot Password</title>
-  </head>
-
-  <body id="page-top">
+<%@ include file="/Resources/inc/header.jsp"%>
+<title>Modification des absences</title>
+</head>
+<body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
         <a class="navbar-brand mr-1" href="index.html">
           <div id="logo-gda-nav">
-            <img class="hvr-shrink" src="css/images/logo.png" alt="logo-gda">
+            <img class="hvr-shrink" src="Resources/css/images/logo.png" alt="logo-gda">
           </div>
         </a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -70,15 +69,15 @@
             <li class="breadcrumb-item">
               <a href="index.html">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Demande d'absence</li>
+            <li class="breadcrumb-item active">Modification d'absence</li>
           </ol>
 
           <!-- Page Content -->
           <div class="container">
             <div class="form-row">
                 <div class='form-group col-md-6 offset-md-3'>
-                    <h3>Demande d'absence</h3>
-                    <form action='<c:url value="/AddAbsence"/>' method="POST"> 
+                    <h3>Modification d'absence</h3>
+                    <form action='<c:url value="/updateAbsence"/>' method="POST"> 
                         <span>         
 		                    <label for="champ1">Date de début</label>
                             <input name="beginAbsence" class="custom-select" type="date" id="champ1" name="date">
@@ -98,7 +97,7 @@
                         </span>
                         <span>
                             <label for="message">Motif</label>
-                            <textarea type="text" id="message" name="reason" rows="2" class="form-control md-textarea"></textarea>
+                            <textarea type="text" id="message" name="motif" rows="2" class="form-control md-textarea"></textarea>
                         </span>
 
                         <span>
@@ -144,7 +143,7 @@
           <div class="modal-body">Selectionner se déconnecter si vous voulez quitter votre session</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Se déconnecter</a>
+            <a class="btn btn-primary" href="/GDA/logout">Se déconnecter</a>
           </div>
         </div>
       </div>

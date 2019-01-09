@@ -48,34 +48,71 @@ public class Login extends HttpServlet {
 
 		// Recover user data
 
-		//User u = new User();
+	
 		
 		System.out.println("dopost");
 		
 		String emailUser = request.getParameter("email");
+		String passwordUser = request.getParameter("password");
 		System.out.println(emailUser);
-		
-//u.setPassword(request.getParameter("password"));
+		System.out.println(passwordUser);
 		
 		
 		UserDAO userDao = new UserDAO();
 		
-		Boolean dbRep = userDao.isUserExist(emailUser);
-
+		Boolean dbRep = userDao.isUserExist(emailUser, passwordUser);
+		
+		User u = new User();
+		
+		
 		if (dbRep == true) {
 			
 			System.out.println("true");
-
-			HttpSession session = request.getSession(true);
-			//session.setAttribute("user", user);
-
 			
-			response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page
+			u = userDao.findUserByEmailAndByPassword(emailUser, passwordUser);
+			
+			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user", u);
+			
+			System.out.println(session);
+			
+			User u2 = (User) session.getAttribute("user");
+			
+			System.out.println(u2.getFunction().getId());
+			
+			System.out.println(u.getFunction());
+			System.out.println(u.getFunction().getId());
+			
+			
+			if (u.getFunction().getId() == 1) {
+				
+				response.sendRedirect(request.getContextPath() + "/AdminControlerServlet"); // logged-in page Admin				
+			}
+			else if (u.getFunction().getId() == 2) {
+				
+				response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page Manager				
+			}
+			else if (u.getFunction().getId() == 3) {
+				
+				response.sendRedirect(request.getContextPath() + "/indexEmployee"); // logged-in page Employee				
+
+			}
+				
+
+			//session.setAttribute("erreur", null);
+			//response.sendRedirect(request.getContextPath() + "/indexManager"); // logged-in page
+			
+			
 			
 
 		} else {
 			
+			//HttpSession session = request.getSession(true);
 			System.out.println("false");
+			
+			//session.setAttribute("erreur", "login ou mot de passe incorrect");
+			
 			response.sendRedirect(request.getContextPath() + "/login"); // error alert box
 		}
 	}

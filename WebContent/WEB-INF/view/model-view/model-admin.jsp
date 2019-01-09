@@ -10,7 +10,7 @@
 	<!-- /.container-fluid -->
 
 	<div class="container">
-		<div class="jumbotron text-align:center">
+		<div class="jumbotron text-center">
 			<h1>Bienvenue à l'accueil dans la </h1>
 			<h1>gestion des absences Administrateur</h1>
 			<p></p>

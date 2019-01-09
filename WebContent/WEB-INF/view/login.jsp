@@ -41,6 +41,7 @@
 
           </form>
           
+          <c:if test="${!empty erreur}"> ${erreur}</c:if>
           <div class="text-center">
             <a class="d-block small mt-3" href="forgot-password.html">Mot de passe oublié?</a>
           </div>

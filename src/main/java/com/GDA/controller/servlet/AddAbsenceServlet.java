@@ -53,15 +53,10 @@ public class AddAbsenceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Absence absence = new Absence();
 		
-		List <Absence> absences = new ArrayList<Absence>();	
+
 		
 		AbsenceDAO dao = new AbsenceDAO();
-		absences = dao.findAllAbsences();
-		
-		for (Absence absence2 : absences) {
-			System.out.println(" fin date en BDD :" +absence2.getEndDate());
-		}
-				
+
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		
@@ -108,7 +103,6 @@ public class AddAbsenceServlet extends HttpServlet {
 		
 		response.sendRedirect(request.getContextPath() + "/AbsencesManagement"); // logged-in page
 	
-		
 	}
 
 }
