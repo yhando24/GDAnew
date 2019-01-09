@@ -7,7 +7,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link" href="<c:url value ="/absencesManagement"/>" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
             <span>Gestion des absences</span>
           </a>
