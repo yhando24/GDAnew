@@ -33,10 +33,10 @@ public class IndexAdministrator extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (session.equals(null)){
-			this.getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 		}
 		else {
-			this.getServletContext().getRequestDispatcher("/homeAdministrator").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/view/homeAdministrator.jsp").forward(request, response);
 		}
 	}
 
