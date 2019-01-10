@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.com.GDA.bean.User;
+import main.java.com.GDA.config.Role;
 
 /**
  * Servlet Filter implementation class DispatchFilter
@@ -51,15 +52,15 @@ public class DispatchFilter implements Filter {
 
 		System.out.println(u2.getFunction().getId());
 
-		if (u2.getFunction().getId() == 1) {
+		if (u2.getFunction().getId() == Role.ROLE_ADMIN.getNum()) {
 
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexAdministrator"); // logged-in page Admin
 
-		} else if (u2.getFunction().getId() == 2) {
+		} else if (u2.getFunction().getId() == Role.ROLE_MANAGER.getNum()) {
 
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexManager"); // logged-in page Manager
 		
-		} else if (u2.getFunction().getId() == 3) {
+		} else if (u2.getFunction().getId() == Role.ROLE_EMPLOYEE.getNum()) {
 
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexEmployee"); // logged-in page Employee
 
