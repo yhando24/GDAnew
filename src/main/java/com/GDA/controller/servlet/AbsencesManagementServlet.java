@@ -37,7 +37,6 @@ public class AbsencesManagementServlet extends HttpServlet {
 		
 	if(request.getParameter("action") != null){
 		
-
 		
 		if(request.getParameter("action").equals("addAbsence")) {
 			
@@ -51,7 +50,22 @@ public class AbsencesManagementServlet extends HttpServlet {
 		
 	}
 	else{
-
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		int nbrOfDayRtt = 0;
+		int nbrOfDayCp = 0;
+		for (Absence abs : user.getAbsences()) {
+			if(abs.getAbsenceType().getName().equals("RTT")&&abs.getStatus().getName().equals("VALIDEE")) {
+				nbrOfDayRtt++;
+			}if(abs.getAbsenceType().getName().equals("conge")&&abs.getStatus().getName().equals("VALIDEE")) {
+				nbrOfDayCp++;
+			}
+		}
+		nbrOfDayRtt = user.getNbrRTT() - nbrOfDayRtt;
+		nbrOfDayCp = user.getNbrDaysOfLeave() - nbrOfDayCp;
+		
+		session.setAttribute("nbrOfDayRtt", nbrOfDayRtt);
+		session.setAttribute("nbrOfDayCp", nbrOfDayCp);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/absences-management.jsp");
 		dispatcher.forward(request, response);
 	}

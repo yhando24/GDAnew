@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="/Resources/inc/header.jsp"%>
 <title>Absences Management</title>
 </head>
@@ -20,51 +20,62 @@
     <div class="container">
         <h1>Gestion des absences</h1>
         <c:if test="${!empty user}">
-            <table style="border: 1px solid">
-                <tr style="border: 1px solid">
-                    <th>Date debut</th>
-                    <th>date de fin</th>
-                    <th>type</th>
-                    <th>statut</th>
-                    <th>Action</th>
-                </tr>
-
-                <c:forEach items="${user.absences}" var="abs" varStatus="status">
-                    <tr style="border: 1px solid">
-                        <td style="border: 1px solid">${abs.startDate}</td>
-                        <td style="border: 1px solid"> ${abs.endDate}</td>
-                        <td style="border: 1px solid">${abs.absenceType.name}</td>
-                        <td style="border: 1px solid">${abs.status.name}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${abs.absenceType.name == 'MISSION'}">
-                                    <i class="fas fa-eye"></i>
+            <div class="table-responsive-md">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                              <th scope="col">Date debut</th>
+                              <th scope="col">Date de fin</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Statut</th>
+                              <th scope="col">Statut</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <c:forEach items="${user.absences}" var="abs" varStatus="status">
+                                <tr>
+                                <c:set var = "dateStart" value = "${fn:substring(abs.startDate, 0, 10)}" />
+                                <c:set var = "dateEnd" value = "${fn:substring(abs.startDate, 0, 10)}" />
                                     
-                                </c:when>
-                                <c:otherwise>
-                                    <c:choose>
-                                        <c:when test="${abs.status.name == 'INITIALE'}">
-                                            <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&nbr=${abs.id}"/>"> 
-                                            	<i class="fas fa-pencil-alt"></i>
-                    						</a>
-                    						<i class="fas fa-trash-alt"></i>
-                                        </c:when>
-                                        <c:when test="${abs.status.name == 'EN_ATTENTE_VALIDATION'}">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </c:when>
-                                        <c:when test="${abs.status.name == 'VALIDEE'}">
-                                           <i class="fas fa-trash-alt"></i>
-                                        </c:when>
-                                        <c:when test="${abs.status.name == 'REJETEE'}">
-                                            rejete
-                                        </c:when>
-                                    </c:choose>
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
+                                    <td >${dateStart}</td>
+                                    <td > ${dateEnd}</td>
+                                    <td >${abs.absenceType.name}</td>
+                                    <td>${abs.status.name}</td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${abs.absenceType.name == 'MISSION'}">
+                                                <i class="fas fa-eye"></i>
+                            
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:choose>
+                                                    <c:when test="${abs.status.name == 'INITIALE'}">
+                                                        <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&absId=${abs.id}"/>"> <i
+                                                            class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </c:when>
+                                                    <c:when test="${abs.status.name == 'EN_ATTENTE_VALIDATION'}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </c:when>
+                                                    <c:when test="${abs.status.name == 'VALIDEE'}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </c:when>
+                                                    <c:when test="${abs.status.name == 'REJETEE'}">
+                                                        <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&absId=${abs.id}"/>"> <i
+                                                            class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                          </tbody>
+                    </table>
+                  </div>
             <div>
                 <div>
                     Demander une absence
@@ -74,8 +85,8 @@
           
                 <div>
                     Soldes des compteurs:
-                    CP: ..... jours.
-                    RTT: .... jours.
+                    CP: ${nbr} jours.
+                    RTT: ${nbrOfDayRtt} jours.
                 </div>
             </div>
         </c:if>
