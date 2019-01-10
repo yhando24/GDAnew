@@ -54,13 +54,13 @@ public class AbsencesManagementServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		int nbrOfDayRtt = 0;
 		int nbrOfDayCp = 0;
-		for (Absence abs : user.getAbsences()) {
-			if(abs.getAbsenceType().getName().equals("RTT")&&abs.getStatus().getName().equals("VALIDEE")) {
-				nbrOfDayRtt++;
-			}if(abs.getAbsenceType().getName().equals("conge")&&abs.getStatus().getName().equals("VALIDEE")) {
-				nbrOfDayCp++;
-			}
-		}
+//		for (Absence abs : user.getAbsences()) {
+//			if(abs.getAbsenceType().getName().equals("RTT")&&abs.getStatus().getName().equals("VALIDEE")) {
+//				nbrOfDayRtt++;
+//			}if(abs.getAbsenceType().getName().equals("conge")&&abs.getStatus().getName().equals("VALIDEE")) {
+//				nbrOfDayCp++;
+//			}
+//		}
 		nbrOfDayRtt = user.getNbrRTT() - nbrOfDayRtt;
 		nbrOfDayCp = user.getNbrDaysOfLeave() - nbrOfDayCp;
 		

@@ -81,15 +81,18 @@
                     <form action='<c:url value="/AddAbsence"/>' method="POST"> 
                         <span>         
 		                    <label for="champ1">Date de début</label>
-                            <input name="beginAbsence" class="custom-select" type="date" id="champ1" name="date">
+                            <input name="beginAbsence" class="custom-select debutDateJs" onchange="verifDateDebut()" type="date" id="champ1" name="date">
                         </span> 
+                        <span class="messageDebutDate" style="display:none; color:red">Veuillez saisir une date de debut supérieure à la date actuelle svp</span>
                         <span> 
                             <label for="champ2">Date de fin</label>
-                            <input name="endAbsence" class="custom-select" type="date" id="champ1" name="date">
-                        </span> 
+                            <input name="endAbsence" class="custom-select finDateJs"  onchange="verifDateFin()" type="date" id="champ1" name="date">
+                            
+                        </span>
+                         <span class="messageFinDate" style="display:none; color:red">Date de fin inferieur à la date de début. Veuillez saisir une date de fin correcte svp</span>
                         <span>
                             <label for="champ2">Type de congé</label>
-                            <select name="congeType" class="custom-select">
+                            <select name="congeType" class="custom-select" id="congeTypeJs" onchange="verifConge()">
                                 <option selected>Type de congé</option>
                                 <option value="1">Congé payé</option>
                                 <option value="2">RTT</option>
@@ -97,12 +100,12 @@
                             </select>
                         </span>
                         <span>
-                            <label for="message">Motif</label>
-                            <textarea type="text" id="message" name="reason" rows="2" class="form-control md-textarea"></textarea>
+                            <label for="message" >Motif</label>
+                            <textarea id="motifJs" type="text" id="message" name="reason" rows="2" class="form-control md-textarea"></textarea>
                         </span>
 
                         <span>
-                            <a class="btn btn-annuler" >Annuler</a>
+                            <a class="btn btn-annuler" href='<c:url value="/AbsencesManagement"/>'>Annuler</a>
                             <button type="submit" class="btn btn-envoyer " >Envoyer</button>
                         </span>
                     </form> 
@@ -151,3 +154,6 @@
     </div>
 
 <%@ include file="/Resources/inc/footer.jsp" %>
+
+
+   <script src='<c:url value="/Resources/js/addAbsenceGestion.js"/>'></script>

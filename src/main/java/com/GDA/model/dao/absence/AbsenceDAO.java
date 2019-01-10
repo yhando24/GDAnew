@@ -15,7 +15,7 @@ import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.utils.ConnectionDB;
 
-public class AbsenceDAO implements  IabsencesDAO {
+public class AbsenceDAO implements  IAbsenceDAO {
 
 	
 	
@@ -337,8 +337,7 @@ public class AbsenceDAO implements  IabsencesDAO {
 			PreparedStatement prepareStatement = null;
 			 int result;
 			 
-				Date startDate = new java.sql.Date(absence.getStartDate().getTime());
-				Date endDate = new java.sql.Date(absence.getEndDate().getTime());
+
 				  			
 				try {
 					connection = ConnectionDB.getConnection();
@@ -350,8 +349,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 					
 					prepareStatement = connection.prepareStatement(Query);
 //					
-					prepareStatement.setDate(1,  new java.sql.Date(startDate.getTime()));
-					prepareStatement.setDate(2, new java.sql.Date(endDate.getTime()));
+					prepareStatement.setDate(1,  new java.sql.Date(absence.getStartDate().getTime()));
+					prepareStatement.setDate(2, new java.sql.Date(absence.getEndDate().getTime()));
 					prepareStatement.setString(3, absence.getReason());
 					prepareStatement.setInt(4, absence.getAbsenceType().getId()); // 
 					prepareStatement.setInt(5, absence.getStatus().getId()); //

@@ -3,6 +3,7 @@ package main.java.com.GDA.controller.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,7 @@ import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
+import main.java.com.GDA.utils.DateUtil;
 
 /**
  * Servlet implementation class AddAbsenceServlet
@@ -79,7 +81,9 @@ public class AddAbsenceServlet extends HttpServlet {
 			System.out.println("erreur de conversion");
 			e.printStackTrace();
 		}
+		
 	
+		
 		absence.setStartDate(startDate);
 
 		absence.setEndDate(endDate);
@@ -99,7 +103,72 @@ public class AddAbsenceServlet extends HttpServlet {
 		
 		absence.setIdUser(user.getId());
 	
-		dao.addAbsence(absence);
+		
+		
+		// verification non chevauchement de l'absence demandé avec absence presente en BDD
+		
+		
+		List <Absence> absences = new ArrayList <Absence>();
+		
+		absences = dao.findAbsencesByIdUser(user.getId());
+		
+		boolean Chevauchement = false;
+		
+		for (Absence absence2 : absences) {
+			System.out.println("test");
+			if(absence.getStartDate().before(absence2.getEndDate())) {
+				System.out.println("dans le 1er if");
+				if(absence.getEndDate().after(absence2.getStartDate())) {
+					Chevauchement = true;
+					System.out.println("Sa chevauche");
+					break;
+				}
+			}
+		}
+		
+	
+		// verification date j+1
+		
+		boolean JourPlus1 = true;
+		
+		if(!absence.getStartDate().after(new Date(System.currentTimeMillis()))) {
+			JourPlus1= false;
+			System.out.println("j pas +1");
+		}
+		
+		boolean finAfterDebut = false;
+		
+		if(absence.getEndDate().after(absence.getStartDate()) || absence.getEndDate().equals(absence.getStartDate())) {
+			finAfterDebut = true;
+			System.out.println("fin date après debut");
+		}
+		
+		System.out.println(finAfterDebut);
+		
+		
+		// rajout de l'absence si pas de chevauchement
+		
+		if(!Chevauchement && JourPlus1 && finAfterDebut ) {
+			
+			//rajout d'un jour a la date et actualisation des date de l'absence
+			startDate = DateUtil.addDays(startDate, 1);
+			endDate = DateUtil.addDays(endDate, 1);
+			absence.setStartDate(startDate);
+			absence.setEndDate(endDate);
+			
+			// rajout de l'absence a la BDD		
+			dao.addAbsence(absence);
+			
+
+			//conversion pour affichage et actualisation de l'user en session
+			System.out.println(" ici :" + absence.getStartDate());
+			absences = dao.findAbsencesByIdUser(user.getId());
+			user.setAbsences(absences);
+			session.setAttribute("user", user);
+			System.out.println("Sa chevauche pas et j+1");
+
+		}
+
 		
 		response.sendRedirect(request.getContextPath() + "/AbsencesManagement"); // logged-in page
 	

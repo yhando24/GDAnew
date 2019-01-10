@@ -123,5 +123,7 @@ public class User {
 				+ departement + ", function=" + function + ", absences=" + absences + "]";
 	}
 
-			
+	public void addAbsence(Absence absence) {
+		absences.add(absence);
+	}		
 }

@@ -8,7 +8,7 @@ import main.java.com.GDA.bean.AbsenceType;
 
 
 
-public interface IabsencesDAO {
+public interface IAbsenceDAO {
 
 	
 	

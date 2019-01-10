@@ -70,6 +70,7 @@
     <!-- Demo scripts for this page-->
     <script src='<c:url value="/Resources/js/demo/datatables-demo.js"/>'></script>
     <script src='<c:url value="/Resources/js/demo/chart-area-demo.js"/>'></script>
+ 
 
 
 

@@ -85,6 +85,9 @@ public class Absence {
 		this.idUser = idUser;
 	}
 
+
+	
+	
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", reason=" + reason
