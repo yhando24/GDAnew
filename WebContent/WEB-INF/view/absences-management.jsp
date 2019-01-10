@@ -48,7 +48,7 @@
                             <c:forEach items="${user.absences}" var="abs" varStatus="status">
                                 <tr>
                                 <c:set var = "dateStart" value = "${fn:substring(abs.startDate, 0, 10)}" />
-                                <c:set var = "dateEnd" value = "${fn:substring(abs.startDate, 0, 10)}" />
+                                <c:set var = "dateEnd" value = "${fn:substring(abs.endDate, 0, 10)}" />
                                     
                                     <td >${dateStart}</td>
                                     <td > ${dateEnd}</td>
