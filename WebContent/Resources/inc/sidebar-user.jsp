@@ -3,7 +3,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="<c:url value="/IndexEmployee"/>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Accueil</span>
           </a>
@@ -15,23 +15,19 @@
           </a>
         </li> 
         <li class="nav-item">
-          <a class="nav-link" href="" >
+          <a class="nav-link" href="<c:url value=""/>" >
             <i class="fas fa-fw fa-folder"></i>
             <span>Planning des absences</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" >
+          <a class="nav-link" href="<c:url value=""/>" >
             <i class="fas fa-fw fa-folder"></i>
-            <span>Jours fÃ©riÃ©s</span>
+            <span>Jours fériés</span>
           </a>
         </li> 
 
      </ul>
-
-<div id="content-wrapper">
-
-		<div class="container-fluid">
 
 			
 

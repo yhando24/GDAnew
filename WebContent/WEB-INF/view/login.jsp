@@ -1,6 +1,5 @@
-
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>SB Admin - Login</title>
+<title>Login</title>
 
 
 </head>

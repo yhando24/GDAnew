@@ -1,26 +1,28 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Modification des absences</title>
+<title>Modification Absences</title>
 </head>
-<body id="page-top">
 
+<body>
     <%@ include file="/Resources/inc/navbar.jsp"%>
+ 
+            <%@ include file="/Resources/inc/sidebar-user.jsp"%>
 
-    <div id="wrapper">
-
-      <%@ include file="/Resources/inc/sidebar-user.jsp"%>
-      
-
-      <div id="content-wrapper">
+    
+    <div id="content-wrapper">
 
         <div class="container-fluid">
-
-          <!-- Breadcrumbs-->
+        
+        <!-- Début barre container-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
+              <a href="<c:url value="/IndexEmployee"/>">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Modification d'absence</li>
+            <li class="breadcrumb-item active">Gestion des absences</li>
+            <li class="breadcrumb-item active">Modification des absences</li>
           </ol>
+          <!-- Fin barre container-->
+
+    <div class="container">
 
           <!-- Page Content -->
           <div class="container">
@@ -57,6 +59,8 @@
                     </form> 
 		        </div>
             </div>
+        </div>
+        
         </div>
         <!-- /.container-fluid -->
 
