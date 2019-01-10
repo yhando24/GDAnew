@@ -1,7 +1,7 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.lang.jstl.test.StaticFunctionTests;
+
 
 import main.java.com.GDA.bean.User;
-import main.java.com.GDA.config.PwdConfig;
+
 //import main.java.com.GDA.controller.filtre.LoginFilter;
 import main.java.com.GDA.model.dao.user.*;
 
