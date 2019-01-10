@@ -111,8 +111,14 @@ public class Login extends HttpServlet {
 		} else {
 
 			System.out.println("false");
+			
+//			session.invalidate();
+			request.setAttribute("errorMessage", "Invalid user or password");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+			rd.forward(request, response);
 
-			response.sendRedirect(request.getContextPath() + "/login"); // error alert box
+			//response.sendRedirect(request.getContextPath() + "/login"); // error alert box
 		}
 	}
 }
