@@ -39,13 +39,13 @@
 				</form>
 
 
-				<h2>
+				<h5 class="text-center errorMessageLogin">
 					<%
 						if (null != request.getAttribute("errorMessage")) {
 							out.println(request.getAttribute("errorMessage"));
 						}
 					%>
-				</h2>
+				</h5>
 
 
 				<div class="text-center">
