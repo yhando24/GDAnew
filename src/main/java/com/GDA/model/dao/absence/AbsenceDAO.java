@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +41,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 			while (resultSet.next()){
 				 Absence absence = new Absence();
 				 absence.setId(resultSet.getInt("id"));
-				 absence.setStartDate(resultSet.getTimestamp("startDate"));
-				 absence.setEndDate(resultSet.getTimestamp("endDate"));
+				 absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+				 absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
 				 absence.setReason(resultSet.getString("reason"));
 				 absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("name")));
 				 absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("name")));
@@ -201,8 +202,8 @@ public class AbsenceDAO implements  IabsencesDAO {
 			while (resultSet.next()){
 				 Absence absence = new Absence();
 				 absence.setId(resultSet.getInt("id"));
-				 absence.setStartDate(resultSet.getTimestamp("startDate"));
-				 absence.setEndDate(resultSet.getTimestamp("endDate"));
+				 absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+				 absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
 				 absence.setReason(resultSet.getString("reason"));
 				 absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("nameType")));
 				 absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("nameStatus")));
