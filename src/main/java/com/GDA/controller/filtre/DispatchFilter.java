@@ -52,15 +52,15 @@ public class DispatchFilter implements Filter {
 
 		System.out.println(u2.getFunction().getId());
 
-		if (u2.getFunction().getId() == Role.ROLE_ADMIN.getNum()) {
+		if (u2.getFunction().getId() == Role.ROLE_ADMIN.getValue()) {
 
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexAdministrator"); // logged-in page Admin
 
-		} else if (u2.getFunction().getId() == Role.ROLE_MANAGER.getNum()) {
+		} else if (u2.getFunction().getId() == Role.ROLE_MANAGER.getValue()) {
 
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexManager"); // logged-in page Manager
 		
-		} else if (u2.getFunction().getId() == Role.ROLE_EMPLOYEE.getNum()) {
+		} else if (u2.getFunction().getId() == Role.ROLE_EMPLOYEE.getValue()) {
 
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexEmployee"); // logged-in page Employee
 

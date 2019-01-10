@@ -6,19 +6,18 @@ public enum Role {
 	ROLE_MANAGER (2),
 	ROLE_EMPLOYEE (3);
 
-	private Integer num = null;
-	   
-	  //Constructeur
-	  Role(Integer num){
-	    this.setName(num);
-	  }
-
-	public Integer getNum() {
-		return num;
+	/** L'attribut qui contient la valeur associé à l'enum */
+	private final int value;
+ 
+	/** Le constructeur qui associe une valeur à l'enum */
+	private Role(int value) {
+		this.value = value;
 	}
-
-	public void setName(Integer num) {
-		this.num = num;
+ 
+	/** La méthode accesseur qui renvoit la valeur de l'enum */
+	public int getValue() {
+		return this.value;
 	}
-	   
 }
+
+
