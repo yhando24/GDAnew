@@ -1,12 +1,12 @@
 package main.java.com.GDA.bean;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Absence {
 
 	private int id;
-	private Date startDate;
-	private Date endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private String reason;
 	private AbsenceType absenceType;
 	private Status status;
@@ -18,7 +18,7 @@ public class Absence {
 		super();
 	}
 	
-	public Absence(int id, Date startDate, Date endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
+	public Absence(int id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -37,19 +37,19 @@ public class Absence {
 		this.id = id;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
