@@ -107,18 +107,21 @@ public class Login extends HttpServlet {
 			System.out.println(u.getFunction().getId());
 
 			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
+			
+//			RequestDispatcher rd = request.getRequestDispatcher("/dispatchfilter");
+//			rd.forward(request, response);
 
 		} else {
 
 			System.out.println("false");
 			
 //			session.invalidate();
-			request.setAttribute("errorMessage", "Invalid user or password");
+			request.setAttribute("errorMessage", "email ou mot de passe inconnu");
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 			rd.forward(request, response);
 
-			//response.sendRedirect(request.getContextPath() + "/login"); // error alert box
+//			response.sendRedirect(request.getContextPath() + "/login"); // error alert box
 		}
 	}
 }
