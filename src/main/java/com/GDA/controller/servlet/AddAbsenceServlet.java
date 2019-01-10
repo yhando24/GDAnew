@@ -3,11 +3,13 @@ package main.java.com.GDA.controller.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,29 +62,17 @@ public class AddAbsenceServlet extends HttpServlet {
 		AbsenceDAO dao = new AbsenceDAO();
 
 		String pattern = "yyyy-MM-dd";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		
+		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pattern);
+		dtf = dtf.withLocale(Locale.US);
 		String startDateStr = request.getParameter("beginAbsence");
 	    String endDateStr = request.getParameter("endAbsence");
 
-		Date startDate = null;
-		try {
-			startDate = simpleDateFormat.parse(startDateStr);
-		} catch (ParseException e) {
-			System.out.println("erreur de conversion");
-			e.printStackTrace();
-		}
-	
-
-		Date endDate = null;
-		try {
-			endDate = simpleDateFormat.parse(endDateStr);
-		} catch (ParseException e) {
-			System.out.println("erreur de conversion");
-			e.printStackTrace();
-		}
+		LocalDate startDate = LocalDate.parse(startDateStr, dtf);;
 		
-	
+
+
+		LocalDate endDate =   LocalDate.parse(endDateStr, dtf);;
+
 		
 		absence.setStartDate(startDate);
 
@@ -108,67 +98,68 @@ public class AddAbsenceServlet extends HttpServlet {
 		// verification non chevauchement de l'absence demandé avec absence presente en BDD
 		
 		
-		List <Absence> absences = new ArrayList <Absence>();
-		
-		absences = dao.findAbsencesByIdUser(user.getId());
-		
-		boolean Chevauchement = false;
-		
-		for (Absence absence2 : absences) {
-			System.out.println("test");
-			if(absence.getStartDate().before(absence2.getEndDate())) {
-				System.out.println("dans le 1er if");
-				if(absence.getEndDate().after(absence2.getStartDate())) {
-					Chevauchement = true;
-					System.out.println("Sa chevauche");
-					break;
-				}
-			}
-		}
-		
-	
-		// verification date j+1
-		
-		boolean JourPlus1 = true;
-		
-		if(!absence.getStartDate().after(new Date(System.currentTimeMillis()))) {
-			JourPlus1= false;
-			System.out.println("j pas +1");
-		}
-		
-		boolean finAfterDebut = false;
-		
-		if(absence.getEndDate().after(absence.getStartDate()) || absence.getEndDate().equals(absence.getStartDate())) {
-			finAfterDebut = true;
-			System.out.println("fin date après debut");
-		}
-		
-		System.out.println(finAfterDebut);
-		
-		
-		// rajout de l'absence si pas de chevauchement
-		
-		if(!Chevauchement && JourPlus1 && finAfterDebut ) {
-			
-			//rajout d'un jour a la date et actualisation des date de l'absence
-			startDate = DateUtil.addDays(startDate, 1);
-			endDate = DateUtil.addDays(endDate, 1);
-			absence.setStartDate(startDate);
-			absence.setEndDate(endDate);
-			
-			// rajout de l'absence a la BDD		
-			dao.addAbsence(absence);
-			
+//		List <Absence> absences = new ArrayList <Absence>();
+//		
+//		absences = dao.findAbsencesByIdUser(user.getId());
+//		
+//		boolean Chevauchement = false;
+//		
+//		for (Absence absence2 : absences) {
+//			System.out.println("test");
+//			if(absence.getStartDate().before(absence2.getEndDate())) {
+//				System.out.println("dans le 1er if");
+//				if(absence.getEndDate().after(absence2.getStartDate())) {
+//					Chevauchement = true;
+//					System.out.println("Sa chevauche");
+//					break;
+//				}
+//			}
+//		}
+//		
+//	
+//		// verification date j+1
+//		
+//		boolean JourPlus1 = true;
+//		
+//		if(!absence.getStartDate().after(new Date(System.currentTimeMillis()))) {
+//			JourPlus1= false;
+//			System.out.println("j pas +1");
+//		}
+//		
+//		boolean finAfterDebut = false;
+//		
+//		if(absence.getEndDate().after(absence.getStartDate()) || absence.getEndDate().equals(absence.getStartDate())) {
+//			finAfterDebut = true;
+//			System.out.println("fin date après debut");
+//		}
+//		
+//		System.out.println(finAfterDebut);
+//		
+//		
+//		// rajout de l'absence si pas de chevauchement
+//		
+//		if(!Chevauchement && JourPlus1 && finAfterDebut ) {
+//			
+//			//rajout d'un jour a la date et actualisation des date de l'absence
+//			startDate = DateUtil.addDays(startDate, 1);
+//			endDate = DateUtil.addDays(endDate, 1);
+//			absence.setStartDate(startDate);
+//			absence.setEndDate(endDate);
+//			
+//			// rajout de l'absence a la BDD		
+//			dao.addAbsence(absence);
+//			
+//
+//			//conversion pour affichage et actualisation de l'user en session
+//			System.out.println(" ici :" + absence.getStartDate());
+//			absences = dao.findAbsencesByIdUser(user.getId());
+//			user.setAbsences(absences);
+//			session.setAttribute("user", user);
+//			System.out.println("Sa chevauche pas et j+1");
+//
+//		}
 
-			//conversion pour affichage et actualisation de l'user en session
-			System.out.println(" ici :" + absence.getStartDate());
-			absences = dao.findAbsencesByIdUser(user.getId());
-			user.setAbsences(absences);
-			session.setAttribute("user", user);
-			System.out.println("Sa chevauche pas et j+1");
-
-		}
-
+		dao.addAbsence(absence);
 		
 		response.sendRedirect(request.getContextPath() + "/AbsencesManagement"); // logged-in page
 	

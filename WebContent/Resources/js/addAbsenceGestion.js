@@ -45,7 +45,7 @@ function verifDateDebut(){
 		themonth = "0"+themonth;
 	}
 	var DateReallEnString = theyear+"-"+themonth+"-"+thetoday;
-//	var DateReal = new Date(DateReallEnString);
+
 	console.log(DateReallEnString);
 	
 	if (DateReallEnString >= dateDebut ){

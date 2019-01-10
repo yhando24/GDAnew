@@ -11,6 +11,7 @@
             <div class="container text-center">
                 <img id="logo-gda-login" src="css/images/logo.png" alt="logo-gda">
               </div>
+       
           <div class="text-center mb-4">
             <h4>Vous ne retrouvez plus votre mot de passe?</h4>
             <p>Entrer votre adresse email et nous vous enverrons les instructions pour récupérer votre mot de passe</p>
@@ -30,5 +31,6 @@
         </div>
       </div>
     </div>
+    
 
 <%@ include file="/Resources/inc/footer.jsp" %>

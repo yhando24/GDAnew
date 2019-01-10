@@ -10,12 +10,25 @@
             <%@ include file="/Resources/inc/sidebar-admin.jsp"%>
         </c:when>
         <c:when test="${user.function.name == 'manager'}">
-            en attente du link
+            <%@ include file="/Resources/inc/sidebar-manager.jsp"%>
         </c:when>
         <c:when test="${user.function.name == 'user'}">
             <%@ include file="/Resources/inc/sidebar-user.jsp"%>
         </c:when>
     </c:choose>
+    
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+        
+        <!-- Début barre container-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="index.html">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Gestion des absences</li>
+          </ol>
+          <!-- Fin barre container-->
 
     <div class="container">
         <h1>Gestion des absences</h1>
@@ -90,5 +103,7 @@
                 </div>
             </div>
         </c:if>
+    </div>
+    
     </div>
     <%@ include file="/Resources/inc/footer.jsp"%>

@@ -1,6 +1,5 @@
-
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Absences Adiministrateur</title>
+<title>Ajout Jours Fériés</title>
 </head>
 
 <body id="page-top">
@@ -8,6 +7,7 @@
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
 	<!-- /.container-fluid -->
+	
 <div id="content-wrapper">
 
 		<div class="container-fluid">
@@ -16,7 +16,8 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
 				</li>
-				<li class="breadcrumb-item active">Ajout de jour férié</li>
+				<li class="breadcrumb-item active">Jours fériés</li>
+				<li class="breadcrumb-item active">Ajout de jours fériés</li>
 			</ol>
 
 	<div class="container">

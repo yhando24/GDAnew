@@ -1,26 +1,29 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Modification des absences</title>
+<title>Modification Absences</title>
 </head>
-<body id="page-top">
 
+<body>
     <%@ include file="/Resources/inc/navbar.jsp"%>
+ 
+            <%@ include file="/Resources/inc/sidebar-user.jsp"%>
 
-    <div id="wrapper">
-
-      <%@ include file="/Resources/inc/sidebar-user.jsp"%>
-      
-
-      <div id="content-wrapper">
+    
+    <div id="content-wrapper">
 
         <div class="container-fluid">
-
-          <!-- Breadcrumbs-->
+        
+        <!-- Début barre container-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
+              <a href="<c:url value="/IndexEmployee"/>">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Modification d'absence</li>
+            <li class="breadcrumb-item active">Gestion des absences</li>
+            <li class="breadcrumb-item active">Modification des absences</li>
           </ol>
+          <!-- Fin barre container-->
+
+    <div class="container">
 
           <!-- Page Content -->
           <div class="container">
@@ -30,16 +33,18 @@
                     <form action='<c:url value="/updateAbsence"/>' method="POST"> 
                         <span>         
 		                    <label for="champ1">Date de début</label>
-                            <input name="beginAbsence" class="custom-select" type="date" id="champ1" name="date">
+                            <input name="beginAbsence" class="custom-select" type="date" id="champ1" name="date"
+                            value="${fn:substring(absenceAModifier.startDate, 0, 10)}">
                         </span> 
                         <span> 
                             <label for="champ2">Date de fin</label>
-                            <input name="endAbsence" class="custom-select" type="date" id="champ1" name="date">
+                            <input name="endAbsence" class="custom-select" type="date" id="champ1" name="date"
+                            value="${fn:substring(absenceAModifier.endDate, 0, 10)}">
                         </span> 
                         <span>
                             <label for="champ2">Type de congé</label>
                             <select name="congeType" class="custom-select">
-                                <option selected>Type de congé</option>
+                                <option selected >${absenceAModifier.absenceType.name}</option>
                                 <option value="1">Congé payé</option>
                                 <option value="2">RTT</option>
                                 <option value="3">Congé sans solde</option>
@@ -47,7 +52,7 @@
                         </span>
                         <span>
                             <label for="message">Motif</label>
-                            <textarea type="text" id="message" name="motif" rows="2" class="form-control md-textarea"></textarea>
+                            <textarea type="text" id="message" name="motif" rows="2" class="form-control md-textarea">${absenceAModifier.reason}</textarea>
                         </span>
 
                         <span>
@@ -57,6 +62,8 @@
                     </form> 
 		        </div>
             </div>
+        </div>
+        
         </div>
         <!-- /.container-fluid -->
 

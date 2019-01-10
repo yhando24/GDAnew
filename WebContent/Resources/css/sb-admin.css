@@ -6,6 +6,12 @@
 
  /*CSS AJOUT */
 
+.errorMessageLogin{
+	padding-top:15px;
+color:red;	
+}
+
+
 img#logo-gda-login{
   width:50%;
   padding: 0px 0px 20px 0px;

@@ -137,7 +137,7 @@ public class AbsenceDAO implements  IAbsenceDAO {
 		
 		try {
 			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus where  absencetype id = ?";
+			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.idAbsenceType = absencetype.id JOIN status ON status.id = idStatus where absence.id = ?";
 			prepareStatement = connection.prepareStatement(query);
 			
 			prepareStatement.setInt(1,id );
@@ -335,9 +335,9 @@ public class AbsenceDAO implements  IAbsenceDAO {
 			
 			Connection connection = null;
 			PreparedStatement prepareStatement = null;
-			 int result;
+			int result;
+		
 			 
-
 				  			
 				try {
 					connection = ConnectionDB.getConnection();
@@ -345,12 +345,12 @@ public class AbsenceDAO implements  IAbsenceDAO {
 					
 					
 
-				
+					
 					
 					prepareStatement = connection.prepareStatement(Query);
 //					
-					prepareStatement.setDate(1,  new java.sql.Date(absence.getStartDate().getTime()));
-					prepareStatement.setDate(2, new java.sql.Date(absence.getEndDate().getTime()));
+					prepareStatement.setDate(1, Date.valueOf(absence.getStartDate()));
+					prepareStatement.setDate(2,Date.valueOf(absence.getEndDate()));
 					prepareStatement.setString(3, absence.getReason());
 					prepareStatement.setInt(4, absence.getAbsenceType().getId()); // 
 					prepareStatement.setInt(5, absence.getStatus().getId()); //

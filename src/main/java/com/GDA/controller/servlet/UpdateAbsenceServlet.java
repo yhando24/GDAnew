@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
  * Servlet implementation class UpdateAbsenceServlet
@@ -29,6 +33,19 @@ public class UpdateAbsenceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		 String idAbsenceAModifier = (String) request.getAttribute("idAbsenceAModifier");
+		 int id = Integer.parseInt(idAbsenceAModifier);
+		 System.out.println(idAbsenceAModifier);
+		 AbsenceDAO absencedao = new AbsenceDAO();
+		 Absence absence = new Absence();
+		 absence = absencedao.findAbsenceById(id);
+		 
+		 HttpSession session = request.getSession();
+		 session.setAttribute("absenceAModifier", absence);
+		 System.out.println(absence);
+		 
+		 
+		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/absence-modif.jsp");
 		dispatcher.forward(request, response);
@@ -38,7 +55,7 @@ public class UpdateAbsenceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		 
 		doGet(request, response);
 	}
 
