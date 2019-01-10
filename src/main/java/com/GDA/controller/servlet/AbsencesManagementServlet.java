@@ -61,25 +61,25 @@ public class AbsencesManagementServlet extends HttpServlet {
 		
 	}
 	else{
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		int nbrOfDayRtt = 0;
 		int nbrOfDayCp = 0;
 		for (Absence abs : user.getAbsences()) {
 			if(abs.getAbsenceType().getName().equals("RTT")&&abs.getStatus().getName().equals("VALIDEE")) {
 			
-				nbrOfDayRtt = Global.returnPeriodBetweenTwoDates((Date) abs.getStartDate(), (Date) abs.getEndDate());
+				nbrOfDayRtt += Global.returnPeriodBetweenTwoDates((Date) abs.getStartDate(), (Date) abs.getEndDate());
 				
 			}if(abs.getAbsenceType().getName().equals("conge")&&abs.getStatus().getName().equals("VALIDEE")) {
 				
-				nbrOfDayCp++;
+				nbrOfDayCp += Global.returnPeriodBetweenTwoDates((Date) abs.getStartDate(), (Date) abs.getEndDate());
 			}
 		}
 		nbrOfDayRtt = user.getNbrRTT() - nbrOfDayRtt;
 		nbrOfDayCp = user.getNbrDaysOfLeave() - nbrOfDayCp;
 	
 		session.setAttribute("nbrOfDayRtt", nbrOfDayRtt);
-		session.setAttribute("nbrOfDayCp", nbrOfDayCp);*/
+		session.setAttribute("nbrOfDayCp", nbrOfDayCp);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/absences-management.jsp");
 		dispatcher.forward(request, response);
 	}
