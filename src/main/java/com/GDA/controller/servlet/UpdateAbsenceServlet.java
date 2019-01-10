@@ -1,6 +1,7 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.bean.AbsenceType;
+import main.java.com.GDA.bean.Status;
+import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
@@ -56,7 +60,46 @@ public class UpdateAbsenceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
-		doGet(request, response);
+		Absence absence = new Absence();
+		AbsenceDAO absencedao = new AbsenceDAO();
+		
+		HttpSession session = request.getSession();
+		Absence a = (Absence) session.getAttribute("absenceAModifier");
+				
+		String startDateStr = request.getParameter("beginAbsence");
+	    String endDateStr = request.getParameter("endAbsence");
+	   	   
+		LocalDate start = LocalDate.parse(startDateStr);
+		LocalDate end = LocalDate.parse(endDateStr);
+		
+		absence.setId(a.getId());
+	
+		absence.setStartDate(start);
+
+		absence.setEndDate(end);
+			
+		absence.setReason(request.getParameter("motif"));
+		
+		AbsenceType type = new AbsenceType();
+		type.setId(Integer.parseInt(request.getParameter("congeType")));
+		absence.setAbsenceType(type);
+		
+		Status status = new Status();	
+		status.setId(1);
+		absence.setStatus(status);
+		
+		
+		User user = (User) session.getAttribute("user");
+		
+		absence.setIdUser(user.getId());
+		
+			
+		System.out.println(absence);
+	
+		absencedao.updateAbsence(absence.getId(), absence);
+		
+		response.sendRedirect(request.getContextPath() + "/AbsencesManagement");
+	
 	}
 
 }

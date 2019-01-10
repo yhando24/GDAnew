@@ -72,8 +72,11 @@ public class AbsenceDAO implements  IabsencesDAO {
 	@Override
 	public void updateAbsence(int id, Absence absence) {
 	
+		System.out.println("dans update = "+absence.getStartDate());
+		
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
+		
 		
 
 		try
@@ -81,12 +84,12 @@ public class AbsenceDAO implements  IabsencesDAO {
 			connection = ConnectionDB.getConnection();
 			connection.setAutoCommit(false);
 			
-			String query = "UPDATE abscence set startDate = ?, endDate = ?, reason = ?, idAbsenceType = ?, idStatus = ?, idUser = ? WHERE id = ?";
+			String query = "UPDATE absence set startDate = ?, endDate = ?, reason = ?, idAbsenceType = ?, idStatus = ?, idUser = ? WHERE id = ?";
 			
 			prepareStatement = connection.prepareStatement(query);
 
-			prepareStatement.setDate(1, new java.sql.Date(absence.getStartDate().getTime()) );
-			prepareStatement.setDate(2, new java.sql.Date(absence.getEndDate().getTime()) );
+			prepareStatement.setDate(1, Date.valueOf(absence.getStartDate()));			
+			prepareStatement.setDate(2,Date.valueOf(absence.getEndDate()));
 			prepareStatement.setString(3, absence.getReason());
 			prepareStatement.setInt(4, absence.getAbsenceType().getId() );
 			prepareStatement.setInt(5, absence.getStatus().getId());
@@ -94,7 +97,7 @@ public class AbsenceDAO implements  IabsencesDAO {
 			prepareStatement.setInt(7, absence.getId());
 						
 			Integer update = prepareStatement.executeUpdate(query);
-			System.out.println("R�sultat de la requ�te UPDATE => " + update.intValue());
+			System.out.println("Résultat de la requête UPDATE => " + update.intValue());
 			
 
 			connection.commit();
@@ -332,7 +335,7 @@ public class AbsenceDAO implements  IabsencesDAO {
 
 	// way for add an absence
 		@Override
-		public void addAbsence(Absence absence) {
+	public void addAbsence(Absence absence) {
 			
 			Connection connection = null;
 			PreparedStatement prepareStatement = null;
