@@ -51,13 +51,17 @@ public class AbsencesManagementServlet extends HttpServlet {
 		}
 		
 		if(request.getParameter("action").equals("updateAbsence")) {
-			
-			response.sendRedirect(request.getContextPath() + "/updateAbsence"); 
+			String id = request.getParameter("absId");
+			System.out.println(id);
+		    request.setAttribute("idAbsenceAModifier", id);
+		    
+		    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/updateAbsence");
+			dispatcher.forward(request, response);
 		}
 		
 	}
 	else{
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		int nbrOfDayRtt = 0;
 		int nbrOfDayCp = 0;
@@ -75,7 +79,7 @@ public class AbsencesManagementServlet extends HttpServlet {
 		nbrOfDayCp = user.getNbrDaysOfLeave() - nbrOfDayCp;
 	
 		session.setAttribute("nbrOfDayRtt", nbrOfDayRtt);
-		session.setAttribute("nbrOfDayCp", nbrOfDayCp);
+		session.setAttribute("nbrOfDayCp", nbrOfDayCp);*/
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/absences-management.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -2,6 +2,9 @@ package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 import main.java.com.GDA.bean.User;
+
 //import main.java.com.GDA.controller.filtre.LoginFilter;
 import main.java.com.GDA.model.dao.user.*;
 
@@ -54,9 +60,35 @@ public class Login extends HttpServlet {
 		System.out.println(emailUser);
 		System.out.println(passwordUser);
 
+		// Pwd : Hash to MD5
+
+//		String passwordToHash = "plop";
+		String generatedPassword = null;
+		try {
+			// Create MessageDigest instance for MD5
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			// Add password bytes to digest
+			md.update(passwordUser.getBytes());
+			// Get the hash's bytes
+			byte[] bytes = md.digest();
+			// This bytes[] has bytes in decimal format;
+			// Convert it to hexadecimal format
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			// Get complete hashed password in hex format
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		System.out.println(generatedPassword);
+
+		// Test if user exist in DB, using DAO functions
+
 		UserDAO userDao = new UserDAO();
 
-		Boolean dbRep = userDao.isUserExist(emailUser, passwordUser);
+		Boolean dbRep = userDao.isUserExist(emailUser, generatedPassword);
 
 		User u = new User();
 
@@ -64,25 +96,32 @@ public class Login extends HttpServlet {
 
 			System.out.println("true");
 
-			u = userDao.findUserByEmailAndByPassword(emailUser, passwordUser);
+			// Test email and pwd, create the session and send to the dispatchFilter
+
+			u = userDao.findUserByEmailAndByPassword(emailUser, generatedPassword);
 
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user", u);
 
-			System.out.println(session);
+			// System.out.println(session);
 			System.out.println(u.getFunction().getId());
-			
-			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
 
+			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
+			
+//			RequestDispatcher rd = request.getRequestDispatcher("/dispatchfilter");
+//			rd.forward(request, response);
 
 		} else {
 
-			// HttpSession session = request.getSession(true);
 			System.out.println("false");
+			
+//			session.invalidate();
+			request.setAttribute("errorMessage", "email ou mot de passe inconnu");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+			rd.forward(request, response);
 
-			// session.setAttribute("erreur", "login ou mot de passe incorrect");
-
-			response.sendRedirect(request.getContextPath() + "/login"); // error alert box
+//			response.sendRedirect(request.getContextPath() + "/login"); // error alert box
 		}
 	}
 }
