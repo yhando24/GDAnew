@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.GDA.bean.User;
+import main.java.com.GDA.config.Role;
+
 /**
  * Servlet implementation class IndexManager
  */
@@ -30,12 +33,24 @@ public class IndexManager extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeManager.jsp");
-		dispatcher.forward(request, response);
-
-		HttpSession session = request.getSession();
+		HttpSession session = (request).getSession();
 		System.out.println(session.getAttribute("user"));
+		
+		
+		User u2 = (User) session.getAttribute("user");
+		
+		if (u2.getFunction().getId() == Role.ROLE_MANAGER.getValue()) {
+				
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeManager.jsp");
+			dispatcher.forward(request, response);	
+		}
+		
+		else {
+			
+			response.sendRedirect(request.getContextPath() + "/login");
+		}		
 	}
 
 	/**
