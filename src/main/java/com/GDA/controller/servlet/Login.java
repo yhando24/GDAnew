@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.cj.Session;
-
 import main.java.com.GDA.bean.User;
 
-//import main.java.com.GDA.controller.filtre.LoginFilter;
 import main.java.com.GDA.model.dao.user.*;
 
 /**
@@ -39,9 +36,19 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		HttpSession session = (request).getSession();
+		
+		if (session.getAttribute("user") == null) {
+				
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp");
 		dispatcher.forward(request, response);
+		}
+		
+		else {
+			
+			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
+		}
 	}
 
 	/**
@@ -60,7 +67,7 @@ public class Login extends HttpServlet {
 		System.out.println(emailUser);
 		System.out.println(passwordUser);
 
-		// Pwd : Hash to MD5
+// Pwd : Hash to MD5
 
 		String generatedPassword = null;
 		try {
@@ -83,7 +90,7 @@ public class Login extends HttpServlet {
 		}
 		System.out.println(generatedPassword);
 
-		// Test if user exist in DB, using DAO functions
+// Test if user exist in DB, using DAO functions
 
 		UserDAO userDao = new UserDAO();
 

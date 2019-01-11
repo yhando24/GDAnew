@@ -35,10 +35,9 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		// place your code here
 
-		/* Cast des objets request et response */
+		/* Cast request and response object */
 
 		HttpServletRequest req = (HttpServletRequest) request;
-
 		HttpServletResponse resp = (HttpServletResponse) response;
 
 		/* Récupération de la session depuis la requête */
@@ -55,24 +54,15 @@ public class LoginFilter implements Filter {
 
 		if (session.getAttribute("user") == null) {
 
-			/* No logged-in user found, so redirect to login page */
-
-			request.getRequestDispatcher("/login").forward(request, response);
-
-//			//No logged-in user found, so redirect to login page.
-//			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/login"); 
+			// No logged-in user found, so redirect to login page.
+			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/login");
 
 		} else {
 
-			/* Affichage de la page restreinte */
+			/* Logged-in user found, so just continue request to loginServlet */
+
 			chain.doFilter(request, response);
-//			request.getRequestDispatcher("/dispatchfilter").forward(request, response);
 		}
-
-//			// pass the request along the filter chain
-//			// // Logged-in user found, so just continue request to second filter
-//			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/dispatchfilter"); 
-
 	}
 
 	/**

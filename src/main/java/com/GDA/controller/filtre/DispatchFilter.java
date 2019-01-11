@@ -55,19 +55,16 @@ public class DispatchFilter implements Filter {
 		
 
 		if (u2.getFunction().getId() == Role.ROLE_ADMIN.getValue()) {
-//			chain.doFilter(request,response);
-			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexAdministrator"); // logged-in page Admin
-//			  request.getRequestDispatcher( ACCES_ADMINISTRATOR ).forward( request, response );
+
+			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + ACCES_ADMINISTRATOR); // logged-in page Admin
 			  
 		} else if (u2.getFunction().getId() == Role.ROLE_MANAGER.getValue()) {
-//			chain.doFilter(request,response);
-			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexManager"); // logged-in page Manager
-//			request.getRequestDispatcher( ACCES_MANAGER ).forward( request, response );
+
+			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + ACCES_MANAGER); // logged-in page Manager
 			
 		} else if (u2.getFunction().getId() == Role.ROLE_EMPLOYEE.getValue()) {
-//			chain.doFilter(request,response);
-			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexEmployee"); // logged-in page Employee
-//			request.getRequestDispatcher( ACCES_EMPLOYEE ).forward( request, response );
+			
+			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + ACCES_EMPLOYEE); // logged-in page Employee
 
 		} else {
 			
@@ -75,18 +72,12 @@ public class DispatchFilter implements Filter {
 			
 		}
 	}
-//
-//	} else {
-//	// pass the request along the filter chain
-//	chain.doFilter(request,response);
-//
-//	}
 
 	/**
 	 * @see Filter#destroy()
 	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+//	public void destroy() {
+//		// TODO Auto-generated method stub
+//	}
 
 }
