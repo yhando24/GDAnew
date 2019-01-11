@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="/Resources/inc/header.jsp"%>
 <title>Modification Absences</title>
@@ -45,8 +46,8 @@
                         <span class="messageFinDate" style="display:none; color:red">Date de fin inferieur à la date de début. Veuillez saisir une date de fin correcte svp</span> 
                         <span>
                             <label for="champ2">Type de congé</label>
-                            <select name="congeType" class="custom-select" id="congeTypeJs" onchange="verifConge()">
-                                <option selected >Type de congé <!-- ${absenceAModifier.absenceType.name} --></option>
+                            <select name="congeType" class="custom-select" id="congeTypeJs" onchange="verifConge()"   required>
+                                <option selected value="" >Type de congé <!-- ${absenceAModifier.absenceType.name} --></option>
                                 <option value="1">Congé payé</option>
                                 <option value="2">RTT</option>
                                 <option value="3">Congé sans solde</option>

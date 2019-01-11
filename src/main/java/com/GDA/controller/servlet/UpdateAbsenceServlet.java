@@ -98,7 +98,7 @@ public class UpdateAbsenceServlet extends HttpServlet {
 	
 		absencedao.updateAbsence(absence.getId(), absence);
 		
-		response.sendRedirect(request.getContextPath() + "/AbsencesManagement");
+		response.sendRedirect(request.getContextPath() + "/absences-management");
 	
 	}
 
