@@ -20,20 +20,20 @@ import main.java.com.GDA.config.Role;
  * Servlet Filter implementation class DispatchFilter
  */
 @WebFilter("/dispatchfilter")
+
 public class DispatchFilter implements Filter {
+	
+	public static final String ACCES_ADMINISTRATOR= "/indexAdministrator";
+	public static final String ACCES_MANAGER= "/indexManager";
+	public static final String ACCES_EMPLOYEE= "/indexEmployee";
+
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * Default constructor.
-	 */
-	public DispatchFilter() {
-		// TODO Auto-generated constructor stub
+		
+		System.out.println("DispatchFilter init!");
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class DispatchFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+
 		// place your code here
 
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -50,20 +50,29 @@ public class DispatchFilter implements Filter {
 
 		User u2 = (User) session.getAttribute("user");
 
+		
 		System.out.println(u2.getFunction().getId());
+		
 
 		if (u2.getFunction().getId() == Role.ROLE_ADMIN.getValue()) {
-
+//			chain.doFilter(request,response);
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexAdministrator"); // logged-in page Admin
-
+//			  request.getRequestDispatcher( ACCES_ADMINISTRATOR ).forward( request, response );
+			  
 		} else if (u2.getFunction().getId() == Role.ROLE_MANAGER.getValue()) {
-
+//			chain.doFilter(request,response);
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexManager"); // logged-in page Manager
-		
+//			request.getRequestDispatcher( ACCES_MANAGER ).forward( request, response );
+			
 		} else if (u2.getFunction().getId() == Role.ROLE_EMPLOYEE.getValue()) {
-
+//			chain.doFilter(request,response);
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/indexEmployee"); // logged-in page Employee
+//			request.getRequestDispatcher( ACCES_EMPLOYEE ).forward( request, response );
 
+		} else {
+			
+			request.getRequestDispatcher("/login").forward(request, response);
+			
 		}
 	}
 //

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import com.mysql.cj.Session;
 
 import main.java.com.GDA.bean.User;
 
@@ -62,7 +62,6 @@ public class Login extends HttpServlet {
 
 		// Pwd : Hash to MD5
 
-//		String passwordToHash = "plop";
 		String generatedPassword = null;
 		try {
 			// Create MessageDigest instance for MD5
@@ -106,20 +105,21 @@ public class Login extends HttpServlet {
 			// System.out.println(session);
 			System.out.println(u.getFunction().getId());
 
-//			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/dispatchfilter");
-			rd.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
+
+//			RequestDispatcher rd = request.getRequestDispatcher("/dispatchfilter");
+//			rd.forward(request, response);
 
 		} else {
 
 			System.out.println("false");
-			
+
 			request.setAttribute("errorMessage", "email ou mot de passe inconnu");
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 			rd.include(request, response);
 
 		}
+
 	}
 }
