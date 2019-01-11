@@ -70,65 +70,68 @@ public class AbsenceDAO implements  IAbsenceDAO {
 	}
 	
 	
-//	// way for update  absences in BDD, specify id of old absence and the new absence
-//	@Override
-//	public void updateAbsence(int id, Absence absence) {
-//	
-//		Connection connection = null;
-//		PreparedStatement prepareStatement = null;
-//		
-//
-//		try
-//		{
-//			connection = ConnectionDB.getConnection();
-//			connection.setAutoCommit(false);
-//			
-//			String query = "UPDATE abscence set startDate = ?, endDate = ?, reason = ?, idAbsenceType = ?, idStatus = ?, idUser = ? WHERE id = ?";
-//			
-//			prepareStatement = connection.prepareStatement(query);
-//
-//			prepareStatement.setDate(1, new java.sql.Date(absence.getStartDate().getTime()) );
-//			prepareStatement.setDate(2, new java.sql.Date(absence.getEndDate().getTime()) );
-//			prepareStatement.setString(3, absence.getReason());
-//			prepareStatement.setInt(4, absence.getAbsenceType().getId() );
-//			prepareStatement.setInt(5, absence.getStatus().getId());
-//			prepareStatement.setInt(6, absence.getIdUser());
-//			prepareStatement.setInt(7, absence.getId());
-//						
-//			Integer update = prepareStatement.executeUpdate(query);
-//			System.out.println("R�sultat de la requ�te UPDATE => " + update.intValue());
-//			
-//
-//			connection.commit();
-//			
-//			
-//		}
-//		catch (Exception e)
-//		{
-//			try {
-//				connection.rollback();
-//			} catch (SQLException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//			e.printStackTrace();
-//		}
-//		finally
-//		{
-//			try {
-//				prepareStatement.close();
-//				connection.close();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//			
-//		}
-//		
-//	}
-//	
-//	
+	// way for update  absences in BDD, specify id of old absence and the new absence
+	@Override	
+	public void updateAbsence(int id, Absence absence) {
+		
+		System.out.println("dans update = "+Date.valueOf(absence.getStartDate()));
+	
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+	
+	
+
+	try
+	{
+		connection = ConnectionDB.getConnection();
+		connection.setAutoCommit(false);
+		
+		String query = "UPDATE absence set startDate = ?, endDate = ?, reason = ?, idAbsenceType = ?, idStatus = ?, idUser = ? WHERE id = ?";
+		
+		prepareStatement = connection.prepareStatement(query);
+
+		prepareStatement.setDate(1, Date.valueOf(absence.getStartDate()));			
+		prepareStatement.setDate(2,Date.valueOf(absence.getEndDate()));
+		prepareStatement.setString(3, absence.getReason());
+		prepareStatement.setInt(4, absence.getAbsenceType().getId() );
+		prepareStatement.setInt(5, absence.getStatus().getId());
+		prepareStatement.setInt(6, absence.getIdUser());
+		prepareStatement.setInt(7, absence.getId());
+					
+		Integer update = prepareStatement.executeUpdate(query);
+		System.out.println("Résultat de la requête UPDATE => " + update.intValue());
+		
+
+		connection.commit();
+		
+		
+	}
+	catch (Exception e)
+	{
+		try {
+			connection.rollback();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		e.printStackTrace();
+	}
+	finally
+	{
+		try {
+			prepareStatement.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+		
+	}
+	
+	
 	// way for get absence with his id
 //	@Override
 //	public Absence findAbsenceById(int id) {
@@ -411,12 +414,6 @@ public class AbsenceDAO implements  IAbsenceDAO {
 		}
 	}
 
-
-	@Override
-	public void updateAbsence(int id, Absence absence) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	@Override
