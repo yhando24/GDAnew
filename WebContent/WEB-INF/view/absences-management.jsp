@@ -66,19 +66,28 @@
                                                         <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&absId=${abs.id}"/>"> <i
                                                             class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <i class="fas fa-trash-alt"></i>
+                                                       <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
                                                     </c:when>
                                                     <c:when test="${abs.status.name == 'EN_ATTENTE_VALIDATION'}">
-                                                        <i class="fas fa-trash-alt"></i>
+                                                        <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
                                                     </c:when>
                                                     <c:when test="${abs.status.name == 'VALIDEE'}">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </c:when>
+                                                       <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                       </a>
+                                                      </c:when>
                                                     <c:when test="${abs.status.name == 'REJETEE'}">
                                                         <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&absId=${abs.id}"/>"> <i
                                                             class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <i class="fas fa-trash-alt"></i>
+                                                        <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                        
                                                     </c:when>
                                                 </c:choose>
                                             </c:otherwise>
@@ -98,7 +107,7 @@
           
                 <div>
                     Soldes des compteurs:
-                    CP: ${nbr} jours.
+                    CP: ${nbrOfDayCp} jours.
                     RTT: ${nbrOfDayRtt} jours.
                 </div>
             </div>
