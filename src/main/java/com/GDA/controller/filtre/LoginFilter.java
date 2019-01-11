@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
 /**
  * Servlet Filter implementation class LoginFilter
  */
@@ -25,6 +23,7 @@ public class LoginFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
+
 		System.out.println("LogFilter init!");
 
 	}
@@ -36,22 +35,44 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		// place your code here
 
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse resp = (HttpServletResponse) response;
-		HttpSession session = req.getSession(true);
+		/* Cast des objets request et response */
 
-		if (session.getAttribute("user") == null ) {
-			
-			//No logged-in user found, so redirect to login page.
-			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/login"); 
-			
+		HttpServletRequest req = (HttpServletRequest) request;
+
+		HttpServletResponse resp = (HttpServletResponse) response;
+
+		/* Récupération de la session depuis la requête */
+
+		HttpSession session = ((HttpServletRequest) request).getSession();
+
+		/**
+		 * 
+		 * Si l'objet utilisateur n'existe pas dans la session en cours, alors
+		 * 
+		 * l'utilisateur n'est pas connecté.
+		 * 
+		 */
+
+		if (session.getAttribute("user") == null) {
+
+			/* No logged-in user found, so redirect to login page */
+
+			request.getRequestDispatcher("/login").forward(request, response);
+
+//			//No logged-in user found, so redirect to login page.
+//			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/login"); 
+
 		} else {
 
-			// pass the request along the filter chain
-			//chain.doFilter(request, response); // Logged-in user found, so just continue request.
-			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/dispatchfilter"); 
-
+			/* Affichage de la page restreinte */
+			chain.doFilter(request, response);
+//			request.getRequestDispatcher("/dispatchfilter").forward(request, response);
 		}
+
+//			// pass the request along the filter chain
+//			// // Logged-in user found, so just continue request to second filter
+//			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/dispatchfilter"); 
+
 	}
 
 	/**
