@@ -2,6 +2,8 @@ package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -68,15 +70,16 @@ public class UpdateAbsenceServlet extends HttpServlet {
 				
 		String startDateStr = request.getParameter("beginAbsence");
 	    String endDateStr = request.getParameter("endAbsence");
-	   	   
+	   	
+	    
 		LocalDate start = LocalDate.parse(startDateStr);
 		LocalDate end = LocalDate.parse(endDateStr);
 		
 		absence.setId(a.getId());
 	
-		absence.setStartDate(start);
+		absence.setStartDate(start.plusDays(1));
 
-		absence.setEndDate(end);
+		absence.setEndDate(end.plusDays(1));
 			
 		absence.setReason(request.getParameter("motif"));
 		
@@ -87,13 +90,10 @@ public class UpdateAbsenceServlet extends HttpServlet {
 		Status status = new Status();	
 		status.setId(1);
 		absence.setStatus(status);
-		
-		
-		User user = (User) session.getAttribute("user");
-		
+				
+		User user = (User) session.getAttribute("user");		
 		absence.setIdUser(user.getId());
-		
-			
+				
 		System.out.println(absence);
 	
 		absencedao.updateAbsence(absence.getId(), absence);

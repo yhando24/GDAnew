@@ -74,17 +74,16 @@ public class AbsenceDAO implements  IAbsenceDAO {
 	@Override	
 	public void updateAbsence(int id, Absence absence) {
 		
-		System.out.println("dans update = "+Date.valueOf(absence.getStartDate()));
+		System.out.println("dans update = "+Date.valueOf(absence.getEndDate()));
 	
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
 	
+		Integer update;
 	
-
 	try
 	{
-		connection = ConnectionDB.getConnection();
-		connection.setAutoCommit(false);
+		connection = ConnectionDB.getConnection();		
 		
 		String query = "UPDATE absence set startDate = ?, endDate = ?, reason = ?, idAbsenceType = ?, idStatus = ?, idUser = ? WHERE id = ?";
 		
@@ -98,22 +97,13 @@ public class AbsenceDAO implements  IAbsenceDAO {
 		prepareStatement.setInt(6, absence.getIdUser());
 		prepareStatement.setInt(7, absence.getId());
 					
-		Integer update = prepareStatement.executeUpdate(query);
+		update = prepareStatement.executeUpdate();
 		System.out.println("Résultat de la requête UPDATE => " + update.intValue());
-		
-
-		connection.commit();
-		
+	
 		
 	}
 	catch (Exception e)
 	{
-		try {
-			connection.rollback();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		e.printStackTrace();
 	}
 	finally
