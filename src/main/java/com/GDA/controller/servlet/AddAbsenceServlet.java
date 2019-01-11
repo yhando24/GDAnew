@@ -29,7 +29,7 @@ import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 /**
  * Servlet implementation class AddAbsenceServlet
  */
-@WebServlet("/AddAbsence")
+@WebServlet("/add-absence")
 public class AddAbsenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

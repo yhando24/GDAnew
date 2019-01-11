@@ -10,6 +10,12 @@ public class Status {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public Status(int id) {
+	
+		this.id = id;
+
+	}
 
 	public Status() {
 		// TODO Auto-generated constructor stub

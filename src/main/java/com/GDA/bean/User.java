@@ -1,5 +1,6 @@
 package main.java.com.GDA.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -13,7 +14,7 @@ public class User {
 	private int nbrRTT;
 	private Departement departement;
 	private Function function;
-	private List<Absence> absences;
+	private List<Absence> absences = new ArrayList <Absence>();
 	
 	
 	public User() {

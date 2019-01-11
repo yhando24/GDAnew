@@ -39,10 +39,11 @@ public class AbsencesManagementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		 AbsenceDAO dao = new AbsenceDAO();
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-
+		   user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
+           session.setAttribute("user",user);
 		if (request.getParameter("action") != null) {
 
 			if (request.getParameter("action").equals("addAbsence")) {
@@ -62,9 +63,9 @@ public class AbsencesManagementServlet extends HttpServlet {
 				
 			} else if (request.getParameter("action").equals("deleteAbsence")) {
 				String id = request.getParameter("absId");
-                AbsenceDAO abs = new AbsenceDAO();
-                abs.deleteAbsence(Integer.parseInt(id));
-                user.setAbsences(abs.findAbsencesByIdUser(user.getId()));
+            
+				dao.deleteAbsence(Integer.parseInt(id));
+                user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
                 session.setAttribute("user",user);
                 response.sendRedirect(request.getContextPath() + "/absences-management");
 			}

@@ -16,6 +16,7 @@ import java.util.List;
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Status;
+import main.java.com.GDA.bean.User;
 import main.java.com.GDA.utils.ConnectionDB;
 
 public class AbsenceDAO implements  IAbsenceDAO {
@@ -402,6 +403,61 @@ public class AbsenceDAO implements  IAbsenceDAO {
 	
 		}
 	}
+	public List<User> findAllAbsencesByDepartement(int idDep){
+
+		   List<User> users = new ArrayList<User>();
+
+		   Connection connection = null;
+		   PreparedStatement prepareStatement = null;
+
+		       try {
+		           connection = ConnectionDB.getConnection();
+		           String query = "SELECT absence.id as idAbsence, startDate , endDate , reason , idAbsenceType , idStatus , idUser , user.name ,user.firstname ,status.name as namestatus , absencetype.name as nameType FROM absence JOIN user ON user.id = absence.idUser JOIN status ON idStatus = status.id JOIN absencetype on absencetype.id = idAbsencetype WHERE user.idDepartement = ? AND absence.idStatus = 2 ORDER BY idUser";
+		           prepareStatement = connection.prepareStatement(query);
+
+		           prepareStatement.setInt(1,idDep );
+
+		           ResultSet resultSet = prepareStatement.executeQuery();
+
+		           System.out.println(prepareStatement.toString());
+		           System.out.println("avant le result next");
+		     
+		           while (resultSet.next()){
+		              
+		        	      Absence absence = new Absence();
+			                User user = new User();
+			            absence.setId(resultSet.getInt("idAbsence"));    
+		                absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+		                absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
+		                absence.setReason(resultSet.getString("reason"));
+		                absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"),resultSet.getString("nameType")));
+		                absence.setStatus(new Status(resultSet.getInt("idStatus"),resultSet.getString("nameStatus")));
+		                absence.setIdUser(resultSet.getInt("idUser"));
+		                user.setName(resultSet.getString("name"));
+		                user.setName(resultSet.getString("firstname"));
+		                System.out.println(absence);
+		                user.addAbsence(absence);
+
+		                users.add(user);
+		                System.out.println(user);
+		             
+		           }
+		       }
+		       catch (Exception e){
+		           e.printStackTrace();
+		       }
+		       finally{
+		           try {
+		               prepareStatement.close();
+		               connection.close();
+		           } catch (SQLException e) {
+		               // ne rien faire
+		               e.printStackTrace();
+		           }
+		       }
+		       return users;
+
+		}
 
 
 
