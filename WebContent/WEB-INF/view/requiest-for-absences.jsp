@@ -26,7 +26,7 @@
             <div class="form-row">
                 <div class='form-group col-md-6 offset-md-3'>
                     <h3>Demande d'absence</h3>
-                    <form action='<c:url value="/AddAbsence"/>' method="POST"> 
+                    <form action='<c:url value="/AddAbsence"/>' method="POST" onA> 
                         <span>         
 		                    <label for="champ1">Date de début</label>
                             <input name="beginAbsence" class="custom-select debutDateJs" onchange="verifDateDebut()" type="date" id="champ1" name="date">
@@ -54,7 +54,7 @@
 
                         <span>
                             <a class="btn btn-annuler" href='<c:url value="/AbsencesManagement"/>'>Annuler</a>
-                            <button type="submit" class="btn btn-envoyer " >Envoyer</button>
+                            <button id="buttonSendAbsence" type="submit" class="btn btn-envoyer " >Envoyer</button>
                         </span>
                     </form> 
 		        </div>

@@ -1,6 +1,6 @@
 
 	console.log("lit bien le fichier")
-
+var button = document.getElementById('buttonSendAbsence'); 
 function verifConge(){
 	var congeType = document.querySelector("#congeTypeJs").value;
 	console.log(congeType);
@@ -24,10 +24,12 @@ function verifDateFin(){
 		if (dateFin < dateDebut){
 			console.log("date de fin inferieur à date debut");
 			document.querySelector(".messageFinDate").style.display = "inherit";
+			button.disabled = true; 
 			
 		}
 		else{
 			document.querySelector(".messageFinDate").style.display = "none";
+			button.disabled = false; 
 		}
 	}
 
@@ -51,11 +53,15 @@ function verifDateDebut(){
 	if (DateReallEnString >= dateDebut ){
 		console.log("date de debut n'est pas supérieure à la date actuelle ");
 		document.querySelector(".messageDebutDate").style.display = "inherit";
+		button.disabled = true; 
 		
 	}
 	else{
 		document.querySelector(".messageDebutDate").style.display = "none";
+		button.disabled = false; 
 	}
+	
+
 }
 
 
