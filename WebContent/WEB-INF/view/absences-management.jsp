@@ -63,7 +63,7 @@
                                             <c:otherwise>
                                                 <c:choose>
                                                     <c:when test="${abs.status.name == 'INITIALE'}">
-                                                        <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&absId=${abs.id}"/>"> <i
+                                                        <a href="<c:url value ="/absences-management?action=updateAbsence&absId=${abs.id}"/>"> <i
                                                             class="fas fa-pencil-alt"></i>
                                                         </a>
                                                         <i class="fas fa-trash-alt"></i>
@@ -75,7 +75,7 @@
                                                         <i class="fas fa-trash-alt"></i>
                                                     </c:when>
                                                     <c:when test="${abs.status.name == 'REJETEE'}">
-                                                        <a href="<c:url value ="/AbsencesManagement?action=updateAbsence&absId=${abs.id}"/>"> <i
+                                                        <a href="<c:url value ="/absences-management?action=updateAbsence&absId=${abs.id}"/>"> <i
                                                             class="fas fa-pencil-alt"></i>
                                                         </a>
                                                         <i class="fas fa-trash-alt"></i>
@@ -92,7 +92,7 @@
             <div>
                 <div>
                     Demander une absence
-                    <a href="<c:url value ="/AbsencesManagement?action=addAbsence"/>"> <i class="far fa-plus-square"></i>
+                    <a href="<c:url value ="/absences-management?action=addAbsence"/>"> <i class="far fa-plus-square"></i>
                     </a>
                 </div>
           

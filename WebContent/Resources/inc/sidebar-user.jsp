@@ -9,7 +9,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value ="/AbsencesManagement"/>">
+          <a class="nav-link" href="<c:url value ="/absences-management"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Gestion des absences</span>
           </a>

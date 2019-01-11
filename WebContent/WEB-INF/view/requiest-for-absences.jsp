@@ -1,4 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
+           <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <title>Demande d'absence</title>
 </head>
 <body>
@@ -53,13 +54,15 @@
                         </span>
 
                         <span>
-                            <a class="btn btn-annuler" href='<c:url value="/AbsencesManagement"/>'>Annuler</a>
+                            <a class="btn btn-annuler" href='<c:url value="/absences-management"/>'>Annuler</a>
                             <button id="buttonSendAbsence" type="submit" class="btn btn-envoyer " >Envoyer</button>
+                        </span>
+                        <span class="text-center errorMessageLogin">
+                        <c:if test="${!empty errorAdd}"><p> ${errorAdd}</p></c:if>
                         </span>
                     </form> 
 		        </div>
             </div>
-		
       	</div>
     </div>
     </div>

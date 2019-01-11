@@ -24,7 +24,7 @@ import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.utils.DateUtil;
+
 
 /**
  * Servlet implementation class AddAbsenceServlet
@@ -73,10 +73,10 @@ public class AddAbsenceServlet extends HttpServlet {
 
 		LocalDate endDate =   LocalDate.parse(endDateStr, dtf);
 
-		
-		absence.setStartDate(startDate);
 
-		absence.setEndDate(endDate);
+		absence.setStartDate(startDate.plusDays(1));
+
+		absence.setEndDate(endDate.plusDays(1));
 	
 		absence.setReason(request.getParameter("reason"));
 		AbsenceType type = new AbsenceType();
@@ -140,9 +140,8 @@ public class AddAbsenceServlet extends HttpServlet {
 		if(!Chevauchement && JourPlus1 && finAfterDebut ) {
 			
 			//rajout d'un jour a la date et actualisation des date de l'absence
-
-			absence.setStartDate(startDate);
-			absence.setEndDate(endDate);
+		
+		
 			
 			// rajout de l'absence a la BDD		
 			dao.addAbsence(absence);
@@ -154,14 +153,19 @@ public class AddAbsenceServlet extends HttpServlet {
 			user.setAbsences(absences);
 			session.setAttribute("user", user);
 			System.out.println("Sa chevauche pas et j+1");
+			response.sendRedirect(request.getContextPath() + "/absences-management");
+			session.setAttribute("errorAdd", null);
 
+		}else {
+			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas été enregistrée");
+			response.sendRedirect(request.getContextPath() + "/absences-management?action=addAbsence"); // logged-in page
 		}
 
 
 		
 		System.out.println("fin" + absence.getEndDate());
 		
-		response.sendRedirect(request.getContextPath() + "/AbsencesManagement"); // logged-in page
+
 	
 	}
 

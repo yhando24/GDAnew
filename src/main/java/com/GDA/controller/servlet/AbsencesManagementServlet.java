@@ -24,7 +24,7 @@ import main.java.com.GDA.utils.Global;
 /**
  * Servlet implementation class AbsencesManagmentUser
  */
-@WebServlet("/AbsencesManagement")
+@WebServlet("/absences-management")
 public class AbsencesManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,8 @@ public class AbsencesManagementServlet extends HttpServlet {
 
 			if (request.getParameter("action").equals("addAbsence")) {
 
-				response.sendRedirect(request.getContextPath() + "/AddAbsence"); // logged-in page
+				response.sendRedirect(request.getContextPath() + "/AddAbsence"); 
+				
 			} else if (request.getParameter("action").equals("updateAbsence")) {
 				String id = request.getParameter("absId");
 				System.out.println(id);
@@ -62,7 +63,7 @@ public class AbsencesManagementServlet extends HttpServlet {
 				String id = request.getParameter("absId");
 				AbsenceDAO abs = new AbsenceDAO();
 				abs.deleteAbsence(Integer.parseInt(id));
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AbsencesManagement");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/absences-management");
 				dispatcher.forward(request, response);
 			}
 

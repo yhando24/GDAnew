@@ -1,6 +1,10 @@
 
 	console.log("lit bien le fichier")
 var button = document.getElementById('buttonSendAbsence'); 
+var StringDateFin = true;
+var StringDateDebut = true;
+
+
 function verifConge(){
 	var congeType = document.querySelector("#congeTypeJs").value;
 	console.log(congeType);
@@ -24,13 +28,14 @@ function verifDateFin(){
 		if (dateFin < dateDebut){
 			console.log("date de fin inferieur à date debut");
 			document.querySelector(".messageFinDate").style.display = "inherit";
-			button.disabled = true; 
+			StringDateFin = false;
 			
 		}
 		else{
 			document.querySelector(".messageFinDate").style.display = "none";
-			button.disabled = false; 
+			StringDateFin = true;
 		}
+		 disabledButton();
 	}
 
 function verifDateDebut(){
@@ -53,15 +58,25 @@ function verifDateDebut(){
 	if (DateReallEnString >= dateDebut ){
 		console.log("date de debut n'est pas supérieure à la date actuelle ");
 		document.querySelector(".messageDebutDate").style.display = "inherit";
-		button.disabled = true; 
+		StringDateDebut = false;
 		
 	}
 	else{
 		document.querySelector(".messageDebutDate").style.display = "none";
+		StringDateDebut = true;
+	}
+	 disabledButton();	
+
+}
+
+function disabledButton(){
+	console.log("verifDateDebut ; " + StringDateDebut)
+	console.log("verifDateFin ; " + StringDateFin)
+	if(!StringDateDebut || !StringDateFin){
+		button.disabled = true; 
+	}else{
 		button.disabled = false; 
 	}
-	
-
 }
 
 
