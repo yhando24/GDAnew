@@ -2,11 +2,8 @@ package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +47,7 @@ public class AbsencesManagementServlet extends HttpServlet {
 
 			if (request.getParameter("action").equals("addAbsence")) {
 
-				response.sendRedirect(request.getContextPath() + "/AddAbsence"); 
+				response.sendRedirect(request.getContextPath() + "/add-absence"); 
 				
 			} else if (request.getParameter("action").equals("updateAbsence")) {
 				String id = request.getParameter("absId");
@@ -61,10 +58,11 @@ public class AbsencesManagementServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			} else if (request.getParameter("action").equals("deleteAbsence")) {
 				String id = request.getParameter("absId");
-				AbsenceDAO abs = new AbsenceDAO();
-				abs.deleteAbsence(Integer.parseInt(id));
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/absences-management");
-				dispatcher.forward(request, response);
+                AbsenceDAO abs = new AbsenceDAO();
+                abs.deleteAbsence(Integer.parseInt(id));
+                user.setAbsences(abs.findAbsencesByIdUser(user.getId()));
+                session.setAttribute("user",user);
+                response.sendRedirect(request.getContextPath() + "/absences-management");
 			}
 
 		} else {

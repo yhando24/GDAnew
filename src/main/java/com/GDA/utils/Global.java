@@ -13,8 +13,9 @@ public class Global {
 		String date2 = dateEnd.toString().substring(0, 10);
 		LocalDate end = LocalDate.parse(date2);
 		System.out.println(end +   "       " + start);
-		Period period = Period.between(LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfYear()),LocalDate.of(end.getYear(), end.getMonth(), end.getDayOfMonth()));
+		Period period = Period.between(LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfMonth()),LocalDate.of(end.getYear(), end.getMonth(), end.getDayOfMonth()));
 		System.out.println(period.getDays());
+		
 		return (int) period.getDays();
 		
 	}

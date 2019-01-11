@@ -66,17 +66,17 @@
                                                         <a href="<c:url value ="/absences-management?action=updateAbsence&absId=${abs.id}"/>"> <i
                                                             class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                       <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                       <a href="<c:url value ="/absences-management?action=deleteAbsence&absId=${abs.id}"/>">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </c:when>
                                                     <c:when test="${abs.status.name == 'EN_ATTENTE_VALIDATION'}">
-                                                        <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                        <a href="<c:url value ="/absences-management?action=deleteAbsence&absId=${abs.id}"/>">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </c:when>
                                                     <c:when test="${abs.status.name == 'VALIDEE'}">
-                                                       <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                       <a href="<c:url value ="/absences-management?action=deleteAbsence&absId=${abs.id}"/>">
                                                             <i class="fas fa-trash-alt"></i>
                                                        </a>
                                                       </c:when>
@@ -84,7 +84,7 @@
                                                         <a href="<c:url value ="/absences-management?action=updateAbsence&absId=${abs.id}"/>"> <i
                                                             class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <a href="<c:url value ="/AbsencesManagement?action=deleteAbsence&absId=${abs.id}"/>">
+                                                        <a href="<c:url value ="/absences-management?action=deleteAbsence&absId=${abs.id}"/>">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                         
