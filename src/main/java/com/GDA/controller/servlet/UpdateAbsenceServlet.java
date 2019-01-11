@@ -22,7 +22,7 @@ import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 /**
  * Servlet implementation class UpdateAbsenceServlet
  */
-@WebServlet("/updateAbsence")
+@WebServlet("/update-absence")
 public class UpdateAbsenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,14 +39,16 @@ public class UpdateAbsenceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		 String idAbsenceAModifier = (String) request.getAttribute("idAbsenceAModifier");
+		 HttpSession session = request.getSession();
+		
+		 String idAbsenceAModifier = (String) session.getAttribute("idAbsenceAModifier");
 		 int id = Integer.parseInt(idAbsenceAModifier);
 		 System.out.println(idAbsenceAModifier);
 		 AbsenceDAO absencedao = new AbsenceDAO();
 		 Absence absence = new Absence();
 		 absence = absencedao.findAbsenceById(id);
 		 
-		 HttpSession session = request.getSession();
+		 
 		 session.setAttribute("absenceAModifier", absence);
 		 System.out.println(absence);
 		 

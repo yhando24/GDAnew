@@ -52,10 +52,14 @@ public class AbsencesManagementServlet extends HttpServlet {
 			} else if (request.getParameter("action").equals("updateAbsence")) {
 				String id = request.getParameter("absId");
 				System.out.println(id);
-				request.setAttribute("idAbsenceAModifier", id);
+				//request.setAttribute("idAbsenceAModifier", id);
+				session.setAttribute("idAbsenceAModifier", id);;
 
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/updateAbsence");
-				dispatcher.forward(request, response);
+				//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/updateAbsence");
+				//dispatcher.forward(request, response);
+				
+				response.sendRedirect(request.getContextPath() + "/update-absence");
+				
 			} else if (request.getParameter("action").equals("deleteAbsence")) {
 				String id = request.getParameter("absId");
                 AbsenceDAO abs = new AbsenceDAO();
