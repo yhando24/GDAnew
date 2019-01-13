@@ -3,27 +3,27 @@ package main.java.com.GDA.bean;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class JourFerie {
+public class Dayoff {
 
 	private int id;
 	private LocalDate dayOff;
 	private String comment;
-	private TypeJourFerie typeJourFerie;
+	private TypeDayOff typeDayOff;
 	private Departement departement;
 
 	
 	
 	
-	public JourFerie() {
+	public Dayoff() {
 		super();
 	}
 	
-	public JourFerie(int id, LocalDate dayOff, Date endDate, String comment, TypeJourFerie typeJourFerie, Status status, int idUser) {
+	public Dayoff(int id, LocalDate dayOff, String comment, TypeDayOff typeDayOff) {
 		super();
 		this.id = id;
 		this.dayOff = dayOff;
 		this.comment = comment;
-		this.typeJourFerie = typeJourFerie;
+		this.typeDayOff = typeDayOff;
 	}
 
 	public int getId() {
@@ -51,12 +51,12 @@ public class JourFerie {
 		this.comment = reason;
 	}
 
-	public TypeJourFerie getTypeJourFerie() {
-		return typeJourFerie;
+	public TypeDayOff getTypeDayOff() {
+		return typeDayOff;
 	}
 
-	public void setTypeJourFerie(TypeJourFerie typeJourFerie) {
-		this.typeJourFerie = typeJourFerie;
+	public void setTypeDayOff(TypeDayOff typeDayOff) {
+		this.typeDayOff = typeDayOff;
 	}
 
 
@@ -73,7 +73,7 @@ public class JourFerie {
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + dayOff + ", reason=" + comment
-				+ ", idAbsenceType=" + typeJourFerie + "]";
+				+ ", Type=" + typeDayOff + "]";
 	}
 	
 			

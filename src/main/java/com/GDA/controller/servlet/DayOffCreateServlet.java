@@ -22,9 +22,9 @@ import javax.servlet.http.HttpSession;
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Departement;
-import main.java.com.GDA.bean.JourFerie;
+import main.java.com.GDA.bean.Dayoff;
 import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.bean.TypeJourFerie;
+import main.java.com.GDA.bean.TypeDayOff;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
@@ -60,7 +60,7 @@ public class DayOffCreateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		
-		JourFerie dayOff = new JourFerie();
+		Dayoff dayOff = new Dayoff();
 		
 
 		
@@ -84,14 +84,14 @@ public class DayOffCreateServlet extends HttpServlet {
 
 	
 		dayOff.setComment(request.getParameter("comment"));
-		TypeJourFerie type = new TypeJourFerie();
+		TypeDayOff type = new TypeDayOff();
 		type.setId(Integer.parseInt(request.getParameter("ferieType")));
-		dayOff.setTypeJourFerie(type);
+		dayOff.setTypeDayOff(type);
 		Departement departement = new Departement();
 		departement.setId(user.getDepartement().getId());
 		dayOff.setDepartement(departement);
 		
-		// verification non chevauchement de l'absence demandé avec absence presente en BDD
+		// verification non chevauchement de l'absence demandï¿½ avec absence presente en BDD
 		
 //		
 //		List <Absence> absences = new ArrayList <Absence>();
@@ -125,7 +125,7 @@ public class DayOffCreateServlet extends HttpServlet {
 //		
 //		if(absence.getEndDate().isAfter(absence.getStartDate()) || absence.getEndDate().equals(absence.getStartDate())) {
 //			finAfterDebut = true;
-//			System.out.println("fin date après debut");
+//			System.out.println("fin date aprï¿½s debut");
 //		}
 		
 	
@@ -157,7 +157,7 @@ public class DayOffCreateServlet extends HttpServlet {
 //			session.setAttribute("errorAdd", null);
 //
 //		}else {
-//			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas été enregistrée");
+//			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas ï¿½tï¿½ enregistrï¿½e");
 //			response.sendRedirect(request.getContextPath() + "/absences-management?action=addAbsence"); // logged-in page
 //		}
 //		

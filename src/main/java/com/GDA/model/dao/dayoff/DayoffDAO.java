@@ -6,15 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import main.java.com.GDA.bean.Departement;
-import main.java.com.GDA.bean.JourFerie;
-import main.java.com.GDA.bean.TypeJourFerie;
+import main.java.com.GDA.bean.Dayoff;
+import main.java.com.GDA.bean.TypeDayOff;
 import main.java.com.GDA.utils.ConnectionDB;
 
 public class DayoffDAO implements IdayoffDAO {
 
 	@Override
-	public JourFerie findDayOffById(int id){
-		JourFerie j = new JourFerie();
+	public Dayoff findDayOffById(int id){
+		Dayoff j = new Dayoff();
 		DayoffDAO dayoff = new DayoffDAO();
 		Departement d = new Departement();
 		
@@ -55,19 +55,19 @@ public class DayoffDAO implements IdayoffDAO {
 
 
 	@Override
-	public JourFerie findDayOffByDate(Date date){
+	public Dayoff findDayOffByDate(Date date){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public JourFerie findDayOffByDepartement(int idDepartement){
+	public Dayoff findDayOffByDepartement(int idDepartement){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void createDayoff(JourFerie dayOff) {
+	public void createDayoff(Dayoff dayOff) {
 		
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
@@ -86,7 +86,7 @@ public class DayoffDAO implements IdayoffDAO {
 				prepareStatement = connection.prepareStatement(Query);
 //				
 				prepareStatement.setDate(1, Date.valueOf(dayOff.getDayOff()));
-				prepareStatement.setInt(2, dayOff.getTypeJourFerie().getId()); // 
+				prepareStatement.setInt(2, dayOff.getTypeDayOff().getId()); // 
 
 				prepareStatement.setInt(3, dayOff.getDepartement().getId());
 				prepareStatement.setString(4, dayOff.getComment()); // 
@@ -112,13 +112,13 @@ public class DayoffDAO implements IdayoffDAO {
 	}
 
 	@Override
-	public JourFerie updateDayoff(int idDayOff, JourFerie dayOffToUpdate){
+	public Dayoff updateDayoff(int idDayOff, Dayoff dayOffToUpdate){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public JourFerie deleteDayOff(Date date) throws SQLException {
+	public Dayoff deleteDayOff(Date date) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

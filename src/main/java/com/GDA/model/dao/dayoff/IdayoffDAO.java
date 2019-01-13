@@ -3,14 +3,14 @@ package main.java.com.GDA.model.dao.dayoff;
 import java.sql.Date;
 import java.sql.SQLException;
 
-import main.java.com.GDA.bean.JourFerie;
+import main.java.com.GDA.bean.Dayoff;
 
 public interface IdayoffDAO {
-	JourFerie findDayOffById(int id);
-	JourFerie findDayOffByDate(Date date);
-	JourFerie findDayOffByDepartement(int idDepartement);
-	void createDayoff(JourFerie dayOff);
-	JourFerie updateDayoff(int idDayOff, JourFerie dayOffToUpdate);
-	JourFerie deleteDayOff(Date date) throws SQLException;
+	Dayoff findDayOffById(int id);
+	Dayoff findDayOffByDate(Date date);
+	Dayoff findDayOffByDepartement(int idDepartement);
+	void createDayoff(Dayoff dayOff);
+	Dayoff updateDayoff(int idDayOff, Dayoff dayOffToUpdate);
+	Dayoff deleteDayOff(Date date) throws SQLException;
 	boolean isDateExist(Date date) throws SQLException;
 }

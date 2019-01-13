@@ -1,17 +1,17 @@
 package main.java.com.GDA.bean;
 
-public class TypeJourFerie {
+public class TypeDayOff {
 
 	private int id;
 	private String name;
 	
-	public TypeJourFerie(int id, String name) {
+	public TypeDayOff(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public TypeJourFerie() {
+	public TypeDayOff() {
 		// TODO Auto-generated constructor stub
 	}
 
