@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import main.java.com.GDA.bean.Departement;
 import main.java.com.GDA.bean.JourFerie;
+import main.java.com.GDA.bean.TypeJourFerie;
 import main.java.com.GDA.utils.ConnectionDB;
 
 public class DayoffDAO implements IdayoffDAO {
 
 	@Override
-	public JourFerie findDayOffById(int id) throws SQLException {
+	public JourFerie findDayOffById(int id){
 		JourFerie j = new JourFerie();
 		DayoffDAO dayoff = new DayoffDAO();
 		Departement d = new Departement();
@@ -37,10 +38,16 @@ public class DayoffDAO implements IdayoffDAO {
 	}
 	finally {
 		
-		resultset.close();
-		prepareStatement.close();
-		conn.close();
-		
+		try {
+			resultset.close();
+			prepareStatement.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 			
 	return j;
@@ -48,25 +55,64 @@ public class DayoffDAO implements IdayoffDAO {
 
 
 	@Override
-	public JourFerie findDayOffByDate(Date date) throws SQLException {
+	public JourFerie findDayOffByDate(Date date){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public JourFerie findDayOffByDepartement(int idDepartement) throws SQLException {
+	public JourFerie findDayOffByDepartement(int idDepartement){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public JourFerie createDayoff(JourFerie dayOff) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void createDayoff(JourFerie dayOff) {
+		
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		int result;
+	
+		 
+			  			
+			try {
+				connection = ConnectionDB.getConnection();
+				String Query = "INSERT INTO dayoff (date, idTypeDayOff, idDepartement, comment) VALUES (?,?,?,?)";
+				
+				
+
+				
+				
+				prepareStatement = connection.prepareStatement(Query);
+//				
+				prepareStatement.setDate(1, Date.valueOf(dayOff.getDayOff()));
+				prepareStatement.setInt(2, dayOff.getTypeJourFerie().getId()); // 
+
+				prepareStatement.setInt(3, dayOff.getDepartement().getId());
+				prepareStatement.setString(4, dayOff.getComment()); // 
+
+				result = prepareStatement.executeUpdate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					if(connection != null) {
+						prepareStatement.close();
+						connection.close();
+					}
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+			}
 	}
 
 	@Override
-	public JourFerie updateDayoff(int idDayOff, JourFerie dayOffToUpdate) throws SQLException {
+	public JourFerie updateDayoff(int idDayOff, JourFerie dayOffToUpdate){
 		// TODO Auto-generated method stub
 		return null;
 	}

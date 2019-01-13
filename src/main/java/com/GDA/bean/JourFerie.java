@@ -1,13 +1,15 @@
 package main.java.com.GDA.bean;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class JourFerie {
 
 	private int id;
-	private Date dayOff;
+	private LocalDate dayOff;
 	private String comment;
 	private TypeJourFerie typeJourFerie;
+	private Departement departement;
 
 	
 	
@@ -16,7 +18,7 @@ public class JourFerie {
 		super();
 	}
 	
-	public JourFerie(int id, Date dayOff, Date endDate, String comment, TypeJourFerie typeJourFerie, Status status, int idUser) {
+	public JourFerie(int id, LocalDate dayOff, Date endDate, String comment, TypeJourFerie typeJourFerie, Status status, int idUser) {
 		super();
 		this.id = id;
 		this.dayOff = dayOff;
@@ -32,11 +34,11 @@ public class JourFerie {
 		this.id = id;
 	}
 
-	public Date getDayOff() {
+	public LocalDate getDayOff() {
 		return dayOff;
 	}
 
-	public void setDayOff(Date startDate) {
+	public void setDayOff(LocalDate startDate) {
 		this.dayOff = startDate;
 	}
 
@@ -59,6 +61,14 @@ public class JourFerie {
 
 
 
+
+	public Departement getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
 
 	@Override
 	public String toString() {
