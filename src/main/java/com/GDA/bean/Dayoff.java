@@ -18,12 +18,13 @@ public class Dayoff {
 		super();
 	}
 	
-	public Dayoff(int id, LocalDate dayOff, String comment, TypeDayOff typeDayOff) {
+	public Dayoff(int id, LocalDate dayOff, String comment, TypeDayOff typeDayOff, Departement departement) {
 		super();
 		this.id = id;
 		this.dayOff = dayOff;
 		this.comment = comment;
 		this.typeDayOff = typeDayOff;
+		this.departement = departement;
 	}
 
 	public int getId() {

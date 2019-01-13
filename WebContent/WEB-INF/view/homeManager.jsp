@@ -14,7 +14,7 @@
 
 			<!-- Breadcrumbs-->
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				<li class="breadcrumb-item"><a href="<c:url value="/indexManager"/>">Dashboard</a>
 				</li>
 			</ol>
 

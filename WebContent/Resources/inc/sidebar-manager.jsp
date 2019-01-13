@@ -1,7 +1,7 @@
 <div id="wrapper">
 	
 	<ul class="sidebar navbar-nav">
-		<li class="nav-item"><a class="nav-link" href='<c:url value="/IndexAdministrator"/>'>
+		<li class="nav-item"><a class="nav-link" href='<c:url value="/indexManager"/>'>
 				<i class="fas fa-fw fa-tachometer-alt"></i> <span>Home</span>
 		</a></li>
 	
@@ -10,7 +10,7 @@
 					absences</span>
 		</a></li>
 		
-		<li class="nav-item"><a class="nav-link" href='<c:url value="/AbsencesManagement"/>'>
+		<li class="nav-item"><a class="nav-link" href='<c:url value=""/>'>
 		<i class="fas fa-fw fa-folder"></i> <span>Planning</span>
 		</a></li>
 		

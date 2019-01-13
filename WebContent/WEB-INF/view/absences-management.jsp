@@ -24,7 +24,7 @@
         <!-- Début barre container-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
+              <a href="<c:url value="/indexEmployee"/>">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Gestion des absences</li>
           </ol>

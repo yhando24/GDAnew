@@ -16,7 +16,7 @@ public class Global {
 		Period period = Period.between(LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfMonth()),LocalDate.of(end.getYear(), end.getMonth(), end.getDayOfMonth()));
 		System.out.println(period.getDays());
 		
-		return (int) period.getDays();
+		return (int) period.getDays() + 1;
 		
 	}
 	

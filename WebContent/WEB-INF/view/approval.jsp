@@ -21,10 +21,10 @@
 
         <div class="container-fluid">
         
-        <!-- Début barre container-->
+        <!-- Dï¿½but barre container-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
+              <a href="<c:url value="/indexManager"/>"> Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Gestion des absences</li>
           </ol>
@@ -51,7 +51,7 @@
                                  <tr>
                            
                                     <td>${user.firstname } ${user.name }</td>
-                                    <td > <c:forEach items="${user.absences}" var="absence" varStatus="status">  ${absence.startDate} </c:forEach> >
+                                    <td > <c:forEach items="${user.absences}" var="absence" varStatus="status">  ${absence.startDate} </c:forEach> 
                                     <td > <c:forEach items="${user.absences}" var="absence" varStatus="status">  ${absence.endDate} </c:forEach></td> 
                                     <td > <c:forEach items="${user.absences}" var="absence" varStatus="status">  ${absence.reason} </c:forEach></td> 
                                     <td > <c:forEach items="${user.absences}" var="absence" varStatus="status">  ${absence.absenceType.name} </td> 

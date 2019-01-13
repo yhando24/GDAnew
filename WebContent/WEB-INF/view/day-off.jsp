@@ -23,7 +23,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <a href="index.html">Dashboard</a>
+                  <a href="<c:url value="/indexAdministrator"/>">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Jours fériés</li>
               </ol>

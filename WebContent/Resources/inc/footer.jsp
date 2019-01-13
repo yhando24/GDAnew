@@ -7,7 +7,7 @@
    <footer class="footer-gda">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright © Promotion JAVA JEE - Diginamic - 2019</span>
+              <span>Copyright ï¿½ Promotion JAVA JEE - Diginamic - 2019</span>
             </div>
           </div>
         </footer>
@@ -46,7 +46,7 @@
 					<form method="post" action='<c:url value="/logout"/>'>
 
 						<button class="btn btn-primary" type="submit">Se
-							déconnecter</button>
+							dÃ©connecter</button>
 					</form>
 					
 				</div>
