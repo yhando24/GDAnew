@@ -95,7 +95,7 @@ public class AddAbsenceServlet extends HttpServlet {
 	
 		
 		
-		// verification non chevauchement de l'absence demandé avec absence presente en BDD
+		// verification non chevauchement de l'absence demandï¿½ avec absence presente en BDD
 		
 		
 		List <Absence> absences = new ArrayList <Absence>();
@@ -129,7 +129,7 @@ public class AddAbsenceServlet extends HttpServlet {
 		
 		if(absence.getEndDate().isAfter(absence.getStartDate()) || absence.getEndDate().equals(absence.getStartDate())) {
 			finAfterDebut = true;
-			System.out.println("fin date après debut");
+			System.out.println("fin date aprÃ©s debut");
 		}
 		
 		System.out.println(finAfterDebut);
@@ -157,7 +157,7 @@ public class AddAbsenceServlet extends HttpServlet {
 			session.setAttribute("errorAdd", null);
 
 		}else {
-			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas été enregistrée");
+			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas ï¿½tï¿½ enregistrï¿½e");
 			response.sendRedirect(request.getContextPath() + "/absences-management?action=addAbsence"); // logged-in page
 		}
 

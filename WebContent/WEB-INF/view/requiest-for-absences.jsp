@@ -5,7 +5,7 @@
 <body>
     <%@ include file="/Resources/inc/navbar.jsp"%>
 
-            <%@ include file="/Resources/inc/sidebar-user.jsp"%>
+         
  
 
       <div id="content-wrapper">

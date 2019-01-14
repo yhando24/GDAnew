@@ -42,6 +42,7 @@ public class AbsencesManagementServlet extends HttpServlet {
 		 AbsenceDAO dao = new AbsenceDAO();
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
+
 		   user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
            session.setAttribute("user",user);
 		if (request.getParameter("action") != null) {
@@ -92,6 +93,8 @@ public class AbsencesManagementServlet extends HttpServlet {
 
 			session.setAttribute("nbrOfDayRtt", nbrOfDayRtt);
 			session.setAttribute("nbrOfDayCp", nbrOfDayCp);
+			
+			session.setAttribute("errorAdd",null);
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/absences-management.jsp");
 			dispatcher.forward(request, response);

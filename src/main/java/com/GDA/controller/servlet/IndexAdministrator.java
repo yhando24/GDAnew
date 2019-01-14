@@ -38,7 +38,8 @@ public class IndexAdministrator extends HttpServlet {
 		
 		
 		User u2 = (User) session.getAttribute("user");
-		
+
+		session.setAttribute("errorAdd",null);
 		if (u2.getFunction().getId() == Role.ROLE_ADMIN.getValue()) {
 				
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeAdministrator.jsp");

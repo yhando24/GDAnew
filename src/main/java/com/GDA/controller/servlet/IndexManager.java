@@ -37,7 +37,8 @@ public class IndexManager extends HttpServlet {
 
 		HttpSession session = (request).getSession();
 		System.out.println(session.getAttribute("user"));
-		
+
+		session.setAttribute("errorAdd",null);
 		
 		User u2 = (User) session.getAttribute("user");
 		

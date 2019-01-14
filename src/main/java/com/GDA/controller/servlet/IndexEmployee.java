@@ -38,6 +38,7 @@ public class IndexEmployee extends HttpServlet {
 		HttpSession session = (request).getSession();
 		System.out.println(session.getAttribute("user"));
 
+		session.setAttribute("errorAdd",null);
 		User u2 = (User) session.getAttribute("user");
 
 		if (u2.getFunction().getId() == Role.ROLE_EMPLOYEE.getValue()) {
