@@ -46,7 +46,7 @@
 						</select>
 						</span> <span> <label for="message">Commentaire</label> <textarea
 								type="text" id="message" name="comment" rows="2"
-								class="form-control md-textarea"></textarea>
+								class="form-control md-textarea" required></textarea>
 						</span> <span> <a class="btn btn-annuler">Annuler</a>
 							<button type="submit" class="btn btn-envoyer " id ="boutonaddFerie">Envoyer</button>
 						</span>

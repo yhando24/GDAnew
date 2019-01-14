@@ -28,6 +28,7 @@ import main.java.com.GDA.bean.TypeDayOff;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
+import main.java.com.GDA.model.dao.user.UserDAO;
 
 /**
  * Servlet implementation class DayOfCreateServlet
@@ -143,7 +144,28 @@ public class DayOffCreateServlet extends HttpServlet {
 		
 		
 			
-			// rajout de l'absence a la BDD		
+			// rajout de l'absence a la BDD
+			if(type.getId() == 2 ) {
+				UserDAO daoUser = new UserDAO();
+				AbsenceDAO daoAbsence = new AbsenceDAO();
+				ArrayList <User> users = daoUser.findUserByIdDepartement(user.getDepartement().getId());
+				for (User user2 : users) {
+					Absence absence = new Absence();
+					absence.setStartDate(Date.plusDays(1));
+					absence.setEndDate(Date.plusDays(1));
+					absence.setReason(request.getParameter("comment"));
+					Status status = new Status();
+					status.setId(3);
+					absence.setStatus(status);
+					AbsenceType abstype = new AbsenceType();
+					abstype.setId(5);
+					absence.setAbsenceType(abstype);
+					absence.setIdUser(user2.getId());
+					daoAbsence.addAbsence(absence);
+				}
+			}
+			
+			
 			dao.createDayoff(dayOff);
 			System.out.println("ajout jour ferie");
 

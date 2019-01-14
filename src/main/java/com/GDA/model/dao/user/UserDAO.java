@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Departement;
 import main.java.com.GDA.bean.Function;
+import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 import main.java.com.GDA.utils.ConnectionDB;
@@ -16,7 +20,7 @@ import main.java.com.GDA.utils.ConnectionDB;
 public class UserDAO implements IUserDAO {
 
 	@Override
-	public User findUserByEmail(String email) throws SQLException {
+	public User findUserByEmail(String email){
 		
 		User u = new User();
 		AbsenceDAO absence = new AbsenceDAO();
@@ -68,9 +72,15 @@ public class UserDAO implements IUserDAO {
 		}
 		finally {
 			
-			resultset.close();
-			prepareStatement.close();
-			conn.close();
+			try {
+				resultset.close();
+				prepareStatement.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 			
 		}
 				
@@ -78,7 +88,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public User findUserById(int id) throws SQLException {
+	public User findUserById(int id){
 		
 		User u = new User();
 		AbsenceDAO absence = new AbsenceDAO();
@@ -130,10 +140,16 @@ public class UserDAO implements IUserDAO {
 		}
 		finally {
 			
-			resultset.close();
-			prepareStatement.close();
-			conn.close();
-			
+			try {
+				resultset.close();
+				prepareStatement.close();
+				conn.close();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		}
 		
 		return u;
@@ -263,6 +279,45 @@ public class UserDAO implements IUserDAO {
 		return u;
 		
 		
+	}
+
+	@Override
+	public ArrayList <User> findUserByIdDepartement(int idDepartement) {
+		  ArrayList<User> users = new ArrayList<User>();
+
+		   Connection connection = null;
+		   PreparedStatement prepareStatement = null;
+
+		       try {
+		           connection = ConnectionDB.getConnection();
+		           String query = "SELECT id from user where idDepartement = ?";
+		           prepareStatement = connection.prepareStatement(query);
+
+		           prepareStatement.setInt(1,idDepartement );
+
+		           ResultSet resultSet = prepareStatement.executeQuery();
+
+		     
+		           while (resultSet.next()){
+		              
+			            User user = new User();
+			            user.setId(resultSet.getInt("id"));
+		                users.add(user);	             
+		           }
+		       }
+		       catch (Exception e){
+		           e.printStackTrace();
+		       }
+		       finally{
+		           try {
+		               prepareStatement.close();
+		               connection.close();
+		           } catch (SQLException e) {
+		               // ne rien faire
+		               e.printStackTrace();
+		           }
+		       }
+		       return users;
 	}
 
 }
