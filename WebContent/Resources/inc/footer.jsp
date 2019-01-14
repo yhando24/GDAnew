@@ -7,7 +7,7 @@
    <footer class="footer-gda">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright � Promotion JAVA JEE - Diginamic - 2019</span>
+              <span>Copyright © Promotion JAVA JEE - Diginamic - 2019</span>
             </div>
           </div>
         </footer>
@@ -33,7 +33,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Prêt à partir?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">×</span>
+						<span aria-hidden="true">X</span>
 					</button>
 				</div>
 				<div class="modal-body">Selectionner se déconnecter si vous
