@@ -5,7 +5,14 @@
 <body id="page-top">
 
 	<%@ include file="/Resources/inc/navbar.jsp"%>
-	<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
+	<c:choose>
+        <c:when test="${user.function.name == 'admin'}">
+            <%@ include file="/Resources/inc/sidebar-admin.jsp"%>
+        </c:when>
+        <c:when test="${user.function.name == 'manager'}">
+           <%@ include file="/Resources/inc/sidebar-manager.jsp"%>
+        </c:when>
+    </c:choose>
 	<!-- /.container-fluid -->
 	
 <div id="content-wrapper">
