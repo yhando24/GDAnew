@@ -155,19 +155,15 @@ img#logo-gda-login{
   width:50%;
   padding: 0px 0px 20px 0px;
 }
-
 #logo-gda-nav{
   text-align: center;
 }
-
 #logo-gda-nav img{
   width: 25%;
 }
-
 .navbar-dark .navbar-brand {
   width: 200px;
 }
-
 .bienvenue{
   color:white;
 }
@@ -176,41 +172,33 @@ img#logo-gda-login{
   background-color: #9E005D;
   border-color: #9E005D;
 }
-
 .btn-annuler:hover {
 color: #fff !important;
 background-color: #69013e;
 border-color: #69013e;
 }
-
 .btn-envoyer {
   color: #fff !important;
   background-color: #037490;
   border-color: #037490;
 }
-
 .btn-envoyer:hover {
   color: #fff !important;
   background-color: #005064;
   border-color: #005064;
 }
-
 .btn-annuler, .btn-envoyer{
   margin-top:10px;
 }
-
 a{
   color: #037490; 
 }
-
 a:hover{
   color: #3B5C6A; 
 }
-
 .bienvenue{
   color:white;
 }
-
 .footer-gda{
 	width:100% !important;
     display: flex;
@@ -220,32 +208,31 @@ a:hover{
     height: 80px;
     background-color: #e9ecef;
 }
-
 .bg-dark{
   /*background-color:#57ACAB !important;*/
   background-image: url("images/fond.png") !important;
   background-color: white !important;
   
 }
-
+.btn-primary {
+  color: #fff;
+  background-color: #9E005D;
+  border-color: #9E005D;
+}
 .btn-primary:hover {
   color: #fff;
   background-color: #69013e;
   border-color: #69013e;
 }
-
 .bg-primary {
   background-color: #9E005D !important;
 }
-
 .bg-warning{
   background-color: #037490 !important;
 }
-
 .bg-success{
   background-color: #048880 !important;
 }
-
 .bg-danger{
   background-color: #3B5C6A !important;
 }
@@ -253,11 +240,8 @@ a:hover{
   border-color: #9E005D;
   background-color: #9E005D !important;
 }
-
 .page-link {
   color: #9E005D !important;
-
-
 }
 
 /*ANIMATION LOGO*/
