@@ -9,7 +9,7 @@
             <%@ include file="/Resources/inc/sidebar-admin.jsp"%>
         </c:when>
         <c:when test="${user.function.name == 'manager'}">
-            en attente du link
+           <%@ include file="/Resources/inc/sidebar-manager.jsp"%>
         </c:when>
         <c:when test="${user.function.name == 'user'}">
             <%@ include file="/Resources/inc/sidebar-user.jsp"%>
