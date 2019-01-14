@@ -10,7 +10,7 @@
 	<%@ include file="/Resources/inc/sidebar-user.jsp"%>
 
 
-	<div id="content-wrapper">
+	<div id="content-wrapper" onmouseover="checkTypeConges(${absenceAModifier.absenceType.id})">
 
 		<div class="container-fluid">
 
@@ -45,13 +45,12 @@
 								</span> <span class="messageFinDate" style="display: none; color: red">Date
 									de fin inférieure é la date de début. Veuillez saisir une date
 									de fin correcte svp</span> <span> <label for="champ2">Type
-										de congé</label> <select name="congeType" class="custom-select"
-									id="congeTypeJs" onchange="verifConge()" required>
-										<option selected value="">Type de congé
-											<!-- ${absenceAModifier.absenceType.name} --></option>
-										<option value="1">Congé payé</option>
-										<option value="2">RTT</option>
-										<option value="3">Congé sans solde</option>
+										de congé</label> 
+								<select name="congeType" class="custom-select" id="congeTypeJs" onchange="verifConge()" required>
+										<option value="">Type de congé</option>
+										<option value="1" class="typeconges">Congé payé</option>
+										<option value="2" class="typeconges">RTT</option>
+										<option value="3" class="typeconges">Congé sans solde</option>
 								</select>
 								</span> <span> <label for="message">Motif</label> <textarea
 										id="motifJs" type="text" id="message" name="motif" rows="2"

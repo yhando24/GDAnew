@@ -18,6 +18,22 @@ function verifConge(){
 	};	
 	console.log("test");
 }
+
+function checkTypeConges(id){
+	console.log(id);
+	let options = document.querySelectorAll(".typeconges");
+	let index = 1;
+	
+	options.forEach(element =>{
+		console.log('plop');
+		if(id == index){
+			console.log(index);
+			element.setAttribute("selected","");
+		}
+		index++;
+	});
+
+}
 	
 function verifDateFin(){
 		var dateFin = document.querySelector(".finDateJs").value;
