@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import main.java.com.GDA.utils.ConnectionDB;
 public class AbsenceDAO implements  IAbsenceDAO {
 
 	
-	
+	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 	// way for get all absences in BDD
 	@Override
 	public List<Absence> findAllAbsences() {

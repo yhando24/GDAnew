@@ -43,7 +43,7 @@
 				<a class="dropdown-item" href="#">Compte</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
-					data-target="#logoutModal">Se dï¿½connecter</a>
+					data-target="#logoutModal">Se déconnecter</a>
 			</div></li>
 	</ul>
 
