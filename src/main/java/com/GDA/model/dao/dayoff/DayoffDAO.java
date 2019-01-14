@@ -40,8 +40,8 @@ public class DayoffDAO implements IdayoffDAO {
 				Dayoff dayoff = new Dayoff();
 				dayoff.setId(resultSet.getInt("id"));
 				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
-				dayoff.setTypeDayOff(new TypeDayOff(resultSet.getInt("idTypeDayOff"),resultSet.getString("name")));
-				dayoff.setDepartement(new Departement(resultSet.getInt("idDepartement"),resultSet.getString("name")));
+				dayoff.setTypeDayOff(new TypeDayOff(resultSet.getInt("idTypeDayOff"),resultSet.getString("nametypeDayOff")));
+				dayoff.setDepartement(new Departement(resultSet.getInt("idDepartement"),resultSet.getString("service")));
 				dayoff.setComment(resultSet.getString("comment"));
 
 				daysOff.add(dayoff);

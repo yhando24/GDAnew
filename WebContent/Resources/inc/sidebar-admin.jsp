@@ -15,7 +15,7 @@
 					Absences</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link"
-			href='<c:url value="create-day-off"/>'> <i
+			href='<c:url value="day-off-management"/>'> <i
 				class="fas fa-fw fa-folder"></i> <span>Jours fériés</span>
 		</a></li>
 	</ul>
