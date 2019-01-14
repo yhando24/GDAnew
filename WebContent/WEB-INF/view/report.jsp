@@ -1,30 +1,29 @@
-<%@ include file="/Resources/inc/header.jsp" %>
-    <title>Vue synthétique</title>
+<%@ include file="/Resources/inc/header.jsp"%>
+<title>Vue synthÃ©tique</title>
 
 </head>
 
 <body>
-    <%@ include file="/Resources/inc/navbar.jsp"%>
-    <%@ include file="/Resources/inc/sidebar-user.jsp"%>
+	<%@ include file="/Resources/inc/navbar.jsp"%>
+	<%@ include file="/Resources/inc/sidebar-user.jsp"%>
 
-    
-    <div id="content-wrapper">
 
-        <div class="container-fluid">
-        
-        <!-- Début barre container-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Vue synthétique</li>
-          </ol>
-          <!-- Fin barre container-->
+	<div id="content-wrapper">
 
-    <div class="container">
+		<div class="container-fluid">
 
-          <!-- Ajout Vue synthétiqu ici -->
-    
-    </div>
-    </div>
-    <%@ include file="/Resources/inc/footer.jsp"%>>
+			<!-- Dï¿½but  barre container-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Vue synthÃ©tique</li>
+			</ol>
+			<!-- Fin barre container-->
+
+			<div class="container">
+
+				<!-- Ajout Vue synthï¿½tique ici -->
+
+			</div>
+		</div>
+		<%@ include file="/Resources/inc/footer.jsp"%>>

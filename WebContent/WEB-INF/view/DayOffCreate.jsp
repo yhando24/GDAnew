@@ -1,31 +1,32 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Ajout Jours Fériés</title>
+<title>Ajout Jours FÃ©riÃ©s</title>
 </head>
 
 <body id="page-top">
 
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<c:choose>
-        <c:when test="${user.function.name == 'admin'}">
-            <%@ include file="/Resources/inc/sidebar-admin.jsp"%>
-        </c:when>
-        <c:when test="${user.function.name == 'manager'}">
-           <%@ include file="/Resources/inc/sidebar-manager.jsp"%>
-        </c:when>
-    </c:choose>
+		<c:when test="${user.function.name == 'admin'}">
+			<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
+		</c:when>
+		<c:when test="${user.function.name == 'manager'}">
+			<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
+		</c:when>
+	</c:choose>
 	<!-- /.container-fluid -->
-	
-<div id="content-wrapper">
+
+	<div id="content-wrapper">
 
 		<div class="container-fluid">
 
 			<!-- Breadcrumbs-->
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="<c:url value="/indexAdministrator"/>">Dashboard</a>
-				</li>
-				<li class="breadcrumb-item active">Jours fériés</li>
-				<li class="breadcrumb-item active">Ajout de jours fériés</li>
+				<li class="breadcrumb-item"><a
+					href="<c:url value="/indexAdministrator"/>">Dashboard</a></li>
+				<li class="breadcrumb-item active">Jours fÃ©riÃ©s</li>
+				<li class="breadcrumb-item active">Ajout de jours fÃ©riÃ©s</li>
 			</ol>
+
 
 	<div class="container">
 
@@ -51,13 +52,13 @@
 							<button type="submit" class="btn btn-envoyer " id ="boutonaddFerie">Envoyer</button>
 						</span>
 					</form>
+
 				</div>
 			</div>
+
+
 		</div>
+		<%@ include file="/Resources/inc/footer.jsp"%>
 
 
-	</div>
-	<%@ include file="/Resources/inc/footer.jsp"%>
-	
-	
-	   <script src='<c:url value="/Resources/js/addFerieGestion.js"/>'></script>
+		<script src='<c:url value="/Resources/js/addFerieGestion.js"/>'></script>

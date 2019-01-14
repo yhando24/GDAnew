@@ -167,7 +167,7 @@ public class DayOffCreateServlet extends HttpServlet {
 			
 			
 			dao.createDayoff(dayOff);
-			System.out.println("ajout jour ferie");
+			System.out.println("ajout jour férié");
 
 //			//conversion pour affichage et actualisation de l'user en session
 //			System.out.println(" ici :" + absence.getStartDate());
