@@ -13,7 +13,7 @@
 
 	<!-- Navbar Search -->
 		<div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0">
-			<p class ="bienvenue">${user.name} ${user.firstname} ${user.function.name}</p>
+			<h5 class ="bienvenue">${user.name} ${user.firstname} ${user.function.name}</h5>
 			</div>
 
 
@@ -43,7 +43,7 @@
 				<a class="dropdown-item" href="#">Compte</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
-					data-target="#logoutModal">Se déconnecter</a>
+					data-target="#logoutModal">Se dï¿½connecter</a>
 			</div></li>
 	</ul>
 
