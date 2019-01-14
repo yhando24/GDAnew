@@ -5,23 +5,71 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import main.java.com.GDA.bean.Departement;
+import main.java.com.GDA.bean.Status;
+import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Dayoff;
 import main.java.com.GDA.bean.TypeDayOff;
 import main.java.com.GDA.utils.ConnectionDB;
 
 public class DayoffDAO implements IdayoffDAO {
 
+	public List<Dayoff> findAllDayOff() {
+
+		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+
+		try {
+			connection = ConnectionDB.getConnection();
+			String query = "SELECT id, date, idTypeDayOff, idDepartement, comment FROM dayoff";
+			prepareStatement = connection.prepareStatement(query);
+
+			ResultSet resultSet = prepareStatement.executeQuery();
+
+			System.out.println(prepareStatement.toString());
+
+			while (resultSet.next()) {
+				Dayoff dayoff = new Dayoff();
+				dayoff.setId(resultSet.getInt("id"));
+				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
+				dayoff.setId(resultSet.getInt("idDepartement"));
+				;
+				dayoff.setComment(resultSet.getString("comment"));
+
+				daysOff.add(dayoff);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				prepareStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				// ne rien faire
+				e.printStackTrace();
+			}
+		}
+		return daysOff;
+	}
+
 	@Override
-	public Dayoff findDayOffById(int id){
+	public Dayoff findDayOffById(int id) {
+
 		Dayoff j = new Dayoff();
-		DayoffDAO dayoff = new DayoffDAO();
-		Departement d = new Departement();
-		
+		DayoffDAO dayOffDao = new DayoffDAO();
+
 		Connection conn = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultset = null;
-		
+
 		try {
 			conn = ConnectionDB.getConnection();
 			String query = "Select * FROM dayoff JOIN departement_typedayoff ON departement.id = departement_typedayoff.departement_id  JOIN dayoff ON departement_dayoff.dayoff_id = dayoff.id WHERE dayoff.id = ?";
@@ -29,102 +77,223 @@ public class DayoffDAO implements IdayoffDAO {
 			prepareStatement.setInt(1, id);
 			resultset = prepareStatement.executeQuery();
 		}
-		
-	
+
 		catch (Exception e) {
-		
-		e.printStackTrace();
-		
-	}
-	finally {
-		
-		try {
-			resultset.close();
-			prepareStatement.close();
-			conn.close();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+
+		} finally {
+
+			try {
+				resultset.close();
+				prepareStatement.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-	
-	}
-			
-	return j;
-}
 
-
-	@Override
-	public Dayoff findDayOffByDate(Date date){
-		// TODO Auto-generated method stub
-		return null;
+		return j;
 	}
 
 	@Override
-	public Dayoff findDayOffByDepartement(int idDepartement){
-		// TODO Auto-generated method stub
-		return null;
+	public List<Dayoff> findDayOffByYear(int year) {
+
+		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = ConnectionDB.getConnection();
+			String Query = "SELECT id, date, idTypeDayOff, idDepartement, comment FROM dayoff WHERE YEAR ( dayoff.date ) = ?";
+			prepareStatement = connection.prepareStatement(Query);
+			prepareStatement.setInt(1, year);
+
+			resultSet = prepareStatement.executeQuery();
+
+			System.out.println(prepareStatement.toString());
+
+			while (resultSet.next()) {
+				Dayoff dayoff = new Dayoff();
+				dayoff.setId(resultSet.getInt("id"));
+				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
+				dayoff.setId(resultSet.getInt("idDepartement"));
+				;
+				dayoff.setComment(resultSet.getString("comment"));
+
+				daysOff.add(dayoff);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				prepareStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				// ne rien faire
+				e.printStackTrace();
+			}
+		}
+
+		return daysOff;
+	}
+
+	@Override
+	public List<Dayoff> findDayOffByDepartement(int idDepartement) {
+
+		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = ConnectionDB.getConnection();
+			String Query = "SELECT id, date, idTypeDayOff, idDepartement, comment FROM dayoff WHERE dayoff.idDepartement = ?";
+			prepareStatement = connection.prepareStatement(Query);
+			prepareStatement.setInt(1, idDepartement);
+
+			resultSet = prepareStatement.executeQuery();
+
+			System.out.println(prepareStatement.toString());
+
+			while (resultSet.next()) {
+				Dayoff dayoff = new Dayoff();
+				dayoff.setId(resultSet.getInt("id"));
+				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
+				dayoff.setId(resultSet.getInt("idDepartement"));
+				;
+				dayoff.setComment(resultSet.getString("comment"));
+
+				daysOff.add(dayoff);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				prepareStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				// ne rien faire
+				e.printStackTrace();
+			}
+		}
+
+		return daysOff;
 	}
 
 	@Override
 	public void createDayoff(Dayoff dayOff) {
-		
+
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		int result;
-	
-		 
-			  			
-			try {
-				connection = ConnectionDB.getConnection();
-				String Query = "INSERT INTO dayoff (date, idTypeDayOff, idDepartement, comment) VALUES (?,?,?,?)";
-				
-				
 
-				
-				
-				prepareStatement = connection.prepareStatement(Query);
+		try {
+			connection = ConnectionDB.getConnection();
+			String Query = "INSERT INTO dayoff (date, idTypeDayOff, idDepartement, comment) VALUES (?,?,?,?)";
+
+			prepareStatement = connection.prepareStatement(Query);
 //				
-				prepareStatement.setDate(1, Date.valueOf(dayOff.getDayOff()));
-				prepareStatement.setInt(2, dayOff.getTypeDayOff().getId()); // 
+			prepareStatement.setDate(1, Date.valueOf(dayOff.getDayOff()));
+			prepareStatement.setInt(2, dayOff.getTypeDayOff().getId()); //
 
-				prepareStatement.setInt(3, dayOff.getDepartement().getId());
-				prepareStatement.setString(4, dayOff.getComment()); // 
+			prepareStatement.setInt(3, dayOff.getDepartement().getId());
+			prepareStatement.setString(4, dayOff.getComment()); //
 
-				result = prepareStatement.executeUpdate();
-			} catch (Exception e) {
+			result = prepareStatement.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connection != null) {
+					prepareStatement.close();
+					connection.close();
+				}
+
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			finally {
-				try {
-					if(connection != null) {
-						prepareStatement.close();
-						connection.close();
-					}
-				
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
+		}
+	}
+
+	@Override
+	public void updateDayoff(int idDayOff, Dayoff dayOff) {
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+
+		int update;
+
+		try {
+
+			connection = ConnectionDB.getConnection();
+
+			String Query = "UPDATE dayoff SET date = ?, idTypeDayOff = ?, idDepartement = ?, comment = ? WHERE id = ?";
+
+			prepareStatement = connection.prepareStatement(Query);
+
+			prepareStatement.setDate(1, Date.valueOf(dayOff.getDayOff()));
+			prepareStatement.setInt(2, dayOff.getTypeDayOff().getId());
+			prepareStatement.setInt(3, dayOff.getDepartement().getId());
+			prepareStatement.setString(4, dayOff.getComment());
+			prepareStatement.setInt(5, idDayOff);
+
+			update = prepareStatement.executeUpdate();
+
+			if (update == 0) {
+				System.out.println("la modification n'a pas aboutie");
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (connection != null) {
+					prepareStatement.close();
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
-	public Dayoff updateDayoff(int idDayOff, Dayoff dayOffToUpdate){
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteDayOff(int id) {
+
+		Connection connection = null;
+		Statement statement = null;
+
+		int delete;
+
+		try {
+			connection = ConnectionDB.getConnection();
+			String Query = "DELETE FROM dayoff WHERE id = ?";
+
+			statement = connection.createStatement();
+			delete = statement.executeUpdate(Query);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
-	public Dayoff deleteDayOff(Date date) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isDateExist(Date date) throws SQLException {
+	public boolean isDateExist(Date date) {
 		// TODO Auto-generated method stub
 		return false;
 	}

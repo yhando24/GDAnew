@@ -2,15 +2,31 @@ package main.java.com.GDA.model.dao.dayoff;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import main.java.com.GDA.bean.Dayoff;
 
 public interface IdayoffDAO {
+//	find all days-off
+	List <Dayoff> findAllDayOff ();
+	
+//	find all days-off by ID
 	Dayoff findDayOffById(int id);
-	Dayoff findDayOffByDate(Date date);
-	Dayoff findDayOffByDepartement(int idDepartement);
-	void createDayoff(Dayoff dayOff);
-	Dayoff updateDayoff(int idDayOff, Dayoff dayOffToUpdate);
-	Dayoff deleteDayOff(Date date) throws SQLException;
-	boolean isDateExist(Date date) throws SQLException;
+	
+//	find all days-off by year
+	List <Dayoff> findDayOffByYear(int year);
+	
+//	find all days-off by Departement
+	List <Dayoff> findDayOffByDepartement(int idDepartement);
+	
+//	Create a dayOff
+	void createDayoff(Dayoff dayOff);	
+	
+//	Update a dayOff
+	void updateDayoff(int idDayOff, Dayoff dayOff);
+	
+//	Delete a dayOff
+	void deleteDayOff(int id);
+	
+	boolean isDateExist(Date date);
 }
