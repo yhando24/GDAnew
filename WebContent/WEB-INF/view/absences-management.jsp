@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ include file="/Resources/inc/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <title>Absences Management</title>
 </head>
 
@@ -33,7 +35,7 @@
 				<h1>Gestion des absences</h1>
 				<c:if test="${!empty user}">
 					<div class="table-responsive-md">
-						<table class="table">
+						<table class="table ">
 							<thead>
 								<tr>
 									<th scope="col">Date début</th>
@@ -45,14 +47,17 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${user.absences}" var="abs" varStatus="status">
-									<tr>
+									<tr scope="row">
 										<c:set var="dateStart"
 											value="${fn:substring(abs.startDate, 0, 10)}" />
 										<c:set var="dateEnd"
 											value="${fn:substring(abs.endDate, 0, 10)}" />
-
-										<td>${dateStart}</td>
-										<td>${dateEnd}</td>
+										<fmt:parseDate value="${dateStart}" pattern="yyyy-MM-dd" var="dateStart"/>
+										<fmt:parseDate value="${dateEnd}" pattern="yyyy-MM-dd" var="dateEnd"/>
+										<td><fmt:setLocale value="fr_FR" />
+										<fmt:formatDate value="${dateStart}" pattern="dd-MM-yyyy"/></td> 
+										<td><fmt:setLocale value="fr_FR" />
+										<fmt:formatDate value="${dateEnd}" pattern="dd-MM-yyyy"/></td> 					
 										<td>${abs.absenceType.name}</td>
 										<td>${abs.status.name}</td>
 										<td><c:choose>
