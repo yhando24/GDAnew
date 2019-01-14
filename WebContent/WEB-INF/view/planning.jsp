@@ -53,11 +53,11 @@
                   
             </div> <!-- End Calendar -->
 
-            <h3>LÃ©gende :</h3>
-            <div id="couleur-1">CongÃ© payÃ©</div>
+            <h3>Légende :</h3>
+            <div id="couleur-1">Congé payé</div>
             <div id="couleur-2">RTT</div>
-            <div id="couleur-3">CongÃ© sans solde</div>
-            <div id="couleur-4">Jour fÃ©riÃ©</div>
+            <div id="couleur-3">Congé sans solde</div>
+            <div id="couleur-4">Jour férié</div>
             <div id="couleur-5">RTT employeur</div>
 
           </div> <!-- End Container -->

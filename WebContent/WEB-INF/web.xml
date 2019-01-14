@@ -3,7 +3,7 @@
   <display-name>GDA</display-name>
   
   <welcome-file-list>
-    <welcome-file>/loginfilter</welcome-file>
+    <welcome-file>/loginFilter</welcome-file>
   </welcome-file-list>
   
   <session-config>

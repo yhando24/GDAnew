@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Ajout Jours FÃ©riÃ©s</title>
+<title>Ajout Jours Fériés</title>
 </head>
 
 <body id="page-top">
@@ -23,8 +23,8 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a
 					href="<c:url value="/indexAdministrator"/>">Dashboard</a></li>
-				<li class="breadcrumb-item active">Jours fÃ©riÃ©s</li>
-				<li class="breadcrumb-item active">Ajout de jours fÃ©riÃ©s</li>
+				<li class="breadcrumb-item active">Jours fériés</li>
+				<li class="breadcrumb-item active">Ajout de jours fériés</li>
 			</ol>
 
 

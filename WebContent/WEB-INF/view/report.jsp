@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Vue synthÃ©tique</title>
+<title>Vue synthétique</title>
 
 </head>
 
@@ -16,7 +16,7 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
 				</li>
-				<li class="breadcrumb-item active">Vue synthÃ©tique</li>
+				<li class="breadcrumb-item active">Vue synthétique</li>
 			</ol>
 			<!-- Fin barre container-->
 

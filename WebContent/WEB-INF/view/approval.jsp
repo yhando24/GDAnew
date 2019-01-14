@@ -37,7 +37,7 @@
 							<thead>
 								<tr>
 									<th>Nom</th>
-									<th scope="col">Date dÃ©but</th>
+									<th scope="col">Date début</th>
 									<th scope="col">Date de fin</th>
 									<th scope="col">Raison</th>
 									<th scope="col">Type d'absence</th>

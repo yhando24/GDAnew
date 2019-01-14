@@ -15,7 +15,7 @@
 					absences</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link" href="<c:url value=""/>">
-				<i class="fas fa-fw fa-folder"></i> <span>Jours fÃ©riÃ©s</span>
+				<i class="fas fa-fw fa-folder"></i> <span>Jours fériés</span>
 		</a></li>
 
 	</ul>

@@ -35,7 +35,7 @@
 				<p class="lead">
 					Page not found. Vous pouvez <a href="javascript:history.back()">revenir
 						en arrière</a> jusqu'� la page pr�cèdente, ou <a href="index.html">retourner
-						à la page d'accueil</a> .
+						� la page d'accueil</a> .
 				</p>
 
 			</div>
