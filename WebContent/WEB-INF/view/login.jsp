@@ -8,7 +8,7 @@
 
 	<div class="container">
 		<div class="card card-login mx-auto mt-5">
-			<div class="card-header">Connection</div>
+			<div class="card-header">Connexion</div>
 			<div class="card-body">
 				<div class="container text-center">
 					<img id="logo-gda-login"
@@ -34,7 +34,7 @@
 					</div>
 
 
-					<button type="submit" class="btn btn-primary btn-block">Connection</button>
+					<button type="submit" class="btn btn-primary btn-block">Connexion</button>
 
 				</form>
 
@@ -50,7 +50,7 @@
 
 				<div class="text-center">
 					<a class="d-block small mt-3" href="forgot-password.html">Mot
-						de passe oubliÃ©?</a>
+						de passe oublié?</a>
 				</div>
 			</div>
 		</div>

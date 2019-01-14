@@ -36,7 +36,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th scope="col">Date dÃ©but</th>
+									<th scope="col">Date début</th>
 									<th scope="col">Date de fin</th>
 									<th scope="col">Type</th>
 									<th scope="col">Statut</th>
