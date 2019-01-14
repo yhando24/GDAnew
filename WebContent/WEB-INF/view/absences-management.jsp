@@ -21,7 +21,7 @@
 
 		<div class="container-fluid">
 
-			<!-- Début barre container-->
+			<!-- Dï¿½but barre container-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a
 					href="<c:url value="/indexEmployee"/>">Dashboard</a></li>
@@ -36,7 +36,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th scope="col">Date début</th>
+									<th scope="col">Date dÃ©but</th>
 									<th scope="col">Date de fin</th>
 									<th scope="col">Type</th>
 									<th scope="col">Statut</th>

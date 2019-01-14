@@ -20,7 +20,7 @@
 
 		<div class="container-fluid">
 
-			<!-- Début barre container-->
+			<!-- Dï¿½but barre container-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
 				</li>
@@ -34,8 +34,8 @@
 				<h1 class="display-1">404</h1>
 				<p class="lead">
 					Page not found. Vous pouvez <a href="javascript:history.back()">revenir
-						en arriÃ¨re</a> jusqu'à la page précÃ¨dente, ou <a href="index.html">retourner
-						à la page d'accueil</a> .
+						en arriÃ¨re</a> jusqu'ï¿½ la page prï¿½cÃ¨dente, ou <a href="index.html">retourner
+						Ã  la page d'accueil</a> .
 				</p>
 
 			</div>

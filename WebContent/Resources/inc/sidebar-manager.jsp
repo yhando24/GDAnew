@@ -17,7 +17,7 @@
 
 		<li class="nav-item"><a class="nav-link"
 			href='<c:url value="/create-day-off"/>'> <i
-				class="fas fa-fw fa-folder"></i> <span>Jours fériés</span>
+				class="fas fa-fw fa-folder"></i> <span>Jours fÃ©riÃ©s</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link"
@@ -26,6 +26,6 @@
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link" href='<c:url value=""/>'>
-				<i class="fas fa-fw fa-folder"></i> <span>Vue synthétique</span>
+				<i class="fas fa-fw fa-folder"></i> <span>Vue synthÃ©tique</span>
 		</a></li>
 	</ul>

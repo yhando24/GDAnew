@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Vue synthétique</title>
+<title>Vue synthÃ©tique</title>
 
 </head>
 
@@ -12,17 +12,17 @@
 
 		<div class="container-fluid">
 
-			<!-- Début  barre container-->
+			<!-- Dï¿½but  barre container-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
 				</li>
-				<li class="breadcrumb-item active">Vue synthétique</li>
+				<li class="breadcrumb-item active">Vue synthÃ©tique</li>
 			</ol>
 			<!-- Fin barre container-->
 
 			<div class="container">
 
-				<!-- Ajout Vue synthétique ici -->
+				<!-- Ajout Vue synthï¿½tique ici -->
 
 			</div>
 		</div>

@@ -21,7 +21,7 @@
 
 		<div class="container-fluid">
 
-			<!-- Début barre container-->
+			<!-- Dï¿½but barre container-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a
 					href="<c:url value="/indexManager"/>"> Dashboard</a></li>
@@ -37,7 +37,7 @@
 							<thead>
 								<tr>
 									<th>Nom</th>
-									<th scope="col">Date début</th>
+									<th scope="col">Date dÃ©but</th>
 									<th scope="col">Date de fin</th>
 									<th scope="col">Raison</th>
 									<th scope="col">Type d'absence</th>

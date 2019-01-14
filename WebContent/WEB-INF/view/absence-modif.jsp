@@ -14,7 +14,7 @@
 
 		<div class="container-fluid">
 
-			<!-- Début barre container-->
+			<!-- Dï¿½but barre container-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a
 					href="<c:url value="/indexEmployee"/>">Dashboard</a></li>
@@ -31,27 +31,27 @@
 						<div class='form-group col-md-6 offset-md-3'>
 							<h3>Modification d'absence</h3>
 							<form action='<c:url value="/update-absence"/>' method="POST">
-								<span> <label for="champ1">Date de début</label> <input
+								<span> <label for="champ1">Date de dÃ©but</label> <input
 									name="beginAbsence" class="custom-select debutDateJs"
 									onchange="verifDateDebut()" type="date" id="champ1" name="date"
 									value="${fn:substring(absenceAModifier.startDate, 0, 10)}">
 								</span> <span class="messageDebutDate"
 									style="display: none; color: red">Veuillez saisir une
-									date de debut supérieure à  la date actuelle svp</span> <span>
+									date de debut supÃ©rieure Ã  la date actuelle svp</span> <span>
 									<label for="champ2">Date de fin</label> <input
 									name="endAbsence" class="custom-select finDateJs"
 									onchange="verifDateFin()" type="date" id="champ1" name="date"
 									value="${fn:substring(absenceAModifier.endDate, 0, 10)}">
 								</span> <span class="messageFinDate" style="display: none; color: red">Date
-									de fin inférieure à  la date de début. Veuillez saisir une date
+									de fin infÃ©rieure Ã© la date de dÃ©but. Veuillez saisir une date
 									de fin correcte svp</span> <span> <label for="champ2">Type
-										de congé</label> <select name="congeType" class="custom-select"
+										de congÃ©</label> <select name="congeType" class="custom-select"
 									id="congeTypeJs" onchange="verifConge()" required>
-										<option selected value="">Type de congé
+										<option selected value="">Type de congÃ©
 											<!-- ${absenceAModifier.absenceType.name} --></option>
-										<option value="1">Congé payé</option>
+										<option value="1">CongÃ© payÃ©</option>
 										<option value="2">RTT</option>
-										<option value="3">Congé sans solde</option>
+										<option value="3">CongÃ© sans solde</option>
 								</select>
 								</span> <span> <label for="message">Motif</label> <textarea
 										id="motifJs" type="text" id="message" name="motif" rows="2"

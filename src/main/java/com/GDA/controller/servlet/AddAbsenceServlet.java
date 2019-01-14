@@ -110,7 +110,7 @@ public class AddAbsenceServlet extends HttpServlet {
 				System.out.println("dans le 1er if");
 				if(absence.getEndDate().isAfter(absence2.getStartDate())) {
 					Chevauchement = true;
-					System.out.println("Sa chevauche");
+					System.out.println("Ça chevauche");
 					break;
 				}
 			}
@@ -129,7 +129,7 @@ public class AddAbsenceServlet extends HttpServlet {
 		
 		if(absence.getEndDate().isAfter(absence.getStartDate()) || absence.getEndDate().equals(absence.getStartDate())) {
 			finAfterDebut = true;
-			System.out.println("fin date aprés debut");
+			System.out.println("fin date aprés début");
 		}
 		
 		System.out.println(finAfterDebut);
@@ -152,12 +152,12 @@ public class AddAbsenceServlet extends HttpServlet {
 			absences = dao.findAbsencesByIdUser(user.getId());
 			user.setAbsences(absences);
 			session.setAttribute("user", user);
-			System.out.println("Sa chevauche pas et j+1");
+			System.out.println("Ça chevauche pas et j+1");
 			response.sendRedirect(request.getContextPath() + "/absences-management");
 			session.setAttribute("errorAdd", null);
 
 		}else {
-			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas �t� enregistr�e");
+			session.setAttribute("errorAdd", "Probleme de chevauchement de date, votre demande d'absence n'a pas été enregistrée");
 			response.sendRedirect(request.getContextPath() + "/absences-management?action=addAbsence"); // logged-in page
 		}
 

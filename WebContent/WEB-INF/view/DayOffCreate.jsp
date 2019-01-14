@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Ajout Jours Fériés</title>
+<title>Ajout Jours FÃ©riÃ©s</title>
 </head>
 
 <body id="page-top">
@@ -23,28 +23,28 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a
 					href="<c:url value="/indexAdministrator"/>">Dashboard</a></li>
-				<li class="breadcrumb-item active">Jours fériés</li>
-				<li class="breadcrumb-item active">Ajout de jours fériés</li>
+				<li class="breadcrumb-item active">Jours fÃ©riÃ©s</li>
+				<li class="breadcrumb-item active">Ajout de jours fÃ©riÃ©s</li>
 			</ol>
 
 			<div class="container">
 
 				<div class="form-row">
 					<div class='form-group col-md-6 offset-md-3'>
-						<h3>Ajout de jours fériés</h3>
+						<h3>Ajout de jours fÃ©riÃ©s</h3>
 						<form action='<c:url value="/create-day-off"/>' method="POST">
-							<span> <label for="champ1">Date du jour fériés</label> <input
+							<span> <label for="champ1">Date du jour fÃ©riÃ©s</label> <input
 								class="custom-select dateDayOff" type="date"
 								onchange="verifDateFerie()" id="champ1" name="date">
 							</span> <span class="messagejourAnterieur"
 								style="display: none; color: red">Veuillez saisir une
-								date supérieure à la date actuelle svp</span> <span
+								date supÃ©rieure Ã  la date actuelle svp</span> <span
 								class="messageweekend" style="display: none; color: red">Un
-								jour férié ne peut pas être un samedi ou dimanche</span> <span>
-								<label for="champ2">Type de congé</label> <select
+								jour fÃ©riÃ© ne peut pas Ãªtre un samedi ou dimanche</span> <span>
+								<label for="champ2">Type de congÃ©</label> <select
 								onchange="verifType()" name="ferieType" class="custom-select"
 								id="ferieType">
-									<option value="1" selected>Jour férié</option>
+									<option value="1" selected>Jour fÃ©riÃ©</option>
 									<option value="2">RTT employeur</option>
 							</select>
 							</span> <span> <label for="message">Commentaire</label> <textarea

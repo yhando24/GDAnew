@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Home Employé</title>
+<title>Home EmployÃ©</title>
 </head>
 
 <body id="page-top">
@@ -20,7 +20,7 @@
 
 			<div class="container">
 				<div class="jumbotron text-center">
-					<h2>Bienvenue sur l'application GDA - Session Employé</h2>
+					<h2>Bienvenue sur l'application GDA - Session EmployÃ©</h2>
 				</div>
 			</div>
 		</div>
