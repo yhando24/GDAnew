@@ -29,23 +29,23 @@
                     <h3>Demande d'absence</h3>
                     <form action='<c:url value="/add-absence"/>' method="POST" onA> 
                         <span>         
-		                    <label for="champ1">Date de début</label>
+		                    <label for="champ1">Date de dï¿½but</label>
                             <input name="beginAbsence" class="custom-select debutDateJs" onchange="verifDateDebut()" type="date" id="champ1" name="date">
                         </span> 
-                        <span class="messageDebutDate" style="display:none; color:red">Veuillez saisir une date de debut supérieure à la date actuelle svp</span>
+                        <span class="messageDebutDate" style="display:none; color:red">Veuillez saisir une date de debut supÃ©rieure Ã  la date actuelle svp</span>
                         <span> 
                             <label for="champ2">Date de fin</label>
                             <input name="endAbsence" class="custom-select finDateJs"  onchange="verifDateFin()" type="date" id="champ1" name="date">
                             
                         </span>
-                         <span class="messageFinDate" style="display:none; color:red">Date de fin inferieur à la date de début. Veuillez saisir une date de fin correcte svp</span>
+                         <span class="messageFinDate" style="display:none; color:red">Date de fin infÃ©rieure Ã  la date de dÃ©but. Veuillez saisir une date de fin correcte svp</span>
                         <span>
-                            <label for="champ2">Type de congé</label>
+                            <label for="champ2">Type de congÃ©</label>
                             <select name="congeType" class="custom-select" id="congeTypeJs" onchange="verifConge()">
-                                <option selected>Type de congé</option>
-                                <option value="1">Congé payé</option>
+                                <option selected>Type de congÃ©</option>
+                                <option value="1">CongÃ© payÃ©</option>
                                 <option value="2">RTT</option>
-                                <option value="3">Congé sans solde</option>
+                                <option value="3">CongÃ© sans solde</option>
                             </select>
                         </span>
                         <span>

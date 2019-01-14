@@ -25,11 +25,11 @@
                 <li class="breadcrumb-item">
                   <a href="<c:url value="/indexAdministrator"/>">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Jours fériés</li>
+                <li class="breadcrumb-item active">Jours fÃ©riÃ©s</li>
               </ol>
 		<div class="container">
 		
-		<!-- Mettre les jours fériés ici -->
+		<!-- Mettre les jours fÃ©riÃ©s ici -->
 		
       	</div>
     </div>

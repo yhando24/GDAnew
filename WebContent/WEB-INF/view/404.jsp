@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Absences Management</title>
+<title>404</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 
         <div class="container-fluid">
         
-        <!-- Début barre container-->
+        <!-- Dï¿½but barre container-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a href="index.html">Dashboard</a>
@@ -34,9 +34,9 @@
           <!-- Page Content -->
           <h1 class="display-1">404</h1>
           <p class="lead">Page not found. Vous pouvez
-            <a href="javascript:history.back()">revenir en arrière</a>
-            jusqu'à la page précédente, ou
-            <a href="index.html">retourner à la page d'accueil</a>
+            <a href="javascript:history.back()">revenir en arriÃ¨re</a>
+            jusqu'Ã  la page prÃ©cÃ¨dente, ou
+            <a href="index.html">retourner Ã  la page d'accueil</a>
             .</p>
 
 </div>  
