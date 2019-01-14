@@ -47,6 +47,7 @@ public class DispatchFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession(true);
+		
 
 		User u2 = (User) session.getAttribute("user");
 
@@ -75,6 +76,9 @@ public class DispatchFilter implements Filter {
 
 	/**
 	 * @see Filter#destroy()
+	 * 
+	 * dispatch filter jamais detruit afin de maintenir constamment la redirection en fonction du profil
+	 * 
 	 */
 //	public void destroy() {
 //		// TODO Auto-generated method stub

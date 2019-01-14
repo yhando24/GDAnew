@@ -50,7 +50,7 @@
 
 				<div class="text-center">
 					<a class="d-block small mt-3" href="forgot-password.html">Mot
-						de passe oubliÃ©?</a>
+						de passe oublié?</a>
 				</div>
 			</div>
 		</div>

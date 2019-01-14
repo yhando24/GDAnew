@@ -114,9 +114,6 @@ public class Login extends HttpServlet {
 
 			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
 
-//			RequestDispatcher rd = request.getRequestDispatcher("/dispatchfilter");
-//			rd.forward(request, response);
-
 		} else {
 
 			System.out.println("false");

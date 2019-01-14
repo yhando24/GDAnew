@@ -3,42 +3,41 @@
 </head>
 
 <body>
-    <%@ include file="/Resources/inc/navbar.jsp"%>
-    <c:choose>
-        <c:when test="${user.function.name == 'admin'}">
-            <%@ include file="/Resources/inc/sidebar-admin.jsp"%>
-        </c:when>
-        <c:when test="${user.function.name == 'manager'}">
+	<%@ include file="/Resources/inc/navbar.jsp"%>
+	<c:choose>
+		<c:when test="${user.function.name == 'admin'}">
+			<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
+		</c:when>
+		<c:when test="${user.function.name == 'manager'}">
             en attente du link
         </c:when>
-        <c:when test="${user.function.name == 'user'}">
-            <%@ include file="/Resources/inc/sidebar-user.jsp"%>
-        </c:when>
-    </c:choose>
-    
-    <div id="content-wrapper">
+		<c:when test="${user.function.name == 'user'}">
+			<%@ include file="/Resources/inc/sidebar-user.jsp"%>
+		</c:when>
+	</c:choose>
 
-        <div class="container-fluid">
-        
-        <!-- DÔøΩbut barre container-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Gestion des absences</li>
-          </ol>
-          <!-- Fin barre container-->
+	<div id="content-wrapper">
 
-    <div class="container">
+		<div class="container-fluid">
 
-          <!-- Page Content -->
-          <h1 class="display-1">404</h1>
-          <p class="lead">Page not found. Vous pouvez
-            <a href="javascript:history.back()">revenir en arri√®re</a>
-            jusqu'√† la page pr√©c√®dente, ou
-            <a href="index.html">retourner √† la page d'accueil</a>
-            .</p>
+			<!-- DÈbut barre container-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Gestion des absences</li>
+			</ol>
+			<!-- Fin barre container-->
 
-</div>  
-    </div>
-    <%@ include file="/Resources/inc/footer.jsp"%>     
+			<div class="container">
+
+				<!-- Page Content -->
+				<h1 class="display-1">404</h1>
+				<p class="lead">
+					Page not found. Vous pouvez <a href="javascript:history.back()">revenir
+						en arri√®re</a> jusqu'‡ la page prÈc√®dente, ou <a href="index.html">retourner
+						‡ la page d'accueil</a> .
+				</p>
+
+			</div>
+		</div>
+		<%@ include file="/Resources/inc/footer.jsp"%>

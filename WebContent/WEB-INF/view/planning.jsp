@@ -3,20 +3,18 @@
 </head>
 
 <body>
-    <%@ include file="/Resources/inc/navbar.jsp"%>
-    <c:choose>
-        <c:when test="${user.function.name == 'admin'}">
-            <%@ include file="/Resources/inc/sidebar-admin.jsp"%>
-        </c:when>
-        <c:when test="${user.function.name == 'manager'}">
-            <%@ include file="/Resources/inc/sidebar-manager.jsp"%>
-        </c:when>
-        <c:when test="${user.function.name == 'user'}">
-            <%@ include file="/Resources/inc/sidebar-user.jsp"%>
-        </c:when>
-    </c:choose>
-    
-    <div id="content-wrapper">
+	<%@ include file="/Resources/inc/navbar.jsp"%>
+	<c:choose>
+		<c:when test="${user.function.name == 'admin'}">
+			<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
+		</c:when>
+		<c:when test="${user.function.name == 'manager'}">
+			<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
+		</c:when>
+		<c:when test="${user.function.name == 'user'}">
+			<%@ include file="/Resources/inc/sidebar-user.jsp"%>
+		</c:when>
+	</c:choose>
 
         <div class="container-fluid">
         

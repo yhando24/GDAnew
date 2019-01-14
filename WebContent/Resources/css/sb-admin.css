@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
  */
 
-/* CSS CALENDRIER*/
+ /*CSS AJOUT */
 
 #couleur-1{
   color:#025E73;
@@ -30,6 +30,10 @@
   color:#F2B134;
   font-weight: bold;
 }
+
+
+
+/* CSS CALENDRIER*/
 
 .calendar-section {
   margin-bottom: 20px;
@@ -143,13 +147,6 @@ button.switch-month:active {
 
 /*FIN CSS CALENDRIER*/
 
- /*CSS AJOUT */
-
-.errorMessageLogin{
-	padding-top:15px;
-color:red;	
-}
-
 
 img#logo-gda-login{
   width:50%;
@@ -211,29 +208,12 @@ a:hover{
   color:white;
 }
 
-.footer-gda{
-	width:100% !important;
-    display: flex;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    background-color: #e9ecef;
-}
-
 .bg-dark{
   /*background-color:#57ACAB !important;*/
   background-image: url("images/fond.png") !important;
   background-color: white !important;
   
 }
-
-.btn-primary {
-  color: #fff;
-  background-color: #9E005D;
-  border-color: #9E005D;
-}
-
 
 .btn-primary:hover {
   color: #fff;
