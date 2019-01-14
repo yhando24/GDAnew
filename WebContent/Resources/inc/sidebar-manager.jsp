@@ -2,7 +2,7 @@
 	
 	<ul class="sidebar navbar-nav">
 		<li class="nav-item"><a class="nav-link" href='<c:url value="/indexManager"/>'>
-				<i class="fas fa-fw fa-tachometer-alt"></i> <span>Home</span>
+				<i class="fas fa-fw fa-tachometer-alt"></i> <span>Accueil</span>
 		</a></li>
 	
 		<li class="nav-item">     <a class="nav-link" href="<c:url value ="/absences-management"/>">
@@ -15,7 +15,7 @@
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link" href='<c:url value="/create-day-off"/>'>
-		<i class="fas fa-fw fa-folder"></i> <span>Jours fériés</span>
+		<i class="fas fa-fw fa-folder"></i> <span>Jours fÃ©riÃ©s</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link" href='<c:url value="/validation"/>'>
@@ -23,6 +23,6 @@
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link" href='<c:url value=""/>'>
-		<i class="fas fa-fw fa-folder"></i> <span>Vue synthétique</span>
+		<i class="fas fa-fw fa-folder"></i> <span>Vue synthÃ©tique</span>
 		</a></li>
 	</ul>
