@@ -29,7 +29,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		try {
 			connection = ConnectionDB.getConnection();
-			String query = "SELECT id, date, idTypeDayOff, idDepartement, comment FROM dayoff";
+			String query = "SELECT dayoff.id, date, idTypeDayOff,typedayoff.name as nametypeDayOff, idDepartement,departement.name as service, comment FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id";
 			prepareStatement = connection.prepareStatement(query);
 
 			ResultSet resultSet = prepareStatement.executeQuery();
@@ -40,8 +40,8 @@ public class DayoffDAO implements IdayoffDAO {
 				Dayoff dayoff = new Dayoff();
 				dayoff.setId(resultSet.getInt("id"));
 				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
-				dayoff.setId(resultSet.getInt("idDepartement"));
-				;
+				dayoff.setTypeDayOff(new TypeDayOff(resultSet.getInt("idTypeDayOff"),resultSet.getString("name")));
+				dayoff.setDepartement(new Departement(resultSet.getInt("idDepartement"),resultSet.getString("name")));
 				dayoff.setComment(resultSet.getString("comment"));
 
 				daysOff.add(dayoff);
@@ -108,7 +108,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		try {
 			connection = ConnectionDB.getConnection();
-			String Query = "SELECT id, date, idTypeDayOff, idDepartement, comment FROM dayoff WHERE YEAR ( dayoff.date ) = ?";
+			String Query = "SELECT dayoff.id, date, idTypeDayOff,typedayoff.name as nametypeDayOff, idDepartement,departement.name as service, comment FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id WHERE YEAR ( dayoff.date ) = ?";
 			prepareStatement = connection.prepareStatement(Query);
 			prepareStatement.setInt(1, year);
 
@@ -120,8 +120,8 @@ public class DayoffDAO implements IdayoffDAO {
 				Dayoff dayoff = new Dayoff();
 				dayoff.setId(resultSet.getInt("id"));
 				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
-				dayoff.setId(resultSet.getInt("idDepartement"));
-				;
+				dayoff.setTypeDayOff(new TypeDayOff(resultSet.getInt("idTypeDayOff"),resultSet.getString("name")));
+				dayoff.setDepartement(new Departement(resultSet.getInt("idDepartement"),resultSet.getString("name")));
 				dayoff.setComment(resultSet.getString("comment"));
 
 				daysOff.add(dayoff);
@@ -152,7 +152,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		try {
 			connection = ConnectionDB.getConnection();
-			String Query = "SELECT id, date, idTypeDayOff, idDepartement, comment FROM dayoff WHERE dayoff.idDepartement = ?";
+			String Query = "SELECT dayoff.id, date, idTypeDayOff, idDepartement, comment FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id WHERE dayoff.idDepartement = ?";
 			prepareStatement = connection.prepareStatement(Query);
 			prepareStatement.setInt(1, idDepartement);
 
@@ -164,9 +164,9 @@ public class DayoffDAO implements IdayoffDAO {
 				Dayoff dayoff = new Dayoff();
 				dayoff.setId(resultSet.getInt("id"));
 				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
-				dayoff.setId(resultSet.getInt("idDepartement"));
-				;
+				dayoff.setTypeDayOff(new TypeDayOff(resultSet.getInt("idTypeDayOff"),resultSet.getString("name")));
 				dayoff.setComment(resultSet.getString("comment"));
+
 
 				daysOff.add(dayoff);
 			}
@@ -235,7 +235,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 			connection = ConnectionDB.getConnection();
 
-			String Query = "UPDATE dayoff SET date = ?, idTypeDayOff = ?, idDepartement = ?, comment = ? WHERE id = ?";
+			String Query = "UPDATE dayoff SET date = ?, idTypeDayOff = ?, idDepartement = ?, comment = ? WHERE dayoff.id = ?";
 
 			prepareStatement = connection.prepareStatement(Query);
 
