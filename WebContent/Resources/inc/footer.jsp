@@ -65,7 +65,7 @@
     <script src='<c:url value="/Resources/vendor/datatables/dataTables.bootstrap4.js"/>'></script>
 
     <!-- Custom scripts for all pages-->
-    <script src='<c:url value="/Resources/js/sb-admin.min.js"/>'></script>
+    <script src='<c:url value="/Resources/js/sb-admin.js"/>'></script>
 
     <!-- Demo scripts for this page-->
     <script src='<c:url value="/Resources/js/demo/datatables-demo.js"/>'></script>
