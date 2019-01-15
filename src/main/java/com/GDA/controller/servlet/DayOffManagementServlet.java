@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
 
 /**
@@ -35,6 +36,7 @@ public class DayOffManagementServlet extends HttpServlet {
 		
 		DayoffDAO dao = new DayoffDAO();
 		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
 		
 		if (request.getParameter("action") != null) {
 			
@@ -57,10 +59,11 @@ public class DayOffManagementServlet extends HttpServlet {
 			else if (request.getParameter("action").equals("deleteDayoff")) {
 				
 				String id = request.getParameter("dayId");
-				
-				response.sendRedirect(request.getContextPath() + "/date-off-management"); 
+				dao.deleteDayOff(Integer.parseInt(id));
+				response.sendRedirect(request.getContextPath() + "/day-off-management"); 
 				
 			}
+	
 			
 		}else {
 			

@@ -274,7 +274,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		try {
 			connection = ConnectionDB.getConnection();
-			String Query = "DELETE FROM dayoff WHERE id = ?";
+			String Query = "DELETE FROM dayoff WHERE id ="+id;
 
 			statement = connection.createStatement();
 			delete = statement.executeUpdate(Query);
