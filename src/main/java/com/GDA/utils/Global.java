@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 
+import main.java.com.GDA.bean.User;
+
 
 public class Global {
 
@@ -28,6 +30,9 @@ public class Global {
 		        }
 		}	
 		return nbrOfWorkday;
+	}
+	public static boolean sessionNull(User user) {
+		return user.equals(null);
 	}
 	
 }

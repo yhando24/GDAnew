@@ -108,7 +108,7 @@ public class Fixture {
 	public static List<Departement> getDepartementForTest(){
 		List<Departement> departements = new ArrayList<Departement>();
 		Departement d1 = new Departement(1, "informatique");
-		Departement d2 = new Departement(2, "resource humaine");
+		Departement d2 = new Departement(2, "ressources humaines");
 		departements.add(d1);
 		departements.add(d2);
 		
