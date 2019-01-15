@@ -76,6 +76,11 @@
 <script src='<c:url value="/Resources/js/demo/chart-area-demo.js"/>'></script>
 
 
+<!-- --- yoann plop -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
 </body>
 
 </html>

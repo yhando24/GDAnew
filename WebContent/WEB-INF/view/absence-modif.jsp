@@ -4,13 +4,12 @@
 <title>Modification Absences</title>
 </head>
 
-<body>
+<body onload="checkTypeConges(${absenceAModifier.absenceType.id})">
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 
-	<%@ include file="/Resources/inc/sidebar-user.jsp"%>
+	
 
-
-	<div id="content-wrapper" onmouseover="checkTypeConges(${absenceAModifier.absenceType.id})">
+	<div id="content-wrapper">
 
 		<div class="container-fluid">
 
