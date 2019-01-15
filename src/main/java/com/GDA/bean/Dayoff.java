@@ -68,6 +68,7 @@ public class Dayoff {
 	public String toString() {
 		return "Dayoff [id=" + id + ", dayOff=" + dayOff + ", comment=" + comment + ", typeDayOff=" + typeDayOff
 				+ ", departement=" + departement + "]";
+		
 	}
 
 }
