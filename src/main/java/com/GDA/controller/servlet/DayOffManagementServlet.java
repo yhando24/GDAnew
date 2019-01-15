@@ -45,7 +45,7 @@ public class DayOffManagementServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/create-day-off"); 
 				
 			}
-			
+			//suppression dayOff
 			else if (request.getParameter("action").equals("updateDayoff")) {
 				
 				String id = request.getParameter("dayId");
