@@ -1,5 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/Resources/inc/header.jsp"%>
 <title>Jours fériés et RTT Employeur Management</title>
 </head>
@@ -13,9 +11,6 @@
 		<c:when test="${user.function.name == 'manager'}">
 			<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
 		</c:when>
-		<c:when test="${user.function.name == 'user'}">
-			<%@ include file="/Resources/inc/sidebar-user.jsp"%>
-		</c:when>
 	</c:choose>
 
 	<div id="content-wrapper">
@@ -28,9 +23,23 @@
 					href="<c:url value="/indexAdministrator"/>">Dashboard</a></li>
 				<li class="breadcrumb-item active">Gestion des Jours fériés et RTT Employeur</li>
 			</ol>
-			<div class="container">
+			<div class="container text-center">
 				<!-- Mettre les jours fériés ici -->
 								<h2>Gestion des Jours fériés et RTT Employeur</h2>
+								
+			<div class="form-group row justify-content-md-center ">
+			<div class="col-md-auto">
+          		<label for="">Année</label>
+          		<select class="form-control" id="selectYear" onchange="dayOffbyYear()" data-table="order-table">
+            		<option>2017</option>
+            		<option>2018</option>
+            		<option>2019</option>
+            		<option>2020</option>
+            		<option>2021</option>
+            		<option>2022</option>
+          		</select>
+          		</div>
+        	</div>
 				<c:if test="${!empty user}">
 					<div class="table-responsive-md">
 						<table class="table">
@@ -79,4 +88,7 @@
 
 			</div>
 		</div>
+		<%@ include file="/WEB-INF/view/triDateDayOff.jsp"%>
 		<%@ include file="/Resources/inc/footer.jsp"%>
+		
+		

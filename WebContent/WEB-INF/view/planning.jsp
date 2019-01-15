@@ -18,7 +18,7 @@
 
         <div class="container-fluid">
         
-        <!-- Dï¿½but barre container-->
+        <!-- DÃ¯Â¿Â½but barre container-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a href="index.html">Dashboard</a>
@@ -27,38 +27,103 @@
           </ol>
           <!-- Fin barre container-->
 
-    <div class="container" id="planning">
-            <div class="calendar-section">
-              <div class="row">
-      
-                <div class="col-sm-12">
-      
-                  <div class="calendar calendar-first" id="calendar_first">
-                    <div class="calendar_header">
-                      <button class="switch-month switch-left">
-                        <i class="fa fa-angle-left"></i>
-                      </button>
-                      <h2></h2>
-                      <button class="switch-month switch-right">
-                        <i class="fa fa-angle-right"></i>
-                      </button>
-                    </div>
-                    <div class="calendar_weekdays"></div>
-                    <div class="calendar_content"></div>
-                  </div>
-      
-                </div>
-      
-              </div> <!-- End Row -->
-                  
-            </div> <!-- End Calendar -->
+    <div class="container" >
+            <div class="month text-center">
+                  <ul>
+                    <li class="prev">&#10094; </li>
+                    <li class="next">&#10095; </li>
+                    <li>
+                        <h3>Janvier<br>2018</h3>
+                    </li>
+                  </ul>
+            </div>     
+<table class="table text-center">
+              <thead>
+                <tr>
+                  <th >Lundi</th>
+                  <th >Mardi</th>
+                  <th >Mercredi</th>
+                  <th >Jeudi</th>
+                  <th >Vendredi</th>
+                  <th >Samedi</th>
+                  <th >Dimanche</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="passed-day">31</td>
+                     <%@ page import = "java.io.*,java.util.*,java.lang.*, java.time.*" %>
+                    <% String pattern = "yyyy-MM-dd";
+         				String startDateStr = "";
+         	  		  String endDateStr ="";
 
-            <h3>Légende :</h3>
-            <div id="couleur-1">Congé payé</div>
-            <div id="couleur-2">RTT</div>
-            <div id="couleur-3">Congé sans solde</div>
-            <div id="couleur-4">Jour férié</div>
-            <div id="couleur-5">RTT employeur</div>
+         				LocalDate startDate = LocalDate.of(2019, 1, 1);
+         			%>
+         	 	  <c:set var="indexDate" value="<%=startDate%>"/>
+                	<c:forEach begin="1" end="31" varStatus="loop">
+	   	
+                	   <c:forEach items="${user.absences }" var="absence" >
+                	   
+                
+                	    <c:choose>
+                	    <c:when test="${indexDate >= absence.startDate && indexDate <= absence.endDate }">
+                	   
+                	   <c:if test="${absence.absenceType.id == '1'}">  <c:set var="type" value="couleur-conge-paye"/>
+                	   </c:if>
+              			   <c:if test="${absence.absenceType.id == '2'}"> <c:set var="type" value="couleur-rtt"/>
+              			   </c:if>
+              			   	  <c:if test="${absence.absenceType.id == '3'}"> <c:set var="type" value="couleur-conge-sans-solde"/>
+              			   </c:if>
+                	      <c:if test="${absence.absenceType.id == '5'}">  <c:set var="type" value="couleur-rtt-employeur"/>
+                	      </c:if>
+                	 
+                	    </c:when>
+                	    <c:otherwise>
+                	   
+                	      
+                	  </c:otherwise>
+                	    
+                	    </c:choose>
+
+                	 
+                	   </c:forEach>
+      					<td class="${type}">
+                	   		${loop.index}
+                	   </td>
+                		<c:if test="${loop.index == '6'}">
+                		 </tr><tr>
+                		</c:if>
+    
+                			<c:if test="${loop.index  == '13'}">
+                		 </tr><tr>
+                		</c:if>
+                			<c:if test="${loop.index  == '20'}">
+                		 </tr><tr>
+                		</c:if>
+                			<c:if test="${loop.index  == '27'}">
+                		 </tr><tr>
+                		</c:if>
+                	     	  <%  	
+                	     	 startDate = startDate.plusDays(1);
+                	  %>
+                		  <c:set var="indexDate" value="<%=startDate%>"/>
+                	</c:forEach>
+                
+               
+                </tr>
+
+              </tbody>
+            </table>
+<h3>Lï¿½gende :</h3>
+            <div class="row text-center">
+
+
+           <div class="couleur-conge-paye-legende col">Congï¿½ payï¿½</div>
+           <div class="couleur-rtt-legende col">RTT</div>
+           <div class="couleur-conge-sans-solde-legende col">Congï¿½ sans solde</div>
+           <div class="couleur-jour-ferie-legende col">Jour fï¿½riï¿½</div>
+           <div class="couleur-rtt-employeur-legende col">RTT employeur</div>
+           </div>
 
           </div> <!-- End Container -->
     </div>

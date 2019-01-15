@@ -134,10 +134,10 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `diginamicproject`.`typedayoff`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `diginamicproject`.`typedayoff` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
-ENGINE = MyISAM
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -145,41 +145,21 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `diginamicproject`.`dayoff`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `diginamicproject`.`dayoff` (
-  `id` INT(11) NOT NULL,
-  `idTypeDayOff` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
-  `comment` VARCHAR(45) NULL,
+  `idTypeDayOff` INT(11) NOT NULL,
+  `idDepartement` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `idTypeDayoff_idx` (`idTypeDayOff` ASC),
-  INDEX `idTypeDayoff` (`idTypeDayOff` ASC),
-  INDEX `idTypeDay_off` (`idTypeDayOff` ASC),
-  INDEX `idTypeDayof` (`idTypeDayOff` ASC),
-  CONSTRAINT `Fk_idtypedayoff`
+  INDEX `fk_dayoff_typedayoff1_idx` (`idTypeDayOff` ASC),
+  INDEX `fk_dayoff_departement1_idx` (`idDepartement` ASC),
+  CONSTRAINT `fk_dayoff_typedayoff1`
     FOREIGN KEY (`idTypeDayOff`)
     REFERENCES `diginamicproject`.`typedayoff` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `diginamicproject`.`departement_dayoff`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`departement_dayoff` (
-  `departement_id` INT(11) NOT NULL,
-  `dayoff_id` INT(11) NOT NULL,
-  PRIMARY KEY (`departement_id`, `dayoff_id`),
-  INDEX `fk_departement_has_dayoff_dayoff1_idx` (`dayoff_id` ASC),
-  INDEX `fk_departement_has_dayoff_departement1_idx` (`departement_id` ASC),
-  CONSTRAINT `fk_departement_has_dayoff_departement1`
-    FOREIGN KEY (`departement_id`)
-    REFERENCES `diginamicproject`.`departement` (`id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_departement_has_dayoff_dayoff1`
-    FOREIGN KEY (`dayoff_id`)
-    REFERENCES `diginamicproject`.`dayoff` (`id`)
+  CONSTRAINT `fk_dayoff_departement1`
+    FOREIGN KEY (`idDepartement`)
+    REFERENCES `diginamicproject`.`departement` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
