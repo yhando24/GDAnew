@@ -5,147 +5,100 @@
  */
 
  /*CSS AJOUT */
-
-#couleur-1{
-  color:#025E73;
-  font-weight: bold;
-}
-
-#couleur-2{
-  color:#00A388;
-  font-weight: bold;
-}
-
-#couleur-3{
-  color:#C72878;
-  font-weight: bold;
-}
-
-#couleur-4{
-  color:#ED553B;
-  font-weight: bold;
-}
-
-#couleur-5{
-  color:#F2B134;
-  font-weight: bold;
-}
-
-
-
-/* CSS CALENDRIER*/
-
-.calendar-section {
-  margin-bottom: 20px;
-}
-
-.calendar {
-  /*float: left;*/
-  margin: auto;
-  min-width: 320px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-}
-
-.calendar_weekdays {
-	color: black;
-	font-weight: lighter;
-}
-.calendar_weekdays div {
-  display:inline-block;
-  vertical-align:top;
-}
-.calendar_content, .calendar_weekdays, .calendar_header {
-  position: relative;
-}
-.calendar_content:after, .calendar_weekdays:after, .calendar_header:after {
-	content: ' ';
-	display: table;
-	clear: both;
-}
-.calendar_weekdays div, .calendar_content div {
-  /*border: 1px dotted #999;*/
-  width: 14.28571%;
-  height: 100%;
-  line-height: 69px;  
-  overflow: hidden;
-  text-align: center;
-  background-color: transparent;
-}
-
-.calendar_content .today {
-	color: #9E005D;
-}
-.calendar_content div {
+ ul {list-style-type: none;}
+ 
+ .month .prev {
   float: left;
-	margin-left: -1px;
-	margin-top: -1px;
-  border: 1px solid transparent;
-}
-.calendar_content div:hover {
-  border: 1px solid #777;
-  /*line-height: 68px;*/
-  cursor: pointer;
+  padding-top: 10px;
+  font-size: 30px;
 }
 
-.calendar_content div.blank:hover {
-  cursor: default;
-  border: none;
+.month .next {
+  float: right;
+  padding-top: 10px;
+  font-size: 30px;
 }
+ 
+ .passed-day{
+ color:grey;
+ }
 
-.calendar_content div.past-date {
-	cursor: initial;
-  color: #d5d5d5;
-}
-.calendar_content div.today{
+.couleur-conge-paye{
+  background-color:#025E73;
   font-weight: bold;
-  font-size: 18px;
-  color: #9E005D;
-}
-.calendar_content div.selected {
-  background-color: rgba(153, 153, 161, .2); /*rgba(170, 170, 176, .5) #aaaab0*/
-  border: 1px solid white;
-}
-.calendar_header {
-  width: 100%;
-  text-align: center;
+  color:white;
 }
 
-.calendar_header h2 {
-  float:left;
-  width:70%;
-  margin-top: 10px;
-  padding: 0 10px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-size: 1.5em;
-  color: #9E005D;
+.couleur-rtt{
+  background-color:#00A388;
+  font-weight: bold;
+  color:white;
 }
 
-button.switch-month {
-  background-color: transparent;
-  padding: 0;
-  outline: none;
-  border: none;
-  line-height: 52px;
-  height: 55px;
-  float: left;
-  width:15%;
-  transition: color .2s;
+.couleur-conge-sans-solde{
+  background-color:#C72878;
+  font-weight: bold;
+  color:white;
 }
 
-button.switch-month:hover {
-  color: #5EADE2;
-}
-button.switch-month:active {
-  background-color: rgba(113, 113, 125, .4);
-}
-.calendar_header h2 {
-  color: #9E005D;
-  line-height: 1.7;
+.couleur-jour-ferie{
+  background-color:#ED553B;
+  font-weight: bold;
+  color:white;
 }
 
-/*FIN CSS CALENDRIER*/
+.couleur-rtt-employeur{
+  background-color:#F2B134;
+  font-weight: bold;
+  color:white;
+}
+
+/* CSS légende planning */
+
+.couleur-conge-paye-legende{
+  background-color:#025E73;
+  font-weight: bold;
+  color:white;
+  padding-top:5px;
+  padding-bottom:5px;
+
+}
+
+.couleur-rtt-legende{
+  background-color:#00A388;
+  font-weight: bold;
+  color:white;
+    padding-top:5px;
+  padding-bottom:5px;
+}
+
+.couleur-conge-sans-solde-legende{
+  background-color:#C72878;
+  font-weight: bold;
+  color:white;
+    padding-top:5px;
+  padding-bottom:5px;
+}
+
+.couleur-jour-ferie-legende{
+  background-color:#ED553B;
+  font-weight: bold;
+  color:white;
+    padding-top:5px;
+  padding-bottom:5px;
+}
+
+.couleur-rtt-employeur-legende{
+  background-color:#F2B134;
+  font-weight: bold;
+  color:white;
+    padding-top:5px;
+  padding-bottom:5px;
+}
+
+
+
+
 .errorMessageLogin{
 	padding-top:15px;
 	color:red;	
