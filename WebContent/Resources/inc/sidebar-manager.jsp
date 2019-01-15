@@ -20,7 +20,7 @@
 				class="fas fa-fw fa-folder"></i> <span>Validation</span>
 		</a></li>
 
-		<li class="nav-item"><a class="nav-link" href='<c:url value=""/>'>
+		<li class="nav-item"><a class="nav-link" href='<c:url value="/report"/>'>
 				<i class="fas fa-fw fa-folder"></i> <span>Vue synthétique</span>
 		</a></li>
 	</ul>

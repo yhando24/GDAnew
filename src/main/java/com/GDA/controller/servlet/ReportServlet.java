@@ -24,6 +24,7 @@ public class ReportServlet extends HttpServlet {
      */
     public ReportServlet() {
         super();
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -32,17 +33,17 @@ public class ReportServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+
 		User user = (User) session.getAttribute("user");
+		
 		if(user.getFunction().getName().equals("manager")) {
 			System.out.println("plop");
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/report.jsp");
 			dispatcher.forward(request, response);
 		}else {
-			System.out.println("plop32323 ");
-			RequestDispatcher dispatcher = getServletContext()
-					.getRequestDispatcher("/indexEmployee");
-			dispatcher.forward(request, response);
+			int plop;
+			response.sendRedirect(request.getContextPath() + "/indexEmployee"); 	
 		}
 		
 	}

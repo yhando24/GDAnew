@@ -15,6 +15,7 @@
 <meta name="author" content="">
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link
 	href='<c:url value="/Resources/vendor/bootstrap/css/bootstrap.min.css"/>'
 	rel="stylesheet">

@@ -8,7 +8,7 @@
 <footer class="footer-gda">
 	<div class="container my-auto">
 		<div class="copyright text-center my-auto">
-			<span>Copyright Â© Promotion JAVA JEE - Diginamic - 2019</span>
+			<span>Copyright © Promotion JAVA JEE - Diginamic - 2019</span>
 		</div>
 	</div>
 </footer>
@@ -31,13 +31,13 @@
 		<div class="modal-content">
 			<div class="modal-header">
 
-				<h5 class="modal-title" id="exampleModalLabel">PrÃªt Ã  partir?</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Prêt à partir?</h5>
 				<button class="close" type="button" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">X</span>
 				</button>
 			</div>
-			<div class="modal-body">Selectionner se dÃ©connecter si vous
+			<div class="modal-body">Selectionner se déconnecter si vous
 
 				voulez quitter votre session</div>
 			<div class="modal-footer">
@@ -46,7 +46,7 @@
 				<form method="post" action='<c:url value="/logout"/>'>
 
 					<button class="btn btn-primary" type="submit">Se
-						dÃ©connecter</button>
+						déconnecter</button>
 				</form>
 
 			</div>
@@ -75,6 +75,11 @@
 <script src='<c:url value="/Resources/js/demo/datatables-demo.js"/>'></script>
 <script src='<c:url value="/Resources/js/demo/chart-area-demo.js"/>'></script>
 
+
+<!-- --- yoann plop -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
 </body>
 

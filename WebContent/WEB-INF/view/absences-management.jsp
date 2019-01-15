@@ -53,10 +53,8 @@
 											value="${fn:substring(abs.endDate, 0, 10)}" />
 										<fmt:parseDate value="${dateStart}" pattern="yyyy-MM-dd" var="dateStart"/>
 										<fmt:parseDate value="${dateEnd}" pattern="yyyy-MM-dd" var="dateEnd"/>
-										<td><fmt:setLocale value="fr_FR" />
-										<fmt:formatDate value="${dateStart}" pattern="dd-MM-yyyy"/></td> 
-										<td><fmt:setLocale value="fr_FR" />
-										<fmt:formatDate value="${dateEnd}" pattern="dd-MM-yyyy"/></td> 					
+										<td><fmt:formatDate value="${dateStart}" pattern="dd-MM-yyyy"/></td> 
+										<td><fmt:formatDate value="${dateEnd}" pattern="dd-MM-yyyy"/></td> 					
 										<td>${abs.absenceType.name}</td>
 										<td>${abs.status.name}</td>
 										<td><c:choose>
@@ -78,6 +76,10 @@
 														</c:when>
 														<c:when
 															test="${abs.status.name == 'EN_ATTENTE_VALIDATION'}">
+															<a
+																href="<c:url value ="/absences-management?action=updateAbsence&absId=${abs.id}"/>">
+																<i class="fas fa-pencil-alt"></i>
+															</a>
 															<a
 																href="<c:url value ="/absences-management?action=deleteAbsence&absId=${abs.id}"/>">
 																<i class="fas fa-trash-alt"></i>
