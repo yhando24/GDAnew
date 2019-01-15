@@ -89,6 +89,24 @@ function disabledButton(){
 }
 
 
+function checkTypeConges(id){
+	console.log(id);
+	let options = document.querySelectorAll(".ferieType");
+	let index = 1;
+	
+	options.forEach(element =>{
+		console.log('plop');
+		if(id == index){
+			console.log(index);
+			element.setAttribute("selected","");
+		}
+		index++;
+	});
+
+}
+
+
+
 //
 //	console.log("lit bien le fichier")
 //var button = document.getElementById('buttonSendAbsence'); 

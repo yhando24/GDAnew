@@ -77,12 +77,15 @@ public class DayOffUpdateServlet extends HttpServlet {
 		String ferieType = request.getParameter("ferieType");
 		String comment = request.getParameter("comment");
 		
-		dayOff.setDayOff(LocalDate.parse(date));
+		dayOff.setId(d.getId());
+		dayOff.setDayOff(LocalDate.parse(date).plusDays(1));
 		
 		TypeDayOff type = new TypeDayOff();
 		type.setId(Integer.parseInt(ferieType));
 		dayOff.setTypeDayOff(type);
 		
+		dayOff.setDepartement(d.getDepartement());
+				
 		dayOff.setComment(comment);
 
 		System.out.println(dayOff);
@@ -90,7 +93,6 @@ public class DayOffUpdateServlet extends HttpServlet {
 		dayOffDao.updateDayoff(dayOff.getId(), dayOff);
 
 		response.sendRedirect(request.getContextPath() + "/day-off-management");
-
 		
 	}
 
