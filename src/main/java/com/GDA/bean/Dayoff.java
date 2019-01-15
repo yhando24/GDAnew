@@ -11,13 +11,10 @@ public class Dayoff {
 	private TypeDayOff typeDayOff;
 	private Departement departement;
 
-	
-	
-	
 	public Dayoff() {
 		super();
 	}
-	
+
 	public Dayoff(int id, LocalDate dayOff, String comment, TypeDayOff typeDayOff, Departement departement) {
 		super();
 		this.id = id;
@@ -43,7 +40,6 @@ public class Dayoff {
 		this.dayOff = startDate;
 	}
 
-
 	public String getComment() {
 		return comment;
 	}
@@ -60,9 +56,6 @@ public class Dayoff {
 		this.typeDayOff = typeDayOff;
 	}
 
-
-
-
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -73,9 +66,8 @@ public class Dayoff {
 
 	@Override
 	public String toString() {
-		return "Absence [id=" + id + ", startDate=" + dayOff + ", reason=" + comment
-				+ ", Type=" + typeDayOff + "]";
+		return "Dayoff [id=" + id + ", dayOff=" + dayOff + ", comment=" + comment + ", typeDayOff=" + typeDayOff
+				+ ", departement=" + departement + "]";
 	}
-	
-			
+
 }
