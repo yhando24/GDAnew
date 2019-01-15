@@ -31,8 +31,5 @@ public class Global {
 		}	
 		return nbrOfWorkday;
 	}
-	public static boolean sessionNull(User user) {
-		return user.equals(null);
-	}
 	
 }
