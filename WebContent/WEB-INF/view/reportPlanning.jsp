@@ -1,11 +1,11 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Vue synthétique</title>
-<link href='<c:url value="/Resources/css/chart.css"/>' rel="stylesheet">
+<title>Planning</title>
+<%-- <link href='<c:url value="/Resources/css/chart.css"/>' rel="stylesheet"> --%>
 </head>
 
 <body>
 	<%@ include file="/Resources/inc/navbar.jsp"%>
-	<%@ include file="/Resources/inc/sidebar-user.jsp"%>
+	<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
 	<%@ include file="/Resources/inc/chart-js.jsp"%>
 
 	<div id="content-wrapper">
@@ -16,63 +16,99 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
 				</li>
-				<li class="breadcrumb-item active">Vue synthétique</li>
+				<li class="breadcrumb-item active">Planning</li>
 			</ol>
 			<!-- Fin barre container-->
 
 			<div class="container">
-				<div class="row align-items-end">
-					<div class="col-2 offset-2">
-						<label for="departement">Departement:</label> <select
-							id="departement" name="departement" class="custom-select">
-							<option value="1" class="typeconges">informatique</option>
-							<option value="2" class="typeconges">resource humaine</option>
-						</select>
+				<form action='<c:url value="/report-planning"/>' method="POST">
+					<div class="row align-items-end">
+
+						<div class="col-2 offset-2">
+							<label for="departement">Departement:</label> <select
+								id="departement" name="departement" class="custom-select"
+								onchange="this.form.submit()">
+								<option value="1">informatique</option>
+								<option value="2">resource humaine</option>
+							</select>
+						</div>
+
+						<div class="col-2">
+							<label for="month">Mois:</label> <select id="month" name="month"
+								class="custom-select" onchange="this.form.submit()">
+								<option value="1">Janvier</option>
+								<option value="2">Février</option>
+								<option value="3">Mars</option>
+								<option value="4">Avril</option>
+								<option value="5">Mai</option>
+								<option value="6">Juin</option>
+								<option value="7">Juillet</option>
+								<option value="8">Août</option>
+								<option value="9">Septembre</option>
+								<option value="10">Octobre</option>
+								<option value="11">Novembre</option>
+								<option value="12">Décembre</option>
+							</select>
+						</div>
+						<div class="col-2">
+							<label for="year">Année:</label> <select id="year" name="year"
+								class="custom-select" onchange="this.form.submit()">
+								<option>2017</option>
+								<option>2018</option>
+								<option>2019</option>
+								<option>2020</option>
+								<option>2021</option>
+								<option>2022</option>
+							</select>
+						</div>
+
+						<div class="col-1 offset-1 ">
+							<i class="fas fa-search-plus fa-2x"></i>
+						</div>
+						<div class="col-1">
+							<i class="far fa-file-excel fa-2x"></i>
+						</div>
 					</div>
-					<div class="col-2">
-						<label for="month">Mois :</label> <select id="month" name="month"
-							class="custom-select">
-							<option selected>Janvier</option>
-							<option>Février</option>
-							<option>Mars</option>
-							<option>Avril</option>
-							<option>Mai</option>
-							<option>Juin</option>
-							<option>Juillet</option>
-							<option>Août</option>
-							<option>Septembre</option>
-							<option>Octobre</option>
-							<option>Novembre</option>
-							<option>Décembre</option>
-						</select>
-					</div>
-					<div class="col-2">
-						<label for="year">Année :</label> <select id="year" name="year"
-							class="custom-select">
-							<option>2017</option>
-							<option>2018</option>
-							<option selected>2019</option>
-							<option>2020</option>
-							<option>2021</option>
-							<option>2022</option>
-						</select>
-					</div>
-					<div class="col-1 offset-1 ">
-						<i class="fas fa-search-plus fa-2x"></i>
-					</div>
-					<div class="col-1">
-						<i class="far fa-file-excel fa-2x"></i>
-					</div>
-				</div>
+				</form>
 				<div class="container m10">
 					<div class="row ">
-					
+
 						<div class="col-12 ">
-						<canvas id="myChart" width="1000" height="500"></canvas>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">First</th>
+										<th scope="col">Last</th>
+										<th scope="col">Handle</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>Thornton</td>
+										<td>@fat</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Larry</td>
+										<td>the Bird</td>
+										<td>@twitter</td>
+									</tr>
+								</tbody>
+							</table>
+
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 		<%@ include file="/Resources/inc/footer.jsp"%>>
