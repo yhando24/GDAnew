@@ -182,12 +182,22 @@ a:hover{
   background-color: white !important;
   
 }
+
+
+.btn-secondary{
+	margin-right:10px !important;
+}
+
+
+
 .btn-primary {
   color: #fff;
   background-color: #9E005D;
   border-color: #9E005D;
-  margin-left:10px;
+
 }
+
+
 .btn-primary:hover {
   color: #fff;
   background-color: #69013e;
