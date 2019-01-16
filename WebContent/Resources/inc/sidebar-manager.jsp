@@ -18,9 +18,22 @@
 		<li class="nav-item"><a class="nav-link"
 			href='<c:url value="/validation"/>'> <i
 				class="fas fa-fw fa-folder"></i> <span>Validation</span>
-		</a></li>
-
-		<li class="nav-item"><a class="nav-link" href='<c:url value="/report"/>'>
-				<i class="fas fa-fw fa-folder"></i> <span>Vue synthétique</span>
-		</a></li>
+		</a></li>      
+        
+         <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-folder"></i>
+          Vue synthétique
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Vue</a>
+          <a class="dropdown-item" href='<c:url value="/report"/>'>Histogramme</a>
+        </div>
+      </li>
+        
+        
+        
+        
+        
+        
+        
 	</ul>

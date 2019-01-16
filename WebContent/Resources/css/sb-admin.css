@@ -5,6 +5,21 @@
  */
 
  /*CSS AJOUT */
+ .dropdown-menu{
+ background-color: #212529;
+ color: #048880;
+ }
+.dropdown-item {
+ color: #048880 !important;
+  background-color: #212529 !important;
+  }
+  
+.dropdown-item:hover {
+ color: #3B5C6A !important;
+  background-color: #212529 !important;
+  }
+
+ 
  ul {list-style-type: none;}
  
  .month .prev {
@@ -53,7 +68,7 @@
   color:white;
 }
 
-/* CSS légende planning */
+/* CSS lï¿½gende planning */
 
 .couleur-conge-paye-legende{
   background-color:#025E73;
@@ -171,6 +186,7 @@ a:hover{
   color: #fff;
   background-color: #9E005D;
   border-color: #9E005D;
+  margin-left:10px;
 }
 .btn-primary:hover {
   color: #fff;
