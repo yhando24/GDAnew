@@ -2,6 +2,7 @@ package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.GDA.bean.AbsenceForReport;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
 
@@ -43,7 +45,7 @@ public class ReportChartServlet extends HttpServlet {
 		if(user.getFunction().getName().equals("manager")) {
 			
 			RequestDispatcher dispatcher = getServletContext()
-					.getRequestDispatcher("/WEB-INF/view/report.jsp");
+					.getRequestDispatcher("/WEB-INF/view/report-chart.jsp");
 			dispatcher.forward(request, response);
 		}else {
 		
@@ -68,8 +70,8 @@ public class ReportChartServlet extends HttpServlet {
 		
 		AbsenceForReportDAO abs = new AbsenceForReportDAO();
 		
-		abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep), month, year);
-		
+		List<AbsenceForReport> absences = abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep), month, year);
+		System.out.println(absences);
 		
 		response.sendRedirect(request.getContextPath() + "/report-chart"); 	
 	}

@@ -21,7 +21,7 @@
 			<!-- Fin barre container-->
 
 			<div class="container">
-			<form action='<c:url value="/report"/>' method="POST">
+			<form action='<c:url value="/report-chart"/>' method="POST">
 				<div class="row align-items-end">
 				
 					<div class="col-2 offset-2">
