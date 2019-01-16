@@ -29,8 +29,9 @@
 								
 			<div class="form-group row justify-content-md-center ">
 			<div class="col-md-auto">
+			<form action="<c:url value ="/day-off-management"/>" method="POST">
           		<label for="">Année</label>
-          		<select class="form-control" id="selectYear" onchange="dayOffbyYear()" data-table="order-table">
+          		<select class="form-control" id="selectYear" name="selectYear" data-table="order-table" onchange="this.form.submit()">
             		<option>2017</option>
             		<option>2018</option>
             		<option>2019</option>
@@ -38,6 +39,7 @@
             		<option>2021</option>
             		<option>2022</option>
           		</select>
+          	</form>	
           		</div>
         	</div>
 				<c:if test="${!empty user}">
@@ -88,7 +90,6 @@
 
 			</div>
 		</div>
-		<%@ include file="/WEB-INF/view/triDateDayOff.jsp"%>
 		<%@ include file="/Resources/inc/footer.jsp"%>
 		
 		

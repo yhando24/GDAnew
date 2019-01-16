@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.GDA.bean.Dayoff;
 import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
 
 /**
@@ -64,19 +65,9 @@ public class DayOffManagementServlet extends HttpServlet {
 
 			}
 
-		} else if (request.getParameter("year") != null) {
-			
-			int year = Integer.parseInt(request.getParameter("year"));
-			
-			List dayoffsByYear = dao.findDayOffByYear(year);
-			session.setAttribute("dayoffs", dayoffsByYear);
-
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
-			dispatcher.forward(request, response);
-			
 		} else {
 
-			List dayoffs = dao.findAllDayOff();
+			List<Dayoff> dayoffs = dao.findAllDayOff();
 
 			session.setAttribute("dayoffs", dayoffs);
 
@@ -92,8 +83,18 @@ public class DayOffManagementServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		int year = Integer.parseInt(request.getParameter("selectYear"));
+		System.out.println(year);
+		DayoffDAO dao = new DayoffDAO();
+		HttpSession session = request.getSession();
+		
+		List<Dayoff> dayoffsByYear = dao.findDayOffByYear(year);
+		session.setAttribute("dayoffs", dayoffsByYear);
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
+		dispatcher.forward(request, response);
+	
 	}
 
 }
