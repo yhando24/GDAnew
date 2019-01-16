@@ -5,14 +5,7 @@
 <body id="page-top">
 
 	<%@ include file="/Resources/inc/navbar.jsp"%>
-	<c:choose>
-		<c:when test="${user.function.name == 'admin'}">
-			<%@ include file="/Resources/inc/sidebar-admin.jsp"%>
-		</c:when>
-		<c:when test="${user.function.name == 'manager'}">
-			<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
-		</c:when>
-	</c:choose>
+
 	<!-- /.container-fluid -->
 
 	<div id="content-wrapper">
@@ -42,14 +35,15 @@
 							 <span class="messageweekend" style="display:none; color:red">Un jour ferié ne peux pas etre un samedi ou dimanche</span>
 						 <span> <label for="champ2">Type de congé</label> <select  onchange="verifType()"
 							name="ferieType" class="custom-select" id="ferieType">
-								<option value="1" selected>Jour férié</option>
-								<option value="2">RTT employeur</option>
+								<option value="2" selected>Jour férié</option>
+								<option value="1">RTT employeur</option>
 						</select>
 						</span> <span> <label for="message">Commentaire</label> <textarea
 								type="text" id="message" name="comment" rows="2"
 								class="form-control md-textarea" required></textarea>
-						</span> <span> <a class="btn btn-annuler">Annuler</a>
+						</span> <span> <a class="btn btn-annuler" href='<c:url value="/day-off-management"/>'>Annuler</a>
 							<button type="submit" class="btn btn-envoyer " id ="boutonaddFerie">Envoyer</button>
+							<c:if test="${!empty errorAdd }">${errorAdd}</c:if>
 						</span>
 					</form>
 

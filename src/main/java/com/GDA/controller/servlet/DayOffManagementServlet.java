@@ -38,7 +38,7 @@ public class DayOffManagementServlet extends HttpServlet {
 
 		DayoffDAO dao = new DayoffDAO();
 		HttpSession session = request.getSession();
-
+		session.setAttribute("errorAdd", null);
 		if (request.getParameter("action") != null) {
 
 			if (request.getParameter("action").equals("addDayoff")) {

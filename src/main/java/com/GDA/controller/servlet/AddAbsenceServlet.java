@@ -95,7 +95,7 @@ public class AddAbsenceServlet extends HttpServlet {
 	
 		
 		
-		// verification non chevauchement de l'absence demand� avec absence presente en BDD
+		// verification non chevauchement de l'absence demandé avec absence presente en BDD
 		
 		
 		List <Absence> absences = new ArrayList <Absence>();

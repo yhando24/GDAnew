@@ -97,10 +97,12 @@ public class DayOffCreateServlet extends HttpServlet {
 		boolean Chevauchement = false;
 		
 		for (Dayoff dayoff2 : dayOffs) {
-			System.out.println("test");
-			if (dayoff2.getDayOff().isEqual(dayOff.getDayOff())) {
+			System.out.println("test :" + dayoff2.getDayOff() + " lautre :  " + dayOff.getDayOff().minusDays(1));
+			if (dayoff2.getDayOff().isEqual(dayOff.getDayOff().minusDays(1))) {
 				Chevauchement = true;
 				System.out.println("ça chevauche");
+				session.setAttribute("errorAdd", "Probleme de chevauchement de date, un jour férié existe deja a cette date");
+				response.sendRedirect(request.getContextPath() + "/create-day-off"); // logged-in page
 				break;
 			}
 		}
