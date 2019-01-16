@@ -1,6 +1,8 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.com.GDA.bean.User;
+import main.java.com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
  * Servlet implementation class ReportServlet
@@ -37,12 +40,12 @@ public class ReportServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		
 		if(user.getFunction().getName().equals("manager")) {
-			System.out.println("plop");
+			
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/report.jsp");
 			dispatcher.forward(request, response);
 		}else {
-			int plop;
+		
 			response.sendRedirect(request.getContextPath() + "/indexEmployee"); 	
 		}
 		
@@ -52,8 +55,22 @@ public class ReportServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String dep = request.getParameter("departement");
+		Map<String , String>  selectReport = new HashMap<String , String>();
+		selectReport.put("year", year);
+		selectReport.put("month", month);
+		selectReport.put("departement", dep);
+		session.setAttribute("selectReport", selectReport);
+		
+		AbsenceDAO abs = new AbsenceDAO();
+		
+		abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep), month, year);
+		
+		
+		response.sendRedirect(request.getContextPath() + "/report"); 	
 	}
 
 }

@@ -5,7 +5,7 @@
 $(document).ready(
 		
 		function() {
-			
+			selectedGreatOption()
 			let plop = "${user}"
 			console.log(plop);	
 			var ctx = document.getElementById("myChart");
@@ -62,5 +62,12 @@ $(document).ready(
 				}
 			});
 		});
+		
+		
+		function selectedGreatOption(){
+			
+			
+			
+		}
 		
 		</script>
