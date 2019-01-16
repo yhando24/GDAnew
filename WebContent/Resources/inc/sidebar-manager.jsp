@@ -26,7 +26,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Vue</a>
-          <a class="dropdown-item" href='<c:url value="/report"/>'>Histogramme</a>
+          <a class="dropdown-item" href='<c:url value="/report-chart"/>'>Histogramme</a>
         </div>
       </li>
         

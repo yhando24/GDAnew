@@ -13,19 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
+import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
+
 
 /**
  * Servlet implementation class ReportServlet
  */
-@WebServlet("/report")
-public class ReportServlet extends HttpServlet {
+@WebServlet("/report-chart")
+public class ReportChartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportServlet() {
+    public ReportChartServlet() {
         super();
         
         // TODO Auto-generated constructor stub
@@ -65,12 +66,12 @@ public class ReportServlet extends HttpServlet {
 		selectReport.put("departement", dep);
 		session.setAttribute("selectReport", selectReport);
 		
-		AbsenceDAO abs = new AbsenceDAO();
+		AbsenceForReportDAO abs = new AbsenceForReportDAO();
 		
 		abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep), month, year);
 		
 		
-		response.sendRedirect(request.getContextPath() + "/report"); 	
+		response.sendRedirect(request.getContextPath() + "/report-chart"); 	
 	}
 
 }
