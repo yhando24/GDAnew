@@ -25,7 +25,7 @@
           Vue synthétique
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Vue</a>
+          <a class="dropdown-item" href='<c:url value="/report-planning"/>'>Vue Planning</a>
           <a class="dropdown-item" href='<c:url value="/report-chart"/>'>Histogramme</a>
         </div>
       </li>
