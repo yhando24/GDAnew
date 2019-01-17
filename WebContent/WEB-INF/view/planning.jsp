@@ -15,14 +15,35 @@
 			<%@ include file="/Resources/inc/sidebar-user.jsp"%>
 		</c:when>
 	</c:choose>
+	
 
-	<div class="container-fluid">
 
-		<!-- Dï¿½but barre container-->
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-			<li class="breadcrumb-item active">Planning</li>
-		</ol>
+<div id="content-wrapper">
+		
+		<div class="container-fluid">
+
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a
+					href="
+
+<c:choose>
+		<c:when test="${user.function.name == 'admin'}">
+			<c:url value="/indexAdministrator"/>
+		</c:when>
+		<c:when test="${user.function.name == 'manager'}">
+			<c:url value="/indexManager"/>
+		</c:when>
+		<c:when test="${user.function.name == 'user'}">
+			<c:url value="/indexEmployee"/>
+		</c:when>
+	</c:choose>
+
+">
+
+Dashboard</a></li>
+					<li class="breadcrumb-item active">Planning</li>
+			</ol>
 		<!-- Fin barre container-->
 
 		<div class="container">
