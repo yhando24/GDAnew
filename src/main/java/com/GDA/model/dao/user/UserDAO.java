@@ -290,7 +290,7 @@ public class UserDAO implements IUserDAO {
 
 		       try {
 		           connection = ConnectionDB.getConnection();
-		           String query = "SELECT id from user where idDepartement = ?";
+		           String query = "SELECT id, name FROM user WHERE idDepartement = ?";
 		           prepareStatement = connection.prepareStatement(query);
 
 		           prepareStatement.setInt(1,idDepartement );
@@ -302,6 +302,8 @@ public class UserDAO implements IUserDAO {
 		              
 			            User user = new User();
 			            user.setId(resultSet.getInt("id"));
+			            user.setName(resultSet.getString("name"));
+			            
 		                users.add(user);	             
 		           }
 		       }

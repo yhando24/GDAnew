@@ -77,16 +77,17 @@ public class DayoffDAO implements IdayoffDAO {
 			String query = "SELECT dayoff.id, date, idTypeDayOff,typedayoff.name as nametypeDayOff, idDepartement,departement.name as service, comment FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id WHERE dayoff.id = ?";
 			prepareStatement = conn.prepareStatement(query);
 			prepareStatement.setInt(1, id);
-			
-			resultset = prepareStatement.executeQuery();
-			
-			while(resultset.next()) {
 
-			j.setId(resultset.getInt("id"));
-			j.setDayOff(LocalDate.parse(resultset.getString("date")));
-			j.setTypeDayOff(new TypeDayOff(resultset.getInt("idTypeDayOff"), resultset.getString("nametypeDayOff")));
-			j.setDepartement(new Departement(resultset.getInt("idDepartement"), resultset.getString("service")));
-			j.setComment(resultset.getString("comment"));
+			resultset = prepareStatement.executeQuery();
+
+			while (resultset.next()) {
+
+				j.setId(resultset.getInt("id"));
+				j.setDayOff(LocalDate.parse(resultset.getString("date")));
+				j.setTypeDayOff(
+						new TypeDayOff(resultset.getInt("idTypeDayOff"), resultset.getString("nametypeDayOff")));
+				j.setDepartement(new Departement(resultset.getInt("idDepartement"), resultset.getString("service")));
+				j.setComment(resultset.getString("comment"));
 			}
 		}
 
@@ -195,6 +196,53 @@ public class DayoffDAO implements IdayoffDAO {
 	}
 
 	@Override
+	public List<Dayoff> findDayOffByDepartementMonthAndYeat(int idDepartement, int idTypeDayOff, String month, String year) {
+
+		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = ConnectionDB.getConnection();
+			String Query = "SELECT dayoff.id, date, idTypeDayOff, typedayoff.name as nametypeDayOff, idDepartement,departement.name as service FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id WHERE MONTH(date) = ? AND YEAR(date) = ? AND idTypeDayOff = ? AND idDepartement = ?";
+			prepareStatement = connection.prepareStatement(Query);
+			prepareStatement.setString(1, month);
+			prepareStatement.setString(2, year);
+			prepareStatement.setInt(3, idTypeDayOff);
+			prepareStatement.setInt(4, idDepartement);
+
+			resultSet = prepareStatement.executeQuery();
+
+			System.out.println(prepareStatement.toString());
+
+			while (resultSet.next()) {
+				Dayoff dayoff = new Dayoff();
+				dayoff.setId(resultSet.getInt("id"));
+				dayoff.setDayOff(LocalDate.parse(resultSet.getString("date")));
+				dayoff.setTypeDayOff(
+						new TypeDayOff(resultSet.getInt("idTypeDayOff"), resultSet.getString("nametypeDayOff")));
+				dayoff.setDepartement(new Departement(resultSet.getInt("idDepartement"), resultSet.getString("service")));
+
+				daysOff.add(dayoff);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				prepareStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				// ne rien faire
+				e.printStackTrace();
+			}
+		}
+
+		return daysOff;
+	}
+
+	@Override
 	public void createDayoff(Dayoff dayOff) {
 
 		Connection connection = null;
@@ -283,7 +331,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		try {
 			connection = ConnectionDB.getConnection();
-			String Query = "DELETE FROM dayoff WHERE id ="+id;
+			String Query = "DELETE FROM dayoff WHERE id =" + id;
 
 			statement = connection.createStatement();
 			delete = statement.executeUpdate(Query);

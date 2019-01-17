@@ -1,7 +1,9 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
+import main.java.com.GDA.bean.Absence;
+import main.java.com.GDA.bean.AbsenceForReport;
+import main.java.com.GDA.bean.Dayoff;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
+import main.java.com.GDA.model.dao.absence.AbsenceDAO;
+import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
+import main.java.com.GDA.model.dao.user.UserDAO;
 
 /**
  * Servlet implementation class ReportServlet
@@ -41,12 +51,44 @@ public class ReportPlanningServlet extends HttpServlet {
 
 		User user = (User) session.getAttribute("user");
 
+		List<Absence> userAbsence = new ArrayList<Absence>();
+		List<Dayoff> dayoff = new ArrayList<Dayoff>();
+
 		if (user.getFunction().getName().equals("manager")) {
-			System.out.println("plop");
+
+			UserDAO userName = new UserDAO();
+
+			ArrayList<User> users = new ArrayList<User>();
+
+			users = userName.findUserByIdDepartement(1);
+
+			for (User user2 : users) {
+
+				List<Absence> abs = new ArrayList<Absence>();
+
+				AbsenceDAO absenceDao = new AbsenceDAO();
+
+				abs = absenceDao.findAbsenceByUserMonthAndYear(user2.getId(), "1", "2019");
+
+				userAbsence.addAll(abs);
+
+			}
+
+			DayoffDAO dayoffDao = new DayoffDAO();
+
+			dayoff = dayoffDao.findDayOffByDepartementMonthAndYeat(1, 2, "1", "2019");
+
+			request.setAttribute("userName", users);
+			request.setAttribute("userAbsences", userAbsence);
+			request.setAttribute("jourFerie", dayoff);
+
+			System.out.println(dayoff);
+
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/reportPlanning.jsp");
 			dispatcher.forward(request, response);
+
 		} else {
-			int plop;
+
 			response.sendRedirect(request.getContextPath() + "/indexEmployee");
 		}
 
@@ -58,7 +100,7 @@ public class ReportPlanningServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
@@ -71,7 +113,11 @@ public class ReportPlanningServlet extends HttpServlet {
 
 		AbsenceForReportDAO abs = new AbsenceForReportDAO();
 
-		abs.findAllAbsencesByNameDepartementMonthAndYear(Integer.parseInt(dep), month, year);
+		List<AbsenceForReport> absences = new ArrayList<AbsenceForReport>();
+
+		absences = abs.findAllAbsencesByNameDepartementMonthAndYear(Integer.parseInt(dep), month, year);
+
+		session.setAttribute("name", absences);
 
 		response.sendRedirect(request.getContextPath() + "/report-planning");
 
