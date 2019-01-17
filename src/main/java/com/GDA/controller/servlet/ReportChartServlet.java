@@ -2,6 +2,7 @@ package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,26 @@ public class ReportChartServlet<ObjectMapper> extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		
 		if(user.getFunction().getName().equals("manager")) {
+			Calendar now = Calendar.getInstance();
+			int y = now.get(Calendar.YEAR);
+			String year = String.valueOf(y);
+			int m = now.get(Calendar.MONTH) +1;
+			String month = String.valueOf(m);
+			request.setAttribute("year", year);
+			request.setAttribute("month", month);
+			request.setAttribute("dep", user.getDepartement().getId());
+			
+			AbsenceForReportDAO abs = new AbsenceForReportDAO();
+			
+			System.out.println("id dep => "+user.getDepartement().getId() +" month =>"+ month + " year => " +year);
+			List<AbsenceForReport> absences = abs.findAllAbsencesByDepartementMonthAndYear(user.getDepartement().getId(), month, year);
+			final GsonBuilder builder = new GsonBuilder();
+		    final Gson gson = builder.create();
+		       String json = gson.toJson(absences);
+		   
+		       System.out.println(json);
+		       
+		     request.setAttribute("absenceForChart", json);
 			
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/report-chart.jsp");
@@ -64,7 +85,7 @@ public class ReportChartServlet<ObjectMapper> extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		String dep = request.getParameter("departement");

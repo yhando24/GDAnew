@@ -171,7 +171,7 @@ $(document).ready(
 					} ]
 				},
 				options : {
-					responsive : false,
+					responsive :true,
 					scales : {
 						xAxes : [ {
 							ticks : {
@@ -181,7 +181,9 @@ $(document).ready(
 						} ],
 						yAxes : [ {
 							ticks : {
-								beginAtZero : true
+								beginAtZero : true,
+								 suggestedMax: 5,
+								stepSize :1
 							}
 						} ]
 					}
