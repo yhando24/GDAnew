@@ -1,6 +1,6 @@
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-	<a class="navbar-brand mr-1" href="index.html">
+	<a class="navbar-brand mr-1" href='<c:url value="/indexAdministrator"/>'>
 		<div id="logo-gda-nav">
 			<img class="hvr-shrink"
 				src="<c:url value='/Resources/css/images/logo.png'/>" alt="logo-gda">

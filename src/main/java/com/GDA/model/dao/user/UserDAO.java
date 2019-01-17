@@ -12,6 +12,7 @@ import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Departement;
 import main.java.com.GDA.bean.Function;
+import main.java.com.GDA.bean.QuestionUser;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
@@ -321,5 +322,107 @@ public class UserDAO implements IUserDAO {
 		       }
 		       return users;
 	}
+	@Override
+	public QuestionUser findQuestionUserByMail(String email){
+		
+		QuestionUser u = new QuestionUser();	
+		Connection conn = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultset = null;
+		
+		try {
+			
+			conn = ConnectionDB.getConnection();
+			
+			String query = "SELECT idsecretQuestion, question, response, idUser FROM secretQuestion as sQ join diginamicproject.user as u ON u.id = sQ.idUser WHERE u.email = ?"; 
+			
+			prepareStatement = conn.prepareStatement(query);
+			
+			prepareStatement.setString(1, email);
+			
+			resultset = prepareStatement.executeQuery();
+			
+		
+			
+			
+			while (resultset.next()) {
 
+				u.setQuestion(resultset.getString("question"));
+				u.setResponse(resultset.getString("response"));
+				u.setIdUser(Integer.parseInt(resultset.getString("idUser")));	
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		finally {
+			
+			try {
+				resultset.close();
+				prepareStatement.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+		}
+				
+		return u;
+	}
+	
+	@Override
+	public QuestionUser findQuestionUserByIdUser(int id){
+		System.out.println("laaa :" + id);
+		QuestionUser u = new QuestionUser();	
+		Connection conn = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultset = null;
+		
+		try {
+			
+			conn = ConnectionDB.getConnection();
+			
+			String query = "SELECT idsecretQuestion, question, response, idUser FROM secretQuestion as sQ join diginamicproject.user as u ON u.id = sQ.idUser WHERE u.id = ?"; 
+			
+			prepareStatement = conn.prepareStatement(query);
+			
+			prepareStatement.setInt(1, id);
+			
+			resultset = prepareStatement.executeQuery();
+			
+		
+			
+			
+			while (resultset.next()) {
+
+				u.setQuestion(resultset.getString("question"));
+				u.setResponse(resultset.getString("response"));
+				u.setIdUser(Integer.parseInt(resultset.getString("idUser")));	
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		finally {
+			
+			try {
+				resultset.close();
+				prepareStatement.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+		}
+				
+		return u;
+	}
 }

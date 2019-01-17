@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.com.GDA.bean.QuestionUser;
 import main.java.com.GDA.bean.User;
 
 public interface IUserDAO {
@@ -13,5 +14,7 @@ public interface IUserDAO {
 	User findUserById(int id);
 	boolean isUserExist(String email,String password);
 	List <User>findUserByIdDepartement(int id);
+	QuestionUser findQuestionUserByMail(String email);
+	QuestionUser findQuestionUserByIdUser(int id);
 	
 }

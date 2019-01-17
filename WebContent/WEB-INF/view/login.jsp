@@ -6,6 +6,29 @@
 <body>
 <body class="bg-dark">
 
+<!-- modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+  		Veuillez saisir votre adresse mail :
+				<form method="post" action='<c:url value="/forget-password"/>'>
+					<div class="form-group">
+						<div class="form-label-group">
+							<input type="email" id="inputEmail" class="form-control"
+								placeholder="Email address" required="required"
+								autofocus="autofocus" name="email"> <label
+								for="inputEmail">Email</label>
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-primary btn-block">Valider</button>
+
+				</form>
+    </div>
+  </div>
+</div>
+
+
 	<div class="container">
 		<div class="card card-login mx-auto mt-5">
 			<div class="card-header">Connexion</div>
@@ -49,8 +72,7 @@
 
 
 				<div class="text-center">
-					<a class="d-block small mt-3" href="forgot-password.html">Mot
-						de passe oublié?</a>
+			<button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Mot de passe oublié</button>
 				</div>
 			</div>
 		</div>
