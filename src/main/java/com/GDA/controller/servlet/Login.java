@@ -21,7 +21,7 @@ import main.java.com.GDA.model.dao.user.*;
  * Servlet implementation class Login
  */
 
-@WebServlet("/login")
+
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +37,10 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	
+
+		
+		
 		
 		HttpSession session = (request).getSession();
 		
