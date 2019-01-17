@@ -20,10 +20,8 @@ import main.java.com.GDA.model.dao.user.*;
 /**
  * Servlet implementation class Login
  */
-@WebServlet(name="/Login",
-value= {"/login", "/"}
-)
 
+@WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
