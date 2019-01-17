@@ -1,6 +1,7 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,16 +14,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import main.java.com.GDA.bean.AbsenceForReport;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
 
 
+
 /**
  * Servlet implementation class ReportServlet
+ * @param <ObjectMapper>
  */
 @WebServlet("/report-chart")
-public class ReportChartServlet extends HttpServlet {
+public class ReportChartServlet<ObjectMapper> extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -62,18 +68,24 @@ public class ReportChartServlet extends HttpServlet {
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		String dep = request.getParameter("departement");
-		Map<String , String>  selectReport = new HashMap<String , String>();
-		selectReport.put("year", year);
-		selectReport.put("month", month);
-		selectReport.put("departement", dep);
-		session.setAttribute("selectReport", selectReport);
+		request.setAttribute("year", year);
+		request.setAttribute("month", month);
+		request.setAttribute("dep", dep);
 		
 		AbsenceForReportDAO abs = new AbsenceForReportDAO();
 		
 		List<AbsenceForReport> absences = abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep), month, year);
-		System.out.println(absences);
+		final GsonBuilder builder = new GsonBuilder();
+	      final Gson gson = builder.create();
+	       String json = gson.toJson(absences);
+	   
+	       System.out.println(json);
+	    
+	     request.setAttribute("absenceForChart", json);
 		
-		response.sendRedirect(request.getContextPath() + "/report-chart"); 	
+		RequestDispatcher dispatcher = getServletContext()
+				.getRequestDispatcher("/WEB-INF/view/report-chart.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

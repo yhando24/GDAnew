@@ -3,10 +3,10 @@
 <link href='<c:url value="/Resources/css/chart.css"/>' rel="stylesheet">
 </head>
 
-<body>
+<body onload="selectedGreatOption()">
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
-	<%@ include file="/Resources/inc/chart-js.jsp"%>
+	 <%@ include file="/Resources/inc/chart-js.jsp"%>
 
 	<div id="content-wrapper">
 
@@ -28,15 +28,15 @@
 						<label for="departement">Departement:</label> <select
 							id="departement" name="departement" class="custom-select" onchange="this.form.submit()">
 							<option value="1">informatique</option>
-							<option value="2">resource humaine</option>
+							<option value="2">ressource humaine</option>
 						</select>
 					</div>
 					
 					<div class="col-2">
 						<label for="month">Mois:</label> <select id="month" name="month"
 							class="custom-select" onchange="this.form.submit()">
-							<option value="1">Janvier</option>
-							<option value="2">Février</option>
+							<option value="1" >Janvier</option>
+							<option value="2" >Février</option>
 							<option value="3">Mars</option>
 							<option value="4">Avril</option>
 							<option value="5">Mai</option>

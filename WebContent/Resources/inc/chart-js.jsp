@@ -1,24 +1,130 @@
 
 
 <script>
+function selectedGreatOption(){
+	
+
+	let year = '${requestScope["year"]}';
+	let month = '${requestScope["month"]}';
+	let dep = '${requestScope.dep}';
+	
+	
+	let optDep = document.querySelectorAll('#departement option');
+	
+	 console.log(year +"  month===> "+ month +"dep  " +dep)
+	 
+	 optDep.forEach(element => {
+        if (element.value == dep) {
+            element.setAttribute("selected", ""); ;
+        }
+    });
+	 let optMonth = document.querySelectorAll('#month option');
+		
+	
+	 optMonth.forEach(element => {
+        if (element.value == month) {
+            element.setAttribute("selected", ""); ;
+        }
+    }); 
+	 let optYear = document.querySelectorAll('#year option');
+		
+	
+	 optYear.forEach(element => {
+        if (element.textContent == year) {
+            element.setAttribute("selected", ""); ;
+        }
+    }); 
+	
+}
+
 
 $(document).ready(
 		
 		function() {
-			selectedGreatOption()
-			let plop = "${user}"
-			console.log(plop);	
+			var getDaysInMonth = function(month,year) {
+				
+				 return new Date(year, month, 0).getDate();
+				
+				};
+			let year = '${requestScope["year"]}';
+			let month = '${requestScope["month"]}';
+			if(month<10){
+				month = "0"+month;
+			}
+			
+			let tab = '${requestScope.absenceForChart}';
+			let absences =	JSON.parse(tab);
+			
+			let date =[];
+			let lastDay = getDaysInMonth(month, year)
+			let nbrOfAbs =[];
+			for(let i=1;i <= lastDay;i++){
+				let day = i;
+				if(day<10){
+					day = "0"+day;
+				}
+				date.push(day+"-"+month+"-"+year);
+				nbrOfAbs.push(0);
+			}
+			
+			
+			for(let i=1;i <= lastDay;i++){
+				let day = i;
+				if(day<10){
+					day = "0"+day;
+				}
+				for(let j =0; j<absences.length ;j++){
+					if(day ==absences[j].dateStart.day ){	
+						if(absences[j].duration!==1){
+							for(let k=0 ; k< absences[j].duration;k++){
+								nbrOfAbs[i+k] = nbrOfAbs[i+k]+1;
+							}
+						}else{
+							nbrOfAbs[i] = nbrOfAbs[i]+1;
+						}	
+					}
+			 	}
+			}
+		
+			var label = date.map(function(e) {
+   					return e;
+				});
+			var abs = nbrOfAbs.map(function(e) {
+					return e;
+			});
+			
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {
 				type : 'bar',
 				data : {
-					labels : [ "2015-01", "2015-02", "2015-03", "2015-04",
-							"2015-05", "2015-06", "2015-07", "2015-08",
-							"2015-09", "2015-10", "2015-11", "2015-12" ],
+					labels : label ,
+					
 					datasets : [ {
 						label : 'Synthese par jour',
-						data : [ 12, 19, 3, 5, 2, 3, 20, 3, 5, 6, 2, 1 ],
+						data : abs,
 						backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)',
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)',
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 99, 132, 0.2)',
 								'rgba(54, 162, 235, 0.2)',
 								'rgba(255, 206, 86, 0.2)',
 								'rgba(75, 192, 192, 0.2)',
@@ -31,6 +137,26 @@ $(document).ready(
 								'rgba(153, 102, 255, 0.2)',
 								'rgba(255, 159, 64, 0.2)' ],
 						borderColor : [ 'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)', 'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)', 'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255,99,132,1)',
 								'rgba(54, 162, 235, 1)',
 								'rgba(255, 206, 86, 1)',
 								'rgba(75, 192, 192, 1)',
@@ -63,11 +189,5 @@ $(document).ready(
 			});
 		});
 		
-		
-		function selectedGreatOption(){
-			
-			
-			
-		}
 		
 		</script>

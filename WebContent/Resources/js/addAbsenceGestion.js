@@ -1,5 +1,5 @@
 
-	console.log("lit bien le fichier")
+	
 var button = document.getElementById('buttonSendAbsence'); 
 var StringDateFin = true;
 var StringDateDebut = true;
@@ -7,7 +7,7 @@ var StringDateDebut = true;
 
 function verifConge(){
 	var congeType = document.querySelector("#congeTypeJs").value;
-	console.log(congeType);
+	
 	
 //	3 is "Congé sans solde"
 	if(congeType == 3 ){
@@ -16,7 +16,7 @@ function verifConge(){
 	}else{
 		document.getElementById("motifJs").required = false;
 	};	
-	console.log("test");
+	
 }
 
 function checkTypeConges(id){
@@ -25,7 +25,7 @@ function checkTypeConges(id){
 	let index = 1;
 	
 	options.forEach(element =>{
-		console.log('plop');
+		
 		if(id == index){
 			console.log(index);
 			element.setAttribute("selected","");
@@ -86,8 +86,7 @@ function verifDateDebut(){
 }
 
 function disabledButton(){
-	console.log("verifDateDebut ; " + StringDateDebut)
-	console.log("verifDateFin ; " + StringDateFin)
+	
 	if(!StringDateDebut || !StringDateFin){
 		button.disabled = true; 
 	}else{
