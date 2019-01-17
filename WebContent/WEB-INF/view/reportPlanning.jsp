@@ -85,32 +85,16 @@
 					</thead>
 
 					<tbody>
-
-
-						<c:forEach items="${ userName }" var="user">
+						<c:forEach items="${ plop.keySet() }" var="name">
 							<tr>
-								<td>${ user.name }</td>
+								<td>${name}</td>
+								<c:forEach items="${ plop.get(name) }" var="type">
+									<td>${type}</td>
+								</c:forEach>
 							</tr>
 						</c:forEach>
-
-
-						<tr>
-							<c:forEach items="${ userAbsences }" var="absence">
-								<td>${ absence.startDate }</td>
-							</c:forEach>
-						</tr>
-
-
-						<c:forEach items="${ jourFerie }" var="jf">
-							<tr>
-								<td>${ jf.dayOff }</td>
-							</tr>
-						</c:forEach>
-
 					</tbody>
-
 				</table>
-
 			</div>
 			<!-- Fin container table -->
 

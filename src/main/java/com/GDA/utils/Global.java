@@ -32,4 +32,20 @@ public class Global {
 		return nbrOfWorkday;
 	}
 	
+	public static int  returnDurationBetweenTwoDates(LocalDate dateStart, LocalDate dateEnd) {
+		String date1 = dateStart.toString().substring(0, 10);
+		LocalDate start = LocalDate.parse(date1);
+		String date2 = dateEnd.toString().substring(0, 10);
+		LocalDate end = LocalDate.parse(date2);
+		
+		
+		LocalDate varDate = dateStart;
+		
+		Period period = Period.between(LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfMonth()),LocalDate.of(end.getYear(), end.getMonth(), end.getDayOfMonth()));
+		System.out.println(period.getDays());
+		int nbrOfWorkday = 1;
+		
+		return nbrOfWorkday;
+	}
+	
 }
