@@ -1,5 +1,5 @@
 <%@ include file="/Resources/inc/header.jsp"%>
-<title>Homes Administrateur</title>
+<title>Home Administrateur</title>
 </head>
 
 <body id="page-top">

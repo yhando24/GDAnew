@@ -2,7 +2,7 @@
 
 	<!-- Sidebar -->
 	<ul class="sidebar navbar-nav">
-		<li class="nav-item active"><a class="nav-link"
+		<li class="nav-item"><a class="nav-link"
 			href="<c:url value="/indexEmployee"/>"> <i
 				class="fas fa-fw fa-tachometer-alt"></i> <span>Accueil</span>
 		</a></li>
