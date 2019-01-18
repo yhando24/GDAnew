@@ -119,9 +119,9 @@
 	color:red;	
 }
 
-.PasswordChangedMessage{
+.passwordChangedMessage{
 	padding-top:15px;
-	color:green;
+	color:green !important;
 }
 
 img#logo-gda-login{
