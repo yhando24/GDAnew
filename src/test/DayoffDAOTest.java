@@ -1,16 +1,15 @@
 package test;
 
 import static org.junit.Assert.*;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Dayoff;
@@ -36,7 +35,7 @@ public class DayoffDAOTest {
 	private static	List<TypeDayOff> listTypeDayOff ;
 	private static	List<Dayoff> listDayOff;
 	private static int sizeArray;
-
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -69,36 +68,59 @@ public class DayoffDAOTest {
 
 	@Test
 	public void testFindAllDayOff() {
-		fail("Not yet implemented");
+		listDayOff = daoDayoff.findAllDayOff();
+		assertTrue("La liste est de même taille", listDayOff.size() == (Fixture.getDayoffForTest().size()));
+		assertTrue("La liste est copié", listDayOff.equals(Fixture.getDayoffForTest()));
+		fail("Les listes ne sont pas identiques");
 	}
 
 	@Test
 	public void testFindDayOffById() {
-		fail("Not yet implemented");
+		listDayOff = daoDayoff.findAllDayOff();
+		daoDayoff.findDayOffById(1);
+		assertTrue("L'id 1 est, condition",daoDayoff.findDayOffById(1).equals(Fixture.getDayoffForTest().get(1)));
+		fail("testFindDayOffById L'id un n'est pas bon !");
 	}
 
 	@Test
 	public void testFindDayOffByYear() {
-		fail("Not yet implemented");
+		listDayOff = daoDayoff.findAllDayOff();
+		daoDayoff.findDayOffByYear(2018);
+		int date = Fixture.getDayoffForTest().get(1).getDayOff().getYear();
+		assertTrue("L'année retourné est bien 2018", daoDayoff.findDayOffByYear(2018) == Fixture.getDayoffForTest().subList(0, 4));
+		fail("testFindDayOffByYear la liste des années n'est pas la bonne !");
 	}
 
 	@Test
 	public void testFindDayOffByDepartement() {
+		
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testCreateDayoff() {
-		fail("Not yet implemented");
+		listDayOff = daoDayoff.findAllDayOff();
+		sizeArray = listDayOff.size();
+		Dayoff d2 = new Dayoff(2,LocalDate.parse("2019-01-22"), null, typeDaysOff.get(0), departement.get(1) );
+		daoDayoff.createDayoff(d2);
+		assertTrue("La ligne à bien été ajouté", sizeArray+1 == daoDayoff.findAllDayOff().size());
+		fail("testCreateDayoff N'a pas ajouté le nouveau DayOff");
 	}
 
 	@Test
 	public void testUpdateDayoff() {
+		listDayOff = daoDayoff.findAllDayOff();
+		Dayoff test = daoDayoff.findDayOffById(3);
+		Dayoff d2 = new Dayoff(2,LocalDate.parse("2019-01-22"), null, typeDaysOff.get(0), departement.get(1) );
+		daoDayoff.updateDayoff(3, d2);
+		assertFalse("La modification à bien été faite.", daoDayoff.findDayOffById(3).equals(test));
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testDeleteDayOff() {
+		listDayOff = daoDayoff.findAllDayOff();
+		
 		fail("Not yet implemented");
 	}
 

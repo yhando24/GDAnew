@@ -152,15 +152,15 @@ Dashboard</a></li>
 
 				</tbody>
 			</table>
-			<h3>Lï¿½gende :</h3>
+			<h3>Légende :</h3>
 			<div class="row text-center">
 
 
-				<div class="couleur-conge-paye-legende col">Congï¿½ payï¿½</div>
+				<div class="couleur-conge-paye-legende col">Congé payé</div>
 				<div class="couleur-rtt-legende col">RTT</div>
-				<div class="couleur-conge-sans-solde-legende col">Congï¿½ sans
+				<div class="couleur-conge-sans-solde-legende col">Congé sans
 					solde</div>
-				<div class="couleur-jour-ferie-legende col">Jour fï¿½riï¿½</div>
+				<div class="couleur-jour-ferie-legende col">Jour férié</div>
 				<div class="couleur-rtt-employeur-legende col">RTT employeur</div>
 			</div>
 
