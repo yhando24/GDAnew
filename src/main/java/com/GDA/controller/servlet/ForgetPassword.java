@@ -67,7 +67,12 @@ public class ForgetPassword extends HttpServlet {
 						dispatcher.forward(request, response);	
 //						si c pas la bonne reponse
 					}else {
-						request.setAttribute("UserReal", null);
+						System.out.println("fausse reponse");
+						request.setAttribute("FalseReponse", "exist");
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/forgot-password.jsp");
+						dispatcher.forward(request, response);	
+						
+					
 					}}
 			
 			else if(request.getParameter("action").equals("changePassword")){
@@ -80,7 +85,7 @@ public class ForgetPassword extends HttpServlet {
 				dispatcher.forward(request, response);	
 		
 			}
-		}
+		}else {
 			System.out.println("dedans");
 		
 			u=dao.findUserByEmail(request.getParameter("emailForget"));
@@ -92,9 +97,13 @@ public class ForgetPassword extends HttpServlet {
 				dispatcher.forward(request, response);	
 				
 				
+			}else {
+				// mail introuvable
+				System.out.println("mail introuvable");
+				response.sendRedirect(request.getContextPath() + "/login?errorlogin=true");
 			}
 		
 		}
 	
-
 	}
+}

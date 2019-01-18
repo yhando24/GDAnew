@@ -45,7 +45,10 @@ public class Login extends HttpServlet {
 		HttpSession session = (request).getSession();
 		
 		if (session.getAttribute("user") == null) {
-				
+		if(request.getParameter("errorlogin") != null)	{
+			
+			request.setAttribute("noUser", "Aucun utilisateur existant avec cette adresse mail");
+		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp");
 		dispatcher.forward(request, response);
 		}

@@ -74,12 +74,13 @@
 					%>
 									
 				</h5>
-						<c:if test="${!empty ModifiedPassword }"><h5 class="text-center passwordChangedMessage"> ${ModifiedPassword } 
+						<c:if test="${!empty ModifiedPassword }"><h5 class="text-center passwordChangedMessage"> ${ModifiedPassword } 		</h5></c:if>	
+							<c:if test="${!empty noUser }"><h5 class="text-center errorMessageLogin"> ${noUser } 	</h5></c:if>	
 						
-						</h5></c:if>	
+				
 
 				<div class="text-center">
-			<button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Mot de passe oublié</button>
+			<a data-toggle="modal" data-target=".bd-example-modal-lg">Mot de passe oublié ?</a>
 				</div>
 			</div>
 		</div>

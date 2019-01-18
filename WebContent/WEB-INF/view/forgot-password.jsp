@@ -14,7 +14,7 @@
 
 				<div class="text-center mb-4">
 				<c:choose>
-				<c:when test="${empty UserReal }">
+				<c:when test="${!empty question }">
 							<h5>${question.question}</h5>
 			<form name="formCheckResponse" method="post" action='<c:url value="/forget-password?action=CheckReponse"/>'>
 					<div class="form-group">
@@ -50,6 +50,21 @@
 				
 				
 				</c:when>
+				
+					<c:when test="${!empty FalseReponse }">
+				
+			<h4>Votre réponse a la question secrète est erronée.
+				Veuillez contacter un administrateur.
+			</h4>
+				
+					<div class="text-center">
+					<a class="d-block small mt-3" href='<c:url value="/login"/>'>Page de
+						connection</a>
+				</div>
+				</c:when>
+				
+				
+				
 				<c:otherwise>
 				
 				
