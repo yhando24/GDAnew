@@ -14,7 +14,8 @@
 
 			<!-- Dï¿½but  barre container-->
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				<li class="breadcrumb-item"><a
+					href="<c:url value="/indexEmployee"/>">Dashboard</a>
 				</li>
 				<li class="breadcrumb-item active">Vue synthétique</li>
 			</ol>

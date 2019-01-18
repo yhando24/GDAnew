@@ -6,14 +6,16 @@
 <body>
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
-	<%@ include file="/Resources/js/planning.js"%>
+	<%@ include file="/Resources/inc/planning-js.jsp"%>
+	
 	<div id="content-wrapper">
 
 		<div class="container-fluid">
 
 			<!-- D�but  barre container-->
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				<li class="breadcrumb-item"><a
+					href="<c:url value="/indexEmployee"/>">Dashboard</a>
 				</li>
 				<li class="breadcrumb-item active">Planning</li>
 			</ol>
@@ -100,4 +102,6 @@
 
 		</div>
 	</div>
+
+	
 	<%@ include file="/Resources/inc/footer.jsp"%>>
