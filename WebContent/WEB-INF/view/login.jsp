@@ -10,20 +10,24 @@
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-  		Veuillez saisir votre adresse mail :
-				<form method="post" action='<c:url value="/forget-password"/>'>
-					<div class="form-group">
-						<div class="form-label-group">
-							<input type="email" id="inputEmailForget" class="form-control"
-							 required="required"
-							 name="emailForget"> <label
-								for="inputEmailForget">Email</label>
-						</div>
-					</div>
-
-					<button type="submit" class="btn btn-primary btn-block">Valider</button>
-
-				</form>
+    
+    
+    <div class="modal-header">
+  		<h5>Veuillez saisir votre adresse mail :</h5>
+  		</div>
+  		<div class="modal-body">
+			<form method="post" action='<c:url value="/forget-password"/>'>
+			 <div class="form-group">
+			 	<div class="form-label-group">
+			 		<input type="email" id="inputEmailForget" class="form-control" required="required" name="emailForget"> 
+			 		<label for="inputEmailForget">Email</label>
+			 	</div>                     
+			 </div>      
+			                
+			 <button type="submit" class="btn btn-primary">Valider</button>  
+			                 
+			 </form>
+			 </div>
     </div>
   </div>
 </div>
