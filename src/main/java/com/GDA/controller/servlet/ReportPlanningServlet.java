@@ -79,7 +79,7 @@ public class ReportPlanningServlet extends HttpServlet {
 				for (int i = 0; i < 31; i++) {
 					for (Absence a : u.getAbsences()) {
 						
-						if (a.getStartDate().getDayOfMonth()-1 == i) {
+						if (a.getStartDate().getDayOfMonth() == i) {
 							int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
 							for (int j = 0; j < duration; j++) {
 								if(i+j < 31) {

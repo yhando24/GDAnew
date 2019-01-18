@@ -6,8 +6,7 @@
 <body>
 	<%@ include file="/Resources/inc/navbar.jsp"%>
 	<%@ include file="/Resources/inc/sidebar-manager.jsp"%>
-	<%@ include file="/Resources/inc/chart-js.jsp"%>
-
+	<%@ include file="/Resources/js/planning.js"%>
 	<div id="content-wrapper">
 
 		<div class="container-fluid">
@@ -29,7 +28,7 @@
 								id="departement" name="departement" class="custom-select"
 								onchange="this.form.submit()">
 								<option value="1">informatique</option>
-								<option value="2">resource humaine</option>
+								<option value="2">ressource humaine</option>
 							</select>
 						</div>
 
