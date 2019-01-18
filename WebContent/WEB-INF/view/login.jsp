@@ -74,7 +74,7 @@
 					%>
 									
 				</h5>
-						<c:if test="${!empty ModifiedPassword }"><h5 style="color:green"> ${ModifiedPassword } </h5></c:if>	
+						<c:if test="${!empty ModifiedPassword }"><h5 class="text-center PasswordChangedMessage"> ${ModifiedPassword } </h5></c:if>	
 
 				<div class="text-center">
 			<button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Mot de passe oublié</button>
