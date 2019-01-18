@@ -1,7 +1,9 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,14 +51,21 @@ public class ReportPlanningServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 
 		List<Dayoff> dayoff = new ArrayList<Dayoff>();
-
+		
 		if (user.getFunction().getName().equals("manager")) {
-
+			Calendar now = Calendar.getInstance();
+			int y = now.get(Calendar.YEAR);
+			String year = String.valueOf(y);
+			int m = now.get(Calendar.MONTH) +1;
+			String month = String.valueOf(m);
+			request.setAttribute("year", year);
+			request.setAttribute("month", month);
+			request.setAttribute("dep", user.getDepartement().getId());
 			UserDAO userName = new UserDAO();
 
 			ArrayList<User> users = new ArrayList<User>();
 
-			users = userName.findUserByIdDepartement(1);
+			users = userName.findUserByIdDepartement( user.getDepartement().getId());
 
 			for (User user2 : users) {
 
@@ -65,7 +74,7 @@ public class ReportPlanningServlet extends HttpServlet {
 				List<Absence> abs = new ArrayList<Absence>();
 
 				AbsenceDAO absenceDao = new AbsenceDAO();
-				abs.addAll(absenceDao.findAbsenceByUserMonthAndYear(user2.getId(), "1", "2019"));
+				abs.addAll(absenceDao.findAbsenceByUserMonthAndYear(user2.getId(), month, year));
 				user2.setAbsences(abs);
 
 			}
@@ -79,8 +88,11 @@ public class ReportPlanningServlet extends HttpServlet {
 				for (int i = 0; i < 31; i++) {
 					for (Absence a : u.getAbsences()) {
 						
-						if (a.getStartDate().getDayOfMonth() == i) {
-							int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
+						if (a.getStartDate().getDayOfMonth()-1 == i) {
+//							int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
+							
+							Long duration = ChronoUnit.DAYS.between(a.getStartDate(),a.getEndDate())+1;
+							
 							for (int j = 0; j < duration; j++) {
 								if(i+j < 31) {
 								switch (a.getAbsenceType().getId()) {
