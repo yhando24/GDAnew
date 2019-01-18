@@ -14,10 +14,10 @@
 				<form method="post" action='<c:url value="/forget-password"/>'>
 					<div class="form-group">
 						<div class="form-label-group">
-							<input type="email" id="inputEmail" class="form-control"
-								placeholder="Email address" required="required"
-								autofocus="autofocus" name="email"> <label
-								for="inputEmail">Email</label>
+							<input type="email" id="inputEmailForget" class="form-control"
+							 required="required"
+							 name="emailForget"> <label
+								for="inputEmailForget">Email</label>
 						</div>
 					</div>
 
