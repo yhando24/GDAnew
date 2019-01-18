@@ -1,6 +1,9 @@
 package main.java.com.GDA.model.dao.user;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -322,6 +325,66 @@ public class UserDAO implements IUserDAO {
 		       }
 		       return users;
 	}
+	
+	@Override
+	public void ChangePasswordToUser(int id, String password) {
+		
+		String generatedPassword = null;
+		try {
+			// Create MessageDigest instance for MD5
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			// Add password bytes to digest
+			md.update(password.getBytes());
+			// Get the hash's bytes
+			byte[] bytes = md.digest();
+			// This bytes[] has bytes in decimal format;
+			// Convert it to hexadecimal format
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			// Get complete hashed password in hex format
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		System.out.println(generatedPassword);
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+
+		Integer update;
+
+		try {
+			connection = ConnectionDB.getConnection();
+
+			String query = "UPDATE user set password = ? WHERE id = ?";
+
+			prepareStatement = connection.prepareStatement(query);
+
+			prepareStatement.setString(1, generatedPassword );
+			prepareStatement.setInt(2, id);
+	
+
+			update = prepareStatement.executeUpdate();
+			System.out.println("Résultat de la requête UPDATE => " + update.intValue());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				prepareStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+		
+	
 	@Override
 	public QuestionUser findQuestionUserByMail(String email){
 		

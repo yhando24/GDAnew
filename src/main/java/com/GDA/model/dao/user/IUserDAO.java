@@ -16,5 +16,6 @@ public interface IUserDAO {
 	List <User>findUserByIdDepartement(int id);
 	QuestionUser findQuestionUserByMail(String email);
 	QuestionUser findQuestionUserByIdUser(int id);
+	void ChangePasswordToUser(int id, String password);
 	
 }

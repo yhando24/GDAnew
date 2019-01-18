@@ -70,15 +70,22 @@ public class ForgetPassword extends HttpServlet {
 						request.setAttribute("UserReal", null);
 					}}
 			
-			else {
-				System.out.println("une autre action");
+			else if(request.getParameter("action").equals("changePassword")){
+				
+				System.out.println(request.getParameter("inputNewPassword"));
+				System.out.println(request.getParameter("userToCheck"));
+				dao.ChangePasswordToUser(Integer.parseInt(request.getParameter("userToCheck")), request.getParameter("inputNewPassword"));
+				request.setAttribute("ModifiedPassword", "Votre mot de passe a été modifié avec succès");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp");
+				dispatcher.forward(request, response);	
+		
 			}
 		}
 			System.out.println("dedans");
 		
-			u=dao.findUserByEmail(request.getParameter("email"));
+			u=dao.findUserByEmail(request.getParameter("emailForget"));
 			if(u.getEmail() != null) {
-				 qu = dao.findQuestionUserByMail(request.getParameter("email"));
+				 qu = dao.findQuestionUserByMail(request.getParameter("emailForget"));
 				System.out.println();
 				request.setAttribute("question", qu);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/forgot-password.jsp");

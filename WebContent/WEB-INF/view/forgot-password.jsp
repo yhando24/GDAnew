@@ -33,8 +33,23 @@
 				</div>
 				</c:when>
 				
+				<c:when test="${!empty UserReal }">
+				
+					<form name="changePassword" method="post" action='<c:url value="/forget-password?action=changePassword"/>'>
+					<div class="form-group">
+						<div class="form-label-group">
+					Saisir votre nouveau mot de passe :<input type="password" id="inputNewPassword" name="inputNewPassword" class="form-control">
+					<br>		
+						Saisir de nouveau votre mot de passe :<input type="password" id="inputNewPasswordVerif" class="form-control" onchange="verifSamePassword()">			
+							<span class="hiddenMessage" style="display:none; color:red">Votre mot de passe n'est pas identique</span>				
+							<input type="hidden" name="userToCheck" value="${userId}">
+						</div>
+					</div>
+					<button id="buttonValidPassword" class="btn btn-primary btn-block">Envoyer</button>
+				</form>
 				
 				
+				</c:when>
 				<c:otherwise>
 				
 				
@@ -54,3 +69,5 @@
 		
 		
 	<%@ include file="/Resources/inc/footer.jsp"%>
+	
+		<script src='<c:url value="/Resources/js/verifPassword.js"/>'></script>
