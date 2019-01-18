@@ -115,12 +115,13 @@
 
 
 .errorMessageLogin{
-	padding-top:15px;
+	padding-top:10px;
 	color:red;	
 }
 
 .passwordChangedMessage{
-	padding-top:15px;
+	padding-top:10px;
+	padding-bottom:10px;
 	color:green !important;
 }
 
