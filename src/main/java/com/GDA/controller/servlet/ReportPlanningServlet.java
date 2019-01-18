@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceForReport;
@@ -24,7 +22,6 @@ import main.java.com.GDA.bean.Dayoff;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
 import main.java.com.GDA.model.dao.user.UserDAO;
 
 /**

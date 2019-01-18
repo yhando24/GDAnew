@@ -76,10 +76,11 @@ public class AbsencesManagementServlet extends HttpServlet {
 			int nbrOfDayRtt = 0;
 			int nbrOfDayCp = 0;
 			for (Absence abs : user.getAbsences()) {
-				if (abs.getAbsenceType().getName().equals("RTT") && abs.getStatus().getName().equals("VALIDEE")) {
+				if (abs.getAbsenceType().getName().equals("RTT") || abs.getAbsenceType().getName().equals("RTT employeur")   && abs.getStatus().getName().equals("VALIDEE")) {
 
 					nbrOfDayRtt += Global.returnPeriodBetweenTwoDates((LocalDate) abs.getStartDate(),
 							(LocalDate) abs.getEndDate());
+					System.out.println("plop =>"+nbrOfDayRtt);
 
 				}
 				if (abs.getAbsenceType().getName().equals("conge") && abs.getStatus().getName().equals("VALIDEE")) {

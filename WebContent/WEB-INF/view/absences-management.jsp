@@ -41,7 +41,7 @@
 									<th scope="col">Date de fin</th>
 									<th scope="col">Type</th>
 									<th scope="col">Statut</th>
-									<th scope="col">Statut</th>
+									<th scope="col">Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -86,10 +86,10 @@
 															</a>
 														</c:when>
 														<c:when test="${abs.status.name == 'VALIDEE'}">
-															<a
+															<%-- <a
 																href="<c:url value ="/absences-management?action=deleteAbsence&absId=${abs.id}"/>">
 																<i class="fas fa-trash-alt"></i>
-															</a>
+															</a> --%>
 														</c:when>
 														<c:when test="${abs.status.name == 'REJETEE'}">
 															<a

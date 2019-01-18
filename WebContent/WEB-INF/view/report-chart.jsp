@@ -20,11 +20,11 @@
 			</ol>
 			<!-- Fin barre container-->
 
-			<div class="container">
+			<div>
 			<form action='<c:url value="/report-chart"/>' method="POST">
 				<div class="row align-items-end">
 				
-					<div class="col-2 offset-2">
+					<div class="col-sm-2 offset-sm-2">
 						<label for="departement">Departement:</label> <select
 							id="departement" name="departement" class="custom-select" onchange="this.form.submit()">
 							<option value="1">informatique</option>
@@ -32,7 +32,7 @@
 						</select>
 					</div>
 					
-					<div class="col-2">
+					<div class="col-sm-2">
 						<label for="month">Mois:</label> <select id="month" name="month"
 							class="custom-select" onchange="this.form.submit()">
 							<option value="1" >Janvier</option>
@@ -49,7 +49,7 @@
 							<option value="12">Décembre</option>
 						</select>
 					</div>
-					<div class="col-2">
+					<div class="col-sm-2">
 						<label for="year">Année:</label> <select id="year" name="year"
 							class="custom-select" onchange="this.form.submit()">
 							<option>2017</option>
@@ -61,10 +61,10 @@
 						</select>
 					</div>
 					
-					<div class="col-1 offset-1 ">
+					<div class="col-sm-1 offset-sm-1 col-3 offset-4">
 						<i class="fas fa-search-plus fa-2x"></i>
 					</div>
-					<div class="col-1">
+					<div class="col-sm-1 col-5">
 						<i class="far fa-file-excel fa-2x"></i>
 					</div>
 				</div>
