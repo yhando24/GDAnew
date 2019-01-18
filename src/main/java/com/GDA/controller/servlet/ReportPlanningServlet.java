@@ -147,22 +147,80 @@ public class ReportPlanningServlet extends HttpServlet {
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		String dep = request.getParameter("departement");
-		Map<String, String> selectReportPlanning = new HashMap<String, String>();
-		selectReportPlanning.put("year", year);
-		selectReportPlanning.put("month", month);
-		selectReportPlanning.put("departement", dep);
-		session.setAttribute("selectReport", selectReportPlanning);
+		
+		
+		
+		UserDAO userName = new UserDAO();
 
-		AbsenceForReportDAO abs = new AbsenceForReportDAO();
+		ArrayList<User> users = new ArrayList<User>();
 
-		List<AbsenceForReport> absences = new ArrayList<AbsenceForReport>();
+		users = userName.findUserByIdDepartement( Integer.parseInt(dep));
 
-		absences = abs.findAllAbsencesByNameDepartementMonthAndYear(Integer.parseInt(dep), month, year);
+		for (User user2 : users) {
 
-		session.setAttribute("name", absences);
+			List<Absence> userAbsence = new ArrayList<Absence>();
 
-		response.sendRedirect(request.getContextPath() + "/report-planning");
+			List<Absence> abs = new ArrayList<Absence>();
 
+			AbsenceDAO absenceDao = new AbsenceDAO();
+			abs.addAll(absenceDao.findAbsenceByUserMonthAndYear(user2.getId(), month, year));
+			user2.setAbsences(abs);
+
+		}
+
+		Map<String, Object> plop = new HashMap<String, Object>();
+		for (User u : users) {
+			ArrayList<String> typeAbs = new ArrayList<String>();
+			for (int i = 0; i < 31; i++) {
+				typeAbs.add("");
+			}
+			for (int i = 0; i < 31; i++) {
+				for (Absence a : u.getAbsences()) {
+					
+					if (a.getStartDate().getDayOfMonth()-1 == i) {
+//						int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
+						
+						Long duration = ChronoUnit.DAYS.between(a.getStartDate(),a.getEndDate())+1;
+						
+						for (int j = 0; j < duration; j++) {
+							if(i+j < 31) {
+							switch (a.getAbsenceType().getId()) {
+							case 1:
+								typeAbs.set(i + j, "C");
+								break;
+							case 2:
+								typeAbs.set(i + j, "R");
+								break;
+							case 3:
+								typeAbs.set(i + j, "S");
+								break;
+							case 4:
+								typeAbs.set(i + j, "M");
+								break;
+							case 5:
+								typeAbs.set(i + j, "R_E");
+								break;
+
+							}
+						}
+						}
+					}
+					
+				}
+			}
+			
+			System.out.println(typeAbs);
+			plop.put(u.getName(), typeAbs);
+		}
+		request.setAttribute("year", year);
+		request.setAttribute("month", month);
+		request.setAttribute("departement", dep);
+		
+		request.setAttribute("plop", plop);
+
+
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/reportPlanning.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

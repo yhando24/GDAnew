@@ -10,7 +10,7 @@ function selectedGreatOption(){
 
 	let year = '${year}';
 	let month = '${month}';
-	let dep = '${dep}';
+	let dep = '${departement}';
 	
 	
 	let optDep = document.querySelectorAll('#departement option');
