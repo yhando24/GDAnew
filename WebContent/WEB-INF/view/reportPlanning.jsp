@@ -74,7 +74,7 @@
 			</div>
 
 			<div class=" container-vue table-responsive-xl">
-				<table class="tableau-vue table-striped">
+				<table class=" table tableau-vue table-striped">
 					<thead>
 						<tr>
 							<td>Nom</td>

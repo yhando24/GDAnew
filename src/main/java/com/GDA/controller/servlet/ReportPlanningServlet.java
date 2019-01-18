@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceForReport;
 import main.java.com.GDA.bean.Dayoff;
@@ -75,49 +73,46 @@ public class ReportPlanningServlet extends HttpServlet {
 			Map<String, Object> plop = new HashMap<String, Object>();
 			for (User u : users) {
 				ArrayList<String> typeAbs = new ArrayList<String>();
-				for (int i = 0; i < 30; i++) {
+				for (int i = 0; i < 31; i++) {
+					typeAbs.add("");
+				}
+				for (int i = 0; i < 31; i++) {
 					for (Absence a : u.getAbsences()) {
 						
-						if (a.getStartDate().getDayOfWeek().getValue() == i) {
-							
-							
-							switch (a.getAbsenceType().getId()) {
-							case 1:
-								typeAbs.add("C");
-								break;
-							case 2:
-								typeAbs.add("R");
-								break;
-							case 3:
-								typeAbs.add("S");
-								break;
-							case 4:
-								typeAbs.add("M");
-								break;
-							case 5:
-								typeAbs.add("R_E");
-								break;
-							
-							}
-						} else {
-							typeAbs.add("");
-						}
-					}
+						if (a.getStartDate().getDayOfMonth() == i) {
+							int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
+							for (int j = 0; j < duration; j++) {
+								if(i+j < 31) {
+								switch (a.getAbsenceType().getId()) {
+								case 1:
+									typeAbs.set(i + j, "C");
+									break;
+								case 2:
+									typeAbs.set(i + j, "R");
+									break;
+								case 3:
+									typeAbs.set(i + j, "S");
+									break;
+								case 4:
+									typeAbs.set(i + j, "M");
+									break;
+								case 5:
+									typeAbs.set(i + j, "R_E");
+									break;
 
+								}
+							}
+							}
+						}
+						
+					}
 				}
+				
+				System.out.println(typeAbs);
 				plop.put(u.getName(), typeAbs);
 			}
-			request.setAttribute("plop",plop);
-//
-//			DayoffDAO dayoffDao = new DayoffDAO();
-//
-//			dayoff = dayoffDao.findDayOffByDepartementMonthAndYeat(1, 2, "1", "2019");
-//
-//			request.setAttribute("userName", users);
-//			request.setAttribute("userAbsences", userAbsence);
-//			request.setAttribute("jourFerie", dayoff);
-//
-//			System.out.println(dayoff);
+			request.setAttribute("plop", plop);
+
 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/reportPlanning.jsp");
 			dispatcher.forward(request, response);
