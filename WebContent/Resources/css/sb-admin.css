@@ -115,7 +115,10 @@
   padding-bottom:5px;
 }
 
+#ValidationAttente{
 
+opacity:0.5;	
+}
 
 
 .errorMessageLogin{

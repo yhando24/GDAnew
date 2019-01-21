@@ -53,7 +53,7 @@
 				
 					<c:when test="${!empty FalseReponse }">
 				
-			<h4>Votre réponse a la question secrète est erronée.
+			<h4>Votre réponse à la question secrète est erronée.
 				Veuillez contacter un administrateur.
 			</h4>
 				

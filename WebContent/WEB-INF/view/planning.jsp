@@ -49,8 +49,7 @@ Dashboard</a></li>
 		<div class="container">
 			<div class="month text-center">
 				<ul>
-					<li class="prev">&#10094;</li>
-					<li class="next">&#10095;</li>
+		
 					<li>
 						<h3>
 							Janvier<br>2019
@@ -91,16 +90,35 @@ Dashboard</a></li>
 									<c:when
 										test="${indexDate >= absence.startDate && indexDate <= absence.endDate }">
 										<c:set var="exist" value="true" />
+										
 										<c:if test="${absence.absenceType.id == '1'}">
+												<c:if test="${absence.status.id == '2'}">
+													<c:set var="validation" value="ValidationAttente" />
+												</c:if>
 											<c:set var="type" value="couleur-conge-paye" />
 										</c:if>
+										
 										<c:if test="${absence.absenceType.id == '2'}">
+											<c:if test="${absence.status.id == '2'}">
+													<c:set var="validation" value="ValidationAttente" />
+											</c:if>
 											<c:set var="type" value="couleur-rtt" />
 										</c:if>
-										<c:if test="${absence.absenceType.id == '3'}">
+										
+										<c:if test="${absence.absenceType.id == '3'}">	
+											<c:if test="${absence.status.id == '2'}">
+													<c:set var="validation" value="ValidationAttente" />
+												</c:if>
 											<c:set var="type" value="couleur-conge-sans-solde" />
 										</c:if>
+										
+									
 										<c:if test="${absence.absenceType.id == '5'}">
+										
+												<c:if test="${absence.status.id == '2'}">
+													<c:set var="validation" value="ValidationAttente" />
+												</c:if>
+										
 											<c:set var="type" value="couleur-rtt-employeur" />
 
 										</c:if>
@@ -117,7 +135,7 @@ Dashboard</a></li>
 
 							</c:forEach>
 							<c:if test="${exist == 'true'}">
-								<td class="${type}">${loop.index}</td>
+								<td class="${type}" id="${validation}">${loop.index}</td>
 							</c:if>
 							<c:if test="${exist == 'false'}">
 								<td>${loop.index}</td>
