@@ -1,171 +1,305 @@
--- MySQL Workbench Forward Engineering
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  lun. 21 jan. 2019 à 10:47
+-- Version du serveur :  8.0.13
+-- Version de PHP :  7.2.10-0ubuntu0.18.04.1
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema diginamicproject
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema diginamicproject
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `diginamicproject` DEFAULT CHARACTER SET utf8 ;
-USE `diginamicproject` ;
-
--- -----------------------------------------------------
--- Table `diginamicproject`.`absencetype`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`absencetype` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(105) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`status`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`status` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(105) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `diginamicproject`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `absence`
+--
+
+CREATE TABLE `absence` (
+  `id` int(11) NOT NULL,
+  `startDate` date NOT NULL,
+  `endDate` date NOT NULL,
+  `reason` varchar(100) DEFAULT NULL,
+  `idAbsenceType` int(11) NOT NULL,
+  `idStatus` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`departement`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`departement` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `absencetype`
+--
+
+CREATE TABLE `absencetype` (
+  `id` int(11) NOT NULL,
+  `name` varchar(105) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`function`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`function` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dayoff`
+--
+
+CREATE TABLE `dayoff` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `idTypeDayOff` int(11) NOT NULL,
+  `idDepartement` int(11) NOT NULL,
+  `comment` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Structure de la table `departement`
+--
+
+CREATE TABLE `departement` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`user` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL,
-  `firstname` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(150) NOT NULL,
-  `password` VARCHAR(150) NOT NULL,
-  `nbrDaysOfLeave` INT(11) NULL DEFAULT NULL,
-  `nbrRTT` INT(11) NULL DEFAULT NULL,
-  `idDepartement` INT(11) NULL DEFAULT NULL,
-  `idFunction` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
-  INDEX `idDepartement_idx` (`idDepartement` ASC),
-  INDEX `idFunction_idx` (`idFunction` ASC),
-  CONSTRAINT `idDepartement`
-    FOREIGN KEY (`idDepartement`)
-    REFERENCES `diginamicproject`.`departement` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idFunction`
-    FOREIGN KEY (`idFunction`)
-    REFERENCES `diginamicproject`.`function` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+--
+-- Structure de la table `function`
+--
+
+CREATE TABLE `function` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Structure de la table `secretQuestion`
+--
+
+CREATE TABLE `secretQuestion` (
+  `idsecretQuestion` int(11) NOT NULL,
+  `question` varchar(80) DEFAULT NULL,
+  `response` varchar(80) DEFAULT NULL,
+  `idUser` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`absence`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`absence` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `startDate` DATE NOT NULL,
-  `endDate` DATE NOT NULL,
-  `reason` VARCHAR(100) NULL DEFAULT NULL,
-  `idAbsenceType` INT(11) NOT NULL,
-  `idStatus` INT(11) NOT NULL,
-  `idUser` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `idAbsenceType_idx` (`idAbsenceType` ASC),
-  INDEX `idStatus_idx` (`idStatus` ASC),
-  INDEX `idUser` (`idUser` ASC),
-  CONSTRAINT `idAbsenceType`
-    FOREIGN KEY (`idAbsenceType`)
-    REFERENCES `diginamicproject`.`absencetype` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idStatus`
-    FOREIGN KEY (`idStatus`)
-    REFERENCES `diginamicproject`.`status` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idUser`
-    FOREIGN KEY (`idUser`)
-    REFERENCES `diginamicproject`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+--
+-- Structure de la table `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(105) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`typedayoff`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`typedayoff` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+--
+-- Structure de la table `typedayoff`
+--
+
+CREATE TABLE `typedayoff` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- -----------------------------------------------------
--- Table `diginamicproject`.`dayoff`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diginamicproject`.`dayoff` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `date` DATE NOT NULL,
-  `idTypeDayOff` INT(11) NOT NULL,
-  `idDepartement` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_dayoff_typedayoff1_idx` (`idTypeDayOff` ASC),
-  INDEX `fk_dayoff_departement1_idx` (`idDepartement` ASC),
-  CONSTRAINT `fk_dayoff_typedayoff1`
-    FOREIGN KEY (`idTypeDayOff`)
-    REFERENCES `diginamicproject`.`typedayoff` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_dayoff_departement1`
-    FOREIGN KEY (`idDepartement`)
-    REFERENCES `diginamicproject`.`departement` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `nbrDaysOfLeave` int(11) DEFAULT NULL,
+  `nbrRTT` int(11) DEFAULT NULL,
+  `idDepartement` int(11) DEFAULT NULL,
+  `idFunction` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Index pour la table `absence`
+--
+ALTER TABLE `absence`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idAbsenceType_idx` (`idAbsenceType`),
+  ADD KEY `idStatus_idx` (`idStatus`),
+  ADD KEY `idUser` (`idUser`);
+
+--
+-- Index pour la table `absencetype`
+--
+ALTER TABLE `absencetype`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name_UNIQUE` (`name`);
+
+--
+-- Index pour la table `dayoff`
+--
+ALTER TABLE `dayoff`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_dayoff_typedayoff1_idx` (`idTypeDayOff`),
+  ADD KEY `fk_dayoff_departement1_idx` (`idDepartement`);
+
+--
+-- Index pour la table `departement`
+--
+ALTER TABLE `departement`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name_UNIQUE` (`name`);
+
+--
+-- Index pour la table `function`
+--
+ALTER TABLE `function`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name_UNIQUE` (`name`);
+
+--
+-- Index pour la table `secretQuestion`
+--
+ALTER TABLE `secretQuestion`
+  ADD PRIMARY KEY (`idsecretQuestion`),
+  ADD KEY `idUser_idx` (`idUser`);
+
+--
+-- Index pour la table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name_UNIQUE` (`name`);
+
+--
+-- Index pour la table `typedayoff`
+--
+ALTER TABLE `typedayoff`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`),
+  ADD KEY `idDepartement_idx` (`idDepartement`),
+  ADD KEY `idFunction_idx` (`idFunction`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `absence`
+--
+ALTER TABLE `absence`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT pour la table `absencetype`
+--
+ALTER TABLE `absencetype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `dayoff`
+--
+ALTER TABLE `dayoff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT pour la table `departement`
+--
+ALTER TABLE `departement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `function`
+--
+ALTER TABLE `function`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `secretQuestion`
+--
+ALTER TABLE `secretQuestion`
+  MODIFY `idsecretQuestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `typedayoff`
+--
+ALTER TABLE `typedayoff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `absence`
+--
+ALTER TABLE `absence`
+  ADD CONSTRAINT `idAbsenceType` FOREIGN KEY (`idAbsenceType`) REFERENCES `absencetype` (`id`),
+  ADD CONSTRAINT `idStatus` FOREIGN KEY (`idStatus`) REFERENCES `status` (`id`),
+  ADD CONSTRAINT `idUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `dayoff`
+--
+ALTER TABLE `dayoff`
+  ADD CONSTRAINT `fk_dayoff_departement1` FOREIGN KEY (`idDepartement`) REFERENCES `departement` (`id`),
+  ADD CONSTRAINT `fk_dayoff_typedayoff1` FOREIGN KEY (`idTypeDayOff`) REFERENCES `typedayoff` (`id`);
+
+--
+-- Contraintes pour la table `secretQuestion`
+--
+ALTER TABLE `secretQuestion`
+  ADD CONSTRAINT `idUserQuestion` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `idDepartement` FOREIGN KEY (`idDepartement`) REFERENCES `departement` (`id`),
+  ADD CONSTRAINT `idFunction` FOREIGN KEY (`idFunction`) REFERENCES `function` (`id`);
+
+DELIMITER $$
+--
+-- Évènements
+--
+CREATE DEFINER=`rootlogin`@`%` EVENT `event1` ON SCHEDULE EVERY 1 DAY STARTS '2019-01-17 01:00:00' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE `absence` SET `idStatus` = '2' WHERE `absence`.`idStatus` = 1$$
+
+DELIMITER ;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -50,10 +50,19 @@
 									<tr>
 
 										<td>${user.firstname }${user.name }</td>
-										<td><c:forEach items="${user.absences}" var="absence"
-												varStatus="status">  ${absence.startDate} </c:forEach>
-										<td><c:forEach items="${user.absences}" var="absence"
-												varStatus="status">  ${absence.endDate} </c:forEach></td>
+										<td>
+										<c:forEach items="${user.absences}" var="absence" varStatus="status">  
+												<c:set var="dateStart" value="${fn:substring(absence.startDate, 0, 10)}" />
+												<fmt:parseDate value="${dateStart}" pattern="yyyy-MM-dd" var="dateStart"/>
+												<fmt:formatDate value="${dateStart}" pattern="dd-MM-yyyy"/>
+											</c:forEach>
+										<td><c:forEach items="${user.absences}" var="absence" varStatus="status">  
+												<c:set var="dateEnd" value="${fn:substring(absence.endDate, 0, 10)}" />
+												<fmt:parseDate value="${dateEnd}" pattern="yyyy-MM-dd" var="dateEnd"/>
+												<fmt:formatDate value="${dateEnd}" pattern="dd-MM-yyyy"/>
+												
+											</c:forEach>
+										</td>
 										<td><c:forEach items="${user.absences}" var="absence"
 												varStatus="status">  ${absence.reason} </c:forEach></td>
 										<td><c:forEach items="${user.absences}" var="absence"
