@@ -90,34 +90,31 @@ Dashboard</a></li>
 									<c:when
 										test="${indexDate >= absence.startDate && indexDate <= absence.endDate }">
 										<c:set var="exist" value="true" />
-										
-										<c:if test="${absence.absenceType.id == '1'}">
 												<c:if test="${absence.status.id == '2'}">
 													<c:set var="validation" value="ValidationAttente" />
 												</c:if>
+													<c:if test="${absence.status.id != '2'}">
+													<c:set var="validation" value="" />
+												</c:if>
+										<c:if test="${absence.absenceType.id == '1'}">
+										
 											<c:set var="type" value="couleur-conge-paye" />
 										</c:if>
 										
 										<c:if test="${absence.absenceType.id == '2'}">
-											<c:if test="${absence.status.id == '2'}">
-													<c:set var="validation" value="ValidationAttente" />
-											</c:if>
+										
 											<c:set var="type" value="couleur-rtt" />
 										</c:if>
 										
 										<c:if test="${absence.absenceType.id == '3'}">	
-											<c:if test="${absence.status.id == '2'}">
-													<c:set var="validation" value="ValidationAttente" />
-												</c:if>
+										
 											<c:set var="type" value="couleur-conge-sans-solde" />
 										</c:if>
 										
 									
 										<c:if test="${absence.absenceType.id == '5'}">
 										
-												<c:if test="${absence.status.id == '2'}">
-													<c:set var="validation" value="ValidationAttente" />
-												</c:if>
+											
 										
 											<c:set var="type" value="couleur-rtt-employeur" />
 
@@ -126,7 +123,7 @@ Dashboard</a></li>
 
 									<c:otherwise>
 
-										<c:set var="type" value="couleur-rtt-employeur" />
+							
 
 									</c:otherwise>
 

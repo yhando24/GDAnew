@@ -23,7 +23,7 @@
 		<li class="nav-item dropdown no-arrow mx-1"><a
 			class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> <span
+			aria-expanded="false">  <span
 				class="badge badge-danger"></span>
 		</a>
 			<div class="dropdown-menu dropdown-menu-right"
