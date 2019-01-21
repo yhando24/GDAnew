@@ -157,6 +157,6 @@ public class DayOffCreateServlet extends HttpServlet {
 
 
 
-		response.sendRedirect(request.getContextPath() + "/create-day-off"); // logged-in page
+		response.sendRedirect(request.getContextPath() + "/day-off-management"); // logged-in page
 	}
 }}
