@@ -115,6 +115,10 @@
   padding-bottom:5px;
 }
 
+.AttenteValidationLegende{
+	opacity:0.5;
+}
+
 #ValidationAttente{
 
 opacity:0.5;	

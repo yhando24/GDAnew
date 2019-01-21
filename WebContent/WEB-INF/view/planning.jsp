@@ -181,6 +181,15 @@ Dashboard</a></li>
 				<div class="couleur-jour-ferie-legende col">Jour férié</div>
 				<div class="couleur-rtt-employeur-legende col">RTT employeur</div>
 			</div>
+			<div class="row text-center">
+
+
+				<div class="couleur-conge-paye-legende col AttenteValidationLegende">En attente de validation</div>
+				<div class="couleur-rtt-legende col AttenteValidationLegende">En attente de validation</div>
+				<div class="couleur-conge-sans-solde-legende col AttenteValidationLegende">En attente de validation</div>
+				<div class="couleur-jour-ferie-legende col AttenteValidationLegende">En attente de validation</div>
+				<div class="couleur-rtt-employeur-legende col AttenteValidationLegende">En attente de validation</div>
+			</div>
 
 		</div>
 		<!-- End Container -->
