@@ -116,7 +116,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		try {
 			connection = ConnectionDB.getConnection();
-			String Query = "SELECT dayoff.id, date, idTypeDayOff,typedayoff.name as nametypeDayOff, idDepartement,departement.name as service, comment FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id WHERE YEAR ( dayoff.date ) = ?";
+			String Query = "SELECT dayoff.id, date, idTypeDayOff,typedayoff.name as nametypeDayOff, idDepartement,departement.name as service, comment FROM dayoff JOIN typedayoff ON dayoff.idTypeDayOff = typedayoff.id JOIN departement ON dayoff.idDepartement = departement.id WHERE YEAR ( dayoff.date ) = ? ORDER BY date ASC";
 			prepareStatement = connection.prepareStatement(Query);
 			prepareStatement.setInt(1, year);
 

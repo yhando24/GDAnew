@@ -4,6 +4,7 @@
 
 <body>
 	<%@ include file="/Resources/inc/navbar.jsp"%>
+	<%@ include file="/Resources/inc/dayoff-js.jsp"%>
 	<c:choose>
 		<c:when test="${user.function.name == 'admin'}">
 			<%@ include file="/Resources/inc/sidebar-admin.jsp"%>

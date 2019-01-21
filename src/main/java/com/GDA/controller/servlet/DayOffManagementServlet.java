@@ -1,6 +1,7 @@
 package main.java.com.GDA.controller.servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -39,6 +40,10 @@ public class DayOffManagementServlet extends HttpServlet {
 		DayoffDAO dao = new DayoffDAO();
 		HttpSession session = request.getSession();
 		session.setAttribute("errorAdd", null);
+		Calendar now = Calendar.getInstance();
+		int y = now.get(Calendar.YEAR);
+		String year = String.valueOf(y);
+		
 		if (request.getParameter("action") != null) {
 
 			if (request.getParameter("action").equals("addDayoff")) {
@@ -67,10 +72,11 @@ public class DayOffManagementServlet extends HttpServlet {
 
 		} else {
 
-			List<Dayoff> dayoffs = dao.findAllDayOff();
+			List<Dayoff> dayoffs = dao.findDayOffByYear(y);
 
 			session.setAttribute("dayoffs", dayoffs);
-
+			
+			request.setAttribute("selectYear", year);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -88,9 +94,12 @@ public class DayOffManagementServlet extends HttpServlet {
 		System.out.println(year);
 		DayoffDAO dao = new DayoffDAO();
 		HttpSession session = request.getSession();
+		String selectYear = request.getParameter("selectYear");
 		
 		List<Dayoff> dayoffsByYear = dao.findDayOffByYear(year);
 		session.setAttribute("dayoffs", dayoffsByYear);
+		
+		request.setAttribute("selectYear", selectYear);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
 		dispatcher.forward(request, response);
