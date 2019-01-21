@@ -98,7 +98,20 @@
 				</table>
 			</div>
 			<!-- Fin container table -->
+			
+			
+			<!-- Légende -->
+			<h3>Légende :</h3>
+			
 
+
+				<div > C : Congé payé</div>
+				<div > R : RTT</div>
+				<div > S : Congé sans
+					solde</div>
+				<div > R_E : RTT employeur</div>
+
+			</div>
 
 		</div>
 	</div>
