@@ -5,14 +5,14 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
-import main.java.com.GDA.database.DatabaseHandle;
+import javax.persistence.PersistenceContext;
 
 public abstract class GenericDAOJpaImplement<T, PK extends Serializable> implements GenericDAO<T, PK> {
 
 	protected Class<T> entityClass;
 
-	protected EntityManager em = DatabaseHandle.getEntityManagerFactory();
+	@PersistenceContext(unitName = "GDA")
+	protected EntityManager em;// DatabaseHandle.getEntityManagerFactory();
 
 	public GenericDAOJpaImplement() {
 		ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();

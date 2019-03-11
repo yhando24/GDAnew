@@ -1,7 +1,6 @@
 package main.java.com.GDA.bean;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +28,7 @@ public class Dayoff {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "type_day_off_id")
-	private TypeDayOff typeDayOffs;
+	private TypeDayOff typeDayOff;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "departement_id")
@@ -39,12 +38,12 @@ public class Dayoff {
 		super();
 	}
 
-	public Dayoff(Integer id, LocalDate dayOff, String comment, TypeDayOff typeDayOffs, Departement departement) {
+	public Dayoff(Integer id, LocalDate dayOff, String comment, TypeDayOff typeDayOff, Departement departement) {
 		super();
 		this.id = id;
 		this.dayOff = dayOff;
 		this.comment = comment;
-		this.typeDayOffs = typeDayOffs;
+		this.typeDayOff = typeDayOff;
 		this.departement = departement;
 	}
 
@@ -72,12 +71,12 @@ public class Dayoff {
 		this.comment = comment;
 	}
 
-	public TypeDayOff getTypeDayOffs() {
-		return typeDayOffs;
+	public TypeDayOff getTypeDayOff() {
+		return typeDayOff;
 	}
 
-	public void setTypeDayOffs(TypeDayOff typeDayOffs) {
-		this.typeDayOffs = typeDayOffs;
+	public void setTypeDayOff(TypeDayOff typeDayOff) {
+		this.typeDayOff = typeDayOff;
 	}
 
 	public Departement getDepartement() {

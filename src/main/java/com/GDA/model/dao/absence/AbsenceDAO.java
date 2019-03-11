@@ -5,26 +5,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.TypedQuery;
 
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.bean.User;
 import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
-import main.java.com.GDA.utils.ConnectionDB;
 
 public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
-	public List<Absence> findAllAbsences() {
-		return findAll();
-	}
+//	public List<Absence> findAllAbsences() {
+//		return findAll();
+//	}
 //		// TODO Auto-generated method stub
 //		ArrayList<Absence> absences = new ArrayList<Absence>();
 //
@@ -66,10 +66,10 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //	}
 
 	// way for update absences in BDD, specify id of old absence and the new absence
-
-	public Absence updateAbsence(Absence absence) {
-		return update(absence);
-	}
+//
+//	public Absence updateAbsence(Absence absence) {
+//		return update(absence);
+//	}
 
 //
 //		System.out.println("dans update = " + Date.valueOf(absence.getEndDate()));
@@ -114,9 +114,9 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //
 //	// way for get absence with his id
 
-	public Absence findAbsenceById(Integer id) {
-		return find(id);
-	}
+//	public Absence findAbsenceById(Integer id) {
+//		return find(id);
+//	}
 
 //
 //		Absence absence = new Absence();
@@ -162,8 +162,10 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
 	// way for get user absences by his id
 
-	public List<Absence> findAbsencesByIdUser(int idUser) {
-		return null;
+	public List<Absence> findAbsencesByIdUser(Integer idUser) {
+		TypedQuery<Absence> q = em.createQuery("From Absence WHERE idUser=:iduser)", Absence.class);
+		q.setParameter("iduser", idUser);
+		return q.getResultList();
 	}
 
 //		// TODO Auto-generated method stub
@@ -211,53 +213,62 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //		return absences;
 //	}
 
-	public List<Absence> findAbsenceByUserMonthAndYear(int iduser, String month, String year) {
-
-		ArrayList<Absence> absences = new ArrayList<Absence>();
-
-		Connection connection = null;
-		PreparedStatement prepareStatement = null;
-
-		try {
-			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id, startDate, endDate, idAbsenceType, idUser, absencetype.name as nameType FROM absence JOIN absencetype ON absence.idAbsenceType = absencetype.id WHERE idUser = ? AND MONTH(startDate) = ? AND YEAR(startDate) = ?";
-
-			prepareStatement = connection.prepareStatement(query);
-
-			prepareStatement.setInt(1, iduser);
-			prepareStatement.setString(2, month);
-			prepareStatement.setString(3, year);
-
-			ResultSet resultSet = prepareStatement.executeQuery();
-
-			System.out.println(prepareStatement.toString());
-
-			while (resultSet.next()) {
-				Absence absence = new Absence();
-				absence.setId(resultSet.getInt("id"));
-				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
-				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
-				absence.setAbsenceType(
-						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
-				absence.setIdUser(resultSet.getInt("idUser"));
-
-				absences.add(absence);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				prepareStatement.close();
-				connection.close();
-			} catch (SQLException e) {
-				// ne rien faire
-				e.printStackTrace();
-			}
-		}
-		return absences;
+	public List<Absence> findAbsenceByUserMonthAndYear(int idUser, String month, String year) {
+		TypedQuery<Absence> q = em.createQuery(
+				"SELECT a From Absence a JOIN a.user u WHERE u.id =:iduser AND MONTH(a.startDate) =:month AND YEAR(a.startDate) =:year",
+				Absence.class);
+		q.setParameter("iduser", idUser);
+		q.setParameter("month", month);
+		q.setParameter("year", year);
+		return q.getResultList();
 
 	}
+//
+//		ArrayList<Absence> absences = new ArrayList<Absence>();
+//
+//		Connection connection = null;
+//		PreparedStatement prepareStatement = null;
+//
+//		try {
+//			connection = ConnectionDB.getConnection();
+//			String query = "SELECT absence.id, startDate, endDate, idAbsenceType, idUser, absencetype.name as nameType FROM absence JOIN absencetype ON absence.idAbsenceType = absencetype.id WHERE idUser = ? AND MONTH(startDate) = ? AND YEAR(startDate) = ?";
+//
+//			prepareStatement = connection.prepareStatement(query);
+//
+//			prepareStatement.setInt(1, iduser);
+//			prepareStatement.setString(2, month);
+//			prepareStatement.setString(3, year);
+//
+//			ResultSet resultSet = prepareStatement.executeQuery();
+//
+//			System.out.println(prepareStatement.toString());
+//
+//			while (resultSet.next()) {
+//				Absence absence = new Absence();
+//				absence.setId(resultSet.getInt("id"));
+//				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+//				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
+//				absence.setAbsenceType(
+//						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
+//				absence.setIdUser(resultSet.getInt("idUser"));
+//
+//				absences.add(absence);
+//
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				prepareStatement.close();
+//				connection.close();
+//			} catch (SQLException e) {
+//				// ne rien faire
+//				e.printStackTrace();
+//			}
+//		}
+//		return absences;
+//
+//	}
 
 	// way for get type of absence in all absence
 	@Override
@@ -308,55 +319,57 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 	// way for get absences by the status of the absence
 	@Override
 	public List<Absence> findAbsencesByIdAbsenceStatut(int absenceStatut) {
-		// TODO Auto-generated method stub
-		ArrayList<Absence> absences = new ArrayList<Absence>();
-
-		Connection connection = null;
-		PreparedStatement prepareStatement = null;
-
-		try {
-			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus where idStatus = ?";
-			prepareStatement = connection.prepareStatement(query);
-
-			prepareStatement.setInt(1, absenceStatut);
-
-			ResultSet resultSet = prepareStatement.executeQuery();
-
-			System.out.println(prepareStatement.toString());
-
-			while (resultSet.next()) {
-				Absence absence = new Absence();
-
-				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
-				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
-				absence.setReason(resultSet.getString("reason"));
-				absence.setAbsenceType(
-						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
-				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("nameStatus")));
-				absence.setIdUser(resultSet.getInt("idUser"));
-
-				absences.add(absence);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				prepareStatement.close();
-				connection.close();
-			} catch (SQLException e) {
-				// ne rien faire
-				e.printStackTrace();
-			}
-		}
-		return absences;
+		
 	}
+//		// TODO Auto-generated method stub
+//		ArrayList<Absence> absences = new ArrayList<Absence>();
+//
+//		Connection connection = null;
+//		PreparedStatement prepareStatement = null;
+//
+//		try {
+//			connection = ConnectionDB.getConnection();
+//			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus where idStatus = ?";
+//			prepareStatement = connection.prepareStatement(query);
+//
+//			prepareStatement.setInt(1, absenceStatut);
+//
+//			ResultSet resultSet = prepareStatement.executeQuery();
+//
+//			System.out.println(prepareStatement.toString());
+//
+//			while (resultSet.next()) {
+//				Absence absence = new Absence();
+//
+//				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+//				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
+//				absence.setReason(resultSet.getString("reason"));
+//				absence.setAbsenceType(
+//						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
+//				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("nameStatus")));
+//				absence.setIdUser(resultSet.getInt("idUser"));
+//
+//				absences.add(absence);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				prepareStatement.close();
+//				connection.close();
+//			} catch (SQLException e) {
+//				// ne rien faire
+//				e.printStackTrace();
+//			}
+//		}
+//		return absences;
+//	}
 
 	// way for add an absence
-
-	public void addAbsence(Absence absence) {
-		create(absence);
-	}
+//
+//	public void addAbsence(Absence absence) {
+//		create(absence);
+//	}
 
 //
 //		Connection connection = null;
@@ -396,88 +409,90 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //	}
 
 	// way for delete an absence
-	@Override
-	public void deleteAbsence(int id) {
-
-		Connection connection = null;
-		Statement statement = null;
-		int result;
-
-		try {
-			connection = ConnectionDB.getConnection();
-			String Query = "DELETE FROM absence where id =" + id;
-
-			statement = connection.createStatement();
-			result = statement.executeUpdate(Query);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-
-				statement.close();
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-	}
+//	@Override
+//	public void deleteAbsence(int id) {
+//
+//		Connection connection = null;
+//		Statement statement = null;
+//		int result;
+//
+//		try {
+//			connection = ConnectionDB.getConnection();
+//			String Query = "DELETE FROM absence where id =" + id;
+//
+//			statement = connection.createStatement();
+//			result = statement.executeUpdate(Query);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//
+//				statement.close();
+//				connection.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
+//		}
+//	}
 
 	public List<User> findAllAbsencesByDepartement(int idDep) {
 
-		List<User> users = new ArrayList<User>();
-
-		Connection connection = null;
-		PreparedStatement prepareStatement = null;
-
-		try {
-			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id as idAbsence, startDate , endDate , reason , idAbsenceType , idStatus , idUser , user.name ,user.firstname ,status.name as namestatus , absencetype.name as nameType FROM absence JOIN user ON user.id = absence.idUser JOIN status ON idStatus = status.id JOIN absencetype on absencetype.id = idAbsencetype WHERE user.idDepartement = ? AND absence.idStatus = 2 ORDER BY idUser";
-			prepareStatement = connection.prepareStatement(query);
-
-			prepareStatement.setInt(1, idDep);
-
-			ResultSet resultSet = prepareStatement.executeQuery();
-
-			System.out.println(prepareStatement.toString());
-			System.out.println("avant le result next");
-
-			while (resultSet.next()) {
-
-				Absence absence = new Absence();
-				User user = new User();
-				absence.setId(resultSet.getInt("idAbsence"));
-				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
-				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
-				absence.setReason(resultSet.getString("reason"));
-				absence.setAbsenceType(
-						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
-				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("nameStatus")));
-				absence.setIdUser(resultSet.getInt("idUser"));
-				user.setName(resultSet.getString("name"));
-				user.setName(resultSet.getString("firstname"));
-				System.out.println(absence);
-				user.addAbsence(absence);
-
-				users.add(user);
-				System.out.println(user);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				prepareStatement.close();
-				connection.close();
-			} catch (SQLException e) {
-				// ne rien faire
-				e.printStackTrace();
-			}
-		}
-		return users;
-
 	}
+//
+//		List<User> users = new ArrayList<User>();
+//
+//		Connection connection = null;
+//		PreparedStatement prepareStatement = null;
+//
+//		try {
+//			connection = ConnectionDB.getConnection();
+//			String query = "SELECT absence.id as idAbsence, startDate , endDate , reason , idAbsenceType , idStatus , idUser , user.name ,user.firstname ,status.name as namestatus , absencetype.name as nameType FROM absence JOIN user ON user.id = absence.idUser JOIN status ON idStatus = status.id JOIN absencetype on absencetype.id = idAbsencetype WHERE user.idDepartement = ? AND absence.idStatus = 2 ORDER BY idUser";
+//			prepareStatement = connection.prepareStatement(query);
+//
+//			prepareStatement.setInt(1, idDep);
+//
+//			ResultSet resultSet = prepareStatement.executeQuery();
+//
+//			System.out.println(prepareStatement.toString());
+//			System.out.println("avant le result next");
+//
+//			while (resultSet.next()) {
+//
+//				Absence absence = new Absence();
+//				User user = new User();
+//				absence.setId(resultSet.getInt("idAbsence"));
+//				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+//				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
+//				absence.setReason(resultSet.getString("reason"));
+//				absence.setAbsenceType(
+//						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
+//				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("nameStatus")));
+//				absence.setIdUser(resultSet.getInt("idUser"));
+//				user.setName(resultSet.getString("name"));
+//				user.setName(resultSet.getString("firstname"));
+//				System.out.println(absence);
+//				user.addAbsence(absence);
+//
+//				users.add(user);
+//				System.out.println(user);
+//
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				prepareStatement.close();
+//				connection.close();
+//			} catch (SQLException e) {
+//				// ne rien faire
+//				e.printStackTrace();
+//			}
+//		}
+//		return users;
+//
+//	}
 
 }

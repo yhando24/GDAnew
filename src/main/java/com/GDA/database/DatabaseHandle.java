@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 
 import org.hibernate.annotations.Synchronize;
 
+
 public class DatabaseHandle {
 
 	// Create an EntityManagerFactory when you start the application.

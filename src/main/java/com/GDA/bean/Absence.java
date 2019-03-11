@@ -13,41 +13,40 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="absence")
+@Table(name = "absence")
 public class Absence {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column
 	private LocalDate startDate;
-	
+
 	@Column
 	private LocalDate endDate;
-	
+
 	@Column(length = 250, nullable = false)
 	private String reason;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="absence_type_id")
+	@JoinColumn(name = "absence_type_id")
 	private AbsenceType absenceType;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="status_id")
+	@JoinColumn(name = "status_id")
 	private Status status;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private Integer idUser;
-	
-	
-	
+
 	public Absence() {
 		super();
 	}
-	
-	public Absence(Integer id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
+
+	public Absence(Integer id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType,
+			Status status, int idUser) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -114,14 +113,10 @@ public class Absence {
 		this.idUser = idUser;
 	}
 
-
-	
-	
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", reason=" + reason
 				+ ", idAbsenceType=" + absenceType + ", idStatus=" + status + ", idUser=" + idUser + "]";
 	}
-	
-			
+
 }
