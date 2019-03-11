@@ -1,11 +1,32 @@
 package main.java.com.GDA.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="question_user")
 public class QuestionUser {
 
-	private int idSecretQuestion;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idSecretQuestion;
+	
+	@Column(length = 250, nullable = false)
 	private String question;
+	
+	@Column(length = 250, nullable = false)
 	private String response;
-	private int idUser;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private Integer idUser;
 	
 	
 	
@@ -15,17 +36,17 @@ public class QuestionUser {
 		super();
 	}
 	
-	public QuestionUser(int idSecretQuestion, String question, String response, int idUser) {
+	public QuestionUser(Integer idSecretQuestion, String question, String response, int idUser) {
 		super();
 		this.idSecretQuestion = idSecretQuestion;
 		this.question = question;
 		this.response = response;
 		this.idUser = idUser;
 	}
-	public int getIdSecretQuestion() {
+	public Integer getIdSecretQuestion() {
 		return idSecretQuestion;
 	}
-	public void setIdSecretQuestion(int idSecretQuestion) {
+	public void setIdSecretQuestion(Integer idSecretQuestion) {
 		this.idSecretQuestion = idSecretQuestion;
 	}
 	public String getQuestion() {
