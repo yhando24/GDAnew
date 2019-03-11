@@ -1,12 +1,11 @@
-package main.java.com.GDA.model.dao.user;
+package main.java.com.GDA.model.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import main.java.com.GDA.model.dao.GenericDAO;
 
 public class GenericDAOJpaImplement<T, PK extends Serializable> implements GenericDAO<T, PK> {
 
@@ -27,7 +26,7 @@ public class GenericDAOJpaImplement<T, PK extends Serializable> implements Gener
 	}
 
 	@Override
-	public T read(PK id) {
+	public T find(PK id) {
 		return this.em.find(entityClass, id);
 	}
 
@@ -40,6 +39,11 @@ public class GenericDAOJpaImplement<T, PK extends Serializable> implements Gener
 	public void delete(T object) {
 		this.em.remove(this.em.merge(object));
 
+	}
+
+	@Override
+	public List<T> findAll(T object) {
+		return this.em.createQuery("FROM " + entityClass.getName(), entityClass).getResultList();
 	}
 
 }
