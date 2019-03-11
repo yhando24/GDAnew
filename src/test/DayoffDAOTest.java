@@ -51,15 +51,6 @@ public class DayoffDAOTest {
 	daoDayoff = new DayoffDAO();
 	daoAbsence = new AbsenceDAO();
 	daoUser = new UserDAO();
-	listAbsence = Fixture.getAbsenceForTest();
-	listUser = Fixture.getUserForTest();
-	listAbcenseType = Fixture.getAbsenceTypeForTest();
-	listStatus = Fixture.getStatusForTest();
-	listDepartement = Fixture.getDepartementForTest();
-	listFunction = Fixture.getFunctionForTest();
-	listTypeDayOff = Fixture.getTypeDayoffForTest();
-	listDayOff = Fixture.getDayoffForTest();
-	sizeArray = 0;
 	}
 
 	@After
@@ -86,7 +77,6 @@ public class DayoffDAOTest {
 	public void testFindDayOffByYear() {
 		listDayOff = daoDayoff.findAllDayOff();
 		daoDayoff.findDayOffByYear(2018);
-		int date = Fixture.getDayoffForTest().get(1).getDayOff().getYear();
 		assertTrue("L'année retourné est bien 2018", daoDayoff.findDayOffByYear(2018) == Fixture.getDayoffForTest().subList(0, 4));
 		fail("testFindDayOffByYear la liste des années n'est pas la bonne !");
 	}
@@ -101,7 +91,12 @@ public class DayoffDAOTest {
 	public void testCreateDayoff() {
 		listDayOff = daoDayoff.findAllDayOff();
 		sizeArray = listDayOff.size();
-		Dayoff d2 = new Dayoff(2,LocalDate.parse("2019-01-22"), null, typeDaysOff.get(0), departement.get(1) );
+		TypeDayOff t1 = new TypeDayOff();
+		t1 = Fixture.getTypeDayoffForTest().get(1);
+		LocalDate date = LocalDate.of(2019, 01, 21);
+		Departement d1 = new Departement();
+		d1 = Fixture.getDepartementForTest().get(1);
+		Dayoff d2 = new Dayoff(2, date, null, t1, d1);
 		daoDayoff.createDayoff(d2);
 		assertTrue("La ligne à bien été ajouté", sizeArray+1 == daoDayoff.findAllDayOff().size());
 		fail("testCreateDayoff N'a pas ajouté le nouveau DayOff");
@@ -111,7 +106,12 @@ public class DayoffDAOTest {
 	public void testUpdateDayoff() {
 		listDayOff = daoDayoff.findAllDayOff();
 		Dayoff test = daoDayoff.findDayOffById(3);
-		Dayoff d2 = new Dayoff(2,LocalDate.parse("2019-01-22"), null, typeDaysOff.get(0), departement.get(1) );
+		TypeDayOff t1 = new TypeDayOff();
+		t1 = Fixture.getTypeDayoffForTest().get(1);
+		LocalDate date = LocalDate.of(2018, 01, 01);
+		Departement d1 = new Departement();
+		d1 = Fixture.getDepartementForTest().get(1);
+		Dayoff d2 = new Dayoff(2, date, null, t1, d1);
 		daoDayoff.updateDayoff(3, d2);
 		assertFalse("La modification à bien été faite.", daoDayoff.findDayOffById(3).equals(test));
 		fail("Not yet implemented");
