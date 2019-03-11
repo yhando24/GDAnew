@@ -19,7 +19,7 @@ public class Dayoff {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column(name = "day_off", nullable = false)
 	private LocalDate dayOff;
@@ -39,7 +39,7 @@ public class Dayoff {
 		super();
 	}
 
-	public Dayoff(int id, LocalDate dayOff, String comment, TypeDayOff typeDayOffs, Departement departement) {
+	public Dayoff(Integer id, LocalDate dayOff, String comment, TypeDayOff typeDayOffs, Departement departement) {
 		super();
 		this.id = id;
 		this.dayOff = dayOff;
@@ -48,11 +48,11 @@ public class Dayoff {
 		this.departement = departement;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
