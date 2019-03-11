@@ -1,4 +1,4 @@
-package main.java.com.GDA.database
+package main.java.com.GDA.database;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
