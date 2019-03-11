@@ -62,7 +62,7 @@ public class User {
 		
 	}
 	
-	public User(int id, String name, String firstname, String email, String password, int nbrDaysOfLeave, int nbrRTT,
+	public User(Integer id, String name, String firstname, String email, String password, int nbrDaysOfLeave, int nbrRTT,
 			Departement departement, Function function, List<Absence> absences) {
 		super();
 		this.id = id;
@@ -77,11 +77,11 @@ public class User {
 		this.absences = absences;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

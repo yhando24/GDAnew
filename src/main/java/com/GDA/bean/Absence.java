@@ -2,15 +2,44 @@ package main.java.com.GDA.bean;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="absence")
 public class Absence {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column
 	private LocalDate startDate;
+	
+	@Column
 	private LocalDate endDate;
+	
+	@Column(length = 250, nullable = false)
 	private String reason;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="absence_type_id")
 	private AbsenceType absenceType;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="status_id")
 	private Status status;
-	private int idUser;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private Integer idUser;
 	
 	
 	
@@ -18,7 +47,7 @@ public class Absence {
 		super();
 	}
 	
-	public Absence(int id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
+	public Absence(Integer id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -29,11 +58,11 @@ public class Absence {
 		this.idUser = idUser;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

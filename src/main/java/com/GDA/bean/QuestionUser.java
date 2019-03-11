@@ -16,7 +16,7 @@ public class QuestionUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idSecretQuestion;
+	private Integer idSecretQuestion;
 	
 	@Column(length = 250, nullable = false)
 	private String question;
@@ -26,7 +26,7 @@ public class QuestionUser {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private int idUser;
+	private Integer idUser;
 	
 	
 	
@@ -36,17 +36,17 @@ public class QuestionUser {
 		super();
 	}
 	
-	public QuestionUser(int idSecretQuestion, String question, String response, int idUser) {
+	public QuestionUser(Integer idSecretQuestion, String question, String response, int idUser) {
 		super();
 		this.idSecretQuestion = idSecretQuestion;
 		this.question = question;
 		this.response = response;
 		this.idUser = idUser;
 	}
-	public int getIdSecretQuestion() {
+	public Integer getIdSecretQuestion() {
 		return idSecretQuestion;
 	}
-	public void setIdSecretQuestion(int idSecretQuestion) {
+	public void setIdSecretQuestion(Integer idSecretQuestion) {
 		this.idSecretQuestion = idSecretQuestion;
 	}
 	public String getQuestion() {

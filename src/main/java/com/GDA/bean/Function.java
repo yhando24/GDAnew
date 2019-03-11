@@ -13,7 +13,7 @@ public class Function {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(length = 45, nullable = false)
 	private String name;
@@ -22,13 +22,13 @@ public class Function {
 		
 	}
 	
-	public Function(int id, String name) {
+	public Function(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

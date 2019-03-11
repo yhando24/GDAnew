@@ -13,7 +13,7 @@ public class Status {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(length = 45, nullable = false)
 	private String name;
@@ -24,20 +24,20 @@ public class Status {
 		super();
 	}
 
-	public Status(int id, String name) {
+	public Status(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 	
-	public Status(int id) {
+	public Status(Integer id) {
 	
 		this.id = id;
 
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

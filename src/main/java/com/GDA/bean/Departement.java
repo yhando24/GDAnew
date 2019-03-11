@@ -15,7 +15,7 @@ public class Departement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(length = 45, nullable = false)
 	private String name;
@@ -24,7 +24,7 @@ public class Departement {
 		
 	}
 	
-	public Departement(int id, String name) {
+	public Departement(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -32,11 +32,11 @@ public class Departement {
 
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
