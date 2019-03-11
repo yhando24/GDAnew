@@ -1,10 +1,31 @@
 package main.java.com.GDA.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="question_user")
 public class QuestionUser {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSecretQuestion;
+	
+	@Column(length = 250, nullable = false)
 	private String question;
+	
+	@Column(length = 250, nullable = false)
 	private String response;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
 	private int idUser;
 	
 	

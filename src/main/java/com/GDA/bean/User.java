@@ -3,17 +3,58 @@ package main.java.com.GDA.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name="user")
 public class User {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@NotBlank
+	@Column(length = 45, nullable = false)
 	private String name;
+	
+	@NotBlank
+	@Column(length = 45, nullable = false)
 	private String firstname;
+	
+	@NotBlank
+	@Column(length = 150, nullable = false)
 	private String email;
+	
+	@NotBlank
+	@Column(length = 45, nullable = false)
 	private String password;
-	private int nbrDaysOfLeave;
-	private int nbrRTT;
+	
+	@Column
+	private Integer nbrDaysOfLeave;
+	
+	@Column
+	private Integer nbrRTT;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="departement_id")
 	private Departement departement;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="function_id")
 	private Function function;
+	
+	@OneToMany(mappedBy="absence")
 	private List<Absence> absences = new ArrayList <Absence>();
 	
 	
