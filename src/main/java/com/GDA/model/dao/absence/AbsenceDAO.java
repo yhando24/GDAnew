@@ -13,44 +13,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceForReport;
 import main.java.com.GDA.bean.AbsenceType;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.bean.User;
+import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
 import main.java.com.GDA.utils.ConnectionDB;
 
-public class AbsenceDAO implements IAbsenceDAO {
+public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
-	// way for get all absences in BDD
+
 	@Override
 	public List<Absence> findAllAbsences() {
-		// TODO Auto-generated method stub
-		ArrayList<Absence> absences = new ArrayList<Absence>();
-
-		Connection connection = null;
-		PreparedStatement prepareStatement = null;
-
-		try {
-			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus";
-			prepareStatement = connection.prepareStatement(query);
-
-			ResultSet resultSet = prepareStatement.executeQuery();
-
-			System.out.println(prepareStatement.toString());
-
-			while (resultSet.next()) {
-				Absence absence = new Absence();
-				absence.setId(resultSet.getInt("id"));
-				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
-				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
-				absence.setReason(resultSet.getString("reason"));
-				absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("name")));
-				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("name")));
-				absence.setIdUser(resultSet.getInt("idUser"));
-				absences.add(absence);
+//		// TODO Auto-generated method stub
+//		ArrayList<Absence> absences = new ArrayList<Absence>();
+//
+//		Connection connection = null;
+//		PreparedStatement prepareStatement = null;
+//
+//		try {
+//			connection = ConnectionDB.getConnection();
+//			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus";
+//			prepareStatement = connection.prepareStatement(query);
+//
+//			ResultSet resultSet = prepareStatement.executeQuery();
+//
+//			System.out.println(prepareStatement.toString());
+//
+//			while (resultSet.next()) {
+//				Absence absence = new Absence();
+//				absence.setId(resultSet.getInt("id"));
+//				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+//				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
+//				absence.setReason(resultSet.getString("reason"));
+//				absence.setAbsenceType(new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("name")));
+//				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("name")));
+//				absence.setIdUser(resultSet.getInt("idUser"));
+//				absences.add(absence);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
