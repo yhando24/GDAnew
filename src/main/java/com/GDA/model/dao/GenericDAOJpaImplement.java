@@ -5,14 +5,13 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import main.java.com.GDA.database.DatabaseHandle;
 
+import main.java.com.GDA.database.DatabaseHandle;
 
 public abstract class GenericDAOJpaImplement<T, PK extends Serializable> implements GenericDAO<T, PK> {
 
 	protected Class<T> entityClass;
 
-	
 	protected EntityManager em = DatabaseHandle.getEntityManagerFactory();
 
 	public GenericDAOJpaImplement() {
@@ -43,7 +42,7 @@ public abstract class GenericDAOJpaImplement<T, PK extends Serializable> impleme
 	}
 
 	@Override
-	public List<T> findAll(T object) {
+	public List<T> findAll() {
 		return this.em.createQuery("FROM " + entityClass.getName(), entityClass).getResultList();
 	}
 

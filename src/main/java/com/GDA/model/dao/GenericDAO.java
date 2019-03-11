@@ -13,5 +13,5 @@ public interface GenericDAO<T, PK extends Serializable> {
 
 	void delete(T object);
 
-	List<T> findAll(T object);
+	List<T> findAll();
 }
