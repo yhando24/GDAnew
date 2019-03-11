@@ -13,6 +13,7 @@ public abstract class GenericDAOJpaImplement<T, PK extends Serializable> impleme
 	protected Class<T> entityClass;
 
 	protected EntityManager em = DatabaseHandle.getEntityManagerFactory();
+	
 
 	public GenericDAOJpaImplement() {
 		ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();
@@ -21,7 +22,13 @@ public abstract class GenericDAOJpaImplement<T, PK extends Serializable> impleme
 
 	@Override
 	public T create(T object) {
-		this.em.persist(object);
+		
+		em.getTransaction().begin();
+		
+		em.persist(object);
+		
+		em.getTransaction().commit();
+		
 		return object;
 	}
 
@@ -32,13 +39,24 @@ public abstract class GenericDAOJpaImplement<T, PK extends Serializable> impleme
 
 	@Override
 	public T update(T object) {
-		return this.em.merge(object);
+		
+		em.getTransaction().begin();
+		
+		em.merge(object);
+		
+		em.getTransaction().commit();
+		
+		return object ;
 	}
 
 	@Override
 	public void delete(T object) {
-		this.em.remove(this.em.merge(object));
+		
+		em.getTransaction().begin();
+		
+		em.remove(em.merge(object));
 
+		em.getTransaction().commit();
 	}
 
 	@Override

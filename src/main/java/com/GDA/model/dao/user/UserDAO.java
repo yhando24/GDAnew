@@ -1,5 +1,6 @@
 package main.java.com.GDA.model.dao.user;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -7,21 +8,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import main.java.com.GDA.bean.Departement;
 import main.java.com.GDA.bean.Function;
 import main.java.com.GDA.bean.QuestionUser;
 import main.java.com.GDA.bean.User;
+import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
 import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.utils.ConnectionDB;
+//import main.java.com.GDA.utils.ConnectionDB;
 
-public class UserDAO implements IUserDAO {
+public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IUserDAO {
 
+	
+	
+	
+	
 	@Override
 	public User findUserByEmail(String email) {
 
 		User u = new User();
-		AbsenceDAO absence = new AbsenceDAO();
+		/*AbsenceDAO absence = new AbsenceDAO();
 		Departement d = new Departement();
 		Function f = new Function();
 
@@ -75,7 +82,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 		return u;
 	}
@@ -84,7 +91,7 @@ public class UserDAO implements IUserDAO {
 	public User findUserById(int id) {
 
 		User u = new User();
-		AbsenceDAO absence = new AbsenceDAO();
+		/*AbsenceDAO absence = new AbsenceDAO();
 		Departement d = new Departement();
 		Function f = new Function();
 
@@ -139,7 +146,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 		return u;
 	}
@@ -152,7 +159,7 @@ public class UserDAO implements IUserDAO {
 		ResultSet resultset = null;
 		boolean isAvailable = false;
 
-		try {
+		/*try {
 
 			conn = ConnectionDB.getConnection();
 
@@ -192,7 +199,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 		return isAvailable;
 	}
@@ -201,7 +208,7 @@ public class UserDAO implements IUserDAO {
 	public User findUserByEmailAndByPassword(String email, String password) {
 
 		User u = new User();
-		AbsenceDAO absence = new AbsenceDAO();
+		/*AbsenceDAO absence = new AbsenceDAO();
 		Departement d = new Departement();
 		Function f = new Function();
 
@@ -258,7 +265,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 		return u;
 
@@ -268,7 +275,7 @@ public class UserDAO implements IUserDAO {
 	public ArrayList<User> findUserByIdDepartement(int idDepartement) {
 		ArrayList<User> users = new ArrayList<User>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 
 		try {
@@ -298,14 +305,14 @@ public class UserDAO implements IUserDAO {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 		return users;
 	}
 
 	@Override
 	public void ChangePasswordToUser(int id, String password) {
 
-		String generatedPassword = null;
+		/*String generatedPassword = null;
 		try {
 			// Create MessageDigest instance for MD5
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -355,7 +362,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 	}
 
@@ -363,7 +370,7 @@ public class UserDAO implements IUserDAO {
 	public QuestionUser findQuestionUserByMail(String email) {
 
 		QuestionUser u = new QuestionUser();
-		Connection conn = null;
+		/*Connection conn = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultset = null;
 
@@ -401,7 +408,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 		return u;
 	}
@@ -410,7 +417,7 @@ public class UserDAO implements IUserDAO {
 	public QuestionUser findQuestionUserByIdUser(int id) {
 		System.out.println("laaa :" + id);
 		QuestionUser u = new QuestionUser();
-		Connection conn = null;
+		/*Connection conn = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultset = null;
 
@@ -448,7 +455,7 @@ public class UserDAO implements IUserDAO {
 				e.printStackTrace();
 			}
 
-		}
+		}*/
 
 		return u;
 	}
