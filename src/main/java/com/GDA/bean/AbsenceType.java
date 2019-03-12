@@ -12,9 +12,11 @@ import javax.persistence.Table;
 public class AbsenceType {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
 	@Column(length = 250, nullable = false)
 	private String name;
 	
@@ -27,7 +29,8 @@ public class AbsenceType {
 	public AbsenceType() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	@NotNull
 	public int getId() {
 		return id;
 	}
@@ -36,6 +39,7 @@ public class AbsenceType {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
