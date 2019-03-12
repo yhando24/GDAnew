@@ -93,7 +93,7 @@ public class UpdateAbsenceServlet extends HttpServlet {
 		absence.setStatus(status);
 
 		User user = (User) session.getAttribute("user");
-		absence.setIdUser(user.getId());
+		absence.setUser(user);
 
 		System.out.println(absence);
 

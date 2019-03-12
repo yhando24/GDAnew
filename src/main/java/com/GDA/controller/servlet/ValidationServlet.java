@@ -58,7 +58,8 @@ public class ValidationServlet extends HttpServlet {
 
 				absence.setEndDate(absence.getEndDate().plusDays(1));
 				dao.update(absence);
-				users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
+				//@TOdo
+				//users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
 				session.setAttribute("allUsers", users);
 
 				response.sendRedirect(request.getContextPath() + "/validation");
@@ -73,8 +74,8 @@ public class ValidationServlet extends HttpServlet {
 				absence.setEndDate(absence.getEndDate().plusDays(1));
 				absence.setStatus(new Status(4));
 				dao.update(absence);
-
-				users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
+				//@TOdo
+				//users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
 
 				session.setAttribute("allUsers", users);
 
@@ -86,7 +87,8 @@ public class ValidationServlet extends HttpServlet {
 			System.out.println("dans la servlet");
 
 			System.out.println(user.getId());
-			users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
+			//@TOdo
+			//users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
 			for (User user2 : users) {
 				System.out.println("bou" + user2);
 			}

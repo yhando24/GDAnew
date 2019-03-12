@@ -5,6 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.GDA.bean.Departement;
+import com.GDA.bean.Function;
 import com.GDA.bean.User;
 
 
@@ -20,7 +22,7 @@ public class Main {
 	
 		EntityTransaction transac = em.getTransaction();
 		
-		transac.begin();
+		/*transac.begin();
 		
 		User u = new User();
 		
@@ -30,9 +32,15 @@ public class Main {
 		
 		u.setEmail("prenom4");
 		
+		u.setDepartement(new Departement(1,"testd"));
+		
+		u.setFunction(new Function(1,"poste"));
+		
+		
+		
 		em.persist(u);
 		
-		transac.commit();
+		transac.commit();*/
 		
 		 
 		

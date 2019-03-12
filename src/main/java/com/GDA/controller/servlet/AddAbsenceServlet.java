@@ -85,7 +85,7 @@ public class AddAbsenceServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 
-		absence.setIdUser(user.getId());
+		absence.setUser(user);
 
 		// verification non chevauchement de l'absence demandé avec absence presente en
 		// BDD

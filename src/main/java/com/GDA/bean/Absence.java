@@ -127,7 +127,7 @@ public class Absence {
 
 	}
 
-	public void setIdUser(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

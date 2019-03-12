@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="user")
+@Table(name="utilisateur")
 public class User {
 
 	@Id
@@ -54,7 +54,7 @@ public class User {
 	@JoinColumn(name="function_id")
 	private Function function;
 	
-	@OneToMany(mappedBy="absence")
+	@OneToMany(mappedBy="user")
 	private List<Absence> absences = new ArrayList <Absence>();
 	
 	

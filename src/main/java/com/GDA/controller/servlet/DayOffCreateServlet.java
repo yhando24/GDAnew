@@ -135,7 +135,7 @@ public class DayOffCreateServlet extends HttpServlet {
 					AbsenceType abstype = new AbsenceType();
 					abstype.setId(5);
 					absence.setAbsenceType(abstype);
-					absence.setIdUser(user2.getId());
+					absence.setUser(user2);
 					daoAbsence.create(absence);
 				}
 			}
