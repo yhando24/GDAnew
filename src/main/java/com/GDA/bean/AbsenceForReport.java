@@ -2,16 +2,32 @@ package main.java.com.GDA.bean;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class AbsenceForReport {
 
+	@Past
 	LocalDate dateStart;
+	
+	@NotBlank
 	String name;
-	int duration;
-	int lastDayOfMonth;
+	
+	@NotBlank
+	Integer duration;
+	
+	@NotNull
+	Integer lastDayOfMonth;
+	
+	@NotBlank
 	TypeDayOff typeDayOff;
+	
+	@NotBlank
 	AbsenceType typeAbsence;
 	
-	public AbsenceForReport(LocalDate dateStart, String name, int duration, int lastDayOfMonth, TypeDayOff typeDayOff,
+	public AbsenceForReport(LocalDate dateStart, String name, Integer duration, Integer lastDayOfMonth, TypeDayOff typeDayOff,
 			AbsenceType typeAbsence) {
 		super();
 		this.dateStart = dateStart;
@@ -26,6 +42,8 @@ public class AbsenceForReport {
 		super();
 		
 	}
+	
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -34,7 +52,7 @@ public class AbsenceForReport {
 	}
 	
 	
-	
+	@NotBlank
 	public TypeDayOff getTypeDayOff() {
 		return typeDayOff;
 	}
@@ -43,6 +61,7 @@ public class AbsenceForReport {
 		this.typeDayOff = typeDayOff;
 	}
 	
+	@NotBlank
 	public AbsenceType getTypeAbsence() {
 		return typeAbsence;
 	}
@@ -51,6 +70,7 @@ public class AbsenceForReport {
 		this.typeAbsence = typeAbsence;
 	}
 	
+	@Past
 	public LocalDate getDateStart() {
 		return dateStart;
 	}
@@ -59,19 +79,21 @@ public class AbsenceForReport {
 		this.dateStart = dateStart;
 	}
 	
-	public int getDuration() {
+	@NotBlank
+	public Integer getDuration() {
 		return duration;
 	}
 	
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 	
-	public int getLastDayOfMonth() {
+	@NotNull
+	public Integer getLastDayOfMonth() {
 		return lastDayOfMonth;
 	}
 	
-	public void setLastDayOfMonth(int lastDayOfMonth) {
+	public void setLastDayOfMonth(Integer lastDayOfMonth) {
 		this.lastDayOfMonth = lastDayOfMonth;
 	}
 	
