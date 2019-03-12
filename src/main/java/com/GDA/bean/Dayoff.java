@@ -11,25 +11,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "dayoff")
 public class Dayoff {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Past
 	@Column(name = "day_off", nullable = false)
 	private LocalDate dayOff;
 
+	@NotBlank
 	@Column(length = 255, nullable = false)
 	private String comment;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "type_day_off_id")
 	private TypeDayOff typeDayOff;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "departement_id")
 	private Departement departement;
@@ -47,6 +56,7 @@ public class Dayoff {
 		this.departement = departement;
 	}
 
+	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -55,6 +65,7 @@ public class Dayoff {
 		this.id = id;
 	}
 
+	@Past
 	public LocalDate getDayOff() {
 		return dayOff;
 	}
@@ -63,6 +74,7 @@ public class Dayoff {
 		this.dayOff = dayOff;
 	}
 
+	@NotBlank
 	public String getComment() {
 		return comment;
 	}
@@ -71,6 +83,7 @@ public class Dayoff {
 		this.comment = comment;
 	}
 
+	@NotBlank
 	public TypeDayOff getTypeDayOff() {
 		return typeDayOff;
 	}
@@ -79,6 +92,7 @@ public class Dayoff {
 		this.typeDayOff = typeDayOff;
 	}
 
+	@NotNull
 	public Departement getDepartement() {
 		return departement;
 	}

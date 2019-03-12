@@ -12,9 +12,11 @@ import javax.persistence.Table;
 public class Function {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
 	
@@ -28,6 +30,7 @@ public class Function {
 		this.name = name;
 	}
 
+	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +39,7 @@ public class Function {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}

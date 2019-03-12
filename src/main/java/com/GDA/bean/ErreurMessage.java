@@ -2,21 +2,32 @@ package com.GDA.bean;
 
 	import java.time.LocalDateTime;
 
-	import javax.persistence.Column;
-	import javax.persistence.Entity;
-	import javax.persistence.GeneratedValue;
-	import javax.persistence.GenerationType;
-	import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 	@Entity(name = "erreur_message")
 	public class ErreurMessage {
 
 		@Id
+		@NotNull
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;
+		
+		@Past
 		private LocalDateTime date;
+		
+		@NotBlank
 		@Column(name = "service_origine")
 		private String serviceOrigine;
+		
+		@NotBlank
 		private String message;
 
 		public ErreurMessage() {
@@ -24,6 +35,7 @@ package com.GDA.bean;
 			this.date = LocalDateTime.now();
 		}
 
+		@NotNull
 		public Integer getId() {
 			return id;
 		}
@@ -32,6 +44,7 @@ package com.GDA.bean;
 			this.id = id;
 		}
 
+		@NotBlank
 		public String getServiceOrigine() {
 			return serviceOrigine;
 		}
@@ -40,6 +53,7 @@ package com.GDA.bean;
 			this.serviceOrigine = serviceOrigine;
 		}
 
+		@NotBlank
 		public String getMessage() {
 			return message;
 		}
@@ -48,6 +62,7 @@ package com.GDA.bean;
 			this.message = message;
 		}
 
+		@Past
 		public LocalDateTime getDate() {
 			return date;
 		}

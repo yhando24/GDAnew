@@ -1,34 +1,57 @@
 package com.GDA.bean;
 
 	import java.util.ArrayList;
-	import java.util.List;
-	import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+	@Entity(name="Contributor")
 	public class Contributor {
 		
 		public enum Grade {
 			EMPLOYE, MANAGER, ADMINISTRATEUR;
 		}
 
-		private static final int BASE_CONGES_PAYES = 28;
-		private static final int BASE_RTT = 11;
+		private static final Integer BASE_CONGES_PAYES = 28;
+		private static final Integer BASE_RTT = 11;
 		
+		@NotNull
 		private String matricule;
+		
+		@NotBlank
 		private String nom;
+		
+		@NotBlank
 		private String prenom;
+		
+		@NotBlank
 		private String email;
+		
+		@NotBlank
 		private String password;
+		
 		private Optional<Contributor> manager = Optional.ofNullable(null);
+		
+		@OneToMany
 		private List<Contributor> subalternes = new ArrayList<>();
+		
+		@OneToOne
 		private Departement departement;
 		private Grade grade = Grade.EMPLOYE;
-		private int congesPayes = BASE_CONGES_PAYES;
-		private int rtt = BASE_RTT;
+		private Integer congesPayes = BASE_CONGES_PAYES;
+		private Integer rtt = BASE_RTT;
 
 		public Contributor() {
 			super();
 		}
 
+		@NotNull
 		public String getMatricule() {
 			return matricule;
 		}
@@ -37,6 +60,7 @@ package com.GDA.bean;
 			this.matricule = matricule;
 		}
 
+		@NotBlank
 		public String getNom() {
 			return nom;
 		}
@@ -45,14 +69,17 @@ package com.GDA.bean;
 			this.nom = nom;
 		}
 
+		@NotBlank
 		public String getPrenom() {
 			return prenom;
 		}
 
+		
 		public void setPrenom(String prenom) {
 			this.prenom = prenom;
 		}
 
+		@NotBlank
 		public String getEmail() {
 			return email;
 		}
@@ -61,6 +88,7 @@ package com.GDA.bean;
 			this.email = email;
 		}
 
+		@NotBlank
 		public String getPassword() {
 			return password;
 		}
@@ -69,6 +97,7 @@ package com.GDA.bean;
 			this.password = password;
 		}
 
+		@NotBlank
 		public Departement getDepartement() {
 			return departement;
 		}
@@ -77,6 +106,7 @@ package com.GDA.bean;
 			this.departement = departement;
 		}
 
+		@NotBlank
 		public Optional<Contributor> getManager() {
 			return this.manager;
 		}
@@ -93,6 +123,7 @@ package com.GDA.bean;
 			this.subalternes.add(sub);
 		}
 		
+		@NotBlank
 		public Grade getGrade(){
 			return this.grade;
 		}
@@ -101,19 +132,21 @@ package com.GDA.bean;
 			this.grade = grade;
 		}
 
-		public int getCongesPayes() {
+		@NotNull
+		public Integer getCongesPayes() {
 			return congesPayes;
 		}
 
-		public void setCongesPayes(int congesPayes) {
+		public void setCongesPayes(Integer congesPayes) {
 			this.congesPayes = congesPayes;
 		}
 
-		public int getRtt() {
+		@NotNull
+		public Integer getRtt() {
 			return rtt;
 		}
 
-		public void setRtt(int rtt) {
+		public void setRtt(Integer rtt) {
 			this.rtt = rtt;
 		}
 

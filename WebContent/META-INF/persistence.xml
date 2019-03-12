@@ -10,7 +10,7 @@
 		<properties>
 			<!-- The JDBC URL to the database instance -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost:5433/GDA" />
+				value="jdbc:postgresql://localhost:5432/GDA" />
 
 			<!-- The database username -->
 			<property name="javax.persistence.jdbc.user"
@@ -18,7 +18,7 @@
 
 			<!-- The database password -->
 			<property name="javax.persistence.jdbc.password"
-				value="dbpostgresql" />
+				value="root" />
 
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 

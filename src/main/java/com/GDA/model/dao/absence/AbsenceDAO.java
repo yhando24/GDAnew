@@ -1,13 +1,7 @@
 
 package com.GDA.model.dao.absence;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -17,6 +11,7 @@ import com.GDA.bean.AbsenceType;
 import com.GDA.bean.Status;
 import com.GDA.bean.User;
 import com.GDA.model.dao.GenericDAOJpaImplement;
+
 
 public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
@@ -163,12 +158,12 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 	// way for get user absences by his id
 
 	public List<Absence> findAbsencesByIdUser(Integer idUser) {
-		TypedQuery<Absence> q = em.createQuery("From Absence WHERE idUser=:iduser)", Absence.class);
-		q.setParameter("iduser", idUser);
+		TypedQuery<Absence> q = em.createQuery("SELECT u a From Absence as a JOIN a.user as u WHERE a.id=:idUser)",
+				Absence.class);
+		q.setParameter("idUser", idUser);
 		return q.getResultList();
 	}
 
-//		// TODO Auto-generated method stub
 //
 //		ArrayList<Absence> absences = new ArrayList<Absence>();
 //
@@ -213,9 +208,9 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //		return absences;
 //	}
 
-	public List<Absence> findAbsenceByUserMonthAndYear(int idUser, String month, String year) {
+	public List<Absence> findAbsenceByUserMonthAndYear(Integer idUser, String month, String year) {
 		TypedQuery<Absence> q = em.createQuery(
-				"SELECT a From Absence a JOIN a.user u WHERE u.id =:iduser AND MONTH(a.startDate) =:month AND YEAR(a.startDate) =:year",
+				"SELECT a From Absence as a JOIN a.user as u WHERE u.id =:iduser AND MONTH(a.startDate) =:month AND YEAR(a.startDate) =:year",
 				Absence.class);
 		q.setParameter("iduser", idUser);
 		q.setParameter("month", month);
@@ -271,56 +266,68 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //	}
 
 	// way for get type of absence in all absence
+
 	
-	public List<Absence> findAbsencesByIdAbsenceType(int absenceType) {
-		ArrayList<Absence> absences = new ArrayList<Absence>();
 
-		/*Connection connection = null;
-		PreparedStatement prepareStatement = null;
+	public List<Absence> findAbsencesByIdAbsenceType(AbsenceType absenceType) {
+		TypedQuery<Absence> q = em.createQuery("SELECT a From Absence as a JOIN a.user as u WHERE absenceType=:type",
+				Absence.class);
+		q.setParameter("type", absenceType);
+		return q.getResultList();
 
-		try {
-			connection = ConnectionDB.getConnection();
-			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus where idAbsenceType = ?";
-			prepareStatement = connection.prepareStatement(query);
-
-			prepareStatement.setInt(1, absenceType);
-
-			ResultSet resultSet = prepareStatement.executeQuery();
-
-			System.out.println(prepareStatement.toString());
-
-			while (resultSet.next()) {
-				Absence absence = new Absence();
-				absence.setId(resultSet.getInt("id"));
-				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
-				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
-				absence.setReason(resultSet.getString("reason"));
-				absence.setAbsenceType(
-						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
-				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("nameStatus")));
-				absence.setIdUser(resultSet.getInt("idUser"));
-
-				absences.add(absence);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				prepareStatement.close();
-				connection.close();
-			} catch (SQLException e) {
-				// ne rien faire
-				e.printStackTrace();
-			}
-		}*/
-		return absences;
 	}
+//		ArrayList<Absence> absences = new ArrayList<Absence>();
+//
+//		Connection connection = null;
+//		PreparedStatement prepareStatement = null;
+//
+//		try {
+//			connection = ConnectionDB.getConnection();
+//			String query = "SELECT absence.id, startDate, endDate, reason, idAbsenceType, idStatus, idUser, absencetype.name as nameType, status.name as nameStatus FROM absence JOIN absencetype ON absence.id = absencetype.id JOIN status ON status.id = idStatus where idAbsenceType = ?";
+//			prepareStatement = connection.prepareStatement(query);
+//
+//			prepareStatement.setInt(1, absenceType);
+//
+//			ResultSet resultSet = prepareStatement.executeQuery();
+//
+//			System.out.println(prepareStatement.toString());
+//
+//			while (resultSet.next()) {
+//				Absence absence = new Absence();
+//				absence.setId(resultSet.getInt("id"));
+//				absence.setStartDate(LocalDate.parse(resultSet.getString("startDate")));
+//				absence.setEndDate(LocalDate.parse(resultSet.getString("endDate")));
+//				absence.setReason(resultSet.getString("reason"));
+//				absence.setAbsenceType(
+//						new AbsenceType(resultSet.getInt("idAbsenceType"), resultSet.getString("nameType")));
+//				absence.setStatus(new Status(resultSet.getInt("idStatus"), resultSet.getString("nameStatus")));
+//				absence.setIdUser(resultSet.getInt("idUser"));
+//
+//				absences.add(absence);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				prepareStatement.close();
+//				connection.close();
+//			} catch (SQLException e) {
+//				// ne rien faire
+//				e.printStackTrace();
+//			}
+//		}
+//		return absences;
+//	}
 
 	// way for get absences by the status of the absence
-	
-	public List<Absence> findAbsencesByIdAbsenceStatut(int absenceStatut) {
-		return null;
-		
+
+
+	public List<Absence> findAbsencesByIdAbsenceStatut(Status status) {
+		TypedQuery<Absence> q = em.createQuery("SELECT a u From Absence as a JOIN a.user as u WHERE status=:status",
+				Absence.class);
+		q.setParameter("status", status);
+		return q.getResultList();
+
 	}
 //		// TODO Auto-generated method stub
 //		ArrayList<Absence> absences = new ArrayList<Absence>();
@@ -439,8 +446,13 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //		}
 //	}
 
-	public List<User> findAllAbsencesByDepartement(int idDep) {
-		return null;
+
+	public List<Absence> findAllAbsencesByDepartement(int idDep) {
+		TypedQuery<Absence> q = em.createQuery(
+				"SELECT u a From Absence as a JOIN a.user as u JOIN u.departement WHERE u.departement=:dpt",
+				Absence.class);
+		q.setParameter("dpt", idDep);
+		return q.getResultList();
 
 	}
 //

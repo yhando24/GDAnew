@@ -15,15 +15,19 @@ import javax.persistence.Table;
 public class QuestionUser {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idSecretQuestion;
 
+	@NotBlank
 	@Column(length = 250, nullable = false)
 	private String question;
 
+	@NotBlank
 	@Column(length = 250, nullable = false)
 	private String response;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -40,6 +44,7 @@ public class QuestionUser {
 		this.user = idUser;
 	}
 
+	@NotNull
 	public Integer getIdSecretQuestion() {
 		return idSecretQuestion;
 	}
@@ -48,6 +53,7 @@ public class QuestionUser {
 		this.idSecretQuestion = idSecretQuestion;
 	}
 
+	@NotBlank
 	public String getQuestion() {
 		return question;
 	}
@@ -56,6 +62,7 @@ public class QuestionUser {
 		this.question = question;
 	}
 
+	@NotBlank
 	public String getResponse() {
 		return response;
 	}
@@ -64,6 +71,7 @@ public class QuestionUser {
 		this.response = response;
 	}
 
+	@NotNull
 	public User getUser() {
 		return user;
 	}
