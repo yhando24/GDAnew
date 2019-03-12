@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import com.GDA.bean.Departement;
 import com.GDA.bean.Function;
 import com.GDA.bean.User;
+import com.GDA.model.dao.user.UserDAO;
 
 
 
@@ -22,7 +23,7 @@ public class Main {
 	
 		EntityTransaction transac = em.getTransaction();
 		
-		transac.begin();
+		/*transac.begin();
 		
 		Departement d = new Departement("testdepartement");
 		em.persist(d) ;
@@ -54,7 +55,12 @@ public class Main {
 		
 		em.close();   
 		
-		emf.close(); 
+		emf.close(); */
+		
+		
+		UserDAO udao = new UserDAO();
+		
+		System.out.println(udao.findAll());
 
 	}
 
