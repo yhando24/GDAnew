@@ -17,19 +17,19 @@ INSERT INTO status (name) VALUES ('initial'), ('attente');
 INSERT INTO status (name) VALUES ('valide'), ('refuse');
 INSERT INTO departement (name) VALUES ('informatique'), ('resource humaine');
 
-INSERT INTO _user (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('mercadier', 'yoann', 'yo@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '30', '11', '1', '1'), 
 ('handura', 'youcef', 'youyou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '35', '11', '1', '2');
-INSERT INTO _user (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('pichery', 'melanie', 'pichery@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
 ('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
-INSERT INTO _user (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('mercadier', 'yoann', 'yo@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '30', '11', '1', '1'), 
 ('handura', 'youcef', 'youyou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '35', '11', '1', '2');
-INSERT INTO _user (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('pichery', 'melanie', 'pichery@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
 ('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
-INSERT INTO _user (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('pichery', 'melanie', 'pichery@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
 ('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
 

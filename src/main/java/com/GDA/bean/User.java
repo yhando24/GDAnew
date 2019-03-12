@@ -18,7 +18,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "_user")
+
+@Table(name = "user_")
 public class User {
 
 	@Id

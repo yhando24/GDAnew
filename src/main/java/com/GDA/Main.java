@@ -22,25 +22,33 @@ public class Main {
 	
 		EntityTransaction transac = em.getTransaction();
 		
-		/*transac.begin();
+		transac.begin();
+		
+		Departement d = new Departement("testdepartement");
+		em.persist(d) ;
+		
+		Function f = new Function("poste"); 
+		em.persist(f) ;
 		
 		User u = new User();
 		
-		u.setId(4);
+		//u.setId(4);
 		
 		u.setName("nom4");
 		
-		u.setEmail("prenom4");
+		u.setEmail("truc@mail.fr");
 		
-		u.setDepartement(new Departement(1,"testd"));
+		u.setDepartement(d);
 		
-		u.setFunction(new Function(1,"poste"));
+		u.setFunction(f);
 		
+		u.setFirstname("prenom4");
 		
+		u.setPassword("truc");
 		
 		em.persist(u);
 		
-		transac.commit();*/
+		transac.commit();
 		
 		 
 		
