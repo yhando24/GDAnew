@@ -12,11 +12,18 @@ package main.java.com.GDA.bean;
 	public class ErreurMessage {
 
 		@Id
+		@NotNull
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;
+		
+		@Past
 		private LocalDateTime date;
+		
+		@NotBlank
 		@Column(name = "service_origine")
 		private String serviceOrigine;
+		
+		@NotBlank
 		private String message;
 
 		public ErreurMessage() {
@@ -24,6 +31,7 @@ package main.java.com.GDA.bean;
 			this.date = LocalDateTime.now();
 		}
 
+		@NotNull
 		public Integer getId() {
 			return id;
 		}
@@ -32,6 +40,7 @@ package main.java.com.GDA.bean;
 			this.id = id;
 		}
 
+		@NotBlank
 		public String getServiceOrigine() {
 			return serviceOrigine;
 		}
@@ -40,6 +49,7 @@ package main.java.com.GDA.bean;
 			this.serviceOrigine = serviceOrigine;
 		}
 
+		@NotBlank
 		public String getMessage() {
 			return message;
 		}
@@ -48,6 +58,7 @@ package main.java.com.GDA.bean;
 			this.message = message;
 		}
 
+		@Past
 		public LocalDateTime getDate() {
 			return date;
 		}
