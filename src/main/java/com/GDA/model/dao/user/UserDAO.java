@@ -76,9 +76,9 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 		query.setParameter("mail", email);
 		query.setParameter("password", password);
 
-		User u = query.getSingleResult();
+		// User u = query.getSingleResult();
 
-		return u;
+		return null;
 
 	}
 
