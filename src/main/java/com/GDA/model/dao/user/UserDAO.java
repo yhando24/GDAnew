@@ -21,8 +21,11 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 
 	public boolean isUserExist(String email, String password) {
 		return true;
-
 	}
+//		return findUserByEmailAndByPassword(email, password) != null;
+//
+//
+//	}
 
 //	Connection conn = null;
 //	PreparedStatement prepareStatement = null;
@@ -67,8 +70,16 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 * 
 	 */
 	public User findUserByEmailAndByPassword(String email, String password) {
-		User u = em.find(User.class, email);
+
+		TypedQuery<User> query = em.createQuery("SELECT u FROM User as u WHERE u.mail=:mail AND u.password=:password",
+				User.class);
+		query.setParameter("mail", email);
+		query.setParameter("password", password);
+
+		User u = query.getSingleResult();
+
 		return u;
+
 	}
 
 	/*
