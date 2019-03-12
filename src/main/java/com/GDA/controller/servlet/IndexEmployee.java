@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.config.Role;
+import com.GDA.bean.User;
+import com.GDA.config.Role;
 
 /**
  * Servlet implementation class IndexEmployee

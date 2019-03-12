@@ -1,4 +1,4 @@
-package main.java.com.GDA.model.dao.user;
+package com.GDA.model.dao.user;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
@@ -10,29 +10,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.GDA.bean.Departement;
-import main.java.com.GDA.bean.Function;
-import main.java.com.GDA.bean.QuestionUser;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
+import org.hibernate.Query;
+
+import com.GDA.bean.Departement;
+import com.GDA.bean.Function;
+import com.GDA.bean.QuestionUser;
+import com.GDA.bean.User;
+import com.GDA.model.dao.GenericDAOJpaImplement;
+import com.GDA.model.dao.absence.AbsenceDAO;
 //import main.java.com.GDA.utils.ConnectionDB;
 
-public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IUserDAO {
+public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 
-	
-	
-	
-	
-	@Override
+		
 	public User findUserByEmail(String email) {
 
 		User u = new User();
-		/*AbsenceDAO absence = new AbsenceDAO();
+		AbsenceDAO absence = new AbsenceDAO();
 		Departement d = new Departement();
 		Function f = new Function();
 
-		Connection conn = null;
+		
+		String query = "SELECT u,f,d FROM User u, Function f, Departement D  where u.email = ?";
+		
+		Query a = (Query) em.createQuery(query).getSingleResult();
+		a.setParameter(1, email);
+		
+		/*Connection conn = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultset = null;
 
@@ -87,71 +91,10 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IU
 		return u;
 	}
 
-	@Override
-	public User findUserById(int id) {
 
-		User u = new User();
-		/*AbsenceDAO absence = new AbsenceDAO();
-		Departement d = new Departement();
-		Function f = new Function();
+	
 
-		Connection conn = null;
-		PreparedStatement prepareStatement = null;
-		ResultSet resultset = null;
-
-		try {
-
-			conn = ConnectionDB.getConnection();
-
-			String query = "SELECT u.id,u.firstname,u.name,u.email,u.password,u.idFunction,u.idDepartement,u.nbrDaysOfLeave,u.nbrRTT,f.name as namefunc,d.name as namedep FROM user u JOIN diginamicproject.function f ON u.idFunction = f.id JOIN departement d ON u.idDepartement=d.id WHERE id = ?";
-
-			prepareStatement = conn.prepareStatement(query);
-
-			prepareStatement.setInt(1, id);
-
-			resultset = prepareStatement.executeQuery();
-
-			while (resultset.next()) {
-
-				u.setId(resultset.getInt("id"));
-				u.setFirstname(resultset.getString("firstname"));
-				u.setName(resultset.getString("name"));
-				u.setEmail(resultset.getString("email"));
-				u.setPassword(resultset.getString("password"));
-				d.setName(resultset.getString("namedep"));
-				d.setId(resultset.getInt("idDepartement"));
-				u.setDepartement(d);
-				f.setId(resultset.getInt("idFunction"));
-				f.setName(resultset.getString("namefunc"));
-				u.setFunction(f);
-				u.setNbrDaysOfLeave(resultset.getInt("nbrDaysOfLeave"));
-				u.setNbrRTT(resultset.getInt("nbrRTT"));
-				u.setAbsences(absence.findAbsencesByIdUser(u.getId()));
-
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			try {
-				resultset.close();
-				prepareStatement.close();
-				conn.close();
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}*/
-
-		return u;
-	}
-
-	@Override
+	
 	public boolean isUserExist(String email, String password) {
 
 		Connection conn = null;
@@ -204,7 +147,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IU
 		return isAvailable;
 	}
 
-	@Override
+
 	public User findUserByEmailAndByPassword(String email, String password) {
 
 		User u = new User();
@@ -271,7 +214,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IU
 
 	}
 
-	@Override
+	
 	public ArrayList<User> findUserByIdDepartement(int idDepartement) {
 		ArrayList<User> users = new ArrayList<User>();
 
@@ -309,7 +252,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IU
 		return users;
 	}
 
-	@Override
+	
 	public void ChangePasswordToUser(int id, String password) {
 
 		/*String generatedPassword = null;
@@ -366,7 +309,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IU
 
 	}
 
-	@Override
+	
 	public QuestionUser findQuestionUserByMail(String email) {
 
 		QuestionUser u = new QuestionUser();
@@ -413,7 +356,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> implements IU
 		return u;
 	}
 
-	@Override
+
 	public QuestionUser findQuestionUserByIdUser(int id) {
 		System.out.println("laaa :" + id);
 		QuestionUser u = new QuestionUser();

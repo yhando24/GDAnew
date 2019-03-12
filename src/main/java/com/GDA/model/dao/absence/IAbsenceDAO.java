@@ -1,9 +1,9 @@
-package main.java.com.GDA.model.dao.absence;
+package com.GDA.model.dao.absence;
 
 import java.util.List;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.model.dao.GenericDAO;
+import com.GDA.bean.Absence;
+import com.GDA.model.dao.GenericDAO;
 
 public interface IAbsenceDAO<T, PK extends GenericDAO> {
 

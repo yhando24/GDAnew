@@ -1,5 +1,5 @@
 
-package main.java.com.GDA.model.dao.absence;
+package com.GDA.model.dao.absence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +12,11 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceType;
-import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
+import com.GDA.bean.Absence;
+import com.GDA.bean.AbsenceType;
+import com.GDA.bean.Status;
+import com.GDA.bean.User;
+import com.GDA.model.dao.GenericDAOJpaImplement;
 
 public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
@@ -271,11 +271,11 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //	}
 
 	// way for get type of absence in all absence
-	@Override
+	
 	public List<Absence> findAbsencesByIdAbsenceType(int absenceType) {
 		ArrayList<Absence> absences = new ArrayList<Absence>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 
 		try {
@@ -312,13 +312,14 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 		return absences;
 	}
 
 	// way for get absences by the status of the absence
-	@Override
+	
 	public List<Absence> findAbsencesByIdAbsenceStatut(int absenceStatut) {
+		return null;
 		
 	}
 //		// TODO Auto-generated method stub
@@ -439,6 +440,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //	}
 
 	public List<User> findAllAbsencesByDepartement(int idDep) {
+		return null;
 
 	}
 //

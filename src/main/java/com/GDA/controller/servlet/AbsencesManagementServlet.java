@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.utils.Global;
+import com.GDA.bean.Absence;
+import com.GDA.bean.User;
+import com.GDA.model.dao.absence.AbsenceDAO;
+import com.GDA.utils.Global;
 
 /**
  * Servlet implementation class AbsencesManagmentUser

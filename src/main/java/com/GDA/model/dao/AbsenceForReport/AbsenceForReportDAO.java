@@ -1,4 +1,4 @@
-package main.java.com.GDA.model.dao.AbsenceForReport;
+package com.GDA.model.dao.AbsenceForReport;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.GDA.bean.AbsenceForReport;
-import main.java.com.GDA.utils.ConnectionDB;
+import com.GDA.bean.AbsenceForReport;
+//import com.GDA.utils.ConnectionDB;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,7 +20,7 @@ public class AbsenceForReportDAO {
 
 		   List<AbsenceForReport> absences = new ArrayList<AbsenceForReport>();
 
-		   Connection connection = null;
+		   /*Connection connection = null;
 		   PreparedStatement prepareStatement = null;
 
 		       try {
@@ -63,7 +63,7 @@ public class AbsenceForReportDAO {
 		               // ne rien faire
 		               e.printStackTrace();
 		           }
-		       }
+		       }*/
 		       
 		       return absences;
 
@@ -73,7 +73,7 @@ public class AbsenceForReportDAO {
 
 		List<AbsenceForReport> absencesPlanning = new ArrayList<AbsenceForReport>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 
 		try {
@@ -116,7 +116,7 @@ public class AbsenceForReportDAO {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 		return absencesPlanning;
 	}
 }

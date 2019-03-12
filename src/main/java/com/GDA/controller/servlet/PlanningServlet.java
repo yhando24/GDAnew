@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

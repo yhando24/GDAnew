@@ -1,4 +1,4 @@
-package main.java.com.GDA.config;
+package com.GDA.config;
 
 public enum Role {
 

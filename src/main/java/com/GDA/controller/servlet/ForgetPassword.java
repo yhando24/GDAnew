@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.com.GDA.bean.QuestionUser;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.user.UserDAO;
+import com.GDA.bean.QuestionUser;
+import com.GDA.bean.User;
+import com.GDA.model.dao.user.UserDAO;
 
 /**
  * Servlet implementation class ForgetPassword

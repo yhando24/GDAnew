@@ -1,4 +1,4 @@
-package main.java.com.GDA.model.dao.dayoff;
+package com.GDA.model.dao.dayoff;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,13 +10,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.GDA.bean.Departement;
-import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceType;
-import main.java.com.GDA.bean.Dayoff;
-import main.java.com.GDA.bean.TypeDayOff;
-import main.java.com.GDA.utils.ConnectionDB;
+import com.GDA.bean.Departement;
+import com.GDA.bean.Status;
+import com.GDA.bean.Absence;
+import com.GDA.bean.AbsenceType;
+import com.GDA.bean.Dayoff;
+import com.GDA.bean.TypeDayOff;
+//import com.GDA.utils.ConnectionDB;
 
 public class DayoffDAO implements IdayoffDAO {
 
@@ -24,7 +24,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 
 		try {
@@ -58,7 +58,7 @@ public class DayoffDAO implements IdayoffDAO {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 		return daysOff;
 	}
 
@@ -68,7 +68,7 @@ public class DayoffDAO implements IdayoffDAO {
 		Dayoff j = new Dayoff();
 		DayoffDAO dayOffDao = new DayoffDAO();
 
-		Connection conn = null;
+		/*Connection conn = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultset = null;
 
@@ -100,7 +100,7 @@ public class DayoffDAO implements IdayoffDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return j;
 	}
@@ -110,7 +110,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultSet = null;
 
@@ -146,7 +146,7 @@ public class DayoffDAO implements IdayoffDAO {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return daysOff;
 	}
@@ -156,7 +156,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultSet = null;
 
@@ -190,7 +190,7 @@ public class DayoffDAO implements IdayoffDAO {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return daysOff;
 	}
@@ -200,7 +200,7 @@ public class DayoffDAO implements IdayoffDAO {
 
 		ArrayList<Dayoff> daysOff = new ArrayList<Dayoff>();
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultSet = null;
 
@@ -237,7 +237,7 @@ public class DayoffDAO implements IdayoffDAO {
 				// ne rien faire
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return daysOff;
 	}
@@ -245,7 +245,7 @@ public class DayoffDAO implements IdayoffDAO {
 	@Override
 	public void createDayoff(Dayoff dayOff) {
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		int result;
 
@@ -277,13 +277,13 @@ public class DayoffDAO implements IdayoffDAO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	@Override
 	public void updateDayoff(int idDayOff, Dayoff dayOff) {
 
-		Connection connection = null;
+		/*Connection connection = null;
 		PreparedStatement prepareStatement = null;
 
 		int update;
@@ -318,13 +318,13 @@ public class DayoffDAO implements IdayoffDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	@Override
 	public void deleteDayOff(int id) {
 
-		Connection connection = null;
+		/*Connection connection = null;
 		Statement statement = null;
 
 		int delete;
@@ -346,7 +346,7 @@ public class DayoffDAO implements IdayoffDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	@Override
