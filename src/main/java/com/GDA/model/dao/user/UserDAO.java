@@ -20,7 +20,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	}
 
 	public boolean isUserExist(String email, String password) {
-		return false;
+		return true;
 
 	}
 
