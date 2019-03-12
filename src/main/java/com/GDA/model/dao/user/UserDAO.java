@@ -2,6 +2,7 @@ package com.GDA.model.dao.user;
 
 import java.util.ArrayList;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.GDA.bean.QuestionUser;
@@ -71,14 +72,13 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 */
 	public User findUserByEmailAndByPassword(String email, String password) {
 
-		TypedQuery<User> query = em.createQuery("SELECT u FROM User as u WHERE u.mail=:mail AND u.password=:password",
-				User.class);
+		Query query = em.createQuery("SELECT u,f.name,d.name FROM User as u JOIN u.function as f JOIN u.departement as d WHERE u.mail=:mail AND u.password=:password");
 		query.setParameter("mail", email);
 		query.setParameter("password", password);
 
-		User u = query.getSingleResult();
-
-		return u;
+		//User u = query.getSingleResult();
+	
+		return null;
 
 	}
 
