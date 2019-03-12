@@ -3,7 +3,7 @@
   <display-name>GDA</display-name>
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>main.java.com.GDA.controller.servlet.Login</servlet-class>
+    <servlet-class>com.GDA.controller.servlet.Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>

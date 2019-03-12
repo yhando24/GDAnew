@@ -7,12 +7,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.GDA.database.DatabaseHandle;
+
 public abstract class GenericDAOJpaImplement<T, PK extends Serializable> implements GenericDAO<T, PK> {
 
 	protected Class<T> entityClass;
 
-	@PersistenceContext(unitName = "GDA")
-	protected EntityManager em;// DatabaseHandle.getEntityManagerFactory();
+	
+	protected EntityManager em = DatabaseHandle.getEntityManagerFactory();
 
 	public GenericDAOJpaImplement() {
 		ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();
