@@ -12,9 +12,11 @@ import javax.persistence.Table;
 public class Status {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
 	
@@ -36,7 +38,7 @@ public class Status {
 
 	}
 
-
+	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -45,6 +47,7 @@ public class Status {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
