@@ -1,9 +1,7 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
-
 import java.time.LocalDate;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.utils.Global;
+import com.GDA.bean.Absence;
+import com.GDA.bean.User;
+import com.GDA.model.dao.absence.AbsenceDAO;
+import com.GDA.utils.Global;
 
 /**
  * Servlet implementation class AbsencesManagmentUser
@@ -39,36 +37,38 @@ public class AbsencesManagementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 AbsenceDAO dao = new AbsenceDAO();
+		AbsenceDAO dao = new AbsenceDAO();
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 
-		   user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
-           session.setAttribute("user",user);
+		user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
+		session.setAttribute("user", user);
 		if (request.getParameter("action") != null) {
 
 			if (request.getParameter("action").equals("addAbsence")) {
 
-				response.sendRedirect(request.getContextPath() + "/add-absence"); 
-				
+				response.sendRedirect(request.getContextPath() + "/add-absence");
+
 			} else if (request.getParameter("action").equals("updateAbsence")) {
 				String id = request.getParameter("absId");
 				System.out.println(id);
-				//request.setAttribute("idAbsenceAModifier", id);
-				session.setAttribute("idAbsenceAModifier", id);;
+				// request.setAttribute("idAbsenceAModifier", id);
+				session.setAttribute("idAbsenceAModifier", id);
+				;
 
-				//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/updateAbsence");
-				//dispatcher.forward(request, response);
-				
+				// RequestDispatcher dispatcher =
+				// getServletContext().getRequestDispatcher("/updateAbsence");
+				// dispatcher.forward(request, response);
+
 				response.sendRedirect(request.getContextPath() + "/update-absence");
-				
+
 			} else if (request.getParameter("action").equals("deleteAbsence")) {
 				String id = request.getParameter("absId");
-            
-				dao.deleteAbsence(Integer.parseInt(id));
-                user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
-                session.setAttribute("user",user);
-                response.sendRedirect(request.getContextPath() + "/absences-management");
+
+				dao.delete(dao.find(Integer.parseInt(id)));
+				user.setAbsences(dao.findAbsencesByIdUser(user.getId()));
+				session.setAttribute("user", user);
+				response.sendRedirect(request.getContextPath() + "/absences-management");
 			}
 
 		} else {
@@ -76,11 +76,13 @@ public class AbsencesManagementServlet extends HttpServlet {
 			int nbrOfDayRtt = 0;
 			int nbrOfDayCp = 0;
 			for (Absence abs : user.getAbsences()) {
-				if (abs.getAbsenceType().getName().equals("RTT") || abs.getAbsenceType().getName().equals("RTT employeur")   && abs.getStatus().getName().equals("VALIDEE")) {
+				if (abs.getAbsenceType().getName().equals("RTT")
+						|| abs.getAbsenceType().getName().equals("RTT employeur")
+								&& abs.getStatus().getName().equals("VALIDEE")) {
 
 					nbrOfDayRtt += Global.returnPeriodBetweenTwoDates((LocalDate) abs.getStartDate(),
 							(LocalDate) abs.getEndDate());
-					System.out.println("plop =>"+nbrOfDayRtt);
+					System.out.println("plop =>" + nbrOfDayRtt);
 
 				}
 				if (abs.getAbsenceType().getName().equals("conge") && abs.getStatus().getName().equals("VALIDEE")) {
@@ -94,13 +96,12 @@ public class AbsencesManagementServlet extends HttpServlet {
 
 			session.setAttribute("nbrOfDayRtt", nbrOfDayRtt);
 			session.setAttribute("nbrOfDayCp", nbrOfDayCp);
-			
-			session.setAttribute("errorAdd",null);
+
+			session.setAttribute("errorAdd", null);
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/WEB-INF/view/absences-management.jsp");
 			dispatcher.forward(request, response);
 		}
-
 
 	}
 

@@ -1,10 +1,29 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name = "absence_type")
 public class AbsenceType {
 
-	private int id;
+	@Id
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
+	private Integer id;
+
+	@NotBlank
+	@Column(length = 250, nullable = false)
 	private String name;
-	
+
 	public AbsenceType(int id, String name) {
 		super();
 		this.id = id;
@@ -15,6 +34,7 @@ public class AbsenceType {
 		// TODO Auto-generated constructor stub
 	}
 
+	@NotNull
 	public int getId() {
 		return id;
 	}
@@ -23,6 +43,7 @@ public class AbsenceType {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -35,5 +56,5 @@ public class AbsenceType {
 	public String toString() {
 		return "AbsenceType [id=" + id + ", name=" + name + "]";
 	}
-		
+
 }

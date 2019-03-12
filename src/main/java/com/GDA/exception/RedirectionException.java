@@ -1,4 +1,4 @@
-package main.java.com.GDA.exception;
+package com.GDA.exception;
 
 public class RedirectionException extends Exception{
 

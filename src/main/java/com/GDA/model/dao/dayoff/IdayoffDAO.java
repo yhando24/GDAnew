@@ -1,10 +1,10 @@
-package main.java.com.GDA.model.dao.dayoff;
+package com.GDA.model.dao.dayoff;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-import main.java.com.GDA.bean.Dayoff;
+import com.GDA.bean.Dayoff;
 
 public interface IdayoffDAO {
 //	find all days-off

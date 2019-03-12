@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceForReport;
-import main.java.com.GDA.bean.Dayoff;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.model.dao.user.UserDAO;
+import com.GDA.bean.Absence;
+import com.GDA.bean.AbsenceForReport;
+import com.GDA.bean.Dayoff;
+import com.GDA.bean.User;
+import com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
+import com.GDA.model.dao.absence.AbsenceDAO;
+import com.GDA.model.dao.user.UserDAO;
 
 /**
  * Servlet implementation class ReportServlet

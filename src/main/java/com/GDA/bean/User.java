@@ -1,28 +1,74 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+
+@Table(name = "user_")
 public class User {
 
-	private int id;
+	@Id
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
+	private Integer id;
+
+	@NotBlank
+	@Column(name="lastname",length = 45, nullable = false)
 	private String name;
+
+	@NotBlank
+	@Column(length = 45, nullable = false)
 	private String firstname;
+
+	@NotBlank
+	@Column(length = 150, nullable = false)
 	private String email;
+
+	@NotBlank
+	@Column(length = 45, nullable = false)
 	private String password;
-	private int nbrDaysOfLeave;
-	private int nbrRTT;
+
+	@NotNull
+	@Column
+	private Integer nbrDaysOfLeave;
+
+	@NotNull
+	@Column
+	private Integer nbrRTT;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "departement_id", updatable = false)
 	private Departement departement;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "function_id", updatable = false)
 	private Function function;
-	private List<Absence> absences = new ArrayList <Absence>();
-	
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Absence> absences = new ArrayList<Absence>();
+
 	public User() {
-		
+
 	}
-	
-	public User(int id, String name, String firstname, String email, String password, int nbrDaysOfLeave, int nbrRTT,
-			Departement departement, Function function, List<Absence> absences) {
+
+	public User(Integer id, String name, String firstname, String email, String password, int nbrDaysOfLeave,
+			int nbrRTT, Departement departement, Function function, List<Absence> absences) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -36,14 +82,16 @@ public class User {
 		this.absences = absences;
 	}
 
-	public int getId() {
+	@NotNull
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -52,6 +100,7 @@ public class User {
 		this.name = name;
 	}
 
+	@NotBlank
 	public String getFirstname() {
 		return firstname;
 	}
@@ -60,6 +109,7 @@ public class User {
 		this.firstname = firstname;
 	}
 
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}
@@ -68,6 +118,7 @@ public class User {
 		this.email = email;
 	}
 
+	@NotBlank
 	public String getPassword() {
 		return password;
 	}
@@ -76,6 +127,7 @@ public class User {
 		this.password = password;
 	}
 
+	@NotNull
 	public int getNbrDaysOfLeave() {
 		return nbrDaysOfLeave;
 	}
@@ -84,6 +136,7 @@ public class User {
 		this.nbrDaysOfLeave = nbrDaysOfLeave;
 	}
 
+	@NotNull
 	public int getNbrRTT() {
 		return nbrRTT;
 	}
@@ -92,7 +145,7 @@ public class User {
 		this.nbrRTT = nbrRTT;
 	}
 
-		
+	@NotNull
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -101,6 +154,7 @@ public class User {
 		this.departement = departement;
 	}
 
+	@NotBlank
 	public Function getFunction() {
 		return function;
 	}
@@ -109,6 +163,7 @@ public class User {
 		this.function = function;
 	}
 
+	@NotBlank
 	public List<Absence> getAbsences() {
 		return absences;
 	}
@@ -126,5 +181,5 @@ public class User {
 
 	public void addAbsence(Absence absence) {
 		absences.add(absence);
-	}		
+	}
 }

@@ -1,59 +1,74 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
-	import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
-	import javax.persistence.Column;
-	import javax.persistence.Entity;
-	import javax.persistence.GeneratedValue;
-	import javax.persistence.GenerationType;
-	import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
-	@Entity(name = "erreur_message")
-	public class ErreurMessage {
+import org.hibernate.validator.constraints.NotBlank;
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Integer id;
-		private LocalDateTime date;
-		@Column(name = "service_origine")
-		private String serviceOrigine;
-		private String message;
+@Entity(name = "erreur_message")
+public class ErreurMessage {
 
-		public ErreurMessage() {
-			super();
-			this.date = LocalDateTime.now();
-		}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
+	private Integer id;
 
-		public Integer getId() {
-			return id;
-		}
+	@Past
+	private LocalDateTime date;
 
-		public void setId(Integer id) {
-			this.id = id;
-		}
+	@NotBlank
+	@Column(name = "service_origine")
+	private String serviceOrigine;
 
-		public String getServiceOrigine() {
-			return serviceOrigine;
-		}
+	@NotBlank
+	private String message;
 
-		public void setServiceOrigine(String serviceOrigine) {
-			this.serviceOrigine = serviceOrigine;
-		}
-
-		public String getMessage() {
-			return message;
-		}
-
-		public void setMessage(String message) {
-			this.message = message;
-		}
-
-		public LocalDateTime getDate() {
-			return date;
-		}
-
-		public void setDate(LocalDateTime date) {
-			this.date = date;
-		}
-
+	@NotNull
+	public Integer getId() {
+		return id;
 	}
+
+	public ErreurMessage() {
+		super();
+		this.date = LocalDateTime.now();
+	}
+
+	@NotBlank
+	public String getServiceOrigine() {
+		return serviceOrigine;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@NotBlank
+	public String getMessage() {
+		return message;
+	}
+
+	public void setServiceOrigine(String serviceOrigine) {
+		this.serviceOrigine = serviceOrigine;
+	}
+
+	@Past
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
+}

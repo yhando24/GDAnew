@@ -1,5 +1,5 @@
 
-package main.java.com.GDA.controller.filtre;
+package com.GDA.controller.filtre;
 
 import java.io.IOException;
 import javax.servlet.Filter;

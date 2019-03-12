@@ -1,51 +1,87 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name = "question_user")
 public class QuestionUser {
 
-	private int idSecretQuestion;
+	@Id
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
+	private Integer idSecretQuestion;
+
+	@NotBlank
+	@Column(length = 250, nullable = false)
 	private String question;
+
+	@NotBlank
+	@Column(length = 250, nullable = false)
 	private String response;
-	private int idUser;
-	
-	
-	
-	
-	
+
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", updatable = false, insertable = false)
+	private User user;
+
 	public QuestionUser() {
 		super();
 	}
-	
-	public QuestionUser(int idSecretQuestion, String question, String response, int idUser) {
+
+	public QuestionUser(Integer idSecretQuestion, String question, String response, User idUser) {
 		super();
 		this.idSecretQuestion = idSecretQuestion;
 		this.question = question;
 		this.response = response;
-		this.idUser = idUser;
+		this.user = idUser;
 	}
-	public int getIdSecretQuestion() {
+
+	@NotNull
+	public Integer getIdSecretQuestion() {
 		return idSecretQuestion;
 	}
-	public void setIdSecretQuestion(int idSecretQuestion) {
+
+	public void setIdSecretQuestion(Integer idSecretQuestion) {
 		this.idSecretQuestion = idSecretQuestion;
 	}
+
+	@NotBlank
 	public String getQuestion() {
 		return question;
 	}
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
+	@NotBlank
 	public String getResponse() {
 		return response;
 	}
+
 	public void setResponse(String response) {
 		this.response = response;
 	}
-	public int getIdUser() {
-		return idUser;
-	}
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+
+	@NotNull
+	public User getUser() {
+		return user;
 	}
 
-	
+	public void setIdUser(User user) {
+		this.user = user;
+	}
+
 }

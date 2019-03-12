@@ -1,21 +1,41 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name = "_function")
 public class Function {
 
-	private int id;
+	@Id
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
+	private Integer id;
+
+	@NotBlank
+
+	@Column(length = 45, nullable = false)
 	private String name;
-	
+
 	public Function() {
-		
+
 	}
-	
-	public Function(int id, String name) {
+
+	public Function(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 
-	public int getId() {
+	@NotNull
+	public Integer getId() {
 		return id;
 	}
 
@@ -23,6 +43,7 @@ public class Function {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -35,5 +56,5 @@ public class Function {
 	public String toString() {
 		return "Function [id=" + id + ", name=" + name + "]";
 	}
-		
+
 }

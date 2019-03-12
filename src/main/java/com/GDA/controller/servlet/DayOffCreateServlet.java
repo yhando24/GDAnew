@@ -1,14 +1,9 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,16 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceType;
-import main.java.com.GDA.bean.Departement;
-import main.java.com.GDA.bean.Dayoff;
-import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.bean.TypeDayOff;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
-import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
-import main.java.com.GDA.model.dao.user.UserDAO;
+import com.GDA.bean.Absence;
+import com.GDA.bean.AbsenceType;
+import com.GDA.bean.Dayoff;
+import com.GDA.bean.Departement;
+import com.GDA.bean.Status;
+import com.GDA.bean.TypeDayOff;
+import com.GDA.bean.User;
+import com.GDA.model.dao.absence.AbsenceDAO;
+import com.GDA.model.dao.dayoff.DayoffDAO;
+import com.GDA.model.dao.user.UserDAO;
 
 /**
  * Servlet implementation class DayOfCreateServlet
@@ -89,74 +84,66 @@ public class DayOffCreateServlet extends HttpServlet {
 		// verification non chevauchement de l'absence demand� avec absence presente en
 		// BDD
 
-		
-		List <Dayoff> dayOffs = new ArrayList <Dayoff>();
-		
+		List<Dayoff> dayOffs = new ArrayList<Dayoff>();
+
 		dayOffs = dao.findAllDayOff();
-		
+
 		boolean Chevauchement = false;
-		
+
 		for (Dayoff dayoff2 : dayOffs) {
 			System.out.println("test :" + dayoff2.getDayOff() + " lautre :  " + dayOff.getDayOff().minusDays(1));
 			if (dayoff2.getDayOff().isEqual(dayOff.getDayOff().minusDays(1))) {
 				Chevauchement = true;
 				System.out.println("ça chevauche");
-				session.setAttribute("errorAdd", "Probleme de chevauchement de date, un jour férié existe deja a cette date");
+				session.setAttribute("errorAdd",
+						"Probleme de chevauchement de date, un jour férié existe deja a cette date");
 				response.sendRedirect(request.getContextPath() + "/create-day-off"); // logged-in page
 				break;
 			}
 		}
-	
 
-	// verification date j+1
+		// verification date j+1
 
-	boolean JourPlus1 = true;
+		boolean JourPlus1 = true;
 
-	if(!dayOff.getDayOff().isAfter(LocalDate.now()))
-	{
-		JourPlus1 = false;
-		System.out.println("j pas +1");
-	}
-
-
-
-	// rajout de l'absence si pas de chevauchement
-
-	if(
-			!Chevauchement && 
-	JourPlus1
-
-	)
-	{
-
-		// rajout d'un jour a la date et actualisation des date de l'absence
-
-		// rajout de l'absence a la BDD
-		if (type.getId() == 2) {
-			UserDAO daoUser = new UserDAO();
-			AbsenceDAO daoAbsence = new AbsenceDAO();
-			ArrayList<User> users = daoUser.findUserByIdDepartement(user.getDepartement().getId());
-			for (User user2 : users) {
-				Absence absence = new Absence();
-				absence.setStartDate(Date.plusDays(1));
-				absence.setEndDate(Date.plusDays(1));
-				absence.setReason(request.getParameter("comment"));
-				Status status = new Status();
-				status.setId(3);
-				absence.setStatus(status);
-				AbsenceType abstype = new AbsenceType();
-				abstype.setId(5);
-				absence.setAbsenceType(abstype);
-				absence.setIdUser(user2.getId());
-				daoAbsence.addAbsence(absence);
-			}
+		if (!dayOff.getDayOff().isAfter(LocalDate.now())) {
+			JourPlus1 = false;
+			System.out.println("j pas +1");
 		}
 
-		dao.createDayoff(dayOff);
-		System.out.println("ajout jour férié");
+		// rajout de l'absence si pas de chevauchement
 
+		if (!Chevauchement && JourPlus1
 
+		) {
 
-		response.sendRedirect(request.getContextPath() + "/day-off-management"); // logged-in page
+			// rajout d'un jour a la date et actualisation des date de l'absence
+
+			// rajout de l'absence a la BDD
+			if (type.getId() == 2) {
+				UserDAO daoUser = new UserDAO();
+				AbsenceDAO daoAbsence = new AbsenceDAO();
+				ArrayList<User> users = daoUser.findUserByIdDepartement(user.getDepartement().getId());
+				for (User user2 : users) {
+					Absence absence = new Absence();
+					absence.setStartDate(Date.plusDays(1));
+					absence.setEndDate(Date.plusDays(1));
+					absence.setReason(request.getParameter("comment"));
+					Status status = new Status();
+					status.setId(3);
+					absence.setStatus(status);
+					AbsenceType abstype = new AbsenceType();
+					abstype.setId(5);
+					absence.setAbsenceType(abstype);
+					absence.setUser(user2);
+					daoAbsence.create(absence);
+				}
+			}
+
+			dao.createDayoff(dayOff);
+			System.out.println("ajout jour férié");
+
+			response.sendRedirect(request.getContextPath() + "/day-off-management"); // logged-in page
+		}
 	}
-}}
+}

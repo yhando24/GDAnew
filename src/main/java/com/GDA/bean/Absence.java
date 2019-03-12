@@ -1,24 +1,64 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name = "absence")
 public class Absence {
 
-	private int id;
+	@Id
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
+	private Integer id;
+
+	@Past
+	@Column
 	private LocalDate startDate;
+
+	@Past
+	@Column
 	private LocalDate endDate;
+
+	@NotBlank
+	@Column(length = 250, nullable = false)
 	private String reason;
+
+	@NotBlank
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "absence_type_id")
 	private AbsenceType absenceType;
+
+	@NotBlank
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "status_id")
 	private Status status;
-	private int idUser;
-	
-	
-	
+
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Absence() {
 		super();
 	}
-	
-	public Absence(int id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType, Status status, int idUser) {
+
+	public Absence(Integer id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType,
+			Status status, User user) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -26,17 +66,19 @@ public class Absence {
 		this.reason = reason;
 		this.absenceType = absenceType;
 		this.status = status;
-		this.idUser = idUser;
+		this.user = user;
 	}
 
-	public int getId() {
+	@NotNull
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	@Past
 	public LocalDate getStartDate() {
 		return startDate;
 	}
@@ -45,6 +87,7 @@ public class Absence {
 		this.startDate = startDate;
 	}
 
+	@Past
 	public LocalDate getEndDate() {
 		return endDate;
 	}
@@ -53,6 +96,7 @@ public class Absence {
 		this.endDate = endDate;
 	}
 
+	@NotBlank
 	public String getReason() {
 		return reason;
 	}
@@ -61,6 +105,7 @@ public class Absence {
 		this.reason = reason;
 	}
 
+	@NotBlank
 	public AbsenceType getAbsenceType() {
 		return absenceType;
 	}
@@ -69,6 +114,7 @@ public class Absence {
 		this.absenceType = absenceType;
 	}
 
+	@NotBlank
 	public Status getStatus() {
 		return status;
 	}
@@ -77,22 +123,19 @@ public class Absence {
 		this.status = status;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
+
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-
-	
-	
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", reason=" + reason
-				+ ", idAbsenceType=" + absenceType + ", idStatus=" + status + ", idUser=" + idUser + "]";
+				+ ", idAbsenceType=" + absenceType + ", idStatus=" + status + ", user=" + user + "]";
 	}
-	
-			
+
 }

@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Dayoff;
-import main.java.com.GDA.bean.TypeDayOff;
-import main.java.com.GDA.model.dao.dayoff.DayoffDAO;
-import main.java.com.GDA.model.dao.dayoff.IdayoffDAO;
+import com.GDA.bean.Dayoff;
+import com.GDA.bean.TypeDayOff;
+import com.GDA.model.dao.dayoff.DayoffDAO;
+import com.GDA.model.dao.dayoff.IdayoffDAO;
 
 /**
  * Servlet implementation class DayOffUpdateServlet
