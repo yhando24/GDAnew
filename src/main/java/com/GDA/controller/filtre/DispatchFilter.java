@@ -20,7 +20,6 @@ import com.GDA.config.Role;
  * Servlet Filter implementation class DispatchFilter
  */
 @WebFilter("/dispatchfilter")
-
 public class DispatchFilter implements Filter {
 	
 	public static final String ACCES_ADMINISTRATOR= "/indexAdministrator";

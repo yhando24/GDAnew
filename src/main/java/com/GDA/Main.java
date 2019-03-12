@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import org.junit.Test;
 
+
 import com.GDA.bean.Absence;
 import com.GDA.bean.Departement;
 import com.GDA.bean.Function;
@@ -21,14 +22,17 @@ import com.GDA.model.dao.absence.AbsenceDAO;
 
 
 
+
 public class Main {
 
 	public static void main(String[] args) {
 
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("GDA");
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("GDA");   
+		EntityManager em = emf.createEntityManager();
 
-		EntityManager em = emf.createEntityManager();   
+
+   
 
 		Absence absence1 = new Absence();
 		absence1.setStartDate(LocalDate.of(2019, 5, 6));
@@ -47,6 +51,9 @@ public class Main {
 		em.close();   
 		
 		emf.close(); 
+
+		EntityTransaction transac = em.getTransaction();
+
 
 	}
 	

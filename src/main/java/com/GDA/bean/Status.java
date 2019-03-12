@@ -15,12 +15,12 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Status {
 
 	@Id
-	@NotNull
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, insertable = false)
 	private Integer id;
 
-	@NotBlank
+	
 	@Column(length = 45, nullable = false)
 	private String name;
 
@@ -40,7 +40,7 @@ public class Status {
 
 	}
 
-	@NotNull
+	
 	public Integer getId() {
 		return id;
 	}
@@ -49,7 +49,7 @@ public class Status {
 		this.id = id;
 	}
 
-	@NotBlank
+	
 	public String getName() {
 		return name;
 	}

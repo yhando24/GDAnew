@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,16 +20,12 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Absence {
 
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(updatable = false, insertable = false)
 	private Integer id;
 
-	@Past
 	@Column
 	private LocalDate startDate;
 
-	@Past
 	@Column
 	private LocalDate endDate;
 
@@ -38,12 +33,10 @@ public class Absence {
 	@Column(length = 250, nullable = false)
 	private String reason;
 
-	@NotBlank
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "absence_type_id")
 	private AbsenceType absenceType;
-
-	@NotBlank
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "status_id")
 	private Status status;
@@ -69,7 +62,6 @@ public class Absence {
 		this.user = user;
 	}
 
-	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -78,7 +70,6 @@ public class Absence {
 		this.id = id;
 	}
 
-	@Past
 	public LocalDate getStartDate() {
 		return startDate;
 	}
@@ -87,7 +78,6 @@ public class Absence {
 		this.startDate = startDate;
 	}
 
-	@Past
 	public LocalDate getEndDate() {
 		return endDate;
 	}
@@ -105,7 +95,6 @@ public class Absence {
 		this.reason = reason;
 	}
 
-	@NotBlank
 	public AbsenceType getAbsenceType() {
 		return absenceType;
 	}
@@ -114,7 +103,6 @@ public class Absence {
 		this.absenceType = absenceType;
 	}
 
-	@NotBlank
 	public Status getStatus() {
 		return status;
 	}
