@@ -20,6 +20,7 @@ public class QuestionUser {
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer idSecretQuestion;
 
 	@NotBlank
@@ -32,7 +33,7 @@ public class QuestionUser {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", updatable = false, insertable = false)
 	private User user;
 
 	public QuestionUser() {

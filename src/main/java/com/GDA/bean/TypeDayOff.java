@@ -11,28 +11,29 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="type_day_off")
+@Table(name = "type_day_off")
 public class TypeDayOff {
 
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer id;
-	
+
 	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
-	
+
 	public TypeDayOff() {
-		
+
 	}
-	
+
 	public TypeDayOff(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	@NotNull
 	public Integer getId() {
 		return id;
@@ -55,5 +56,5 @@ public class TypeDayOff {
 	public String toString() {
 		return "AbsenceType [id=" + id + ", name=" + name + "]";
 	}
-		
+
 }

@@ -23,6 +23,7 @@ public class Absence {
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer id;
 
 	@Past

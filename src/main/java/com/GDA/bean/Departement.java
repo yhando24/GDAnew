@@ -10,32 +10,30 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-
-
 @Entity
-@Table(name="departement")
+@Table(name = "departement")
 public class Departement {
 
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer id;
-	
+
 	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
-	
+
 	public Departement() {
-		
+
 	}
-	
+
 	public Departement(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	
 	@NotNull
 	public Integer getId() {
 		return id;
@@ -58,6 +56,5 @@ public class Departement {
 	public String toString() {
 		return "Departement [id=" + id + ", name=" + name + "]";
 	}
-	
-	
+
 }

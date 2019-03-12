@@ -8,10 +8,9 @@ import javax.persistence.TypedQuery;
 
 import com.GDA.bean.Absence;
 import com.GDA.bean.AbsenceType;
+import com.GDA.bean.Departement;
 import com.GDA.bean.Status;
-import com.GDA.bean.User;
 import com.GDA.model.dao.GenericDAOJpaImplement;
-
 
 public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
@@ -267,8 +266,6 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
 	// way for get type of absence in all absence
 
-	
-
 	public List<Absence> findAbsencesByIdAbsenceType(AbsenceType absenceType) {
 		TypedQuery<Absence> q = em.createQuery("SELECT a From Absence as a JOIN a.user as u WHERE absenceType=:type",
 				Absence.class);
@@ -320,7 +317,6 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //	}
 
 	// way for get absences by the status of the absence
-
 
 	public List<Absence> findAbsencesByIdAbsenceStatut(Status status) {
 		TypedQuery<Absence> q = em.createQuery("SELECT a u From Absence as a JOIN a.user as u WHERE status=:status",
@@ -446,8 +442,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //		}
 //	}
 
-
-	public List<Absence> findAllAbsencesByDepartement(int idDep) {
+	public List<Absence> findAllAbsencesByDepartement(Departement idDep) {
 		TypedQuery<Absence> q = em.createQuery(
 				"SELECT u a From Absence as a JOIN a.user as u JOIN u.departement WHERE u.departement=:dpt",
 				Absence.class);

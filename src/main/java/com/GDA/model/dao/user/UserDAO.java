@@ -4,35 +4,26 @@ import java.util.ArrayList;
 
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Query;
-
-import com.GDA.bean.Departement;
-import com.GDA.bean.Function;
 import com.GDA.bean.QuestionUser;
 import com.GDA.bean.User;
 import com.GDA.model.dao.GenericDAOJpaImplement;
-import com.GDA.model.dao.absence.AbsenceDAO;
 //import main.java.com.GDA.utils.ConnectionDB;
-
 
 public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 
-
 	public User findUserByEmail(String email) {
-		//@TODO manque les jointures 
+		// @TODO manque les jointures
 		TypedQuery<User> q = em.createQuery("Select u FROM User u WHERE email=:mail", User.class);
 		q.setParameter("mail", email);
 		return q.getSingleResult();
 
 	}
-	
-
-
 
 	public boolean isUserExist(String email, String password) {
 		return false;
 
 	}
+
 //	Connection conn = null;
 //	PreparedStatement prepareStatement = null;
 //	ResultSet resultset = null;
@@ -74,11 +65,15 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 * 
 	 * }
 	 * 
-	 * 
-	 * public User findUserByEmailAndByPassword(String email, String password) {
-	 * 
-	 * User u = new User(); /* AbsenceDAO absence = new AbsenceDAO(); Departement d
-	 * = new Departement(); Function f = new Function();
+	 */
+	public User findUserByEmailAndByPassword(String email, String password) {
+		User u = em.find(User.class, email);
+		return u;
+	}
+
+	/*
+	 * User u = new User(); AbsenceDAO absence = new AbsenceDAO(); Departement d =
+	 * new Departement(); Function f = new Function();
 	 * 
 	 * Connection conn = null; PreparedStatement prepareStatement = null; ResultSet
 	 * resultset = null;
@@ -129,73 +124,66 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 * }
 	 */
 
-
-	public User findUserByEmailAndByPassword(String email, String password) {
-
-		User u = new User();
-		/*AbsenceDAO absence = new AbsenceDAO();
-		Departement d = new Departement();
-		Function f = new Function();
-
-		Connection conn = null;
-		PreparedStatement prepareStatement = null;
-		ResultSet resultset = null;
-
-		try {
-
-			conn = ConnectionDB.getConnection();
-
-			String query = "SELECT u.id,u.firstname,u.name,u.email,u.password,u.idFunction,u.idDepartement,u.nbrDaysOfLeave,u.nbrRTT,f.name as namefunc,d.name as namedep FROM user u JOIN diginamicproject.function f ON u.idFunction = f.id JOIN departement d ON u.idDepartement=d.id WHERE email = ? AND password = ?";
-
-			prepareStatement = conn.prepareStatement(query);
-
-			prepareStatement.setString(1, email);
-			prepareStatement.setString(2, password);
-
-			resultset = prepareStatement.executeQuery();
-
-			while (resultset.next()) {
-
-				u.setId(resultset.getInt("id"));
-				u.setFirstname(resultset.getString("firstname"));
-				u.setName(resultset.getString("name"));
-				u.setEmail(resultset.getString("email"));
-				// u.setPassword(resultset.getString("password"));
-				d.setName(resultset.getString("namedep"));
-				d.setId(resultset.getInt("idDepartement"));
-				u.setDepartement(d);
-				f.setId(resultset.getInt("idFunction"));
-				f.setName(resultset.getString("namefunc"));
-				u.setFunction(f);
-				u.setNbrDaysOfLeave(resultset.getInt("nbrDaysOfLeave"));
-				u.setNbrRTT(resultset.getInt("nbrRTT"));
-				u.setAbsences(absence.findAbsencesByIdUser(u.getId()));
-
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			try {
-				if (conn != null) {
-					resultset.close();
-					prepareStatement.close();
-					conn.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-
-		}*/
-
-		return u;
-	}
-
-
+//	public User findUserByEmailAndByPassword(String email, String password) {
+//
+//		User u = new User();
+	/*
+	 * AbsenceDAO absence = new AbsenceDAO(); Departement d = new Departement();
+	 * Function f = new Function();
+	 * 
+	 * Connection conn = null; PreparedStatement prepareStatement = null; ResultSet
+	 * resultset = null;
+	 * 
+	 * try {
+	 * 
+	 * conn = ConnectionDB.getConnection();
+	 * 
+	 * String query =
+	 * "SELECT u.id,u.firstname,u.name,u.email,u.password,u.idFunction,u.idDepartement,u.nbrDaysOfLeave,u.nbrRTT,f.name as namefunc,d.name as namedep FROM user u JOIN diginamicproject.function f ON u.idFunction = f.id JOIN departement d ON u.idDepartement=d.id WHERE email = ? AND password = ?"
+	 * ;
+	 * 
+	 * prepareStatement = conn.prepareStatement(query);
+	 * 
+	 * <<<<<<< HEAD ======= prepareStatement.setString(1, email);
+	 * prepareStatement.setString(2, password);
+	 * 
+	 * resultset = prepareStatement.executeQuery();
+	 * 
+	 * while (resultset.next()) {
+	 * 
+	 * u.setId(resultset.getInt("id"));
+	 * u.setFirstname(resultset.getString("firstname"));
+	 * u.setName(resultset.getString("name"));
+	 * u.setEmail(resultset.getString("email")); //
+	 * u.setPassword(resultset.getString("password"));
+	 * d.setName(resultset.getString("namedep"));
+	 * d.setId(resultset.getInt("idDepartement")); u.setDepartement(d);
+	 * f.setId(resultset.getInt("idFunction"));
+	 * f.setName(resultset.getString("namefunc")); u.setFunction(f);
+	 * u.setNbrDaysOfLeave(resultset.getInt("nbrDaysOfLeave"));
+	 * u.setNbrRTT(resultset.getInt("nbrRTT"));
+	 * u.setAbsences(absence.findAbsencesByIdUser(u.getId()));
+	 * 
+	 * }
+	 * 
+	 * } catch (Exception e) {
+	 * 
+	 * e.printStackTrace();
+	 * 
+	 * } finally {
+	 * 
+	 * try { if (conn != null) { resultset.close(); prepareStatement.close();
+	 * conn.close(); } } catch (SQLException e) {
+	 * 
+	 * e.printStackTrace(); }
+	 * 
+	 * // }
+	 */
+//
+//		return u;
+//	}
+//
+//
 	public ArrayList<User> findUserByIdDepartement(int idDepartement) {
 		ArrayList<User> users = new ArrayList<User>();
 
