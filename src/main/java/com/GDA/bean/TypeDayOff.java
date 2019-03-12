@@ -14,9 +14,11 @@ import org.hibernate.mapping.Set;
 public class TypeDayOff {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
 	
@@ -30,7 +32,7 @@ public class TypeDayOff {
 		this.name = name;
 	}
 	
-
+	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -39,6 +41,7 @@ public class TypeDayOff {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
