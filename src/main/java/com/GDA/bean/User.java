@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "user")
+@Table(name = "_user")
 public class User {
 
 	@Id
@@ -52,11 +52,11 @@ public class User {
 	private Integer nbrRTT;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "departement_id", updatable = false, insertable = false)
+	@JoinColumn(name = "departement_id", updatable = false)
 	private Departement departement;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "function_id", updatable = false, insertable = false)
+	@JoinColumn(name = "function_id", updatable = false)
 	private Function function;
 
 	@OneToMany(mappedBy = "user")
