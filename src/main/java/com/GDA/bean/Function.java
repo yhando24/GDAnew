@@ -29,9 +29,8 @@ public class Function {
 
 	}
 
-	public Function(Integer id, String name) {
+	public Function(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 

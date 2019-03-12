@@ -28,9 +28,8 @@ public class Departement {
 
 	}
 
-	public Departement(Integer id, String name) {
+	public Departement(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 

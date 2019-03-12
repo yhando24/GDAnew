@@ -24,10 +24,10 @@ public class Main {
 		
 		transac.begin();
 		
-		Departement d = new Departement(1,"testdepartement");
+		Departement d = new Departement("testdepartement");
 		em.persist(d) ;
 		
-		Function f = new Function(1,"poste"); 
+		Function f = new Function("poste"); 
 		em.persist(f) ;
 		
 		User u = new User();
