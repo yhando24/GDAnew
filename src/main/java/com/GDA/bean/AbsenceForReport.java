@@ -11,10 +11,10 @@ public class AbsenceForReport {
 	String name;
 	
 	@NotBlank
-	int duration;
+	Integer duration;
 	
 	@NotNull
-	int lastDayOfMonth;
+	Integer lastDayOfMonth;
 	
 	@NotBlank
 	TypeDayOff typeDayOff;
@@ -84,7 +84,7 @@ public class AbsenceForReport {
 	}
 	
 	@NotNull
-	public int getLastDayOfMonth() {
+	public Integer getLastDayOfMonth() {
 		return lastDayOfMonth;
 	}
 	
