@@ -17,53 +17,53 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer id;
-	
+
 	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
-	
+
 	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String firstname;
-	
+
 	@NotBlank
 	@Column(length = 150, nullable = false)
 	private String email;
-	
+
 	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String password;
-	
+
 	@Column
 	private Integer nbrDaysOfLeave;
-	
+
 	@Column
 	private Integer nbrRTT;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="departement_id")
+	@JoinColumn(name = "departement_id", updatable = false, insertable = false)
 	private Departement departement;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="function_id")
+	@JoinColumn(name = "function_id", updatable = false, insertable = false)
 	private Function function;
-	
-	@OneToMany(mappedBy="absence")
-	private List<Absence> absences = new ArrayList <Absence>();
-	
-	
+
+	@OneToMany(mappedBy = "absence")
+	private List<Absence> absences = new ArrayList<Absence>();
+
 	public User() {
-		
+
 	}
-	
-	public User(Integer id, String name, String firstname, String email, String password, int nbrDaysOfLeave, int nbrRTT,
-			Departement departement, Function function, List<Absence> absences) {
+
+	public User(Integer id, String name, String firstname, String email, String password, int nbrDaysOfLeave,
+			int nbrRTT, Departement departement, Function function, List<Absence> absences) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -133,7 +133,6 @@ public class User {
 		this.nbrRTT = nbrRTT;
 	}
 
-		
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -167,5 +166,5 @@ public class User {
 
 	public void addAbsence(Absence absence) {
 		absences.add(absence);
-	}		
+	}
 }

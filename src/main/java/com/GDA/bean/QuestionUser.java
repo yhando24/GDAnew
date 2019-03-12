@@ -16,6 +16,7 @@ public class QuestionUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer idSecretQuestion;
 
 	@Column(length = 250, nullable = false)
@@ -25,7 +26,7 @@ public class QuestionUser {
 	private String response;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", updatable = false, insertable = false)
 	private User user;
 
 	public QuestionUser() {

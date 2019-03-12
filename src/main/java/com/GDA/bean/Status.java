@@ -8,18 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="status")
+@Table(name = "status")
 public class Status {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer id;
-	
+
 	@Column(length = 45, nullable = false)
 	private String name;
-	
-	
-	
+
 	public Status() {
 		super();
 	}
@@ -29,13 +28,12 @@ public class Status {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public Status(Integer id) {
-	
+
 		this.id = id;
 
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -57,6 +55,5 @@ public class Status {
 	public String toString() {
 		return "Status [id=" + id + ", name=" + name + "]";
 	}
-	
-	
+
 }

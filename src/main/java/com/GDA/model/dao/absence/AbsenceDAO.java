@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 
 import main.java.com.GDA.bean.Absence;
 import main.java.com.GDA.bean.AbsenceType;
+import main.java.com.GDA.bean.Departement;
 import main.java.com.GDA.bean.Status;
 import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
 
@@ -439,7 +440,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 //		}
 //	}
 
-	public List<Absence> findAllAbsencesByDepartement(int idDep) {
+	public List<Absence> findAllAbsencesByDepartement(Departement idDep) {
 		TypedQuery<Absence> q = em.createQuery(
 				"SELECT u a From Absence as a JOIN a.user as u JOIN u.departement WHERE u.departement=:dpt",
 				Absence.class);

@@ -126,6 +126,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	public boolean isUserExist(String email, String password) {
 
 	}
+
 //	Connection conn = null;
 //	PreparedStatement prepareStatement = null;
 //	ResultSet resultset = null;
@@ -167,11 +168,15 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 * 
 	 * }
 	 * 
-	 * 
-	 * public User findUserByEmailAndByPassword(String email, String password) {
-	 * 
-	 * User u = new User(); /* AbsenceDAO absence = new AbsenceDAO(); Departement d
-	 * = new Departement(); Function f = new Function();
+	 */
+	public User findUserByEmailAndByPassword(String email, String password) {
+		User u = em.find(User.class, email);
+		return u;
+	}
+
+	/*
+	 * User u = new User(); AbsenceDAO absence = new AbsenceDAO(); Departement d =
+	 * new Departement(); Function f = new Function();
 	 * 
 	 * Connection conn = null; PreparedStatement prepareStatement = null; ResultSet
 	 * resultset = null;
@@ -221,10 +226,6 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 * 
 	 * }
 	 */
-
-	return u;
-
-	}
 
 	public ArrayList<User> findUserByIdDepartement(int idDepartement) {
 		ArrayList<User> users = new ArrayList<User>();

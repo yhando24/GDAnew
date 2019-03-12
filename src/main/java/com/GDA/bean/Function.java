@@ -8,20 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="function")
+@Table(name = "function")
 public class Function {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, insertable = false)
 	private Integer id;
-	
+
 	@Column(length = 45, nullable = false)
 	private String name;
-	
+
 	public Function() {
-		
+
 	}
-	
+
 	public Function(Integer id, String name) {
 		super();
 		this.id = id;
@@ -48,5 +49,5 @@ public class Function {
 	public String toString() {
 		return "Function [id=" + id + ", name=" + name + "]";
 	}
-		
+
 }
