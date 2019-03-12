@@ -444,9 +444,35 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
 	public List<Absence> findAllAbsencesByDepartement(Departement idDep) {
 		TypedQuery<Absence> q = em.createQuery(
-				"SELECT u a From Absence as a JOIN a.user as u JOIN u.departement WHERE u.departement=:dpt",
+				"SELECT a From Absence as a JOIN a.user as u JOIN u.departement WHERE a.departement=:dpt",
 				Absence.class);
 		q.setParameter("dpt", idDep);
+		return q.getResultList();
+
+	}
+
+	public List<Absence> findAllAbsencesByDepartementMonthAndYear(Integer idDep, Integer month, Integer year) {
+
+		TypedQuery<Absence> q = em.createQuery(
+				"SELECT a FROM Absence as a JOIN a.user as u JOIN u.departement as d WHERE u.departement.id =:dpt AND YEAR(a.startDate) =:year AND  MONTH(a.startDate) =:month",
+				Absence.class);
+		q.setParameter("dpt", idDep);
+		q.setParameter("year", year);
+		q.setParameter("month", month);
+		return q.getResultList();
+
+	}
+
+	public List<Absence> findAllAbsencesByNameDepartementMonthAndYear(Integer idDep, Integer month, Integer year,
+			String name) {
+
+		TypedQuery<Absence> q = em.createQuery(
+				"SELECT a FROM Absence as a JOIN a.user as u JOIN u.departement as d WHERE u.name =:name u.departement =:dpt AND YEAR(a.startDate) =:year AND  MONTH(a.startDate) =:month",
+				Absence.class);
+		q.setParameter("dpt", idDep);
+		q.setParameter("year", year);
+		q.setParameter("month", month);
+		q.setParameter("name", name);
 		return q.getResultList();
 
 	}
