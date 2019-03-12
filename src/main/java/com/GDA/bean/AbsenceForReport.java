@@ -4,14 +4,25 @@ import java.time.LocalDate;
 
 public class AbsenceForReport {
 
+	@Past
 	LocalDate dateStart;
+	
+	@NotBlank
 	String name;
+	
+	@NotBlank
 	int duration;
+	
+	@NotNull
 	int lastDayOfMonth;
+	
+	@NotBlank
 	TypeDayOff typeDayOff;
+	
+	@NotBlank
 	AbsenceType typeAbsence;
 	
-	public AbsenceForReport(LocalDate dateStart, String name, int duration, int lastDayOfMonth, TypeDayOff typeDayOff,
+	public AbsenceForReport(LocalDate dateStart, String name, Integer duration, Integer lastDayOfMonth, TypeDayOff typeDayOff,
 			AbsenceType typeAbsence) {
 		super();
 		this.dateStart = dateStart;
@@ -26,6 +37,8 @@ public class AbsenceForReport {
 		super();
 		
 	}
+	
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -34,7 +47,7 @@ public class AbsenceForReport {
 	}
 	
 	
-	
+	@NotBlank
 	public TypeDayOff getTypeDayOff() {
 		return typeDayOff;
 	}
@@ -43,6 +56,7 @@ public class AbsenceForReport {
 		this.typeDayOff = typeDayOff;
 	}
 	
+	@NotBlank
 	public AbsenceType getTypeAbsence() {
 		return typeAbsence;
 	}
@@ -51,6 +65,7 @@ public class AbsenceForReport {
 		this.typeAbsence = typeAbsence;
 	}
 	
+	@Past
 	public LocalDate getDateStart() {
 		return dateStart;
 	}
@@ -59,19 +74,21 @@ public class AbsenceForReport {
 		this.dateStart = dateStart;
 	}
 	
-	public int getDuration() {
+	@NotBlank
+	public Integer getDuration() {
 		return duration;
 	}
 	
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 	
+	@NotNull
 	public int getLastDayOfMonth() {
 		return lastDayOfMonth;
 	}
 	
-	public void setLastDayOfMonth(int lastDayOfMonth) {
+	public void setLastDayOfMonth(Integer lastDayOfMonth) {
 		this.lastDayOfMonth = lastDayOfMonth;
 	}
 	
