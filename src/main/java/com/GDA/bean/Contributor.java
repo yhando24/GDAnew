@@ -1,8 +1,15 @@
 package main.java.com.GDA.bean;
 
 	import java.util.ArrayList;
-	import java.util.List;
-	import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 	@Entity(name="Contributor")
 	public class Contributor {
