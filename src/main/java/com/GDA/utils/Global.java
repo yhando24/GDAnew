@@ -1,11 +1,11 @@
-package main.java.com.GDA.utils;
+package com.GDA.utils;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 
-import main.java.com.GDA.bean.User;
+import com.GDA.bean.User;
 
 
 public class Global {

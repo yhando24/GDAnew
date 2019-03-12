@@ -1,4 +1,4 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import java.time.LocalDate;
 
@@ -128,7 +128,7 @@ public class Absence {
 
 	}
 
-	public void setIdUser(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

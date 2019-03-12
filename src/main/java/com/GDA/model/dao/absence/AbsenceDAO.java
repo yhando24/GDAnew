@@ -1,16 +1,16 @@
 
-package main.java.com.GDA.model.dao.absence;
+package com.GDA.model.dao.absence;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceType;
-import main.java.com.GDA.bean.Departement;
-import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.model.dao.GenericDAOJpaImplement;
+import com.GDA.bean.Absence;
+import com.GDA.bean.AbsenceType;
+import com.GDA.bean.Departement;
+import com.GDA.bean.Status;
+import com.GDA.model.dao.GenericDAOJpaImplement;
 
 public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 
@@ -271,6 +271,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 				Absence.class);
 		q.setParameter("type", absenceType);
 		return q.getResultList();
+
 	}
 //		ArrayList<Absence> absences = new ArrayList<Absence>();
 //
@@ -322,6 +323,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 				Absence.class);
 		q.setParameter("status", status);
 		return q.getResultList();
+
 	}
 //		// TODO Auto-generated method stub
 //		ArrayList<Absence> absences = new ArrayList<Absence>();
@@ -446,6 +448,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 				Absence.class);
 		q.setParameter("dpt", idDep);
 		return q.getResultList();
+
 	}
 //
 //		List<User> users = new ArrayList<User>();

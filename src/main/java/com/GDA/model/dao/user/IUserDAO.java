@@ -1,11 +1,11 @@
-package main.java.com.GDA.model.dao.user;
+package com.GDA.model.dao.user;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.GDA.bean.QuestionUser;
-import main.java.com.GDA.bean.User;
+import com.GDA.bean.QuestionUser;
+import com.GDA.bean.User;
 
 public interface IUserDAO {
 	

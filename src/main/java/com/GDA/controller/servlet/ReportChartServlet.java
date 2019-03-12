@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import main.java.com.GDA.bean.AbsenceForReport;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
+import com.GDA.bean.AbsenceForReport;
+import com.GDA.bean.User;
+import com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
 
 
 

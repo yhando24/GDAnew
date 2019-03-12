@@ -1,4 +1,4 @@
-package main.java.com.GDA.model.dao;
+package com.GDA.model.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

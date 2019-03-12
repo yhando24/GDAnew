@@ -1,4 +1,4 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,6 +22,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class User {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, insertable = false)
 	private Integer id;
@@ -41,9 +43,11 @@ public class User {
 	@Column(length = 45, nullable = false)
 	private String password;
 
+	@NotNull
 	@Column
 	private Integer nbrDaysOfLeave;
 
+	@NotNull
 	@Column
 	private Integer nbrRTT;
 
@@ -55,7 +59,7 @@ public class User {
 	@JoinColumn(name = "function_id", updatable = false, insertable = false)
 	private Function function;
 
-	@OneToMany(mappedBy = "absence")
+	@OneToMany(mappedBy = "user")
 	private List<Absence> absences = new ArrayList<Absence>();
 
 	public User() {
@@ -77,6 +81,7 @@ public class User {
 		this.absences = absences;
 	}
 
+	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -85,6 +90,7 @@ public class User {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -93,6 +99,7 @@ public class User {
 		this.name = name;
 	}
 
+	@NotBlank
 	public String getFirstname() {
 		return firstname;
 	}
@@ -101,6 +108,7 @@ public class User {
 		this.firstname = firstname;
 	}
 
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}
@@ -109,6 +117,7 @@ public class User {
 		this.email = email;
 	}
 
+	@NotBlank
 	public String getPassword() {
 		return password;
 	}
@@ -117,6 +126,7 @@ public class User {
 		this.password = password;
 	}
 
+	@NotNull
 	public int getNbrDaysOfLeave() {
 		return nbrDaysOfLeave;
 	}
@@ -125,6 +135,7 @@ public class User {
 		this.nbrDaysOfLeave = nbrDaysOfLeave;
 	}
 
+	@NotNull
 	public int getNbrRTT() {
 		return nbrRTT;
 	}
@@ -133,6 +144,7 @@ public class User {
 		this.nbrRTT = nbrRTT;
 	}
 
+	@NotNull
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -141,6 +153,7 @@ public class User {
 		this.departement = departement;
 	}
 
+	@NotBlank
 	public Function getFunction() {
 		return function;
 	}
@@ -149,6 +162,7 @@ public class User {
 		this.function = function;
 	}
 
+	@NotBlank
 	public List<Absence> getAbsences() {
 		return absences;
 	}

@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.AbsenceType;
-import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
+import com.GDA.bean.Absence;
+import com.GDA.bean.AbsenceType;
+import com.GDA.bean.Status;
+import com.GDA.bean.User;
+import com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
  * Servlet implementation class AddAbsenceServlet
@@ -85,7 +85,7 @@ public class AddAbsenceServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 
-		absence.setIdUser(user.getId());
+		absence.setUser(user);
 
 		// verification non chevauchement de l'absence demandé avec absence presente en
 		// BDD

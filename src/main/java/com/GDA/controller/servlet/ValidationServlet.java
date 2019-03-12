@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.Absence;
-import main.java.com.GDA.bean.Status;
-import main.java.com.GDA.bean.User;
-import main.java.com.GDA.model.dao.absence.AbsenceDAO;
+import com.GDA.bean.Absence;
+import com.GDA.bean.Status;
+import com.GDA.bean.User;
+import com.GDA.model.dao.absence.AbsenceDAO;
 
 /**
  * Servlet implementation class ValidationServlet
@@ -58,7 +58,8 @@ public class ValidationServlet extends HttpServlet {
 
 				absence.setEndDate(absence.getEndDate().plusDays(1));
 				dao.update(absence);
-				users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
+				//@TOdo
+				//users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
 				session.setAttribute("allUsers", users);
 
 				response.sendRedirect(request.getContextPath() + "/validation");
@@ -73,8 +74,8 @@ public class ValidationServlet extends HttpServlet {
 				absence.setEndDate(absence.getEndDate().plusDays(1));
 				absence.setStatus(new Status(4));
 				dao.update(absence);
-
-				users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
+				//@TOdo
+				//users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
 
 				session.setAttribute("allUsers", users);
 
@@ -86,7 +87,8 @@ public class ValidationServlet extends HttpServlet {
 			System.out.println("dans la servlet");
 
 			System.out.println(user.getId());
-			users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
+			//@TOdo
+			//users = dao.findAllAbsencesByDepartement(user.getDepartement().getId());
 			for (User user2 : users) {
 				System.out.println("bou" + user2);
 			}

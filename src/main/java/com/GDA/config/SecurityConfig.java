@@ -1,4 +1,4 @@
-package main.java.com.GDA.config;
+package com.GDA.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;

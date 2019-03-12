@@ -1,17 +1,20 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 	import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-	@Entity(name="Contributor")
+	
 	public class Contributor {
 		
 		public enum Grade {
@@ -21,6 +24,8 @@ import org.hibernate.validator.constraints.NotBlank;
 		private static final Integer BASE_CONGES_PAYES = 28;
 		private static final Integer BASE_RTT = 11;
 		
+		
+				
 		@NotNull
 		private String matricule;
 		

@@ -1,4 +1,4 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,22 +9,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "question_user")
 public class QuestionUser {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, insertable = false)
 	private Integer idSecretQuestion;
 
+	@NotBlank
 	@Column(length = 250, nullable = false)
 	private String question;
 
+	@NotBlank
 	@Column(length = 250, nullable = false)
 	private String response;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", updatable = false, insertable = false)
 	private User user;
@@ -41,6 +48,7 @@ public class QuestionUser {
 		this.user = idUser;
 	}
 
+	@NotNull
 	public Integer getIdSecretQuestion() {
 		return idSecretQuestion;
 	}
@@ -49,6 +57,7 @@ public class QuestionUser {
 		this.idSecretQuestion = idSecretQuestion;
 	}
 
+	@NotBlank
 	public String getQuestion() {
 		return question;
 	}
@@ -57,6 +66,7 @@ public class QuestionUser {
 		this.question = question;
 	}
 
+	@NotBlank
 	public String getResponse() {
 		return response;
 	}
@@ -65,6 +75,7 @@ public class QuestionUser {
 		this.response = response;
 	}
 
+	@NotNull
 	public User getUser() {
 		return user;
 	}

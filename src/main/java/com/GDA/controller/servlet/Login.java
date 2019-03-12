@@ -1,4 +1,4 @@
-package main.java.com.GDA.controller.servlet;
+package com.GDA.controller.servlet;
 
 import java.io.IOException;
 
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.GDA.bean.User;
+import com.GDA.bean.User;
 
-import main.java.com.GDA.model.dao.user.*;
+import com.GDA.model.dao.user.*;
 
 /**
  * Servlet implementation class Login

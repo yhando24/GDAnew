@@ -1,4 +1,4 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import java.time.LocalDateTime;
 
@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name = "erreur_message")
 public class ErreurMessage {
@@ -16,44 +20,51 @@ public class ErreurMessage {
 	@Column(updatable = false, insertable = false)
 	private Integer id;
 
+	@Past
 	private LocalDateTime date;
 
+	@NotBlank
 	@Column(name = "service_origine")
 	private String serviceOrigine;
 
+	@NotBlank
 	private String message;
+
+	@NotNull
+	public Integer getId() {
+		return id;
+	}
 
 	public ErreurMessage() {
 		super();
 		this.date = LocalDateTime.now();
 	}
 
-	public Integer getId() {
-		return id;
+	@NotBlank
+	public String getServiceOrigine() {
+		return serviceOrigine;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getServiceOrigine() {
-		return serviceOrigine;
+	@NotBlank
+	public String getMessage() {
+		return message;
 	}
 
 	public void setServiceOrigine(String serviceOrigine) {
 		this.serviceOrigine = serviceOrigine;
 	}
 
-	public String getMessage() {
-		return message;
+	@Past
+	public LocalDateTime getDate() {
+		return date;
 	}
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public LocalDateTime getDate() {
-		return date;
 	}
 
 	public void setDate(LocalDateTime date) {

@@ -1,4 +1,4 @@
-package main.java.com.GDA.bean;
+package com.GDA.bean;
 
 import java.time.LocalDate;
 
