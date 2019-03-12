@@ -39,14 +39,14 @@ public class Absence {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private Integer idUser;
+	private User user;
 
 	public Absence() {
 		super();
 	}
 
 	public Absence(Integer id, LocalDate startDate, LocalDate endDate, String reason, AbsenceType absenceType,
-			Status status, int idUser) {
+			Status status, User user) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -54,7 +54,7 @@ public class Absence {
 		this.reason = reason;
 		this.absenceType = absenceType;
 		this.status = status;
-		this.idUser = idUser;
+		this.user = user;
 	}
 
 	public Integer getId() {
@@ -105,18 +105,18 @@ public class Absence {
 		this.status = status;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setIdUser(User user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", reason=" + reason
-				+ ", idAbsenceType=" + absenceType + ", idStatus=" + status + ", idUser=" + idUser + "]";
+				+ ", idAbsenceType=" + absenceType + ", idStatus=" + status + ", user=" + user + "]";
 	}
 
 }

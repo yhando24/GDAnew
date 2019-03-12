@@ -14,7 +14,7 @@
 
 			<!-- The database username -->
 			<property name="javax.persistence.jdbc.user"
-				value="postegres" />
+				value="postgres" />
 
 			<!-- The database password -->
 			<property name="javax.persistence.jdbc.password"
