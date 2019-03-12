@@ -71,7 +71,7 @@ public class UserDAO extends GenericDAOJpaImplement<User, Integer> {
 	 */
 	public User findUserByEmailAndByPassword(String email, String password) {
 
-		TypedQuery<User> query = em.createQuery("SELECT u FROM User as u WHERE u.mail=:mail AND u.password=:password",
+		TypedQuery<User> query = em.createQuery("SELECT u FROM User as u WHERE u.email=:mail AND u.password=:password",
 				User.class);
 		query.setParameter("mail", email);
 		query.setParameter("password", password);

@@ -1,14 +1,3 @@
-SET FOREIGN_KEY_CHECKS=0;
-TRUNCATE TABLE absence;
-TRUNCATE TABLE absencetype;
-TRUNCATE TABLE _user;
-TRUNCATE TABLE departement;
-TRUNCATE TABLE function;
-TRUNCATE TABLE status;
-TRUNCATE TABLE dayoff;
-TRUNCATE TABLE secretQuestion;
-SET FOREIGN_KEY_CHECKS=1;
-
 INSERT INTO _function (name) VALUES ('admin'), ('manager'), ('user');
 INSERT INTO absence_type (name) VALUES ('conge'), ('RTT');
 INSERT INTO absence_type (name) VALUES ('sSoldes'), ('mission');
@@ -17,19 +6,19 @@ INSERT INTO status (name) VALUES ('initial'), ('attente');
 INSERT INTO status (name) VALUES ('valide'), ('refuse');
 INSERT INTO departement (name) VALUES ('informatique'), ('resource humaine');
 
-INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
-VALUES ('mercadier', 'yoann', 'yo@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '30', '11', '1', '1'), 
+INSERT INTO user_ (lastname, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+VALUES ('mercadier', 'yoann', 'admin@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '30', '11', '1', '1'), 
 ('handura', 'youcef', 'youyou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '35', '11', '1', '2');
-INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (lastname, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+VALUES ('pichery', 'melanie', 'manager@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
+('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
+INSERT INTO user_ (lastname, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+VALUES ('mercadier', 'yoann', 'user@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '30', '11', '1', '1'), 
+('handura', 'youcef', 'youyou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '35', '11', '1', '2');
+INSERT INTO user_ (lastname, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('pichery', 'melanie', 'pichery@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
 ('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
-INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
-VALUES ('mercadier', 'yoann', 'yo@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '30', '11', '1', '1'), 
-('handura', 'youcef', 'youyou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '35', '11', '1', '2');
-INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
-VALUES ('pichery', 'melanie', 'pichery@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
-('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
-INSERT INTO user_ (name, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
+INSERT INTO user_ (lastname, firstname, email, password, nbrDaysOfLeave, nbrRTT, departement_id, function_id) 
 VALUES ('pichery', 'melanie', 'pichery@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '18', '1', '2'), 
 ('aallou', 'aniss', 'aallou@plop.fr', '64a4e8faed1a1aa0bf8bf0fc84938d25', '45', '11', '2', '3');
 

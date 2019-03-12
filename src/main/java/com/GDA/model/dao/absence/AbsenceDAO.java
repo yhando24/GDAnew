@@ -157,7 +157,7 @@ public class AbsenceDAO extends GenericDAOJpaImplement<Absence, Integer> {
 	// way for get user absences by his id
 
 	public List<Absence> findAbsencesByIdUser(Integer idUser) {
-		TypedQuery<Absence> q = em.createQuery("SELECT u a From Absence as a JOIN a.user as u WHERE a.id=:idUser)",
+		TypedQuery<Absence> q = em.createQuery("SELECT a From Absence as a JOIN a.user as u WHERE u.id=:idUser)",
 				Absence.class);
 		q.setParameter("idUser", idUser);
 		return q.getResultList();

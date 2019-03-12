@@ -1,33 +1,39 @@
 package com.GDA.controller.servlet;
 
 import java.io.IOException;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.GDA.bean.User;
-
-import com.GDA.model.dao.user.*;
+import com.GDA.model.dao.user.UserDAO;
 
 /**
  * Servlet implementation class Login
  */
 
-
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor.
-	 */
+//	@PostConstruct
+//	public void init() {
+//
+//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("GDA");
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction transac = em.getTransaction();
+//	}
+
 	public Login() {
 	}
 
@@ -37,24 +43,20 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
 
-		
-		
-		
 		HttpSession session = (request).getSession();
-		
+
 		if (session.getAttribute("user") == null) {
-		if(request.getParameter("errorlogin") != null)	{
-			
-			request.setAttribute("noUser", "Aucun utilisateur existant avec cette adresse mail");
+			if (request.getParameter("errorlogin") != null) {
+
+				request.setAttribute("noUser", "Aucun utilisateur existant avec cette adresse mail");
+			}
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp");
+			dispatcher.forward(request, response);
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp");
-		dispatcher.forward(request, response);
-		}
-		
+
 		else {
-			
+
 			response.sendRedirect(request.getContextPath() + "/dispatchfilter");
 		}
 	}
