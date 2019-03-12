@@ -14,9 +14,11 @@ import javax.persistence.Table;
 public class Departement {
 
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
 	@Column(length = 45, nullable = false)
 	private String name;
 	
@@ -31,7 +33,7 @@ public class Departement {
 	}
 
 	
-	
+	@NotNull
 	public Integer getId() {
 		return id;
 	}
@@ -40,6 +42,7 @@ public class Departement {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
