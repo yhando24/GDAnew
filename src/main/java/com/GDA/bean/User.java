@@ -29,7 +29,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 7430033115484590641L;
 
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, insertable = false)
 	private Integer id;
@@ -50,11 +49,9 @@ public class User implements Serializable {
 	@Column(length = 45, nullable = false)
 	private String password;
 
-	@NotNull
 	@Column
 	private Integer nbrDaysOfLeave;
 
-	@NotNull
 	@Column
 	private Integer nbrRTT;
 
