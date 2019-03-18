@@ -1,5 +1,6 @@
 package com.GDA.bean;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -18,7 +19,12 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "dayoff")
-public class Dayoff {
+public class Dayoff implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8172725693434813476L;
 
 	@Id
 	@NotNull

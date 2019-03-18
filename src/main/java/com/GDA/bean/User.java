@@ -1,5 +1,6 @@
 package com.GDA.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 
 @Table(name = "user_")
-public class User {
+public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7430033115484590641L;
 
 	@Id
 	@NotNull
