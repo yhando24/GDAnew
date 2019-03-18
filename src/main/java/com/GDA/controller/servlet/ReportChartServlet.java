@@ -59,8 +59,7 @@ public class ReportChartServlet<ObjectMapper> extends HttpServlet {
 			AbsenceDAO abs = new AbsenceDAO();
 
 			System.out.println("id dep => " + user.getDepartement().getId() + " month =>" + month + " year => " + year);
-			List<Absence> absences = abs.findAllAbsencesByDepartementMonthAndYear(user.getDepartement().getId(), m,
-					y);
+			List<Absence> absences = abs.findAllAbsencesByDepartementMonthAndYear(user.getDepartement().getId(), m, y);
 			final GsonBuilder builder = new GsonBuilder();
 			final Gson gson = builder.create();
 			String json = gson.toJson(absences);
@@ -94,7 +93,8 @@ public class ReportChartServlet<ObjectMapper> extends HttpServlet {
 
 		AbsenceDAO abs = new AbsenceDAO();
 
-		List<Absence> absences = abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep), Integer.parseInt(month), Integer.parseInt(year));
+		List<Absence> absences = abs.findAllAbsencesByDepartementMonthAndYear(Integer.parseInt(dep),
+				Integer.parseInt(month), Integer.parseInt(year));
 		final GsonBuilder builder = new GsonBuilder();
 		final Gson gson = builder.create();
 		String json = gson.toJson(absences);

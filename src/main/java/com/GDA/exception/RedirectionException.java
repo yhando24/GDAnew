@@ -1,5 +1,5 @@
 package com.GDA.exception;
 
-public class RedirectionException extends Exception{
+public class RedirectionException extends Exception {
 
 }

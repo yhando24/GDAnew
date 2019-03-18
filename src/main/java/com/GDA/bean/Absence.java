@@ -36,7 +36,7 @@ public class Absence {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "absence_type_id")
 	private AbsenceType absenceType;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "status_id")
 	private Status status;

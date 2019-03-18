@@ -33,25 +33,24 @@ public class IndexManager extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 
 		HttpSession session = (request).getSession();
 		System.out.println(session.getAttribute("user"));
 
-		session.setAttribute("errorAdd",null);
-		
+		session.setAttribute("errorAdd", null);
+
 		User u2 = (User) session.getAttribute("user");
-		
+
 		if (u2.getFunction().getId() == Role.ROLE_MANAGER.getValue()) {
-				
+
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/homeManager.jsp");
-			dispatcher.forward(request, response);	
+			dispatcher.forward(request, response);
 		}
-		
+
 		else {
-			
+
 			response.sendRedirect(request.getContextPath() + "/login");
-		}		
+		}
 	}
 
 	/**

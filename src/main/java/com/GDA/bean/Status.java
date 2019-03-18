@@ -6,21 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "status")
 public class Status {
 
 	@Id
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, insertable = false)
 	private Integer id;
 
-	
 	@Column(length = 45, nullable = false)
 	private String name;
 
@@ -40,7 +36,6 @@ public class Status {
 
 	}
 
-	
 	public Integer getId() {
 		return id;
 	}
@@ -49,7 +44,6 @@ public class Status {
 		this.id = id;
 	}
 
-	
 	public String getName() {
 		return name;
 	}

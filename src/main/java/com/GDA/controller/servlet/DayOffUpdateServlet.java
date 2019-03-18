@@ -1,7 +1,6 @@
 package com.GDA.controller.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import com.GDA.bean.Dayoff;
 import com.GDA.bean.TypeDayOff;
 import com.GDA.model.dao.dayoff.DayoffDAO;
-import com.GDA.model.dao.dayoff.IdayoffDAO;
 
 /**
  * Servlet implementation class DayOffUpdateServlet
@@ -51,7 +49,7 @@ public class DayOffUpdateServlet extends HttpServlet {
 		dayOff = dayOffDao.findDayOffById(idDayOff);
 
 		session.setAttribute("JourAModifier", dayOff);
-		
+
 		System.out.println(dayOff);
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-update.jsp");
@@ -70,22 +68,22 @@ public class DayOffUpdateServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Dayoff d = (Dayoff) session.getAttribute("JourAModifier");
-		
+
 		System.out.println(d.getDepartement());
 
 		String date = request.getParameter("date");
 		String ferieType = request.getParameter("ferieType");
 		String comment = request.getParameter("comment");
-		
+
 		dayOff.setId(d.getId());
 		dayOff.setDayOff(LocalDate.parse(date).plusDays(1));
-		
+
 		TypeDayOff type = new TypeDayOff();
 		type.setId(Integer.parseInt(ferieType));
 		dayOff.setTypeDayOff(type);
-		
+
 		dayOff.setDepartement(d.getDepartement());
-				
+
 		dayOff.setComment(comment);
 
 		System.out.println(dayOff);
@@ -93,7 +91,7 @@ public class DayOffUpdateServlet extends HttpServlet {
 		dayOffDao.updateDayoff(dayOff.getId(), dayOff);
 
 		response.sendRedirect(request.getContextPath() + "/day-off-management");
-		
+
 	}
 
 }

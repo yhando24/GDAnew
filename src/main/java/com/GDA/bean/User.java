@@ -29,7 +29,7 @@ public class User {
 	private Integer id;
 
 	@NotBlank
-	@Column(name="lastname",length = 45, nullable = false)
+	@Column(name = "lastname", length = 45, nullable = false)
 	private String name;
 
 	@NotBlank

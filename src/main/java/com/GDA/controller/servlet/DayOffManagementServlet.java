@@ -43,7 +43,7 @@ public class DayOffManagementServlet extends HttpServlet {
 		Calendar now = Calendar.getInstance();
 		int y = now.get(Calendar.YEAR);
 		String year = String.valueOf(y);
-		
+
 		if (request.getParameter("action") != null) {
 
 			if (request.getParameter("action").equals("addDayoff")) {
@@ -75,9 +75,10 @@ public class DayOffManagementServlet extends HttpServlet {
 			List<Dayoff> dayoffs = dao.findDayOffByYear(y);
 
 			session.setAttribute("dayoffs", dayoffs);
-			
+
 			request.setAttribute("selectYear", year);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
+			RequestDispatcher dispatcher = getServletContext()
+					.getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
 			dispatcher.forward(request, response);
 		}
 
@@ -89,21 +90,21 @@ public class DayOffManagementServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		int year = Integer.parseInt(request.getParameter("selectYear"));
 		System.out.println(year);
 		DayoffDAO dao = new DayoffDAO();
 		HttpSession session = request.getSession();
 		String selectYear = request.getParameter("selectYear");
-		
+
 		List<Dayoff> dayoffsByYear = dao.findDayOffByYear(year);
 		session.setAttribute("dayoffs", dayoffsByYear);
-		
+
 		request.setAttribute("selectYear", selectYear);
-		
+
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/day-off-management.jsp");
 		dispatcher.forward(request, response);
-	
+
 	}
 
 }

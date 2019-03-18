@@ -32,14 +32,14 @@
 									onchange="verifDateDebut()" type="date" id="champ1" name="date">
 								</span> <span class="messageDebutDate"
 									style="display: none; color: red">Veuillez saisir une
-									date de début supérieure à la date actuelle svp</span> <span>
-									<label for="champ2">Date de fin</label> <input
-									name="endAbsence" class="custom-select finDateJs"
-									onchange="verifDateFin()" type="date" id="champ1" name="date">
+									date de début supérieure à la date actuelle svp</span> <span> <label
+									for="champ2">Date de fin</label> <input name="endAbsence"
+									class="custom-select finDateJs" onchange="verifDateFin()"
+									type="date" id="champ1" name="date">
 
 								</span> <span class="messageFinDate" style="display: none; color: red">Date
-									de fin inférieure à la date de début. Veuillez saisir une
-									date de fin correcte svp</span> <span> <label for="champ2">Type
+									de fin inférieure à la date de début. Veuillez saisir une date
+									de fin correcte svp</span> <span> <label for="champ2">Type
 										de congé</label> <select name="congeType" class="custom-select"
 									id="congeTypeJs" onchange="verifConge()">
 										<option selected>Type de congé</option>

@@ -5,5 +5,5 @@ import java.util.List;
 import com.GDA.bean.AbsenceForReport;
 
 public interface IAbsenceForReportDAO {
-	List <AbsenceForReport> findAllAbsencesByDepartementMonthAndYear();
+	List<AbsenceForReport> findAllAbsencesByDepartementMonthAndYear();
 }

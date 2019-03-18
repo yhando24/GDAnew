@@ -1,7 +1,6 @@
 package com.GDA.model.dao.dayoff;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 
 import com.GDA.bean.Dayoff;

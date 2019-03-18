@@ -17,10 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.GDA.bean.Absence;
-import com.GDA.bean.AbsenceForReport;
 import com.GDA.bean.Dayoff;
 import com.GDA.bean.User;
-import com.GDA.model.dao.AbsenceForReport.AbsenceForReportDAO;
 import com.GDA.model.dao.absence.AbsenceDAO;
 import com.GDA.model.dao.user.UserDAO;
 
@@ -51,12 +49,12 @@ public class ReportPlanningServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 
 		List<Dayoff> dayoff = new ArrayList<Dayoff>();
-		
+
 		if (user.getFunction().getName().equals("manager")) {
 			Calendar now = Calendar.getInstance();
 			int y = now.get(Calendar.YEAR);
 			String year = String.valueOf(y);
-			int m = now.get(Calendar.MONTH) +1;
+			int m = now.get(Calendar.MONTH) + 1;
 			String month = String.valueOf(m);
 			request.setAttribute("year", year);
 			request.setAttribute("month", month);
@@ -65,7 +63,7 @@ public class ReportPlanningServlet extends HttpServlet {
 
 			ArrayList<User> users = new ArrayList<User>();
 
-			users = userName.findUserByIdDepartement( user.getDepartement().getId());
+			users = userName.findUserByIdDepartement(user.getDepartement().getId());
 
 			for (User user2 : users) {
 
@@ -87,44 +85,43 @@ public class ReportPlanningServlet extends HttpServlet {
 				}
 				for (int i = 0; i < 31; i++) {
 					for (Absence a : u.getAbsences()) {
-						
-						if (a.getStartDate().getDayOfMonth()-1 == i) {
-//							int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
-							
-							Long duration = ChronoUnit.DAYS.between(a.getStartDate(),a.getEndDate())+1;
-							
-							for (int j = 0; j < duration; j++) {
-								if(i+j < 31) {
-								switch (a.getAbsenceType().getId()) {
-								case 1:
-									typeAbs.set(i + j, "C");
-									break;
-								case 2:
-									typeAbs.set(i + j, "R");
-									break;
-								case 3:
-									typeAbs.set(i + j, "S");
-									break;
-								case 4:
-									typeAbs.set(i + j, "M");
-									break;
-								case 5:
-									typeAbs.set(i + j, "R_E");
-									break;
 
+						if (a.getStartDate().getDayOfMonth() - 1 == i) {
+//							int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
+
+							Long duration = ChronoUnit.DAYS.between(a.getStartDate(), a.getEndDate()) + 1;
+
+							for (int j = 0; j < duration; j++) {
+								if (i + j < 31) {
+									switch (a.getAbsenceType().getId()) {
+									case 1:
+										typeAbs.set(i + j, "C");
+										break;
+									case 2:
+										typeAbs.set(i + j, "R");
+										break;
+									case 3:
+										typeAbs.set(i + j, "S");
+										break;
+									case 4:
+										typeAbs.set(i + j, "M");
+										break;
+									case 5:
+										typeAbs.set(i + j, "R_E");
+										break;
+
+									}
 								}
 							}
-							}
 						}
-						
+
 					}
 				}
-				
+
 				System.out.println(typeAbs);
 				plop.put(u.getName(), typeAbs);
 			}
 			request.setAttribute("plop", plop);
-
 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/reportPlanning.jsp");
 			dispatcher.forward(request, response);
@@ -147,14 +144,12 @@ public class ReportPlanningServlet extends HttpServlet {
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		String dep = request.getParameter("departement");
-		
-		
-		
+
 		UserDAO userName = new UserDAO();
 
 		ArrayList<User> users = new ArrayList<User>();
 
-		users = userName.findUserByIdDepartement( Integer.parseInt(dep));
+		users = userName.findUserByIdDepartement(Integer.parseInt(dep));
 
 		for (User user2 : users) {
 
@@ -176,48 +171,47 @@ public class ReportPlanningServlet extends HttpServlet {
 			}
 			for (int i = 0; i < 31; i++) {
 				for (Absence a : u.getAbsences()) {
-					
-					if (a.getStartDate().getDayOfMonth()-1 == i) {
-//						int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
-						
-						Long duration = ChronoUnit.DAYS.between(a.getStartDate(),a.getEndDate())+1;
-						
-						for (int j = 0; j < duration; j++) {
-							if(i+j < 31) {
-							switch (a.getAbsenceType().getId()) {
-							case 1:
-								typeAbs.set(i + j, "C");
-								break;
-							case 2:
-								typeAbs.set(i + j, "R");
-								break;
-							case 3:
-								typeAbs.set(i + j, "S");
-								break;
-							case 4:
-								typeAbs.set(i + j, "M");
-								break;
-							case 5:
-								typeAbs.set(i + j, "R_E");
-								break;
 
+					if (a.getStartDate().getDayOfMonth() - 1 == i) {
+//						int duration = a.getEndDate().getDayOfYear() - a.getStartDate().getDayOfYear() + 1;
+
+						Long duration = ChronoUnit.DAYS.between(a.getStartDate(), a.getEndDate()) + 1;
+
+						for (int j = 0; j < duration; j++) {
+							if (i + j < 31) {
+								switch (a.getAbsenceType().getId()) {
+								case 1:
+									typeAbs.set(i + j, "C");
+									break;
+								case 2:
+									typeAbs.set(i + j, "R");
+									break;
+								case 3:
+									typeAbs.set(i + j, "S");
+									break;
+								case 4:
+									typeAbs.set(i + j, "M");
+									break;
+								case 5:
+									typeAbs.set(i + j, "R_E");
+									break;
+
+								}
 							}
 						}
-						}
 					}
-					
+
 				}
 			}
-			
+
 			System.out.println(typeAbs);
 			plop.put(u.getName(), typeAbs);
 		}
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 		request.setAttribute("departement", dep);
-		
-		request.setAttribute("plop", plop);
 
+		request.setAttribute("plop", plop);
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/reportPlanning.jsp");
 		dispatcher.forward(request, response);
